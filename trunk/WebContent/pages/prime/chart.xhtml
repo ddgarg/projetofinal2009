@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:opt="http://primefaces.prime.com.tr/optimus"
+	xmlns:ft="http://primefaces.prime.com.tr/facestrace">
+
+<ui:composition template="../../templates/common.xhtml">
+	<ui:define name="pageTitle">Teste</ui:define>
+	<ui:define name="pageHeader">Testes primefaces</ui:define>
+	<ui:define name="body">
+
+		<h:form prependId="false"> 
+			<p:pieChart value="#{chartBean.sales}" var="sale"
+				categoryField="#{sale.brand}" dataField="#{sale.amount}"
+				styleClass="pie" style="chartStyle" />
+		</h:form>
+
+
+		<h:form prependId="false">
+			<p:pieChart id="votes" value="#{chartBean.votes}" var="vote"
+				live="true" refreshInterval="3000" categoryField="#{vote.candidate}"
+				dataField="#{vote.count}" styleClass="pie" style="chartStyle" />
+		</h:form>
+
+
+		<h:form prependId="false">
+			<p:stackedColumnChart value="#{chartBean.births}" var="birth"
+				xfield="#{birth.year}" styleClass="column" style="chartStyle">
+				<p:chartSeries label="Boys" value="#{birth.boys}" />
+				<p:chartSeries label="Girls" value="#{birth.girls}" />
+			</p:stackedColumnChart>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

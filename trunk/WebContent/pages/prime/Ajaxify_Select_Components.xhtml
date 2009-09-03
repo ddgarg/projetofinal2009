@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:opt="http://primefaces.prime.com.tr/optimus"
+      xmlns:ft="http://primefaces.prime.com.tr/facestrace">
+
+	<ui:composition template="../../templates/common.xhtml">
+		<ui:define name="pageTitle">Teste</ui:define>
+		<ui:define name="pageHeader">Testes primefaces</ui:define>
+		<ui:define name="body">
+
+		<h:form prependId="false">
+
+			<p:ajaxStatus onstart="statusDialog.show();"
+				oncomplete="statusDialog.hide();" />
+
+			<p:dialog modal="true" widgetVar="statusDialog" header="Status"
+				x="10" y="10" draggable="false" close="false">
+				<h:graphicImage value="../../images/ajaxloadingbar.gif" />
+			</p:dialog>
+
+			<p:panel header="Boolean Checkbox" style="margin-bottom:10px;">
+				<h:selectBooleanCheckbox id="checked" value="#{pprBean.checked}">
+					<p:ajax update="checkedDisplay" event="change" />
+				</h:selectBooleanCheckbox>
+
+				<br />
+				<h:outputText id="checkedDisplay" value="Checked: #{pprBean.checked}" />
+			</p:panel>
+
+			<p:panel header="Select Many Checkbox">
+				<h:selectManyCheckbox id="cities" value="">
+					<f:selectItems value="#{pprBean.cities}" />
+					<p:ajax update="citiesDisplay" event="change" />
+				</h:selectManyCheckbox>
+
+				<br />
+				<h:outputText id="citiesDisplay"
+					value="Selected Cities: #{pprBean.selectedCitiesAsString}" />
+			</p:panel>
+
+			<p:panel header="Select One Boolean" style="margin-bottom:10px;">
+				<h:panelGrid columns="2">
+					<h:outputLabel for="room" value="Room: " />
+					<h:selectOneRadio id="room" value="#{pprBean.room}">
+						<f:selectItems value="#{pprBean.rooms}" />
+						<p:ajax actionListener="#{pprBean.handleRoomChange}"
+							update="items" event="change" />
+					</h:selectOneRadio>
+
+					<h:outputLabel for="items" value="Item: " />
+					<h:selectOneRadio id="items" value="#{pprBean.item}">
+						<f:selectItems value="#{pprBean.items}" />
+					</h:selectOneRadio>
+				</h:panelGrid>
+
+				<p:commandButton value="Submit" update="display2" />
+
+				<br />
+
+				<h:panelGrid id="display2" columns="2">
+					<h:outputText value="Room:" />
+					<h:outputText value="#{pprBean.room}" />
+
+					<h:outputText value="Item:" />
+					<h:outputText value="#{pprBean.item}" />
+				</h:panelGrid>
+			</p:panel>
+
+		</h:form>
+
+	</ui:define>
+	</ui:composition>
+
+</html>
