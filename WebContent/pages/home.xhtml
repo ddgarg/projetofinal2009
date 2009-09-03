@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:opt="http://primefaces.prime.com.tr/optimus"
+      xmlns:ft="http://primefaces.prime.com.tr/facestrace">
+
+	<f:loadBundle basename="resources" var="msg" />
+	<ui:composition template="/templates/common.xhtml">
+		<ui:define name="pageTitle">#{msg.home_pageTitle}</ui:define>
+			<ui:define name="pageHeader">#{msg.home_pageHeader}</ui:define>
+			<ui:define name="body">
+					<br />
+				<h:form>
+					<h:commandButton action="#{cadastroPessoaController.NovaPessoaFisica}"
+							 value="#{msg.home_button_cadastroPessoa}" />
+				</h:form>
+				<h:form>
+					<h:commandButton action="personsView" value="#{msg.home_button_verCadastros}" />
+				</h:form>
+				<h:form>
+					<h:commandButton action="#{cadastroPessoaController.NovaPessoaFisicaTestes}"
+							 value="Testes" />
+				</h:form>
+				
+				<h:form>
+					<h:commandButton action="testes2"
+							 value="Testes 2" />
+				</h:form>
+				
+				<h:form>
+					<h:commandButton action="prime"
+							 value="Prime" />
+				</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>
