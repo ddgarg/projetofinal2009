@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>buyFastModelo</name>
-	<url>http://maven.apache.org</url>
+	<description>Projeto Final do curso de Sistema de Informações - Estácio de Sá - Nova Iguaçu</description>
 
 	<developers>
 		<developer>
@@ -156,6 +156,10 @@
 			<version>1.2.2.osgi</version>
 		</dependency>
 	</dependencies>
+	<organization>
+		<name>Faculdade Estácio de Sá - Nova Iguaçu</name>
+		<url>http://www.estacio.br</url>
+	</organization>
 
 	<build>
 		<plugins>

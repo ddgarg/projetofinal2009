@@ -8,7 +8,7 @@
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<!-- <class>br.com.buyFast.model.Address</class>
+		<class>br.com.buyFast.model.Address</class>
 		<class>br.com.buyFast.model.Administrator</class>
 		<class>br.com.buyFast.model.Bank</class>
 		<class>br.com.buyFast.model.Category</class>
@@ -17,7 +17,7 @@
 		<class>br.com.buyFast.model.ItemsOrder</class>
 		<class>br.com.buyFast.model.Order</class>
 		<class>br.com.buyFast.model.Person</class>
-		<class>br.com.buyFast.model.Product</class>-->
+		<class>br.com.buyFast.model.Product</class>
 		<class>br.com.buyFast.model.Setting</class>
 		
 		<properties>
@@ -45,7 +45,8 @@
             <property name="hibernate.cache.use_structured_entries" value="true" />
             
             <property name="hibernate.ejb.classcache.br.com.buyFast.model.Product" value="read-write"/>
-            <property name="hibernate.ejb.classcache.br.com.buyFast.model.Category" value="read-write" />  
+            <property name="hibernate.ejb.classcache.br.com.buyFast.model.Category" value="read-write" />
+            <property name="hibernate.ejb.classcache.br.com.buyFast.model.Setting" value="read-write" />  
             
             <!--Configuração do pool de c3p0-->           
             <property name="hibernate.c3p0.min_size" value="5" />
