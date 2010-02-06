@@ -1,4 +1,5 @@
-<project-modules id="moduleCoreId" project-version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
   <wb-module deploy-name="buyFastWeb">
     <property name="context-root" value="buyFastWeb"/>
     <wb-resource deploy-path="/" source-path="src/main/webapp"/>
@@ -69,6 +70,12 @@
     <dependent-module archiveName="standard-1.1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/taglibs/standard/1.1.2/standard-1.1.2.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
+        <dependent-module archiveName="buyFastNegocio.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/buyFastNegocio/buyFastNegocio">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Modelo_BuyFast.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Modelo_BuyFast/Modelo_BuyFast">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
   </wb-module>
