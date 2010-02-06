@@ -1,0 +1,13 @@
+<projectDescription>
+  <name>buyFastNegocio</name>
+  <comment>Projeto Final do curso de Sistema de Informações - Estácio de Sá - Nova Iguaçu</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
