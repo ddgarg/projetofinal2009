@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
 
-	<ui:composition template="/templates/templatePage.xhtml">
-		<ui:define name="titulo">Projeto</ui:define>
-		
-		<ui:define name="body">Projeto</ui:define>
-	</ui:composition>
+<ui:composition template="/templates/templatePage.xhtml">
+	<ui:define name="titulo">Projeto</ui:define>
+
+	<ui:define name="body">
+
+		<f:view>
+
+			<h:form>
+				<h:outputText value="Teste Projeto" />
+				<br />
+				<h:commandButton action="#" value="Enviar" />
+				<br />
+				<h3>Popup</h3>
+				<p:calendar value="#{calendarBean.date1}" />
+
+
+				<br />
+				<br />
+				<p:dock>
+					<p:dockItem label="Home" icon="/images/dock/home.png" url="#" />
+					<p:dockItem label="Music" icon="/images/dock/music.png" url="#" />
+					<p:dockItem label="Video" icon="/images/dock/video.png" url="#" />
+					<p:dockItem label="Email" icon="/images/dock/email.png" url="#" />
+					<p:dockItem label="Portfolio" icon="/images/dock/portfolio.png"
+						url="#" />
+					<p:dockItem label="Link" icon="/images/dock/link.png" url="#" />
+					<p:dockItem label="RSS" icon="/images/dock/rss.png" url="#" />
+					<p:dockItem label="History" icon="/images/dock/history.png" url="#" />
+				</p:dock>
+			</h:form>
+
+		</f:view>
+
+	</ui:define>
+</ui:composition>
 
 </html>
