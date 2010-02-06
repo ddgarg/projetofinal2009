@@ -40,12 +40,26 @@
 		</developer>
 	</developers>
 
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Technology Maven Repository</name>
+			<url>http://repository.prime.com.tr/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
 
 	<dependencies>
 		<dependency>
-			<groupId>myfaces</groupId>
-			<artifactId>myfaces-jsf-api</artifactId>
-			<version>1.0.9</version>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>1.0.0.RC</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.myfaces.core</groupId>
+			<artifactId>myfaces-build</artifactId>
+			<version>1.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.faces</groupId>
