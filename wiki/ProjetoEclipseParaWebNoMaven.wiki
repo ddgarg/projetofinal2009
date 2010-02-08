@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Passar projeto maven web para um projeto web no Eclipse.
 
 = Introduction =
 
