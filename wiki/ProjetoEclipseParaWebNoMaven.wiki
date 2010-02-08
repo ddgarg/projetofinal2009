@@ -9,7 +9,9 @@ Projeto Eclipse para web no maven2
 
 Para passar o projeto web criado no maven2 para um projeto eclipse utiliza o comando:
 
-*mvn eclipse:eclipse -Dwtpversion=2.0*
+{{{
+mvn eclipse:eclipse -Dwtpversion=2.0
+}}}
 
 É recomendado utilizar os seguintes plugins:
 {{{
