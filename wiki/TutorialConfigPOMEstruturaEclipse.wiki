@@ -1,0 +1,14 @@
+#summary Tutorial para configurar o pom.xml com a estrutua do eclipse.
+
+= Introduction =
+
+Tutorial para configurar o pom.xml com a estrutua do eclipse.
+
+*Atenção: * Artigo tirado da página [http://www.urubatan.com.br/to-maven-or-not-to-maven-20/]
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
