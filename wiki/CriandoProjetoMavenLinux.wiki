@@ -92,7 +92,7 @@ Este comando, archetype:generate, irá iniciar um wizard para a criação do pro
 
 *versao :*  versão do projeto. O maven utiliza o padrão ‘1.0 SNAPSHOT‘ para a versão corrente em desenvolvimento, por isso, é bom utilizarmos o mesmo para o nosso projeto;
 
-*package :*  nome do pacote java que deverá ser gerado inicialmente ex: br.com.fabriciojf.helloworld;
+*package :*  nome do pacote java que deverá ser gerado inicialmente ex: `br.com.fabriciojf.helloworld`;
 
 Após esses passos, serão listados os archetypes disponíveis no repositório oficial do maven. Você deve escolher a opção desejada e pressionar Y. Pronto, o projeto já está criado. Agora podemos acrescentar suas dependências no pom.xml e criar os arquivos da aplicação em sua ide de preferência, respeitando a hierarquia de pastas descrita acima. O interessante é que o projeto criado pelo maven já é reconhecido pelo Netbeans e pelo Eclipse, por isso, não é necessário criar um novo projeto com fontes existentes basta abri-los normalmente.
 
