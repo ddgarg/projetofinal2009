@@ -47,6 +47,21 @@
 			<url>http://repository.prime.com.tr/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<id>ApacheRepository</id>
+			<name>Apache</name>
+			<url>http://ftp.cica.es/mirrors/maven2/</url>
+		</repository>
+		<repository>
+			<id>JBossRepository</id>
+			<name>JBoss</name>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>GlassfishRepository</id>
+			<name>Glassfish</name>
+			<url>http://download.java.net/maven/glassfish/</url>
+		</repository>
 	</repositories>
 
 
