@@ -1,0 +1,101 @@
+#Internacionalização (i18n) com JavaServer Faces (JSF)
+
+= Introduction =
+
+Internacionalização (i18n) com JavaServer Faces (JSF).
+
+=== Atenção: artigo retirado da página [http://www.vaniomeurer.com.br/2009/02/16/internacionalizacao-com-java-server-faces/] ===
+
+=== Autor: Vânio Meurer (vaninh0) ===
+
+
+
+= Details =
+
+Para utilizar esse tutorial você precisa apenas conhecer um pouco do JavaServer Faces (JSF).
+O JSF possui um sistema de mensagens para internacionalização, o message-bundle.
+
+===O que é o message-bundle?===
+   O message-bundle é nada mais que um mapeamento a um arquivo .properties onde você colocará todas as mensagens da aplicação que serão traduzidas.
+
+===O Arquivo .properties:===
+   O arquivo properties é um arquivo comum de propriedades, cada linha é um registro novo e cada registro possui uma chave e uma mensagem.
+
+===Exemplo de um arquivo .properties:===
+
+tituloIndex Vânio Meurer – Pagina Principal
+cadastroSucesso Cadastro efetuado com sucesso.
+
+Onde a primeira palavra (em vermelho) seria a chave e o texto seguinte (azul) é a mensagem que será mostrada.
+Vale lembrar que a chave não pode conter espaço.
+
+Nesse arquivo properties você vai precisar inserir todas as mensagens internacionalizáveis da aplicação.
+
+===Nome dos arquivos properties:===
+
+   Os arquivos properties precisam ter seu nome usando o seguinte critério:
+
+_nomedoarquivo_lingua_pais.properties_
+
+Exemplos:
+message_pt_BR.properties
+message_en_US.properties
+
+Os arquivos properties terão as mesmas chaves em ambos, porem a mensagem deverá estar na linguagem de cada arquivo. O exemplo do properties que foi apresentado seria o arquivo message_pt_BR.properties. O arquivo message_en_US.properties teria o seguinte conteúdo:
+
+tituloIndex Vânio Meurer – Principal Page
+
+cadastroSucesso Registration was successful
+
+Agora que já conhecemos um arquivo .properties, vamos aprender a mapeá-lo no faces-config.xml.
+
+===Mapeando o message-bundle na aplicação:===
+{{{
+<application>
+	<locale-config>
+		<default-locale>pt_BR</default-locale>
+		<supported-locale>en_US</supported-locale>
+	</locale-config>
+	<message-bundle>br.com.vaninho.aplicacao.web.bundle.message</message-bundle>
+</application>
+}}}
+
+O nó locale-config vai conter atributos setando quais as linguagens que o sistema vai abranger.
+
+-O default-locale seta qual a linguagem padrão da aplicação.
+
+-O supported-locale seta uma linguagem que o sistema suportará (conterá tradução).
+
+O atributo message-bundle vai apontar para o nosso arquivo .properties.
+Atenção! A extensão do arquivo (.properties) não é incluída no mapeamento.
+Note que o arquivo .properties obedece a mesma regra de empacotamento de classes comuns, e ele vai precisar estar no mesmo local das suas classes, o WEB-INF/classes, obedecendo a estrutura de pacotes.
+
+Feito isso nos já configuramos tudo que era necessário para a aplicação usar a internacionalização, agora vamos fazer a aplicação realmente utilizar o properties.
+
+No seu arquivo .jsp ou .xhtml (caso usar facelets), você vai precisar setar o bundle em uma variável. É simples, basta usar o seguinte código:
+
+{{{
+<f:loadBundle basename="br.com.vaninho.aplicacao.web.bundle.message" var="internacionalizacao" />
+}}}
+
+Agora para pegar o texto na linguagem correta, é só utilizar a seguinte EL: #{variavel.chave}.
+No nosso exemplo ficaria assim:
+
+{{{
+...
+<title>#{internacionalizacao.tituloIndex}</title>
+...
+<h:outputText value="#{internacionalizacao.cadastroSucesso}"/>
+...
+}}}
+
+Caso você deseja recuperar a mensagem direto dos seus arquivos java, você vai utilizar o seguinte código para recuperar a mensagem na linguagem desejada:
+
+{{{
+// Pega o locale atual
+Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+// Pega o bundle de acordo com o locale
+ResourceBundle bundle = ResourceBundle.getBundle(FacesContext.getCurrentInstance().getApplication().getMessageBundle(), locale);
+// Pega a mensagem de acordo com a chave
+String mensagem = bundle.getString("chave");
+}}}
