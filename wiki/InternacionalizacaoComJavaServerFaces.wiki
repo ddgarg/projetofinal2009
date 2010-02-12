@@ -1,8 +1,8 @@
-#Internacionalização (i18n) com JavaServer Faces (JSF)
+#Internacionalização (i18n) com JavaServerFaces (JSF)
 
 = Introduction =
 
-Internacionalização (i18n) com JavaServer Faces (JSF).
+Internacionalização (i18n) com JavaServerFaces (JSF).
 
 === Atenção: artigo retirado da página [http://www.vaniomeurer.com.br/2009/02/16/internacionalizacao-com-java-server-faces/] ===
 
