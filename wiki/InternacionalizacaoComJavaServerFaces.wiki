@@ -38,6 +38,7 @@ Nesse arquivo properties você vai precisar inserir todas as mensagens internaci
 _nomedoarquivo_lingua_pais.properties_
 
 Exemplos:
+
 message_pt_BR.properties
 
 message_en_US.properties
