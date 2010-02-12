@@ -1,4 +1,4 @@
-#sumary Internacionalização(i18n)ComJavaServerFaces
+#summary Internacionalização(i18n)ComJavaServerFaces
 
 = Introduction =
 
