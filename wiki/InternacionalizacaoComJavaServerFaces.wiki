@@ -8,7 +8,7 @@ Internacionalização (i18n) com JavaServerFaces (JSF).
 
 === Autor: Vânio Meurer (vaninh0) ===
 
-
+---
 
 = Details =
 
