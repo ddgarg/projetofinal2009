@@ -39,6 +39,7 @@ _nomedoarquivo_lingua_pais.properties_
 
 Exemplos:
 message_pt_BR.properties
+
 message_en_US.properties
 
 Os arquivos properties terão as mesmas chaves em ambos, porem a mensagem deverá estar na linguagem de cada arquivo. O exemplo do properties que foi apresentado seria o arquivo message_pt_BR.properties. O arquivo message_en_US.properties teria o seguinte conteúdo:
