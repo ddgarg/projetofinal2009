@@ -14,8 +14,8 @@
 	</head>
 <body>
 
-<h:panelGrid columns="3">
-	<h:outputLabel value="User:" for="user" />
+<h:panelGrid title="xxxx" columns="3">
+	<h:outputLabel value="#{message.adminTextFieldUser}" for="user" />
 	<h:inputText value="" />
 	<h:message for="user" />
 </h:panelGrid>
@@ -25,22 +25,22 @@
 			<div class="admin">
 				<fieldset>
 					<legend>#{message.adminLegendTitle}</legend>
-					
 						<label>#{message.adminTextFieldUser}</label>
 						<input type="text" name="" class="field"></input><font color="RED">* erro</font>
-						
 						<br />
-						
 						<label>#{message.admintextFieldPassword}</label>
 						<input type="password" name="" class="field"></input><font color="RED">* erro</font>
-						
 						<br />
 						<br />
 						<font color="RED">* Mensagem de erro global</font>
 						<br />
 						<input type="submit" value="#{message.adminButtonLogin}" name=""></input>
 						<h:form>
-						<h:commandButton id="en_US" action="#{localeSessionBean.languageEnglish}" value="en_US" />
+						<h:commandLink action="#{localeBean.languageEnglish}" value="English" />
+						<br />
+						<h:commandLink action="#{localeBean.languageBrazil}" value="Brazil" />
+						<br />
+						<h:commandButton action="adminhome" value="Home" />
 						</h:form>
 				</fieldset>
 			</div>

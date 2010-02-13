@@ -3,7 +3,7 @@
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
  <managed-bean>
-  <managed-bean-name>localeSessionBean</managed-bean-name>
+  <managed-bean-name>localeBean</managed-bean-name>
   <managed-bean-class>br.com.buyFast.util.LocaleSessionBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
@@ -12,11 +12,9 @@
    <from-outcome>adminhome</from-outcome>
    <to-view-id>admin/home.xhtml</to-view-id>
   </navigation-case>
- </navigation-rule>
- <navigation-rule>
   <navigation-case>
-   <from-outcome>login</from-outcome>
-   <to-view-id>admin/admin.xhtml</to-view-id>
+   <from-outcome>adminlogin</from-outcome>
+   <to-view-id>/admin/login.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>

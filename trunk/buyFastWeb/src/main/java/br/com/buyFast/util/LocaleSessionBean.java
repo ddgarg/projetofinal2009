@@ -8,18 +8,22 @@ public class LocaleSessionBean {
 
 	public static final Locale BRAZIL = new Locale("pt","BR");
 	
-	public String changelocale(Locale locale) {
+	public String changeLocale(Locale locale) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getViewRoot().setLocale(locale);
-		return "login";
+		return "";
 	}
 	
 	public String languageEnglish() {
-		return changelocale(Locale.ENGLISH);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getViewRoot().setLocale(Locale.ENGLISH);
+		return "";
 	}
 	
-	public String languagebrazil() {
-		return changelocale(BRAZIL);
+	public String languageBrazil() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getViewRoot().setLocale(BRAZIL);
+		return "";
 	}
 	
 }
