@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <managed-bean>
+  <managed-bean-name>localeSessionBean</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.util.LocaleSessionBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <navigation-case>
+   <from-outcome>adminhome</from-outcome>
+   <to-view-id>admin/home.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <navigation-case>
+   <from-outcome>login</from-outcome>
+   <to-view-id>admin/admin.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+  <!-- Configura o Spring 2.5 para trabalhar com JSF 1.2 -->
+  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+  <locale-config>
+   <default-locale>pt_BR</default-locale>
+   <supported-locale>pt_BR</supported-locale>
+   <supported-locale>en_US</supported-locale>
+  </locale-config>
+  <message-bundle>ui.Messages</message-bundle>
+ </application>
+</faces-config>

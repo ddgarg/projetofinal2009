@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<head>
+	<!-- Utilizado pelo PrimeFaces -->
+	<p:resources />
+	<title><ui:insert name="titulo"></ui:insert></title>
+	<link rel="stylesheet" type="text/css" href="estilo.css"></link>
+</head>
+
+<body>
+<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
+	<tr>
+		<td>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="row_2">
+				
+				<!-- CORPO //-->
+				<table border="0" class="main_table" cellspacing="0" cellpadding="0">
+					<tr>
+						<td class="box_width_td_left">
+						<table border="0" class="box_width_left" cellspacing="0" cellpadding="0">
+							<!-- NAVEGAÇÃO ESQUERDA //-->
+
+							<!-- CATEGORIAS //-->
+							<tr>
+								<td>
+								<table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxHeading_table">
+									<tr>
+										<td class="infoBoxHeading_l"><img src="images/infoboxheading_tl.gif" border="0" alt=""
+											width="16" height="16"></img></td>
+										<td class="infoBoxHeading_td">
+										<font color="#00659c">Menu</font></td>
+										<td class="infoBoxHeading_r"><img src="images/infoboxheading_tr.gif" border="0" alt=""
+											width="16" height="16"></img></td>
+									</tr>
+								</table>
+								<table border="0" width="100%" cellspacing="0" cellpadding="0"
+									class="infoBox_table">
+									<tr>
+										<td class="infoBox_td">
+										<table border="0" width="100%" cellspacing="0" cellpadding="0"
+											class="infoBoxContents_table">
+											<tr>
+												<td class="boxText">
+<!-- Categorias -->
+												<table cellpadding="0" cellspacing="0" border="0" class="table">
+													<tr>
+														<td class="td" align="left">
+														<ul class="categories">
+															<li class="bg_list_un"><a href="#">Cadastrar Categoria</a></li>
+															<li class="bg_list"><a href="#">Mostrar	Categorias</a></li>
+															<li class="bg_list"><a href="#">Cadastrar Produtos</a></li>
+															<li class="bg_list"><a href="#">Mostrar Produtos</a></li>
+															<li class="bg_list"><a href="#">Cadastrar Usuário do Sistema</a></li>
+															<li class="bg_list"><a href="#">Mostrar Usuários do Sistema</a></li>
+															<li class="bg_list"><a href="#">Mostrar Clientes Cadastrados</a></li>
+															<li class="bg_list"><a href="#">Gerenciar Compras</a></li>
+															<li class="bg_list"><a href="#">Configurações do Sistema</a></li>
+															<li class="bg_list"><a href="#">Análise	Administrativa</a></li>
+															<li class="bg_list"><a href="#">Sair do Sistema</a></li>
+														</ul>
+														</td>
+													</tr>
+												</table>
+												</td>
+											</tr>
+										</table>
+										</td>
+									</tr>
+								</table>
+								</td>
+							</tr>
+							<!-- FIM CATEGORIA //-->
+							<!-- FIM NAVEGAÇÃO ESQUERDA //-->
+						</table>
+						</td>
+						<td class="content_width_td">
+<!-- TÍTULO -->
+							<table cellpadding="0" cellspacing="0" border="0" align="center" class="content_wrapper_table">
+								<tr>
+									<td class="content_wrapper_td">
+									<table border="0" width="100%" cellspacing="0" cellpadding="0" class="cont_heading_table">
+										<tr>
+											<td class="cont_heading_td">
+												<ui:insert name="tituloCategoria"></ui:insert>
+											</td>
+										</tr>
+									</table>
+	
+									</td>
+								</tr>
+							</table>
+							
+							
+							<!-- CORPO TEXTO //-->
+							
+								<table cellpadding="" cellspacing="20" border="0">
+								<tr>
+									<td align="left">
+										<ui:insert name="body"></ui:insert>
+									</td>
+								</tr>
+							</table>
+							
+							<!-- FIM CORPO TEXTO //-->
+						
+						</td>
+						<td class="box_width_td_right">
+							<table border="0" class="box_width_right" cellspacing="0" cellpadding="0">
+								<!-- NAVEGAÇÃO DIREITA //-->
+								
+								<ui:insert name="bodyRight"></ui:insert>
+								
+								<!-- FIM NAVEGAÇÃO DIREITA //-->
+							</table>
+						</td>
+					</tr>
+				</table>
+
+
+				<!-- FIM CORPO //-->
+				</td>
+			</tr>
+		</table>
+
+
+		<!-- RODAPÉ //-->
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="row_3">
+					<table cellpadding="0" cellspacing="0" border="0" align="center" class="footer">
+						<tr>
+							<td class="footer2_td"><span> &nbsp;&nbsp;&nbsp;|
+							&nbsp;&nbsp;&nbsp; <a href="#">Sair do Sistema</a>
+							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; </span> <br></br>
+							Área Administrativa <b><a href="#">BuyFast</a></b> &nbsp;&nbsp; <b>
+							<!--<a href="#">Políticas de Privacidade</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+								<a href="#">Termos e Condições Gerais</a>--> </b></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+
+<!-- FIM RODAPÉ //-->
+</body>
+</html>
