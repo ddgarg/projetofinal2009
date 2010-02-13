@@ -4,8 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-<f:view>
+	
+<f:view locale="#{localeController.currentLocale}">
+
 	<f:loadBundle var="message" basename="ui.Messages" />
+	
 	<head>
 		<!-- Utilizado pelo PrimeFaces -->
 		<p:resources />
@@ -36,9 +39,9 @@
 						<br />
 						<input type="submit" value="#{message.adminButtonLogin}" name=""></input>
 						<h:form>
-						<h:commandLink action="#{localeBean.languageEnglish}" value="English" />
+						<h:commandLink action="#{localeController.englishLocale}" value="English" />
 						<br />
-						<h:commandLink action="#{localeBean.languageBrazil}" value="Brazil" />
+						<h:commandLink action="#{localeController.portugueseLocale}" value="Brazil" />
 						<br />
 						<h:commandButton action="adminhome" value="Home" />
 						</h:form>

@@ -3,8 +3,8 @@
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
  <managed-bean>
-  <managed-bean-name>localeBean</managed-bean-name>
-  <managed-bean-class>br.com.buyFast.util.LocaleSessionBean</managed-bean-class>
+  <managed-bean-name>localeController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.util.LocaleController</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <navigation-rule>
@@ -23,7 +23,6 @@
   <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
   <locale-config>
    <default-locale>pt_BR</default-locale>
-   <supported-locale>pt_BR</supported-locale>
    <supported-locale>en_US</supported-locale>
   </locale-config>
   <message-bundle>ui.Messages</message-bundle>
