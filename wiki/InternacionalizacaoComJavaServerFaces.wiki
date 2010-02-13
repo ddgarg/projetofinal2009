@@ -105,10 +105,9 @@ String mensagem = bundle.getString("chave");
 =Locale=
 
 ===Brasil===
-
+_Criar campo estático._
 {{{
-public LocaleDeVerdade extends Locale {  
-    static public final Locale BRAZIL = createSingleton("pt_BR_", "pt", "BR");  
+public static final Locale BRAZIL = new Locale("pt", "BR");
 }}}
 
 ===Padrão SUN===
