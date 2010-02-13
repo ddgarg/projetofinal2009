@@ -101,3 +101,58 @@ ResourceBundle bundle = ResourceBundle.getBundle(FacesContext.getCurrentInstance
 // Pega a mensagem de acordo com a chave
 String mensagem = bundle.getString("chave");
 }}}
+
+=Locale=
+
+===Brasil===
+
+{{{
+public LocaleDeVerdade extends Locale {  
+    static public final Locale BRAZIL = createSingleton("pt_BR_", "pt", "BR");  
+}}}
+
+===Padrão SUN===
+
+{{{
+static public final Locale ENGLISH = createSingleton("en__", "en", "");  
+  
+static public final Locale FRENCH = createSingleton("fr__", "fr", "");  
+  
+static public final Locale GERMAN = createSingleton("de__", "de", "");  
+  
+static public final Locale ITALIAN = createSingleton("it__", "it", "");  
+  
+static public final Locale JAPANESE = createSingleton("ja__", "ja", "");  
+  
+static public final Locale KOREAN = createSingleton("ko__", "ko", "");  
+  
+static public final Locale CHINESE = createSingleton("zh__", "zh", "");  
+  
+static public final Locale SIMPLIFIED_CHINESE = createSingleton("zh_CN_", "zh", "CN");  
+  
+static public final Locale TRADITIONAL_CHINESE = createSingleton("zh_TW_", "zh", "TW");  
+  
+static public final Locale FRANCE = createSingleton("fr_FR_", "fr", "FR");  
+  
+static public final Locale GERMANY = createSingleton("de_DE_", "de", "DE");  
+  
+static public final Locale ITALY = createSingleton("it_IT_", "it", "IT");  
+  
+static public final Locale JAPAN = createSingleton("ja_JP_", "ja", "JP");  
+  
+static public final Locale KOREA = createSingleton("ko_KR_", "ko", "KR");  
+  
+static public final Locale CHINA = SIMPLIFIED_CHINESE;  
+  
+static public final Locale PRC = SIMPLIFIED_CHINESE;  
+  
+static public final Locale TAIWAN = TRADITIONAL_CHINESE;  
+  
+static public final Locale UK = createSingleton("en_GB_", "en", "GB");  
+  
+static public final Locale US = createSingleton("en_US_", "en", "US");  
+  
+static public final Locale CANADA = createSingleton("en_CA_", "en", "CA");  
+  
+static public final Locale CANADA_FRENCH = createSingleton("fr_CA_", "fr", "CA");  
+}}}
