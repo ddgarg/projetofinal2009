@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="var" path="M2_REPO/javax/faces/jsf-api/1.2/jsf-api-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/faces/jsf-impl/1.2-b19/jsf-impl-1.2-b19.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/jstl/1.1.2/jstl-1.1.2.jar" sourcepath="M2_REPO/javax/servlet/jstl/1.1.2/jstl-1.1.2-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" sourcepath="M2_REPO/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/log4j/com.springsource.org.apache.log4j/1.2.15/com.springsource.org.apache.log4j-1.2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/junit/com.springsource.org.junit/4.7.0/com.springsource.org.junit-4.7.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/sun/facelets/jsf-facelets/1.1.14/jsf-facelets-1.1.14.jar" sourcepath="M2_REPO/com/sun/facelets/jsf-facelets/1.1.14/jsf-facelets-1.1.14-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/myfaces/core/myfaces-build/1.2.4/myfaces-build-1.2.4.jar" sourcepath="M2_REPO/org/apache/myfaces/core/myfaces-build/1.2.4/myfaces-build-1.2.4-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/webflow/org.springframework.binding/2.0.5.RELEASE/org.springframework.binding-2.0.5.RELEASE.jar" sourcepath="M2_REPO/org/springframework/webflow/org.springframework.binding/2.0.5.RELEASE/org.springframework.binding-2.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/webflow/org.springframework.faces/2.0.5.RELEASE/org.springframework.faces-2.0.5.RELEASE.jar" sourcepath="M2_REPO/org/springframework/webflow/org.springframework.faces/2.0.5.RELEASE/org.springframework.faces-2.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/webflow/org.springframework.js/2.0.5.RELEASE/org.springframework.js-2.0.5.RELEASE.jar" sourcepath="M2_REPO/org/springframework/webflow/org.springframework.js/2.0.5.RELEASE/org.springframework.js-2.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/webflow/org.springframework.webflow/2.0.5.RELEASE/org.springframework.webflow-2.0.5.RELEASE.jar" sourcepath="M2_REPO/org/springframework/webflow/org.springframework.webflow/2.0.5.RELEASE/org.springframework.webflow-2.0.5.RELEASE-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/primefaces/primefaces/1.0.0.RC/primefaces-1.0.0.RC.jar" sourcepath="M2_REPO/org/primefaces/primefaces/1.0.0.RC/primefaces-1.0.0.RC-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-beans/2.5.6/spring-beans-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-beans/2.5.6/spring-beans-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context/2.5.6/spring-context-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-context/2.5.6/spring-context-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/2.5.6/spring-context-support-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-context-support/2.5.6/spring-context-support-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/2.5.6/spring-core-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-core/2.5.6/spring-core-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-web/2.5.6/spring-web-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-web/2.5.6/spring-web-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-webmvc/2.5.6/spring-webmvc-2.5.6.jar" sourcepath="M2_REPO/org/springframework/spring-webmvc/2.5.6/spring-webmvc-2.5.6-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/taglibs/standard/1.1.2/standard-1.1.2.jar" sourcepath="M2_REPO/taglibs/standard/1.1.2/standard-1.1.2-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/buyFastModelo"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/buyFastNegocio"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v6.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.6.0_05"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

@@ -1,0 +1,10 @@
+Executando maven2 para gerar um projeto eclipse web:
+
+      mvn eclipse:eclipse -Dwtpversion=2.0
+ 
+
+
+Depois:
+
+    - Abra o projeto no eclipse e vá em propriedades;
+    - Selecione o nó "Targeted Runtimes" e selecione "Apache Tomcat v6.0".
