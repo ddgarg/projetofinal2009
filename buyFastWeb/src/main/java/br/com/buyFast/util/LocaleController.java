@@ -5,6 +5,11 @@ import java.util.Locale;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+@Controller("localeController")
+@Scope("session")
 public class LocaleController {
 	private Locale currentLocale = new Locale("pt", "BR");
 

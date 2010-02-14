@@ -6,6 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 
+	<f:loadBundle var="message" basename="ui.Messages" />
+	
 <head>
 	<!-- Utilizado pelo PrimeFaces -->
 	<p:resources />
@@ -36,7 +38,7 @@
 										<td class="infoBoxHeading_l"><img src="images/infoboxheading_tl.gif" border="0" alt=""
 											width="16" height="16"></img></td>
 										<td class="infoBoxHeading_td">
-										<font color="#00659c">Menu</font></td>
+										<font color="#00659c">#{message.adminMenu}</font></td>
 										<td class="infoBoxHeading_r"><img src="images/infoboxheading_tr.gif" border="0" alt=""
 											width="16" height="16"></img></td>
 									</tr>
@@ -54,17 +56,17 @@
 													<tr>
 														<td class="td" align="left">
 														<ul class="categories">
-															<li class="bg_list_un"><a href="#">Cadastrar Categoria</a></li>
-															<li class="bg_list"><a href="#">Mostrar	Categorias</a></li>
-															<li class="bg_list"><a href="#">Cadastrar Produtos</a></li>
-															<li class="bg_list"><a href="#">Mostrar Produtos</a></li>
-															<li class="bg_list"><a href="#">Cadastrar Usuário do Sistema</a></li>
-															<li class="bg_list"><a href="#">Mostrar Usuários do Sistema</a></li>
-															<li class="bg_list"><a href="#">Mostrar Clientes Cadastrados</a></li>
-															<li class="bg_list"><a href="#">Gerenciar Compras</a></li>
-															<li class="bg_list"><a href="#">Configurações do Sistema</a></li>
-															<li class="bg_list"><a href="#">Análise	Administrativa</a></li>
-															<li class="bg_list"><a href="#">Sair do Sistema</a></li>
+															<li class="bg_list_un"><a href="#">#{message.adminMenuRegisterCategory}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuShowCategories}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuRegisterProduct}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuShowProducts}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuRegisterUserSystem}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuShowUsersSystem}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuShowCustomers}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuManagerOrders}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuConfigurationSystem}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuAdministrativeAnalysis}</a></li>
+															<li class="bg_list"><a href="#">#{message.adminMenuExitSystem}</a></li>
 														</ul>
 														</td>
 													</tr>
@@ -88,7 +90,7 @@
 									<td class="content_wrapper_td">
 									<table border="0" width="100%" cellspacing="0" cellpadding="0" class="cont_heading_table">
 										<tr>
-											<td class="cont_heading_td">
+											<td class="cont_heading_td" align="left">
 												<ui:insert name="tituloCategoria"></ui:insert>
 											</td>
 										</tr>
@@ -137,14 +139,32 @@
 				<td class="row_3">
 					<table cellpadding="0" cellspacing="0" border="0" align="center" class="footer">
 						<tr>
-							<td class="footer2_td"><span> &nbsp;&nbsp;&nbsp;|
-							&nbsp;&nbsp;&nbsp; <a href="#">Sair do Sistema</a>
-							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; </span> <br></br>
-							Área Administrativa <b><a href="#">BuyFast</a></b> &nbsp;&nbsp; <b>
-							<!--<a href="#">Políticas de Privacidade</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-								<a href="#">Termos e Condições Gerais</a>--> </b></td>
+				<td class="footer2_td">
+				<br />
+				<span> &nbsp;&nbsp;&nbsp;|
+				&nbsp;&nbsp;&nbsp; 
+				<a href="#">#{message.adminMenuExitSystem}</a>
+				&nbsp;&nbsp;&nbsp;| 
+				&nbsp;&nbsp;&nbsp; </span> 
+				<br></br>
+				#{message.adminTitle} <b>
+				<a href="#">BuyFast</a></b> &nbsp;&nbsp; <b>
+				</b></td>
 						</tr>
-					</table>
+					<tr>
+						<td>
+						<h:form id="languages">
+							<font size="2"> <h:outputLabel styleClass="languagetext" value="#{message.languageLabel}" /> <br />
+							<h:commandLink action="#{localeController.portugueseLocale}" value="" >
+								<h:graphicImage url="images/brasilicon.gif" alt="#{message.languageBrazil}" />
+							</h:commandLink> <h:outputText value=" " />
+							<h:commandLink action="#{localeController.englishLocale}" value="">
+								<h:graphicImage url="images/englishicon.gif" alt="#{message.languageEnglish}" />
+							</h:commandLink> </font>
+						</h:form>
+						</td>
+					</tr>
+				</table>
 				</td>
 			</tr>
 		</table>
@@ -154,4 +174,5 @@
 
 <!-- FIM RODAPÉ //-->
 </body>
+
 </html>

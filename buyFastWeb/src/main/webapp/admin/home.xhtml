@@ -5,20 +5,24 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 
+ <f:view locale="#{localeController.currentLocale}">
+ 
+	<f:loadBundle var="message" basename="ui.Messages" />
+	
 <ui:composition template="templates/admin.xhtml">
-	<ui:define name="titulo">Área Administrativa</ui:define>
 
-	<ui:define name="tituloCategoria">Área Administrativa</ui:define>
+	<ui:define name="titulo">#{message.adminHomeTitle}</ui:define>
+
+	<ui:define name="tituloCategoria">#{message.adminHomeTitleCategory}</ui:define>
 
 	<ui:define name="body">
-		<form>
-			<label>Noma</label><input type="text" />
-			<br />
-			<input type="submit" value="Enviar" />
-		</form>
+		<h:form>
+			<h:commandButton value="XXX"/>
+		</h:form>
 	</ui:define>
 	
 	<ui:define name="bodyRight"></ui:define>
 </ui:composition>
 
+ </f:view>
 </html>
