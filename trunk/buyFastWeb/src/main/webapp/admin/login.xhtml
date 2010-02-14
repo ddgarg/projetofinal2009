@@ -4,53 +4,77 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
-	
+
 <f:view locale="#{localeController.currentLocale}">
 
 	<f:loadBundle var="message" basename="ui.Messages" />
-	
-	<head>
-		<!-- Utilizado pelo PrimeFaces -->
-		<p:resources />
-		<title>#{message.admiPageTitle}</title>
-		<link rel="stylesheet" type="text/css" href="estilo.css"></link>
-	</head>
-<body>
 
-<h:panelGrid title="xxxx" columns="3">
-	<h:outputLabel value="#{message.adminTextFieldUser}" for="user" />
-	<h:inputText value="" />
-	<h:message for="user" />
-</h:panelGrid>
+	<head>
+	<!-- Utilizado pelo PrimeFaces -->
+	<p:resources />
+	<title>#{message.admiPageTitle}</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css"></link>
+	</head>
+	<body>
 	<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
 		<tr>
 			<td>
 			<div class="admin">
 				<fieldset>
 					<legend>#{message.adminLegendTitle}</legend>
-						<label>#{message.adminTextFieldUser}</label>
-						<input type="text" name="" class="field"></input><font color="RED">* erro</font>
-						<br />
-						<label>#{message.admintextFieldPassword}</label>
-						<input type="password" name="" class="field"></input><font color="RED">* erro</font>
-						<br />
-						<br />
-						<font color="RED">* Mensagem de erro global</font>
-						<br />
-						<input type="submit" value="#{message.adminButtonLogin}" name=""></input>
-						<h:form>
-						<h:commandLink action="#{localeController.englishLocale}" value="English" />
-						<br />
-						<h:commandLink action="#{localeController.portugueseLocale}" value="Brazil" />
-						<br />
-						<h:commandButton action="adminhome" value="Home" />
-						</h:form>
+					<h:form prependId="false">
+						<h:outputLabel value="#{message.adminTextFieldUser}" />
+						<h:inputText id="user" value="" class="field" required="true" requiredMessage=" * ">
+							<f:validateLength minimum="2" maximum="20"/>
+						</h:inputText>
+						<h:message for="user" style="color: RED" />
+					<br />
+						<h:outputLabel value="#{message.admintextFieldPassword}" />
+						<h:inputText id="password" value="" class="field" required="true" requiredMessage=" * " />
+						<h:message for="password" style="color: RED" />
+					<br />
+						<p:messages showDetail="true" globalOnly="true"/>
+					<br />
+						<h:commandButton action="#{adminController.login}" value="#{message.adminButtonLogin}" />
+					</h:form>
 				</fieldset>
 			</div>
 			</td>
 		</tr>
-		
+		<tr>
+			<td align="center">
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div>
+				<h:form>
+				<font size="2">
+					<h:outputLabel styleClass="languagetext" value="#{message.languageLabel}" />
+					<br />
+					<h:commandLink action="#{localeController.portugueseLocale}" value="">
+						<h:graphicImage url="images/brasilicon.gif" alt="#{message.languageBrazil}" />
+					</h:commandLink>
+					<h:outputText value=" " />
+					<h:commandLink action="#{localeController.englishLocale}" value="">
+						<h:graphicImage url="images/englishicon.gif" alt="#{message.languageEnglish}" />
+					</h:commandLink>
+				</font>
+				</h:form>
+			</div>
+			</td>
+		</tr>
 	</table>
-</body>
+	</body>
 </f:view>
 </html>

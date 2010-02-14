@@ -11,7 +11,9 @@
 	<context:property-placeholder location="classpath*:WEB-INF/spring/*.properties"/>
 	
 	<!-- Identifica os beans anotados com @Service, @Repository, @Controller  -->
-	<context:component-scan base-package="" />
+	<context:component-scan base-package="br.com.buyFast.controller" />
+	<context:component-scan base-package="br.com.buyFast.controller.adminController" />
+	<context:component-scan base-package="br.com.buyFast.util" />
 
 	<!-- Habilita a configuração de beans via anotações
 	sem a necessidade de usar PersistenceAnnotationBeanPostProcessor,
