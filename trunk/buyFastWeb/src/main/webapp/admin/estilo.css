@@ -82,6 +82,15 @@ legend{
 	background:#ffffff;
 }
 
+/* -------------------------- */
+A:link {text-decoration:none}
+A:visited {text-decoration:none}
+A:active {text-decoration:none}
+A:hover {text-decoration:none}
+a img {
+border-width:0;
+}
+
 /*-----------------------------------*/
 /* formata o carrinho de compras     */
 /*-----------------------------------*/
