@@ -1,7 +1,6 @@
 package br.com.buyFast.integration.daoImpl;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
 
@@ -13,63 +12,43 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.buyFast.integration.IntegrationException;
 import br.com.buyFast.integration.dao.GenericDao;
 
 /**
- * Classe que implementa a classe {@link GenericDao}.
- * @param <T> O tipo do DAO.
- * @param <ID> {@link Serializable}.
+ * Classe dao genérica que implementa a interface {@link GenericDao}.
+ * @param <T>
+ * @param <ID>
  */
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID> {
 
 	/**
-	 * Apresenta o log na aplicação.
-	 */
-	private final Log logger = LogFactory.getLog(getClass());
-	
-	/**
-	 * O entityManager para a persistência de dados.
+	 * Gerenciador de entidades do JPA.
 	 */
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	/**
-	 * A classe tipo atual.
+	 * Apresenta o log na aplicação.
 	 */
-	private final Class<T> _class;
+	private static final Log logger = LogFactory.getLog("GenericDaoImpl");
 	
-	/**
-	 * Instancia um novo {@link GenericDao}.
-	 */
-	@SuppressWarnings("unchecked")
-	public GenericDaoImpl() {
-		this._class = (Class<T>) ((ParameterizedType)getClass().getGenericSuperclass())
-			.getActualTypeArguments() [0];
+	@Override
+	public T save(T object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> all() throws IntegrationException {
-		try {
-			String queryString = "SELECT obj from " + _class.getSimpleName() + " obj";
-			return entityManager.createQuery(queryString).getResultList();
-		} catch (Exception e) {
-			logger.error("Erro ao obter lista de " + _class.getSimpleName(), e);
-			throw new IntegrationException(e);
-		}
+	public T update(T object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
+	
 	@Override
-	public void delete(Object obj) throws IntegrationException {
-		try {
-			entityManager.remove(obj);
-			entityManager.getTransaction().commit();
-		} catch (Exception e) {
-			logger.error("Erro ao remover objeto " + _class.getSimpleName(), e);
-			throw new IntegrationException(e);
-		}
+	public void delete(T object) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -92,19 +71,13 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 
 	@Override
 	public List<T> listSearchParam(String query, Map<String, Object> params,
-			int maximun, int current) {
+			int maximum, int current) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public T save(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public T searchById(long id) {
+	public T searchById(ID id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -116,33 +89,30 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	}
 
 	@Override
-	public T update(Object obj) {
+	public List<T> all() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * Obter o entityManager.
-	 * @return o entityManager.
+	 * Obter o {@link EntityManager}.
+	 * @return o {@link EntityManager}.
 	 */
 	public EntityManager getEntityManager() {
-		return entityManager;
+		if (this.entityManager == null) {
+			logger.error("Erro ao obter o entityManager.");
+			throw new IllegalStateException("Erro ao obter entityManager.");
+		} else {
+			return entityManager;
+		}
 	}
 
 	/**
-	 * Ajustar o entityManager.
-	 * @param entityManager o entityManager.
+	 * Ajustar o {@link EntityManager}.
+	 * @param entityManager  o {@link EntityManager}.
 	 */
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-
-	/**
-	 * Obter o tipo de classe atual.
-	 * @return o tipo de classe atual.
-	 */
-	public Class<T> get_class() {
-		return _class;
-	}
-
+	
 }
