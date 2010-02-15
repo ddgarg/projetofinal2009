@@ -1,6 +1,7 @@
 package br.com.buyFast.util;
 
 import java.io.Serializable;
+import java.util.ResourceBundle;
 
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
@@ -13,6 +14,7 @@ import javax.faces.event.PhaseListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.ietf.jgss.MessageProp;
 
 import br.com.buyFast.controller.adminController.AdminController;
 
@@ -69,8 +71,9 @@ public class AdminLoginPhaseListener implements PhaseListener {
 				UIViewRoot viewRoot = viewHandler.createView(context, "/admin/login.jsf");
 				context.setViewRoot(viewRoot);
 				
-				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Acesso negado:",
-						"Você tentou acessar uma página não autorizada."));
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, 
+						FacesUtil.getMessage("adminAccessDeniedTitle"),
+						FacesUtil.getMessage("adminAccessDeniedMessage")));
 			}
 		}
 	}
