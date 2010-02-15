@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- Classe responsável pela gestão das entidades -->
+	<!-- Configurador que substitui os marcadores ${...} com os valores definidos no arquivo de propriedades 
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="/WEB-INF/spring/*.properties"></property>
+	</bean>-->
+	<context:property-placeholder location="classpath*:/WEB-INF/spring/*.properties"/>
+	<!-- Classe responsável pela gestão das entidades 
 	 <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="buyfast" />
     </bean>
@@ -10,10 +15,10 @@
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
-    </bean>
+    </bean>-->
 	
-	<!-- Marcação de transações através de anotações -->
-	<tx:annotation-driven />
+	<!-- Marcação de transações através de anotações 
+	<tx:annotation-driven />-->
 
 	<!-- Identifica os beans anotados com @Service, @Repository, @Controller  -->
 	<context:component-scan base-package="br.com.buyFast.controller" />
