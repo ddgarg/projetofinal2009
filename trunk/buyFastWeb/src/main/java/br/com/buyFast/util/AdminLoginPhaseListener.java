@@ -1,7 +1,6 @@
 package br.com.buyFast.util;
 
 import java.io.Serializable;
-import java.util.ResourceBundle;
 
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
@@ -14,7 +13,6 @@ import javax.faces.event.PhaseListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ietf.jgss.MessageProp;
 
 import br.com.buyFast.controller.adminController.AdminController;
 
