@@ -2,104 +2,172 @@
 
 = Introduction =
 
-Internacionalização (i18n) com JavaServerFaces (JSF).
+Internacionalização com JavaServerFaces.
 
-=== Atenção: artigo retirado da página [http://www.vaniomeurer.com.br/2009/02/16/internacionalizacao-com-java-server-faces/] ===
+=== Atenção: artigo retirado da página [http://thiagoprocaci.blogspot.com/2009/07/internacionalizacao-de-mensagens-com.html] ===
 
-=== Autor: Vânio Meurer (vaninh0) ===
+=== Postado por Thiago Baesso Procaci  ===
 
 ---
 
 = Details =
 
-Para utilizar esse tutorial você precisa apenas conhecer um pouco do JavaServer Faces (JSF).
-O JSF possui um sistema de mensagens para internacionalização, o message-bundle.
+Nesta postagem vamos mostrar como fazer a internacionalização de mensagens utilizando JSF. Internacionalizar mensagens é uma maneira de isolar toda a mensageiria de uma aplicação em arquivos. Desta forma, pode-se definir mensagens em idiomas diferentes em arquivos separados sem que a aplicação sofra nenhum impacto.
 
-===O que é o message-bundle?===
-   O message-bundle é nada mais que um mapeamento a um arquivo .properties onde você colocará todas as mensagens da aplicação que serão traduzidas.
+Para exemplificar a internacionalização com JSF, vamos aproveitar a aplicação exemplo mostrada na postagem “Iniciando com JSF (Tutorial com exemplo prático)”.
 
-===O Arquivo .properties:===
-   O arquivo properties é um arquivo comum de propriedades, cada linha é um registro novo e cada registro possui uma chave e uma mensagem.
+Primeiramente deve-se definir os arquivos com as mensagens. Para isso foi criado um pacote com.sample.messages e lá foram colocados dois arquivos com as mensagens da aplicação (um com mensagens em inglês e outro em português).
 
-===Exemplo de um arquivo .properties:===
-
-tituloIndex Vânio Meurer – Pagina Principal
-cadastroSucesso Cadastro efetuado com sucesso.
-
-Onde a primeira palavra (em vermelho) seria a chave e o texto seguinte (azul) é a mensagem que será mostrada.
-Vale lembrar que a chave não pode conter espaço.
-
-Nesse arquivo properties você vai precisar inserir todas as mensagens internacionalizáveis da aplicação.
-
-===Nome dos arquivos properties:===
-
-   Os arquivos properties precisam ter seu nome usando o seguinte critério:
-
-_nomedoarquivo_lingua_pais.properties_
-
-Exemplos:
-
-message_pt_BR.properties
-
-message_en_US.properties
-
-Os arquivos properties terão as mesmas chaves em ambos, porem a mensagem deverá estar na linguagem de cada arquivo. O exemplo do properties que foi apresentado seria o arquivo message_pt_BR.properties. O arquivo message_en_US.properties teria o seguinte conteúdo:
-
-tituloIndex Vânio Meurer – Principal Page
-
-cadastroSucesso Registration was successful
-
-Agora que já conhecemos um arquivo .properties, vamos aprender a mapeá-lo no faces-config.xml.
-
-===Mapeando o message-bundle na aplicação:===
+A listagem 1 e 2 mostram como ficaram os arquivos com as mensagens da aplicação.
 {{{
-<application>
-	<locale-config>
-		<default-locale>pt_BR</default-locale>
-		<supported-locale>en_US</supported-locale>
-	</locale-config>
-	<message-bundle>br.com.vaninho.aplicacao.web.bundle.message</message-bundle>
-</application>
+messages_en_US.properties (mensagens em inglês)
+portuguese=Portuguese  
+english=English  
+save=Save  
+delete=Delete  
+name=Name  
+nationality=Nationality  
+title=JSF  
 }}}
-
-O nó locale-config vai conter atributos setando quais as linguagens que o sistema vai abranger.
-
--O default-locale seta qual a linguagem padrão da aplicação.
-
--O supported-locale seta uma linguagem que o sistema suportará (conterá tradução).
-
-O atributo message-bundle vai apontar para o nosso arquivo .properties.
-Atenção! A extensão do arquivo (.properties) não é incluída no mapeamento.
-Note que o arquivo .properties obedece a mesma regra de empacotamento de classes comuns, e ele vai precisar estar no mesmo local das suas classes, o WEB-INF/classes, obedecendo a estrutura de pacotes.
-
-Feito isso nos já configuramos tudo que era necessário para a aplicação usar a internacionalização, agora vamos fazer a aplicação realmente utilizar o properties.
-
-No seu arquivo .jsp ou .xhtml (caso usar facelets), você vai precisar setar o bundle em uma variável. É simples, basta usar o seguinte código:
-
+===Listagem 1===
 {{{
-<f:loadBundle basename="br.com.vaninho.aplicacao.web.bundle.message" var="internacionalizacao" />
+messages_pt_BR.properties (mensagens em português)
+portuguese=Portugues  
+english=Ingles  
+save=Salvar  
+delete=Excluir  
+name=Nome  
+nationality=Nacionalidade  
+title=JSF  
 }}}
+===Listagem 2===
 
-Agora para pegar o texto na linguagem correta, é só utilizar a seguinte EL: #{variavel.chave}.
-No nosso exemplo ficaria assim:
+O pacote com os arquivos de mensagens é ilustrado na figura 1:
+Figura 1: Pacote mensagens
 
+
+Agora temos que configurar o faces-config.xml para o funcionamento da mensageiria. Para isso basta adicionar o seguinte trecho no faces-config.xml conforme a listagem 3:
 {{{
-...
-<title>#{internacionalizacao.tituloIndex}</title>
-...
-<h:outputText value="#{internacionalizacao.cadastroSucesso}"/>
-...
+<application>     
+ <resource-bundle>  
+    <base-name>com.sample.messages.messages</base-name>  
+    <var>msgs</var>  
+ </resource-bundle>  
+ <locale-config>  
+        <default-locale>pt_BR</default-locale>  
+        <supported-locale>en_US</supported-locale>  
+ </locale-config>  
+ <message-bundle>  
+      com.sample.messages.messages  
+ </message-bundle>        
+</application>  
 }}}
+===Listagem 3===
 
-Caso você deseja recuperar a mensagem direto dos seus arquivos java, você vai utilizar o seguinte código para recuperar a mensagem na linguagem desejada:
+Vamos agora criar um controller para gerenciar qual será o locale (idioma) usado na aplicação. Esse controller chamaremos de LocaleController e ficará dentro do pacote com.sample.controller do exemplo. A listagem 4 mostra a implementação do LocaleController.
 
 {{{
-// Pega o locale atual
-Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-// Pega o bundle de acordo com o locale
-ResourceBundle bundle = ResourceBundle.getBundle(FacesContext.getCurrentInstance().getApplication().getMessageBundle(), locale);
-// Pega a mensagem de acordo com a chave
-String mensagem = bundle.getString("chave");
+package com.sample.controller;  
+  
+import java.util.Locale;  
+  
+import javax.faces.component.UIViewRoot;  
+import javax.faces.context.FacesContext;  
+  
+public class LocaleController {  
+ private Locale currentLocale = new Locale("pt", "BR");  
+  
+ public void englishLocale() {  
+  UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();  
+  currentLocale = Locale.US;  
+  viewRoot.setLocale(currentLocale);  
+ }  
+  
+ public void portugueseLocale() {  
+  UIViewRoot viewRoot = FacesContext.getCurrentInstance().getViewRoot();  
+  currentLocale = new Locale("pt", "BR");  
+  viewRoot.setLocale(currentLocale);  
+ }  
+  
+ public Locale getCurrentLocale() {  
+  return currentLocale;  
+ }  
+}  
+}}}
+===Listagem 4===
+
+Vamos também definir um managed-bean no faces-config.xml para o LocaleController (listagem 5).
+{{{
+<managed-bean>  
+  <managed-bean-name>localeController</managed-bean-name>  
+  <managed-bean-class>  
+  com.sample.controller.LocaleController  
+  </managed-bean-class>  
+  <managed-bean-scope>session</managed-bean-scope>     
+</managed-bean>  
+}}}
+===Listagem 5===
+
+Agora vamos definir a página pessoa.jsp para testar a internacionalização (listagem 6).
+{{{
+<%@ page contentType="text/html; charset=UTF-8"%>  
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>  
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h"%>  
+<html>  
+<f:view locale="#{localeController.currentLocale}">  
+ <head>   
+ <title><h:outputText value="#{msgs.title}" /></title>  
+ </head>  
+ <body>  
+ <h:form>  
+  <table>  
+     <tr>  
+     <td><h:commandLink value="#{msgs.portuguese}" action="#{localeController.portugueseLocale}" /></td>  
+     <td><h:commandLink value="#{msgs.english}" action="#{localeController.englishLocale}" /></td>  
+     </tr>     
+   <tr>  
+    <td><h:outputText value="#{msgs.name}" />:</td>  
+    <td><h:inputText value="#{pessoaController.pessoa.nome}" /></td>  
+   </tr>  
+   <tr>  
+    <td><h:outputText value="#{msgs.nationality}" />:</td>  
+    <td><h:inputText value="#{pessoaController.pessoa.nacionalidade}" /></td>  
+   </tr>  
+   <tr>  
+    <td><h:commandButton value="#{msgs.save}" action="#{pessoaController.save}" /></td>  
+   </tr>  
+  </table>  
+  <h:dataTable value="#{pessoaController.pessoas}" var="p"   
+rendered="#{not empty pessoaController.pessoas}" border="1">  
+   <h:column>  
+    <f:facet name="header">  
+     <h:outputText value="#{msgs.name}" />  
+    </f:facet>  
+    <h:commandLink value="#{p.nome}" action="#{pessoaController.edit}">  
+     <f:param name="id" value="#{p.id}" />       
+    </h:commandLink>      
+   </h:column>  
+   <h:column>  
+    <f:facet name="header">  
+     <h:outputText value="#{msgs.nationality}" />  
+    </f:facet>  
+    <h:commandLink value="#{p.nacionalidade}" action="#{pessoaController.edit}">  
+     <f:param name="id" value="#{p.id}" />       
+    </h:commandLink>     
+   </h:column>  
+   <h:column>  
+    <f:facet name="header">  
+     <h:outputText value="#{msgs.delete}" />  
+    </f:facet>      
+    <h:commandLink value="#{msgs.delete}" action="#{pessoaController.delete}">  
+     <f:param name="id" value="#{p.id}" />  
+    </h:commandLink>     
+   </h:column>  
+  </h:dataTable>  
+ </h:form>   
+ </body>  
+</f:view>  
+</html>
 }}}
 
 =Locale=
