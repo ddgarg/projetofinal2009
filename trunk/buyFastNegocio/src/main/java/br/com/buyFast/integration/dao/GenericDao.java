@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Interface que representa o modelo de acesso a dados.
+ * Interface que representa o objeto de acesso a dados.
  * @param <T> O tipo genérico do DAO.
  * @param <ID>
  */
@@ -21,34 +21,39 @@ public interface GenericDao <T, ID extends Serializable> {
 	 * Persiste o objeto no banco de dados.
 	 * @param object o objeto que será persistido.
 	 * @return o objeto atualizado.
+	 * @throws DaoException 
 	 */
-	public T save(T object);
+	public T save(T object) throws DaoException;
 	
 	/**
 	 * Pesquisa o objeto pelo código.
 	 * @param id o código do objeto que será pesquisado.
 	 * @return o modelo pesquisado no banco de dados.
+	 * @throws DaoException 
 	 */
-	public T searchById(ID id);
+	public T searchById(ID id) throws DaoException;
 	
 	/**
 	 * Atualiza o objeto no banco de dados.
 	 * @param object o objeto que será atualizado.
 	 * @return o objeto atualizado.
+	 * @throws DaoException 
 	 */
-	public T update(T object);
+	public T update(T object) throws DaoException;
 	
 	/**
 	 * Remove o objeto no banco de dados.
 	 * @param object o objeto a ser remove no banco de dados.
+	 * @throws DaoException 
 	 */
-	public void delete(T object);
+	public void delete(T object) throws DaoException;
 	
 	/**
 	 * Obtém todos os objetos persistidos.
 	 * @return o conjunto de objetos no banco de dados.
+	 * @throws DaoException 
 	 */
-	public List<T> all();
+	public List<T> all() throws DaoException;
 	
 	/**
 	 * Obtém um conjunto de objetos pesquisado pela query passada pelo parâmetro.<br />
@@ -56,8 +61,9 @@ public interface GenericDao <T, ID extends Serializable> {
 	 * @param query a query para a pesquisa no banco de dados.
 	 * @param params os parâmetros para a query.
 	 * @return o conjunto de objetos resultado da pesquisa.
+	 * @throws DaoException 
 	 */
-	public List<T> listSearchParam(String query, Map<String, Object> params);
+	public List<T> listSearchParam(String query, Map<String, Object> params) throws DaoException;
 	
 	/**
 	 * Obtém um conjunto de objetos pesquisado pela query passada pelo parâmetro.<br />
@@ -68,21 +74,24 @@ public interface GenericDao <T, ID extends Serializable> {
 	 * @param maximum o máximo de resultados.
 	 * @param current o resultado corrente.
 	 * @return o conjunto de objetos resultado da pesquisa.
+	 * @throws DaoException 
 	 */
-	public List<T> listSearchParam(String query, Map<String, Object> params, int maximum, int current);
+	public List<T> listSearchParam(String query, Map<String, Object> params, int maximum, int current) throws DaoException;
 	
 	/**
 	 * Obtém um conjunto de objetos pesquisado pela query passada pelo parâmetro.
 	 * @param query a query para a pesquisa no banco de dados.
 	 * @return o conjunto de objetos resultado da pesquisa.
+	 * @throws DaoException 
 	 */
-	public List<T> listSearch(String query);
+	public List<T> listSearch(String query) throws DaoException;
 	
 	/**
 	 * Obtém o objeto resultante da query passada pelo parâmetro.
 	 * @param query a query para a pesquisa no banco de dados.
 	 * @param params os parâmetros para a query.
 	 * @return o objeto resultado da pesquisa.
+	 * @throws DaoException 
 	 */
-	public T searchParam(String query, Map<String, Object> params);
+	public T searchParam(String query, Map<String, Object> params) throws DaoException;
 }
