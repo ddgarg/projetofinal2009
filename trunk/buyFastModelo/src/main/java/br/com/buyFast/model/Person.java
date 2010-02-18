@@ -29,7 +29,7 @@ public abstract class Person implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	protected Long id;
+	protected Integer id;
 	
 	/**
 	 * O nome.
@@ -65,7 +65,7 @@ public abstract class Person implements Serializable {
 	 * Obter o identificador.
 	 * @return O identificador.
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -73,7 +73,7 @@ public abstract class Person implements Serializable {
 	 * Ajusta o identificador.
 	 * @param id - O novo identificador.
 	 */
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -187,7 +187,7 @@ public abstract class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return name;
+		return name + " - " + email;
 	}
 	
 }
