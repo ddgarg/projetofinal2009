@@ -65,13 +65,14 @@ public class AdminLoginPhaseListener implements PhaseListener {
 				 * Em seguida, cria a árvore de componentes para
 				 * a página login.jsf que exibirá o login e senha.
 				 */
-				ViewHandler viewHandler = app.getViewHandler();
-				UIViewRoot viewRoot = viewHandler.createView(context, "/admin/login.jsf");
-				context.setViewRoot(viewRoot);
+//				ViewHandler viewHandler = app.getViewHandler();
+//				UIViewRoot viewRoot = viewHandler.createView(context, "/admin/login.jsf");
+//				context.setViewRoot(viewRoot);
+				FacesUtil.redirectPage("/admin/login.jsf");
 				
-				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, 
-						FacesUtil.getMessage("adminAccessDeniedTitle"),
-						FacesUtil.getMessage("adminAccessDeniedMessage")));
+				FacesUtil.mensWarn(
+						FacesUtil.getMessage("adminAccessDeniedTitle"), 
+						FacesUtil.getMessage("adminAccessDeniedMessage"));
 			}
 		}
 	}

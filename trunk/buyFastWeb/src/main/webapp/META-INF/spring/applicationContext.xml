@@ -19,6 +19,21 @@
 	-->
 	<context:annotation-config />
 	
+	<!-- Classes DAO -->
 	<bean id="genericDao" class="br.com.buyFast.integration.dao.daoImpl.GenericDaoImpl" />
+	<bean id="addressDao" class="br.com.buyFast.integration.dao.daoImpl.AddressDaoImpl" />
+	<bean id="adminDao" class="br.com.buyFast.integration.dao.daoImpl.AdminDaoImpl" />
+	<bean id="bankDao" class="br.com.buyFast.integration.dao.daoImpl.BankDaoImpl" />
+	<bean id="CategoryDao" class="br.com.buyFast.integration.dao.daoImpl.CategoryDaoImpl" />
+	<bean id="ItemsOrderDao" class="br.com.buyFast.integration.dao.daoImpl.ItemsOrderDaoImpl" />
+	<bean id="OrderDao" class="br.com.buyFast.integration.dao.daoImpl.OrderDaoImpl" />
+	<bean id="PersonDao" class="br.com.buyFast.integration.dao.daoImpl.PersonDaoImpl" />
+	<bean id="ProductDao" class="br.com.buyFast.integration.dao.daoImpl.ProductDaoImpl" />
+	<bean id="SettingsDao" class="br.com.buyFast.integration.dao.daoImpl.SettingsDaoImpl" />
+
+	<!-- Serviços -->
+	<bean id="facade" class="br.com.buyFast.service.serviceImpl.FacadeImpl" >
+		<constructor-arg ref="adminDao" />
+	</bean>
 
 </beans>

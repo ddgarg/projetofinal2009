@@ -22,15 +22,27 @@
 			<div class="admin">
 				<fieldset>
 					<legend>#{message.adminLegendTitle}</legend>
-					<h:form prependId="false">
-						<h:outputLabel value="#{message.adminTextFieldUser}" />
-						<h:inputText id="user" value="" class="field" required="true" requiredMessage=" * ">
+					<h:form prependId="false" id="formLogin">
+
+
+				<p:ajaxStatus style="height:16px;">
+					<f:facet name="start">
+						<h:graphicImage value="../admin/images/loading.gif" />
+					</f:facet>
+
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>
+
+				<h:outputLabel value="#{message.adminTextFieldUser}" />
+						<h:inputText id="user" value="#{adminController.admin.user}" class="field" required="true" requiredMessage=" * ">
 							<f:validateLength minimum="2" maximum="20"/>
 						</h:inputText>
 						<h:message for="user" style="color: RED" />
 					<br />
 						<h:outputLabel value="#{message.admintextFieldPassword}" />
-						<h:inputText id="password" value="" class="field" required="true" requiredMessage=" * " />
+						<h:inputSecret id="password" value="#{adminController.admin.password}" class="field" required="true" requiredMessage=" * " />
 						<h:message for="password" style="color: RED" />
 					<br />
 						<p:messages showDetail="true" globalOnly="true"/>
