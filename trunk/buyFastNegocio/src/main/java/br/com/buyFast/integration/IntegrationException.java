@@ -3,7 +3,8 @@ package br.com.buyFast.integration;
 import java.io.Serializable;
 
 /**
- * Classe responsável 
+ * Classe responsável pelos lançamentos das exceções na camada de integração.
+ * @see Exception
  */
 public class IntegrationException extends Exception {
 
