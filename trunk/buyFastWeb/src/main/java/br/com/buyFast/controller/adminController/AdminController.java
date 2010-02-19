@@ -1,5 +1,7 @@
 package br.com.buyFast.controller.adminController;
 
+import java.io.Serializable;
+
 import javax.annotation.Resource;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -19,8 +21,12 @@ import br.com.buyFast.util.FacesUtil;
  */
 @Controller("adminController")
 @Scope("session")
-public class AdminController {
+public class AdminController implements Serializable {
 
+	/**
+	 * {@link Serializable}.
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Representa o modelo {@link Employee}.
 	 */
@@ -69,33 +75,54 @@ public class AdminController {
 			return null;
 		}
 
+		/*
+		 * Se funcionário nã ofor nulo e senha e usuário corretas
+		 * criar a sessão e redirecionar para a página principal
+		 * da área administrativa.
+		 */
 		if (employee != null && employee.getUser().equals(admin.getUser())
 				&& employee.getPassword().equals(admin.getPassword())) {
 			
+			/*
+			 * Verifica se o usuário é um administrador. Caso seja,
+			 * setar o modelo administrator.
+			 */
 			if (employee instanceof Administrator) {
 				this.admin = (Administrator) employee;
 			} else {
 				this.employee = employee;
 			}
 			
+			//Criar a sessão
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 			
+			//Criar atributo na sessão com o nome do usuário logado.
 			session.setAttribute("name", employee.getName());
 			
 			if (session.getAttribute("msg") != null) {
 				session.removeAttribute("msg");
 			}
 			
+			/*
+			 * Caso ele senha tentado acessar uma página diretamente,
+			 * redirecionar para a página.
+			 */
 			if (originViewId != null) {
 				FacesUtil.redirectPage(originViewId);
 				return null;
 			}
 			
+			// Apresentar uma mensagem de boas vindas (Usando PrimeFaces growl)
+			FacesUtil.mensInfo(
+					FacesUtil.getMessage("adminHomeMessageBeginTitle"),
+					FacesUtil.getMessage("adminHomeMessageBegin"));
+			
 			return "adminhome";
+		
 		} else {
 			FacesUtil.mensErro(
-					FacesUtil.getMessage("adminControllerErrorLoginAndPasswordTitle"),
+					"",
 					FacesUtil.getMessage("adminControllerErrorLoginAndPassword"));
 			return null;
 		}
