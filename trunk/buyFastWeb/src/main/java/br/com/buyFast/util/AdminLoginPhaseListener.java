@@ -3,9 +3,6 @@ package br.com.buyFast.util;
 import java.io.Serializable;
 
 import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.application.ViewHandler;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;

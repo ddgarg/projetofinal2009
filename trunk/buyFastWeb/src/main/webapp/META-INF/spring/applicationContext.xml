@@ -30,10 +30,12 @@
 	<bean id="PersonDao" class="br.com.buyFast.integration.dao.daoImpl.PersonDaoImpl" />
 	<bean id="ProductDao" class="br.com.buyFast.integration.dao.daoImpl.ProductDaoImpl" />
 	<bean id="SettingsDao" class="br.com.buyFast.integration.dao.daoImpl.SettingsDaoImpl" />
+	<bean id="employeeDao" class="br.com.buyFast.integration.dao.daoImpl.EmployeeDaoImpl" />
 
 	<!-- Serviços -->
 	<bean id="facade" class="br.com.buyFast.service.serviceImpl.FacadeImpl" >
 		<constructor-arg ref="adminDao" />
+		<constructor-arg ref="employeeDao" />
 	</bean>
 
 </beans>

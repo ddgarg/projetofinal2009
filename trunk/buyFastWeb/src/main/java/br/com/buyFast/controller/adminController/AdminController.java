@@ -3,7 +3,6 @@ package br.com.buyFast.controller.adminController;
 import javax.annotation.Resource;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.Scope;
@@ -53,24 +52,36 @@ public class AdminController {
 	 * @return
 	 */
 	public String login() {
-		Administrator administrator = null;
+		Employee employee = null;
 		try {
-			administrator = facade.checkAdministrator(this.admin.getUser(), this.admin.getPassword());
+			/*
+			 * Verificando login e senha no banco de dados.
+			 * Foi utilizado employee, pois funcionário e uma super class
+			 * de administrador. Será verificado se employee é uma instância de
+			 * administrador, caso seja setar admin. Se não, setar employee.
+			 * As permissões serão validadas na classe AdminLoginPhaseListener.
+			 */
+			employee = facade.checkEmployee(this.admin.getUser(), this.admin.getPassword());
 		} catch (ServiceException e) {
 			FacesUtil.mensWarn(
 					FacesUtil.getMessage("adminControllerErrorGetLoginTitle"),
 					FacesUtil.getMessage("adminControllerErrorGetLogin"));
+			return null;
 		}
-		
-		if (administrator != null && administrator.getUser().equals(admin.getUser())
-				&& administrator.getPassword().equals(admin.getPassword())) {
+
+		if (employee != null && employee.getUser().equals(admin.getUser())
+				&& employee.getPassword().equals(admin.getPassword())) {
 			
-			admin = administrator;
+			if (employee instanceof Administrator) {
+				this.admin = (Administrator) employee;
+			} else {
+				this.employee = employee;
+			}
 			
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(false);
 			
-			session.setAttribute("name", admin.getName());
+			session.setAttribute("name", employee.getName());
 			
 			if (session.getAttribute("msg") != null) {
 				session.removeAttribute("msg");
