@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 
 /**
  * Classe que representa o administrador do sistema.
+ * @see Employee
  */
 @Entity
 public class Administrator extends Employee implements Serializable {

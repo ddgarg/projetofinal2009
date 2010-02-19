@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 
 /**
  * Classe que representa o funcionário do sistema.
+ * @see Person
  */
 @Entity
 public class Employee extends Person implements Serializable {
@@ -20,7 +21,7 @@ public class Employee extends Person implements Serializable {
 	 * O userName do funcionário.<br>
 	 * Usado para fazer login na área administrativa do sistema.
 	 */
-	@Column(name="user_login", nullable=true, length=100)
+	@Column(name="user_login", nullable=false, length=100, unique=true)
 	protected String user;
 
 	/**

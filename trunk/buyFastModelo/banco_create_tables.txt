@@ -1,4 +1,4 @@
-create table Address (
+    create table Address (
         id  bigserial not null,
         city varchar(50),
         complement varchar(100),
@@ -8,38 +8,38 @@ create table Address (
         state varchar(50),
         street varchar(100),
         primary key (id)
-	);
-	
-create table Administrator (
-        id int8 not null,
+    );
+
+    create table Administrator (
+        id int4 not null,
         primary key (id)
-	);
-	
-create table Bank (
+    );
+
+    create table Bank (
         id  bigserial not null,
         name varchar(100) not null,
         primary key (id)
-	);
-	
-create table Category (
+    );
+
+    create table Category (
         id  bigserial not null,
         name varchar(100) not null,
         primary key (id)
-	);
-	
-create table Customer (
-        id int8 not null,
+    );
+
+    create table Customer (
+        id int4 not null,
         address_id int8,
         primary key (id)
-	);
-	
-create table Employee (
-        user_login varchar(100),
-        id int8 not null,
+    );
+
+    create table Employee (
+        user_login varchar(100) not null unique,
+        id int4 not null,
         primary key (id)
-	);
-	
-create table ItemsOrder (
+    );
+
+    create table ItemsOrder (
         orderId int8 not null,
         prodId int8 not null,
         price float8 not null,
@@ -47,29 +47,29 @@ create table ItemsOrder (
         order_id int8,
         product_id int8,
         primary key (orderId, prodId)
-	);
-	
-create table Order_buy (
+    );
+
+    create table Order_buy (
         id  bigserial not null,
         orderDate timestamp,
         paymentDate timestamp,
         statusEnum varchar(255),
         bank_id int8,
-        customer_id int8,
+        customer_id int4,
         primary key (id)
-	);
-	
-create table Person (
-        id  bigserial not null,
+    );
+
+    create table Person (
+        id  serial not null,
         cpf varchar(14),
         email varchar(100) not null,
         name varchar(100) not null,
         password varchar(50) not null,
         secondName varchar(100) not null,
         primary key (id)
-	);
-	
-create table Product (
+    );
+
+    create table Product (
         id  bigserial not null,
         description varchar(255),
         discount float8 not null,
@@ -80,9 +80,9 @@ create table Product (
         smallDescription varchar(255),
         category_id int8,
         primary key (id)
-	);
-	
-create table Settings (
+    );
+
+    create table Settings (
         id  bigserial not null,
         authentic bool not null,
         emailContact varchar(100),
@@ -98,49 +98,49 @@ create table Settings (
         userName_EmailContact varchar(100),
         userName_EmailSystem varchar(100),
         primary key (id)
-	);
-	
-alter table Administrator 
+    );
+ 
+    alter table Administrator 
         add constraint FK8BEF2AD643833E5 
         foreign key (id) 
         references Employee;
 
-alter table Customer 
+    alter table Customer 
         add constraint FK27FBE3FEFF423F8C 
         foreign key (id) 
         references Person;
 
-alter table Customer 
+    alter table Customer 
         add constraint FK27FBE3FE1CFAC99E 
         foreign key (address_id) 
         references Address;
 
-alter table Employee 
+    alter table Employee 
         add constraint FK4AFD4ACEFF423F8C 
         foreign key (id) 
         references Person;
 
-alter table ItemsOrder 
+    alter table ItemsOrder 
         add constraint FK229D638E5A079C5E 
         foreign key (order_id) 
         references Order_buy;
 
-alter table ItemsOrder 
+    alter table ItemsOrder 
         add constraint FK229D638E677EE3BE 
         foreign key (product_id) 
         references Product;
 
-alter table Order_buy 
+    alter table Order_buy 
         add constraint FK601FFDF5E428A656 
         foreign key (bank_id) 
         references Bank;
 
-alter table Order_buy 
+    alter table Order_buy 
         add constraint FK601FFDF5D7973D16 
         foreign key (customer_id) 
         references Customer;
 
-alter table Product 
+    alter table Product 
         add constraint FK50C664CF7BC0A916 
         foreign key (category_id) 
         references Category;
