@@ -1,6 +1,9 @@
 package br.com.buyFast.service;
 
+import java.util.List;
+
 import br.com.buyFast.model.Administrator;
+import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Employee;
 import br.com.buyFast.model.Person;
 
@@ -25,5 +28,29 @@ public interface Facade {
 	 * @see Person
 	 * @throws ServiceException 
 	 */
-	Employee checkEmployee (String userLogin, String password) throws ServiceException;
+	Employee checkEmployee(String userLogin, String password) throws ServiceException;
+	
+	/**
+	 * Persiste a categoria no banco de dados.
+	 * @see Category
+	 * @param category a categoria que será salva no banco de dados.
+	 * @throws ServiceException
+	 */
+	void saveCategory(Category category) throws ServiceException;
+	
+	/**
+	 * Verifica se a categoria já existe no banco de dados.
+	 * @param category a categoria que será verificada.
+	 * @return <code>true</code> caso já exista a categoria.
+	 * <code>false</code> caso contrário.
+	 * @throws ServiceException 
+	 */
+	boolean isAnExistingCategory(Category category) throws ServiceException;
+
+	/**
+	 * Obter todas as categorias.
+	 * @return um conjunto de categorias.
+	 * @throws ServiceException
+	 */
+	List<Category> getCategories() throws ServiceException;
 }
