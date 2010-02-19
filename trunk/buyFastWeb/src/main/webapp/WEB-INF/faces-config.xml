@@ -12,18 +12,31 @@
   <managed-bean-class>br.com.buyFast.controller.adminController.AdminController</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>categoryController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.controller.adminController.CategoryController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <navigation-case>
    <from-outcome>adminlogin</from-outcome>
    <to-view-id>/admin/login.xhtml</to-view-id>
   </navigation-case>
- </navigation-rule>
- <navigation-rule>
-  <from-view-id>/admin/login.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>adminRegisterCategory</from-outcome>
+   <to-view-id>/admin/registerCategory.xhtml</to-view-id>
+  </navigation-case>
   <navigation-case>
    <from-outcome>adminhome</from-outcome>
    <to-view-id>/admin/home.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>showCategory</from-outcome>
+   <to-view-id>/admin/showCategory.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/admin/login.xhtml</from-view-id>
  </navigation-rule>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
