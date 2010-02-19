@@ -1,13 +1,12 @@
 package br.com.buyFast.service.serviceImpl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import br.com.buyFast.integration.dao.AdminDao;
+import br.com.buyFast.integration.dao.EmployeeDao;
 import br.com.buyFast.model.Administrator;
+import br.com.buyFast.model.Employee;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 
@@ -27,11 +26,17 @@ public class FacadeImpl implements Facade {
 	private AdminDao adminDao;
 	
 	/**
+	 * Objeto de acesso a dados de {@link Employee}.
+	 */
+	private EmployeeDao employeeDao; 
+	
+	/**
 	 * Instancia um novo {@link Facade}.
 	 * @param adminDao
 	 */
-	public FacadeImpl(AdminDao adminDao) {
+	public FacadeImpl(AdminDao adminDao, EmployeeDao employeeDao) {
 		this.adminDao = adminDao;
+		this.employeeDao = employeeDao;
 	}
 	
 	@Override
@@ -41,6 +46,18 @@ public class FacadeImpl implements Facade {
 			return adminDao.getLoginAndPassword(userLogin, password);
 		} catch (Exception e) {
 			String messageError = "Erro ao verificar usuário e senha de administrador.";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+	
+	@Override
+	public Employee checkEmployee (String userLogin, String password) throws ServiceException {
+		try {
+			logger.info("Obtendo funcionário no banco de dados ...");
+			return employeeDao.getLoginAndPassword(userLogin, password);
+		} catch (Exception e) {
+			String messageError = "Erro ao verificar usuário e senha de funcionário.";
 			logger.error(messageError, e);
 			throw new ServiceException(messageError, e);
 		}
