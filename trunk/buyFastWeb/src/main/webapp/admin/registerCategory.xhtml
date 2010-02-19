@@ -11,12 +11,26 @@
 	
 <ui:composition template="templates/admin.xhtml">
 
-	<ui:define name="titulo">#{message.adminHomeTitle}</ui:define>
+	<ui:define name="titulo">#{message.adminRegisterCategoryTitle}</ui:define>
 
-	<ui:define name="tituloCategoria">#{message.adminHomeTitleCategory}</ui:define>
+	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
 
 	<ui:define name="body">
-		<p:growl id="growl" showDetail="true" />
+        <table cellpadding="0" cellspacing="2" border="0" align="left" style="width:450px">
+	    <tr>
+	    	<td>
+		<h:form id="form" prependId="false">
+			<ui:include src="templates/formCategory.xhtml" />
+			<br />
+			<br />
+			<br />
+			<h:commandButton value="Cadastrar" action="#{categoryController.save}" />
+		</h:form>
+        <br />
+	    	<p:messages showDetail="true" globalOnly="true" />
+	    	</td>
+	    </tr>
+	    </table>
 	</ui:define>
 	
 	<ui:define name="bodyRight"></ui:define>

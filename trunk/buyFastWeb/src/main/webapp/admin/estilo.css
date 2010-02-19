@@ -91,6 +91,75 @@ a img {
 border-width:0;
 }
 
+/* ================== */
+/* Alinhamento Painel */
+/* ================== */
+.column1
+{
+text-align:left;
+}
+.column2
+{
+text-align:left;
+}
+.column3
+{
+text-align:left;
+}
+.column4
+{
+text-align:left;
+}
+
+/*======================*/
+/*  Formulário          */
+/*======================*/
+#formulario fieldset{
+	padding: 20px;
+	border: solid #CCCCCC 1px;
+	margin: 0 auto;
+	text-align: left;
+	width: 350px;
+}
+#formulario legend{
+	font-weight: bold;
+	color: #c03;
+	font-size: 11pt;
+	letter-spacing: 1px;
+	padding: 20px;
+}
+
+#formulario .campo{
+	border-top: solid #333333 1px;
+	border-left: solid #333333 1px;
+	border-bottom: solid #CCCCCC 1px;
+	border-right: solid #CCCCCC 1px;
+	font-size: 13px;
+	margin-bottom: 10px;
+	color: #0E0659;
+}
+#formulario label{
+	display: block;
+	width: 80px;
+	float: left;
+	color: #000;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+#formulario fieldset ul{
+	padding: 0 0 25px 15px;
+        
+}
+
+#formulario li{
+	list-style: none;
+}
+
+
+#formulario .msg{
+	padding-left: 10px;
+}
+
 /*-----------------------------------*/
 /* formata o carrinho de compras     */
 /*-----------------------------------*/

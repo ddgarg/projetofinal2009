@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+ <f:view locale="#{localeController.currentLocale}">
+ 
+	<f:loadBundle var="message" basename="ui.Messages" />
+	
+<ui:composition template="templates/admin.xhtml">
+
+	<ui:define name="titulo">#{message.adminRegisterCategoryTitle}</ui:define>
+
+	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
+
+	<ui:define name="body">
+		<h:form >
+			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true"
+					paginator="true" rows="10">
+				<p:column sortBy="#{cat.id}">
+					<f:facet name="header">
+						<h:outputText value="Código" />
+					</f:facet>
+					<h:outputText value="#{cat.id}" />
+				</p:column>
+
+				<p:column sortBy="#{cat.name}">
+					<f:facet name="header">
+						<h:outputText value="Categoria" />
+					</f:facet>
+					<h:outputText value="#{cat.name}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<h:outputText value="Editar" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Excluir" />
+					</f:facet>
+					<h:outputText value="Excluir" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+			
+			<p:messages showDetail="true" globalOnly="true" />
+			
+	</ui:define>
+			<ui:define name="bodyRight"></ui:define>
+</ui:composition>
+
+ </f:view>
+</html>

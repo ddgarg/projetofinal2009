@@ -16,15 +16,6 @@
 	<link rel="stylesheet" type="text/css" href="estilo.css"></link>
 	</head>
 	<body>
-	<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
-		<tr>
-			<td>
-			<div class="admin">
-				<fieldset>
-					<legend>#{message.adminLegendTitle}</legend>
-					<h:form prependId="false" id="formLogin">
-
-
 				<p:ajaxStatus style="height:16px;">
 					<f:facet name="start">
 						<h:graphicImage value="../admin/images/loading.gif" />
@@ -34,20 +25,43 @@
 						<h:outputText value="" />
 					</f:facet>
 				</p:ajaxStatus>
-
-				<h:outputLabel value="#{message.adminTextFieldUser}" />
-						<h:inputText id="user" value="#{adminController.admin.user}" class="field" required="true" requiredMessage=" * ">
-							<f:validateLength minimum="2" maximum="20"/>
-						</h:inputText>
-						<h:message for="user" style="color: RED" />
-					<br />
-						<h:outputLabel value="#{message.admintextFieldPassword}" />
-						<h:inputSecret id="password" value="#{adminController.admin.password}" class="field" required="true" requiredMessage=" * " />
-						<h:message for="password" style="color: RED" />
+	<table cellpadding="0" cellspacing="2" border="0" align="center" class="bg2_body">
+		<tr>
+			<td>
+			<div class="admin">
+				<fieldset>
+					<legend>#{message.adminLegendTitle}</legend>
+					<h:form prependId="false" id="formLogin">
+					<table cellpadding="0" cellspacing="2" border="0">
+						<tr>
+						<td width="90px" align="right">
+							<h:outputLabel value="#{message.adminTextFieldUser}" />
+						</td>
+						<td>
+							<h:inputText id="user" value="#{adminController.admin.user}" class="field" required="true" requiredMessage=" * ">
+								<f:validateLength minimum="2" maximum="20"/>
+								<!-- <p:watermark value="#{message.adminWatermarkLogin}" />  -->
+							</h:inputText>
+							<h:message for="user" style="color: RED" />
+						</td>
+						</tr>
+						<tr>
+						<td width="90px" align="right">
+							<h:outputLabel value="#{message.admintextFieldPassword}" />
+						</td>
+						<td>
+							<h:inputSecret id="password" value="#{adminController.admin.password}" class="field" required="true" requiredMessage=" * " >
+								<!-- <p:watermark value="#{message.adminWatermarkPassword}" />  -->
+							</h:inputSecret>
+							<h:message for="password" style="color: RED;" />
+						</td>
+						</tr>
+					</table>
 					<br />
 						<p:messages showDetail="true" globalOnly="true"/>
 					<br />
-						<h:commandButton action="#{adminController.login}" value="#{message.adminButtonLogin}" />
+						<h:commandButton action="#{adminController.login}" value="#{message.adminButtonLogin}" >
+						</h:commandButton>
 					</h:form>
 				</fieldset>
 			</div>

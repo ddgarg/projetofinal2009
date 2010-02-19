@@ -36,7 +36,9 @@ public class AdminLoginPhaseListener implements PhaseListener {
 		
 		//Verifica as páginas que não tem acesso externo.
 		if (viewId.equals("/admin/home.xhtml") ||
-				viewId.equals("/admin/home.jsf")) {
+				viewId.equals("/admin/home.jsf") ||
+				viewId.equals("/admin/registerCategory.jsf") ||
+				viewId.equals("/admin/registerCategory.xhtml")) {
 			/*
 			 * Recupera os dados que estão em sessão
 			 * em adminController.
