@@ -24,18 +24,19 @@
 	<bean id="addressDao" class="br.com.buyFast.integration.dao.daoImpl.AddressDaoImpl" />
 	<bean id="adminDao" class="br.com.buyFast.integration.dao.daoImpl.AdminDaoImpl" />
 	<bean id="bankDao" class="br.com.buyFast.integration.dao.daoImpl.BankDaoImpl" />
-	<bean id="CategoryDao" class="br.com.buyFast.integration.dao.daoImpl.CategoryDaoImpl" />
-	<bean id="ItemsOrderDao" class="br.com.buyFast.integration.dao.daoImpl.ItemsOrderDaoImpl" />
-	<bean id="OrderDao" class="br.com.buyFast.integration.dao.daoImpl.OrderDaoImpl" />
-	<bean id="PersonDao" class="br.com.buyFast.integration.dao.daoImpl.PersonDaoImpl" />
-	<bean id="ProductDao" class="br.com.buyFast.integration.dao.daoImpl.ProductDaoImpl" />
-	<bean id="SettingsDao" class="br.com.buyFast.integration.dao.daoImpl.SettingsDaoImpl" />
+	<bean id="categoryDao" class="br.com.buyFast.integration.dao.daoImpl.CategoryDaoImpl" />
+	<bean id="itemsOrderDao" class="br.com.buyFast.integration.dao.daoImpl.ItemsOrderDaoImpl" />
+	<bean id="orderDao" class="br.com.buyFast.integration.dao.daoImpl.OrderDaoImpl" />
+	<bean id="personDao" class="br.com.buyFast.integration.dao.daoImpl.PersonDaoImpl" />
+	<bean id="productDao" class="br.com.buyFast.integration.dao.daoImpl.ProductDaoImpl" />
+	<bean id="settingsDao" class="br.com.buyFast.integration.dao.daoImpl.SettingsDaoImpl" />
 	<bean id="employeeDao" class="br.com.buyFast.integration.dao.daoImpl.EmployeeDaoImpl" />
 
 	<!-- Serviços -->
 	<bean id="facade" class="br.com.buyFast.service.serviceImpl.FacadeImpl" >
 		<constructor-arg ref="adminDao" />
 		<constructor-arg ref="employeeDao" />
+		<constructor-arg ref="categoryDao" />
 	</bean>
 
 </beans>
