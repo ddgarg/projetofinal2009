@@ -16,9 +16,9 @@
 	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
 
 	<ui:define name="body">
-		<h:form >
+		<h:form>
 			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true"
-					paginator="true" rows="10">
+					paginator="true" rows="10" width="300px">
 				<p:column sortBy="#{cat.id}">
 					<f:facet name="header">
 						<h:outputText value="Código" />
@@ -26,7 +26,7 @@
 					<h:outputText value="#{cat.id}" />
 				</p:column>
 
-				<p:column sortBy="#{cat.name}">
+				<p:column sortBy="#{cat.name}" >
 					<f:facet name="header">
 						<h:outputText value="Categoria" />
 					</f:facet>
@@ -37,14 +37,14 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<h:outputText value="Editar" />
+					<h:commandButton value="Editar"/>
 				</p:column>
 				
 				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
-					<h:outputText value="Excluir" />
+					<h:commandButton value="Excluir" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
