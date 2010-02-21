@@ -90,7 +90,7 @@ public class FacadeImpl implements Facade {
 	@Override
 	public boolean isAnExistingCategory(Category category) throws ServiceException {
 		try {
-			String query = "SELECT c FROM Category c WHERE c.name LIKE :categoryName";
+			String query = "SELECT c FROM Category c WHERE c.name = :categoryName";
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("categoryName", category.getName());
 			logger.info("Verificando se categoria existe no banco de dados ...");
