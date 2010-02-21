@@ -56,11 +56,11 @@ public class CategoryController implements Serializable {
 		try {
 			//Verifica a existência da categoria.
 			if (facade.isAnExistingCategory(this.category)) {
-				FacesUtil.mensWarn("", "Categoria já existente.");
+				FacesUtil.mensWarn("", FacesUtil.getMessage("categoryControllerCategoryExists"));
 				return null;
 			}
 		}catch (Exception e) {
-			FacesUtil.mensErro("", "Erro ao verificar existência de categoria no banco de dados.");
+			FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerCategoryExistsError"));
 			return null;
 		}
 		
@@ -87,7 +87,7 @@ public class CategoryController implements Serializable {
 			model = new ListDataModel(this.facade.getCategories());
 			return model;
 		} catch (ServiceException e) {
-			FacesUtil.mensErro("", "Erro ao obter todas as categorias.");
+			FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerErrorGetAllCategories"));
 			model = new ListDataModel();
 			return model;
 		}
