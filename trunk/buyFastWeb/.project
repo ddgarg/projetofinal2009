@@ -3,8 +3,6 @@
 	<name>buyFastWeb</name>
 	<comment>Projeto Final do curso de Sistema de Informações - Estácio de Sá - Nova Iguaçu</comment>
 	<projects>
-		<project>buyFastNegocio</project>
-		<project>buyFastModelo</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
