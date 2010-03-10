@@ -1,3 +1,0 @@
-Execute o maven2:
-
-mvn eclipse:eclispe
