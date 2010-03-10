@@ -7,6 +7,12 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>buyFastNegocio</name>
 	<description>Projeto Final do curso de Sistema de Informações - Estácio de Sá - Nova Iguaçu</description>
+	<url>http://code.google.com/p/projetofinal2009/</url>
+
+	<organization>
+		<name>Faculdade Estácio de Sá - Nova Iguaçu</name>
+		<url>http://www.estacio.br</url>
+	</organization>
 
 	<developers>
 		<developer>
@@ -39,9 +45,13 @@
 		</developer>
 	</developers>
 
+	<issueManagement>
+		<system>Google Code</system>
+		<url>http://code.google.com/p/projetofinal2009/w/list</url>
+	</issueManagement>
+
 	<properties>
 		<spring.version>3.0.0.RELEASE</spring.version>
-		<aspectj.version>1.6.6.RELEASE</aspectj.version>
 	</properties>
 
 
@@ -224,13 +234,27 @@
 			<version>${spring.version}</version>
 		</dependency>
 	</dependencies>
-	<organization>
-		<name>Faculdade Estácio de Sá - Nova Iguaçu</name>
-		<url>http://www.estacio.br</url>
-	</organization>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<plugins>
+			<!-- Versão que será compilado -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -240,59 +264,71 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>
-							jar-with-dependencies
-						</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.4</version>
-			</plugin>
-			<!-- IDE -->
+			<!-- Utilizar IDE Eclipse -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.7</version>
+				<version>2.8</version>
 				<configuration>
+					<encoding>UTF-8</encoding>
 					<downloadSources>true</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<wtpversion>2.0</wtpversion>
-					<additionalBuildcommands>
-						<buildCommand>
-							<name>org.eclipse.ajdt.core.ajbuilder</name>
-						</buildCommand>
-						<buildCommand>
-							<name>org.springframework.ide.eclipse.core.springbuilder</name>
-						</buildCommand>
-					</additionalBuildcommands>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-idea-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<dependenciesAsLibraries>true</dependenciesAsLibraries>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<configuration>
-					<siteDirectory>${basedir}/site</siteDirectory>
-					<locales>en,pt</locales>
+					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<!-- Relatórios -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>Cp1252</encoding>
+					<locales>pt_BR, en</locales>
+				</configuration>
+			</plugin>
+			<!-- Gera o site do projeto -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<encoding>Cp1252</encoding>
+					<locales>pt_BR, en</locales>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<encoding>Cp1252</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
