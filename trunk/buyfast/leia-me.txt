@@ -1,0 +1,19 @@
+=== Projeto buyFast ===
+
+- O POM localizado nesta pasta é o arquivo principal do projeto.
+
+- Criar pasta principal buyfast.
+
+- Criar estrutura conforme abaixo:
+
+|-- buyfast
+       `-- pom.xml
+       |
+       `--buyFastModelo
+            `-- pom.xml
+       |
+       `--buyFastNegocio
+            `-- pom.xml
+       |
+       `--buyFast
+            `-- pom.xml
