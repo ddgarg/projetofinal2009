@@ -82,6 +82,53 @@ legend{
 	background:#ffffff;
 }
 
+/* Div para apresentação das categorias */
+
+.showCategories {
+	padding:0;
+	width:600px;
+	display:block;
+	background-color: Write;
+}
+/* tabelas Primefaces */
+
+.yui-skin-sam .yui-dt table {  
+    border-color: #9b9b9b;  /* linhas externas */
+}  
+  
+.yui-skin-sam .yui-dt th {   
+        color: #FFF;
+        background: url(images/navCat.gif);  
+        border: none;  /* Fundo do título */
+}  
+  
+.yui-skin-sam tr.yui-dt-odd {  
+    background: #f0f0f0;  /* linha B */
+}  
+  
+.yui-skin-sam tr.yui-dt-even {  
+    background: #FFFFFF;  
+}  
+  
+.yui-skin-sam .yui-dt td {  
+    border-color: #9b9b9b;  /* linhas internas vertical */
+}  
+  
+.yui-skin-sam .yui-dt-paginator a.yui-pg-last,  
+.yui-skin-sam .yui-dt-paginator a.yui-pg-first,  
+.yui-skin-sam .yui-dt-paginator a.yui-pg-next,  
+.yui-skin-sam .yui-dt-paginator a.yui-pg-previous {   
+    color: #0064c8;  /* links ativos */
+}  
+  
+.yui-skin-sam a.yui-pg-page:link,  
+.yui-skin-sam a.yui-pg-page:hover,  
+.yui-skin-sam a.yui-pg-page:visited {   
+    background: #FFFFFF;  
+    color: #0064c8;  
+}   
+
+
 /* -------------------------- */
 A:link {text-decoration:none}
 A:visited {text-decoration:none}

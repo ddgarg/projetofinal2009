@@ -17,16 +17,18 @@
 
 	<ui:define name="body">
 	<f:view contentType="text/html">
+	<div class="showCategories">
 		<h:form prependId="false">
-			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" paginator="true" rows="10" width="300px">
-				<p:column sortBy="#{cat.id}">
+			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" 
+				paginator="true" selection="#{categoryController.category}" selectionMode="single" rows="10" width="300px">
+				<p:column >
 					<f:facet name="header">
 						<h:outputText value="Código" />
 					</f:facet>
 					<h:outputText value="#{cat.id}" />
 				</p:column>
 
-				<p:column sortBy="#{cat.name}" >
+				<p:column >
 					<f:facet name="header">
 						<h:outputText value="Categoria" />
 					</f:facet>
@@ -37,19 +39,21 @@
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<h:commandButton value="Editar"/>
+					<h:commandButton value="Editar" action="adminRegisterCategory" />
 				</p:column>
 				
 				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
-					<h:commandButton value="Excluir" />
+					<h:commandButton value="Excluir" action="#{categoryController.removeSelectedCategory}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
 			
 			<p:messages showDetail="true" globalOnly="true" />
+		
+		</div>
 		</f:view>
 	</ui:define>
 			<ui:define name="bodyRight"></ui:define>
