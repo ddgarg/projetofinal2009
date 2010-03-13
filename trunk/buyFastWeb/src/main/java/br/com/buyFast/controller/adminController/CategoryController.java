@@ -40,7 +40,16 @@ public class CategoryController implements Serializable {
 	private DataModel model;
 	
 	public CategoryController() {
+	}
+	
+	
+	/**
+	 * Instancia um novo objeto category para cadastro em banco.
+	 * @return o caminho para o cadastro da categoria.
+	 */
+	public String registerCategory() {
 		this.category = new Category();
+		return "adminRegisterCategory";
 	}
 	
 	/**
@@ -65,7 +74,11 @@ public class CategoryController implements Serializable {
 		}
 		
 		try {
-			facade.saveCategory(this.category);
+			if (this.category.getId() != null) {
+				facade.updateCategory(this.category);
+			} else {
+				facade.saveCategory(this.category);
+			}
 		} catch (ServiceException e) {
 			//Apresenta a mensagem de erro.
 			FacesUtil.mensErro("", FacesUtil.getMessage("adminRegisterCategoryError"));
@@ -91,6 +104,32 @@ public class CategoryController implements Serializable {
 			model = new ListDataModel();
 			return model;
 		}
+	}
+	
+	/**
+	 * Obtém a categoria selecionada na tabela.
+	 * @return a categoria selecionada na tabela.
+	 */
+	public Category getSelectedcategory() {
+		return (Category) model.getRowData();
+	}
+
+	/**
+	 * Remove a categoria selecionada na tabela.
+	 * @return a categoria selecionada na tabela.
+	 */
+	public String removeSelectedCategory() {
+		Category category = this.category;
+		if (category != null && category.getId() != null) {
+			try {
+				facade.removeCategory(category);
+			} catch (ServiceException e) {
+				FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerErrorRemoveCategory"));
+			}
+		}
+		FacesUtil.mensInfo("", FacesUtil.getMessage("categoryControllerInfoRemoved"));
+		
+		return null;
 	}
 	
 	/**
