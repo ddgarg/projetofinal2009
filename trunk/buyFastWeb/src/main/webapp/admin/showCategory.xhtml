@@ -16,9 +16,9 @@
 	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
 
 	<ui:define name="body">
-		<h:form>
-			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true"
-					paginator="true" rows="10" width="300px">
+	<f:view contentType="text/html">
+		<h:form prependId="false">
+			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" paginator="true" rows="10" width="300px">
 				<p:column sortBy="#{cat.id}">
 					<f:facet name="header">
 						<h:outputText value="Código" />
@@ -50,7 +50,7 @@
 		</h:form>
 			
 			<p:messages showDetail="true" globalOnly="true" />
-			
+		</f:view>
 	</ui:define>
 			<ui:define name="bodyRight"></ui:define>
 </ui:composition>
