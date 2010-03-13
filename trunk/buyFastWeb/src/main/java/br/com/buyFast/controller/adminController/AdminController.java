@@ -76,7 +76,7 @@ public class AdminController implements Serializable {
 		}
 
 		/*
-		 * Se funcionário nã ofor nulo e senha e usuário corretas
+		 * Se funcionário não for nulo e senha e usuário corretas
 		 * criar a sessão e redirecionar para a página principal
 		 * da área administrativa.
 		 */
@@ -134,7 +134,7 @@ public class AdminController implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String logout(){
+	public String logout() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		Object session = externalContext.getSession(false);
