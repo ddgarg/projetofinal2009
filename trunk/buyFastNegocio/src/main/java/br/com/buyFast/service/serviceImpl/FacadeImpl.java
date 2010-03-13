@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import br.com.buyFast.integration.dao.AdminDao;
 import br.com.buyFast.integration.dao.CategoryDao;
+import br.com.buyFast.integration.dao.DaoException;
 import br.com.buyFast.integration.dao.EmployeeDao;
 import br.com.buyFast.model.Administrator;
 import br.com.buyFast.model.Category;
@@ -117,4 +118,29 @@ public class FacadeImpl implements Facade {
 			throw new ServiceException(messageError, e);
 		}
 	}
+
+	@Override
+	public void removeCategory(Category category) throws ServiceException {
+		try {
+			logger.info("Removendo categoria " + category + " ...");
+			categoryDao.delete(category);
+		} catch (DaoException e) {
+			String messageError = "Erro ao remover categorias.";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public void updateCategory(Category category) throws ServiceException {
+		try {
+			logger.info("Atualizando categoria " + category + " ...");
+			categoryDao.update(category);
+		} catch (DaoException e) {
+			String messageError = "Erro ao atualizar categorias.";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+	
 }
