@@ -1,72 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.com.buyFast</groupId>
+	<parent>
+        <groupId>br.com.buyFast</groupId>
+        <artifactId>buyFastProject</artifactId>
+        <version>1.0</version>
+    </parent>
+	<!-- 
+	 <groupId>br.com.buyFast</groupId> 
+	 <version>1.0</version>
+	-->
 	<artifactId>buyFastModelo</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
 	<name>buyFastModelo</name>
-	<description>Projeto Final do curso de Sistema de Informações - Estácio de Sá - Nova Iguaçu</description>
-	<url>http://code.google.com/p/projetofinal2009/</url>
-
-	<organization>
-		<name>Faculdade Estácio de Sá - Nova Iguaçu</name>
-		<url>http://www.estacio.br</url>
-	</organization>
-
-	<developers>
-		<developer>
-			<id>danielOliveira</id>
-			<name>Daniel da Silva Oliveira</name>
-			<email>danielso2007@gmail.com</email>
-			<organization>Projeto Final - Estácio de Sá - Nova Iguaçu</organization>
-			<organizationUrl>http://code.google.com/p/projetofinal2009/</organizationUrl>
-		</developer>
-		<developer>
-			<id>denisOliveira</id>
-			<name>Denis da Silva Oliveira</name>
-			<email>denissoliveira@gmail.com</email>
-			<organization>Projeto Final - Estácio de Sá - Nova Iguaçu</organization>
-			<organizationUrl>http://code.google.com/p/projetofinal2009/</organizationUrl>
-		</developer>
-		<developer>
-			<id>marcoVicente</id>
-			<name>Marco Vicente</name>
-			<email>marvin00rj@yahoo.com.br</email>
-			<organization>Projeto Final - Estácio de Sá - Nova Iguaçu</organization>
-			<organizationUrl>http://code.google.com/p/projetofinal2009/</organizationUrl>
-		</developer>
-		<developer>
-			<id>sam</id>
-			<name>Samantha Menezes</name>
-			<email>samaquario@ig.com.br</email>
-			<organization>Projeto Final - Estácio de Sá - Nova Iguaçu</organization>
-			<organizationUrl>http://code.google.com/p/projetofinal2009/</organizationUrl>
-		</developer>
-	</developers>
-
-	<issueManagement>
-		<system>Google Code</system>
-		<url>http://code.google.com/p/projetofinal2009/w/list</url>
-	</issueManagement>
-
-	<repositories>
-		<repository>
-			<id>ApacheRepository</id>
-			<name>Apache</name>
-			<url>http://ftp.cica.es/mirrors/maven2/</url>
-		</repository>
-		<repository>
-			<id>JBossRepository</id>
-			<name>JBoss</name>
-			<url>http://repository.jboss.org/maven2/</url>
-		</repository>
-		<repository>
-			<id>GlassfishRepository</id>
-			<name>Glassfish</name>
-			<url>http://download.java.net/maven/glassfish/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -156,58 +102,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<!-- Relatórios -->
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>Cp1252</encoding>
-					<locales>pt_BR, en</locales>
-				</configuration>
-			</plugin>
-			<!-- Gera o site do projeto -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<encoding>Cp1252</encoding>
-					<locales>pt_BR, en</locales>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<encoding>Cp1252</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>taglist-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>
