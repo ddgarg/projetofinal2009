@@ -37,6 +37,20 @@ public interface Facade {
 	 * @throws ServiceException
 	 */
 	void saveCategory(Category category) throws ServiceException;
+
+	/**
+	 * Remove a categoria no banco de dados.
+	 * @param category a categoria que será removida do banco de dados.
+	 * @throws ServiceException
+	 */
+	void removeCategory(Category category) throws ServiceException;
+	
+	/**
+	 * Atualiza a categoria no banco de dados.
+	 * @param category a categoria que será atualizada.
+	 * @throws ServiceException
+	 */
+	void updateCategory(Category category) throws ServiceException;
 	
 	/**
 	 * Verifica se a categoria já existe no banco de dados.
