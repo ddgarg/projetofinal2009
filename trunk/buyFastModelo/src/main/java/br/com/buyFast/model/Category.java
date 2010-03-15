@@ -32,7 +32,7 @@ public class Category implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	/**
 	 * O nome da categoria.
@@ -50,7 +50,7 @@ public class Category implements Serializable {
 	 * Obter o identificador da categoria.
 	 * @return o identificador da categoria.
 	 */
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -58,7 +58,7 @@ public class Category implements Serializable {
 	 * Ajustar o identificador da categoria.
 	 * @param id - O novo identificador da categoria.
 	 */
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
