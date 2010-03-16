@@ -16,7 +16,7 @@
 	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
 
 	<ui:define name="body">
-	<f:view contentType="text/html">
+	
 	<div class="showCategories">
 		<h:form prependId="false">
 			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" 
@@ -54,7 +54,7 @@
 			<p:messages showDetail="true" globalOnly="true" />
 		
 		</div>
-		</f:view>
+		
 	</ui:define>
 			<ui:define name="bodyRight"></ui:define>
 </ui:composition>
