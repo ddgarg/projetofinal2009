@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+      
+	  <f:loadBundle var="message" basename="ui.Messages" />
+	  
+	  <ui:composition>
+	  
+	  <table cellpadding="0" cellspacing="5" border="0" align="left" style="width: 550px">
+	  <tr><td>
+		  	<p:panel>
+					<table border="0" cellpadding="0" cellspacing="5">
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormProductName}" /></td>
+							<td style="width: 400px">
+								<h:inputText id="nome" value="" size="50" required="true" title="#{message.adminFormProductNameTitle}" maxlength="50" requiredMessage="*" />
+								<h:message for="nome" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormPrice}" /></td>
+							<td style="width: 400px">
+								<h:inputText id="preco" value="" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*" />
+								<h:message for="preco" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDiscount}" /></td>
+							<td style="width: 400px">
+								<h:inputText id="desconto" value="" size="12" required="true" title="#{message.adminFormDiscountTitle}" requiredMessage="*" /><h:outputText value="%" />
+								<h:message for="desconto" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormQuantity}" /></td>
+							<td style="width: 400px">
+								<h:inputText id="quantidade" value="" size="12" required="true" title="#{message.adminFormQuantityTitle}" requiredMessage="*" />
+								<h:message for="quantidade" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormSmallDescription}" /></td>
+							<td style="width: 400px">
+								<h:inputText id="apresentacao" value="" size="50" maxlength="50" required="true" title="#{message.adminFormSmallDescriptionTitle}" requiredMessage="*" />
+								<h:message for="apresentacao" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDescription}" /></td>
+							<td style="width: 400px">
+								<!-- <h:inputTextarea id="descricao" value="" title="#{message.adminFormDescriptionTitle}" requiredMessage="*" /> -->
+								<p:editor value="" width="600px" height="350px"></p:editor>
+								<h:message for="descricao" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 40px" align="right"><h:outputLabel value="#{message.adminFormSmallImage}" /></td>
+							<td style="width: 600px">
+								<h:inputText id="smallImagem" value="" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
+								<h:form prependId="false">
+									<p:fileUpload id="updateSmallImage"  fileUploadListener="#{productController.smallImageFileUpload}" allowTypes="*.jpg;*.png;*.gif;" description="Images"/> 
+								</h:form>
+								<br />
+								<h:outputText value="Tamanho máximo: 200x200 px" style="color: RED" />
+								<h:message for="smallImagem" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormImage}" /></td>
+							<td style="width: 600px">
+								<h:inputText id="imagem" value="" size="50" disabled="true" title="#{message.adminFormImageTitle}" requiredMessage="*" />
+								<h:form prependId="false">
+									<p:fileUpload id="uploadImage" fileUploadListener="#{productController.smallImageFileUpload}" allowTypes="*.jpg;*.png;*.gif;" description="Images"/>
+								</h:form>
+								<h:message for="imagem" style="color: RED" />
+							</td>
+						</tr>
+					</table>
+		  	</p:panel>
+		  	<br />
+		  	<h:commandButton value="#{message.adminFormRegisterProduct}" action="#" />
+	  	</td></tr>
+	  </table>
+	  
+	  </ui:composition>
+	  
+</html>
