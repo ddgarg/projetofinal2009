@@ -14,6 +14,9 @@ import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
 
+/**
+ * Classe que representa o controller de Categorias.
+ */
 @Controller("categoryController")
 @Scope("session")
 public class CategoryController implements Serializable {
@@ -40,6 +43,7 @@ public class CategoryController implements Serializable {
 	private DataModel model;
 	
 	public CategoryController() {
+		super();
 	}
 	
 	
