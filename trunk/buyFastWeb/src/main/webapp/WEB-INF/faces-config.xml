@@ -17,6 +17,11 @@
   <managed-bean-class>br.com.buyFast.controller.adminController.CategoryController</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>productController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.controller.adminController.ProductController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <navigation-case>
    <from-outcome>adminlogin</from-outcome>
@@ -33,6 +38,10 @@
   <navigation-case>
    <from-outcome>showCategory</from-outcome>
    <to-view-id>/admin/showCategory.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>registerProduct</from-outcome>
+   <to-view-id>/admin/registerProduct.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>

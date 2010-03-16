@@ -5,17 +5,35 @@
    <PROCESS-ITEM-OUTPUT ID="adminlogin::#admin#login.xhtml"
     NAME="output1" PATH="/admin/login.xhtml"
     TARGET="rules:#admin#login.xhtml" TITLE="adminlogin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="adminRegisterCategory::#admin#registerCategory.xhtml"
+    NAME="output" PATH="/admin/registerCategory.xhtml"
+    TARGET="rules:#admin#registerCategory.xhtml"
+    TITLE="adminRegisterCategory" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="adminhome::#admin#home.xhtml" NAME="output2"
+    PATH="/admin/home.xhtml" TARGET="rules:#admin#home.xhtml"
+    TITLE="adminhome" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="showCategory::#admin#showCategory.xhtml"
+    NAME="output3" PATH="/admin/showCategory.xhtml"
+    TARGET="rules:#admin#showCategory.xhtml" TITLE="showCategory" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerProduct::#admin#registerProduct.xhtml" NAME="output4"
+    PATH="/admin/registerProduct.xhtml"
+    TARGET="rules:#admin#registerProduct.xhtml" TITLE="registerProduct" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
-  SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
+  SHAPE="256,144,50,41" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#admin#login.xhtml:0" NAME="item"
-   PATH="/admin/login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="adminhome::#admin#home.xhtml" NAME="output"
-    PATH="/admin/home.xhtml" TARGET="rules:#admin#home.xhtml"
-    TITLE="adminhome" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
+   PATH="/admin/login.xhtml" model-entity="JSFProcessItem"/>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#home.xhtml" PATH="/admin/home.xhtml"
-  SHAPE="464,200,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="256,272,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#admin#registerCategory.xhtml"
+  PATH="/admin/registerCategory.xhtml" SHAPE="256,216,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#showCategory.xhtml"
+  PATH="/admin/showCategory.xhtml" SHAPE="256,336,50,25" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#admin#registerProduct.xhtml"
+  PATH="/admin/registerProduct.xhtml" SHAPE="264,384,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>
