@@ -1,4 +1,4 @@
-Executando maven2 para gerar um projeto eclipse web:
+﻿Executando maven2 para gerar um projeto eclipse web:
 
       mvn eclipse:eclipse -Dwtpversion=2.0
  
@@ -12,13 +12,3 @@ Para que o projeto funcione corretamente faça as seguintes configurações:
 
  --> Depois vá em "Targeted Runtimes" e selecione Apache TomCat v6.0.
  
- --> Copie para a pasta "buyfastweb\target\classes" os arquivos de configuração do hibernate encontrados no projeto buyFastModelo (src\main\java):
-     Os arquivos são:
-         hibernate.properties
-         log4j.properties
-         ehcache.xml
-         ehcache.xsd
-         hibernate.cfg.xml
-         
-
-         É preciso fazer estes procedimentos, pois ao gerar o projeto pelo Maven2, o eclipse não reconhece corretamente a estrutura de diretórios.
