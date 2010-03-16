@@ -70,6 +70,11 @@ public class Product implements Serializable {
 	private String image;
 	
 	/**
+	 * O caminho da imagem de apresentação do produto.
+	 */
+	private String smallImage;
+	
+	/**
 	 * O conjunto de ítens de pedido que contém este produto.
 	 */
 	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, targetEntity=ItemsOrder.class, cascade=CascadeType.ALL)
@@ -207,6 +212,22 @@ public class Product implements Serializable {
 	 */
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	/**
+	 * Obter o caminho da imagem de apresentação do produto.
+	 * @return O caminho da imagem de apresentação do Produto.
+	 */
+	public String getSmallImage() {
+		return smallImage;
+	}
+
+	/**
+	 * Ajustar o caminho da imagem de apresentação do Produto.
+	 * @param smallImage - O caminho da imagem de apresentação do Produto.
+	 */
+	public void setSmallImage(String smallImage) {
+		this.smallImage = smallImage;
 	}
 
 	/**
