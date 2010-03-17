@@ -21,6 +21,15 @@
 							</td>
 						</tr>
 						<tr>
+							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormCategoriesLabel}" /></td>
+							<td style="width: 400px">
+								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" >
+									<f:selectItems value="#{productController.allCategories}"></f:selectItems>
+								</h:selectOneMenu>
+								<h:message for="categories" style="color: RED" />
+							</td>
+						</tr>
+						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormPrice}" /></td>
 							<td style="width: 400px">
 								<h:inputText id="preco" value="" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*" />
@@ -60,22 +69,12 @@
 							<td style="width: 40px" align="right"><h:outputLabel value="#{message.adminFormSmallImage}" /></td>
 							<td style="width: 600px">
 								<h:inputText id="smallImagem" value="" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
-								<h:form prependId="false">
-									<p:fileUpload id="updateSmallImage"  fileUploadListener="#{productController.smallImageFileUpload}" allowTypes="*.jpg;*.png;*.gif;" description="Images"/> 
+								<h:form prependId="false" enctype="multipart/form-data">
+									<p:fileUpload id="updateSmallImage"  fileUploadListener="#{productController.handleFileUpload}" allowTypes="*.jpg;*.gif;" description="Images"/> 
 								</h:form>
 								<br />
 								<h:outputText value="Tamanho máximo: 200x200 px" style="color: RED" />
 								<h:message for="smallImagem" style="color: RED" />
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormImage}" /></td>
-							<td style="width: 600px">
-								<h:inputText id="imagem" value="" size="50" disabled="true" title="#{message.adminFormImageTitle}" requiredMessage="*" />
-								<h:form prependId="false">
-									<p:fileUpload id="uploadImage" fileUploadListener="#{productController.smallImageFileUpload}" allowTypes="*.jpg;*.png;*.gif;" description="Images"/>
-								</h:form>
-								<h:message for="imagem" style="color: RED" />
 							</td>
 						</tr>
 					</table>
