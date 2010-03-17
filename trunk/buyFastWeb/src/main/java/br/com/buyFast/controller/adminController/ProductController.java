@@ -5,12 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.event.FacesEvent;
 import javax.faces.model.DataModel;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -44,6 +42,16 @@ public class ProductController implements Serializable {
 	private Product product;
 	
 	/**
+	 * Representa o arquivo de apresentação do produto.
+	 */
+	private UploadedFile smallImageFileUpload;
+	
+	/**
+	 * Representa o arquivo de imagem do produto.
+	 */
+	private UploadedFile imageFileUpload;
+	
+	/**
 	 * O modelo de dados para categorias.
 	 */
 	private DataModel model;
@@ -57,27 +65,31 @@ public class ProductController implements Serializable {
 	 * @return string com o caminho de cadastro de produtos.
 	 */
 	public String registerProduct() {
+		this.smallImageFileUpload = null;
+		this.imageFileUpload = null;
 		this.product = new Product();
-		
+		this.product.setCategory(new Category());
 		return "registerProduct";
 	}
 	
 	/**
-	 * Responsável pelo envio da imagem de apresentação.
-	 * @param event
+	 * Responsável pelo envio da imagem de apresentação do produto.
 	 */
-	public void handleFileUpload(FileUploadEvent event) {  
-		System.out.println("Passei");
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
+	public void fileUploadSmallImage(FileUploadEvent event) {
+		this.smallImageFileUpload = event.getFile();
+		this.product.setSmallImage(event.getFile().getFileName());
+		// TODO Não está funcionando.
+//		FacesUtil.mensInfo(event.getFile().getFileName(), "Upload do arquivo completo.");
     }
 	
 	/**
-	 * Responsável pelo envio da imagem de apresentação.
-	 * @param event
+	 * Responsável pelo envio da imagem do produto.
 	 */
-	public void handleFileUpload(FacesEvent event) {  
-		System.out.println("Passei");
+	public void fileUploadImage(FileUploadEvent event) {
+		this.imageFileUpload = event.getFile();
+		this.product.setImage(event.getFile().getFileName());
+		// TODO Não está funcionando.
+//		FacesUtil.mensInfo(event.getFile().getFileName(), "Upload do arquivo completo.");
     }
 	
 	/**
@@ -99,6 +111,19 @@ public class ProductController implements Serializable {
 		return categories;
 	}
 
+	/**
+	 * Método responsável por salvar ou atualizar o produto.
+	 * @return o caminho para a página.
+	 */
+	public String save() {
+		if (smallImageFileUpload == null) {
+			FacesUtil.mensErro("", "A imagem de apresentação deve ser informada.");
+			return null;
+		}
+		
+		return null;
+	}
+	
 	/* Gets and Setters */
 	
 	/**
