@@ -80,6 +80,7 @@ public class CategoryController implements Serializable {
 		try {
 			if (this.category.getId() != null) {
 				facade.updateCategory(this.category);
+				return "showCategory";
 			} else {
 				facade.saveCategory(this.category);
 			}
@@ -87,10 +88,11 @@ public class CategoryController implements Serializable {
 			//Apresenta a mensagem de erro.
 			FacesUtil.mensErro("", FacesUtil.getMessage("adminRegisterCategoryError"));
 			return null;
+		} finally {
+			//Apresenta mensagem de sucesso na operação.
+			FacesUtil.mensInfo("", FacesUtil.getMessage("SuccessInOperationMessage"));
+			this.category = new Category();
 		}
-		//Apresenta mensagem de sucesso na operação.
-		FacesUtil.mensInfo("", FacesUtil.getMessage("SuccessInOperationMessage"));
-		this.category = new Category();
 		
 		return null;
 	}
