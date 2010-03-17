@@ -11,12 +11,12 @@
 	  
 	  <table cellpadding="0" cellspacing="5" border="0" align="left" style="width: 550px">
 	  <tr><td>
-		  	<p:panel>
+		  	<p:panel id="mainPanel">
 					<table border="0" cellpadding="0" cellspacing="5">
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormProductName}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="nome" value="" size="50" required="true" title="#{message.adminFormProductNameTitle}" maxlength="50" requiredMessage="*" />
+								<h:inputText id="nome" value="#{productController.product.name}" size="50" required="true" title="#{message.adminFormProductNameTitle}" requiredMessage="*" />
 								<h:message for="nome" style="color: RED" />
 							</td>
 						</tr>
@@ -32,28 +32,28 @@
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormPrice}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="preco" value="" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*" />
+								<h:inputText id="preco" value="#{productController.product.price}" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*" />
 								<h:message for="preco" style="color: RED" />
 							</td>
 						</tr>
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDiscount}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="desconto" value="" size="12" required="true" title="#{message.adminFormDiscountTitle}" requiredMessage="*" /><h:outputText value="%" />
+								<h:inputText id="desconto" value="#{productController.product.discount}" size="12" required="true" title="#{message.adminFormDiscountTitle}" requiredMessage="*" /><h:outputText value="%" />
 								<h:message for="desconto" style="color: RED" />
 							</td>
 						</tr>
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormQuantity}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="quantidade" value="" size="12" required="true" title="#{message.adminFormQuantityTitle}" requiredMessage="*" />
+								<h:inputText id="quantidade" value="#{productController.product.quantityStock}" size="12" required="true" title="#{message.adminFormQuantityTitle}" requiredMessage="*" />
 								<h:message for="quantidade" style="color: RED" />
 							</td>
 						</tr>
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormSmallDescription}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="apresentacao" value="" size="50" maxlength="50" required="true" title="#{message.adminFormSmallDescriptionTitle}" requiredMessage="*" />
+								<h:inputText id="apresentacao" value="#{productController.product.smallDescription}" size="50" maxlength="50" required="true" title="#{message.adminFormSmallDescriptionTitle}" requiredMessage="*" />
 								<h:message for="apresentacao" style="color: RED" />
 							</td>
 						</tr>
@@ -61,26 +61,40 @@
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDescription}" /></td>
 							<td style="width: 400px">
 								<!-- <h:inputTextarea id="descricao" value="" title="#{message.adminFormDescriptionTitle}" requiredMessage="*" /> -->
-								<p:editor value="" width="600px" height="350px"></p:editor>
+								<p:editor value="#{productController.product.description}" width="600px" height="350px"></p:editor>
 								<h:message for="descricao" style="color: RED" />
 							</td>
 						</tr>
+						<!-- Upload do arquivo de apresentação -->
 						<tr>
 							<td style="width: 40px" align="right"><h:outputLabel value="#{message.adminFormSmallImage}" /></td>
 							<td style="width: 600px">
-								<h:inputText id="smallImagem" value="" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
-								<h:form prependId="false" enctype="multipart/form-data">
-									<p:fileUpload id="updateSmallImage"  fileUploadListener="#{productController.handleFileUpload}" allowTypes="*.jpg;*.gif;" description="Images"/> 
+								<h:inputText id="smallImagem" value="#{productController.product.smallImage}" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
+								<h:form prependId="false" enctype="multipart/form-data" id="smallImageForm">
+									<p:fileUpload id="updateSmallImage" fileUploadListener="#{productController.fileUploadSmallImage}" allowTypes="*.jpg;*.gif;" description="Images"/> 
 								</h:form>
 								<br />
-								<h:outputText value="Tamanho máximo: 200x200 px" style="color: RED" />
+								<h:outputText value="" style="color: RED" />
+								<h:message for="smallImagem" style="color: RED" />
+							</td>
+						</tr>
+						<!-- Upload do arquivo de imagem do produto -->
+						<tr>
+							<td style="width: 40px" align="right"><h:outputLabel value="#{message.adminFormImage}" /></td>
+							<td style="width: 600px">
+								<h:inputText id="imagem" value="#{productController.product.image}" size="50" disabled="true" title="#{message.adminFormImageTitle}" requiredMessage="*" />
+								<h:form prependId="false" enctype="multipart/form-data" id="imageForm">
+									<p:fileUpload id="updateImage" fileUploadListener="#{productController.fileUploadImage}" allowTypes="*.jpg;*.gif;" description="Images"/> 
+								</h:form>
+								<br />
+								<h:outputText value="#{message.adminFormDimensionImage}" style="color: RED" />
 								<h:message for="smallImagem" style="color: RED" />
 							</td>
 						</tr>
 					</table>
 		  	</p:panel>
 		  	<br />
-		  	<h:commandButton value="#{message.adminFormRegisterProduct}" action="#" />
+		  	<h:commandButton value="#{message.adminFormRegisterProduct}" action="#{productController.save}" />
 	  	</td></tr>
 	  </table>
 	  
