@@ -1,5 +1,6 @@
 package br.com.buyFast.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.buyFast.model.Administrator;
@@ -10,7 +11,7 @@ import br.com.buyFast.model.Person;
 /**
  * Classe que representa a fachada para a camada de serviço da aplicação.
  */
-public interface Facade {
+public interface Facade extends Serializable {
 
 	/**
 	 * Verifica e retorna o administrador através do login e senha do usuário.
