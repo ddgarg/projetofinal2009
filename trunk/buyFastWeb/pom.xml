@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-        <groupId>br.com.buyFast</groupId>
-        <artifactId>buyFastProject</artifactId>
-        <version>1.0</version>
-    </parent>
+		<groupId>br.com.buyFast</groupId>
+		<artifactId>buyFastProject</artifactId>
+		<version>1.0</version>
+	</parent>
 	<!--
 	<groupId>br.com.buyfast</groupId>
 	<version>0.1.0</version>
@@ -15,30 +15,106 @@
 	<name>buyFastWeb</name>
 
 	<dependencies>
-	<!-- 
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>el-api</artifactId>
-			<version>6.0.18</version>
-		</dependency> 
-	-->
-	<!-- Dependência ao modelo de domínio -->
+		<!--
+			<dependency> <groupId>org.apache.tomcat</groupId>
+			<artifactId>el-api</artifactId> <version>6.0.18</version>
+			</dependency>
+		-->
+		<!-- Dependência ao modelo de domínio -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>buyFastModelo</artifactId>
 			<version>1.0</version>
 		</dependency>
-	<!-- Dependência ao modelo de negócio -->
+		<!-- Dependência ao modelo de negócio -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>buyFastNegocio</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<!-- Dependências do PrimeFaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>optimus</artifactId>
+			<version>0.9.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>facestrace</artifactId>
+			<version>1.1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- POI para Relatórios Excel -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.2-FINAL</version>
+		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>1.4.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.guice</groupId>
+			<artifactId>guice</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xhtmlrenderer</groupId>
+			<artifactId>core-renderer</artifactId>
+			<version>R8pre2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.lowagie</groupId>
+					<artifactId>itext</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- File Upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- Atmosphere (Comet) -->
+		<dependency>
+			<groupId>org.atmosphere</groupId>
+			<artifactId>atmosphere-runtime</artifactId>
+			<version>0.5-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.atmosphere</groupId>
+					<artifactId>atmosphere-compat-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--  Dynamic Image Examples -->
+		<dependency>
+			<groupId>net.sourceforge.barbecue</groupId>
+			<artifactId>barbecue</artifactId>
+			<version>1.5-beta1</version>
+		</dependency>
+		<dependency>
+			<groupId>jfreechart</groupId>
+			<artifactId>jfreechart</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		<!-- Dependências JSF -->
 		<dependency>
 			<groupId>org.apache.myfaces.core</groupId>
 			<artifactId>myfaces-build</artifactId>
