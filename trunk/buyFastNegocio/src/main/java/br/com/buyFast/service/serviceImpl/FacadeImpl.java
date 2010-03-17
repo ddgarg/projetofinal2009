@@ -1,5 +1,6 @@
 package br.com.buyFast.service.serviceImpl;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,11 @@ import br.com.buyFast.service.ServiceException;
  * Classe que implementa a interface {@link Facade}.
  */
 public class FacadeImpl implements Facade {
+
+	/**
+	 * {@link Serializable}.
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Apresenta o log na aplicação.
