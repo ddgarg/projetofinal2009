@@ -23,7 +23,7 @@
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormCategoriesLabel}" /></td>
 							<td style="width: 400px">
-								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" >
+								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" style="width:315px" >
 									<f:selectItems value="#{productController.allCategories}"></f:selectItems>
 								</h:selectOneMenu>
 								<h:message for="categories" style="color: RED" />
@@ -73,9 +73,8 @@
 								<h:form prependId="false" enctype="multipart/form-data" id="smallImageForm">
 									<p:fileUpload id="updateSmallImage" fileUploadListener="#{productController.fileUploadSmallImage}" allowTypes="*.jpg;*.gif;" description="Images"/> 
 								</h:form>
-								<br />
-								<h:outputText value="" style="color: RED" />
 								<h:message for="smallImagem" style="color: RED" />
+								<h:outputText value=" - #{message.adminFormDimensionImage}" style="color: RED" />
 							</td>
 						</tr>
 						<!-- Upload do arquivo de imagem do produto -->
@@ -87,7 +86,6 @@
 									<p:fileUpload id="updateImage" fileUploadListener="#{productController.fileUploadImage}" allowTypes="*.jpg;*.gif;" description="Images"/> 
 								</h:form>
 								<br />
-								<h:outputText value="#{message.adminFormDimensionImage}" style="color: RED" />
 								<h:message for="smallImagem" style="color: RED" />
 							</td>
 						</tr>
