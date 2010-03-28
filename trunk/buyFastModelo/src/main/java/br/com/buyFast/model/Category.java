@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cascade;
 
 /**
  * Classe que representa a categoria do produto.
