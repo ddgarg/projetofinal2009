@@ -2,6 +2,10 @@
 <faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <converter>
+  <converter-id>categoryConverter</converter-id>
+  <converter-class>br.com.buyFast.Converters.CategoryConverter</converter-class>
+ </converter>
  <managed-bean>
   <managed-bean-name>localeController</managed-bean-name>
   <managed-bean-class>br.com.buyFast.util.LocaleController</managed-bean-class>
@@ -42,6 +46,10 @@
   <navigation-case>
    <from-outcome>registerProduct</from-outcome>
    <to-view-id>/admin/registerProduct.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>showProducts</from-outcome>
+   <to-view-id>/admin/showProducts.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>
