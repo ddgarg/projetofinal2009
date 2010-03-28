@@ -19,8 +19,8 @@
 	
 	<div class="showCategories">
 		<h:form prependId="false">
-			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" 
-				paginator="true" selection="#{categoryController.category}" selectionMode="single" rows="10" width="300px">
+			<p:dataTable var="cat" value="#{productController.allProducts}" dynamic="true" 
+				paginator="true" selection="#{productController.product}" selectionMode="single" rows="10" width="300px">
 				<p:column filterBy="#{cat.id}">
 					<f:facet name="header">
 						<h:outputText value="Código" />
@@ -30,23 +30,51 @@
 
 				<p:column filterBy="#{cat.name}">
 					<f:facet name="header">
-						<h:outputText value="Categoria" />
+						<h:outputText value="Produto" />
 					</f:facet>
 					<h:outputText value="#{cat.name}" />
 				</p:column>
+				
+				<p:column filterBy="#{cat.category}">
+					<f:facet name="header">
+						<h:outputText value="Categoria" />
+					</f:facet>
+					<h:outputText value="#{cat.category}" />
+				</p:column>
 
-				<p:column>
+				<p:column filterBy="#{cat.price}">
+					<f:facet name="header">
+						<h:outputText value="Preço" />
+					</f:facet>
+					<h:outputText value="#{cat.price}" />
+				</p:column>
+				
+				<p:column filterBy="#{cat.discount}">
+					<f:facet name="header">
+						<h:outputText value="Desconto" />
+					</f:facet>
+					<h:outputText value="#{cat.discount}%" />
+				</p:column>
+				
+				<p:column filterBy="#{cat.quantityStock}">
+					<f:facet name="header">
+						<h:outputText value="Qtd. Estoque" />
+					</f:facet>
+					<h:outputText value="#{cat.quantityStock}" />
+				</p:column>
+
+				<p:column >
 					<f:facet name="header">
 						<h:outputText value="Editar" />
 					</f:facet>
-					<h:commandButton value="Editar" action="adminRegisterCategory" />
+					<h:commandButton value="Editar" action="registerProduct" />
 				</p:column>
 				
 				<p:column>
 					<f:facet name="header">
 						<h:outputText value="Excluir" />
 					</f:facet>
-					<h:commandButton value="Excluir" onclick="if (!confirm('#{message.showCategoryMessageDialog}')) return false" action="#{categoryController.removeSelectedCategory}" />
+					<h:commandButton value="Excluir" onclick="if (!confirm('#{message.showProductsMessageDialogRemoveProduct}')) return false" action="#{productController.removeProduct}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
