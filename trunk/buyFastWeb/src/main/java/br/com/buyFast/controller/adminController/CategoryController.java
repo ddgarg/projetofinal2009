@@ -3,6 +3,7 @@ package br.com.buyFast.controller.adminController;
 import java.io.Serializable;
 
 import javax.annotation.Resource;
+import javax.faces.event.ActionEvent;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -131,6 +132,7 @@ public class CategoryController implements Serializable {
 				facade.removeCategory(category);
 			} catch (ServiceException e) {
 				FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerErrorRemoveCategory"));
+				return null;
 			}
 		}
 		FacesUtil.mensInfo("", FacesUtil.getMessage("categoryControllerInfoRemoved"));
