@@ -23,7 +23,8 @@
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormCategoriesLabel}" /></td>
 							<td style="width: 400px">
-								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" style="width:315px" >
+								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" style="width:315px" 
+										converter="categoryConverter">
 									<f:selectItems value="#{productController.allCategories}"></f:selectItems>
 								</h:selectOneMenu>
 								<h:message for="categories" style="color: RED" />
@@ -61,7 +62,7 @@
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDescription}" /></td>
 							<td style="width: 400px">
 								<!-- <h:inputTextarea id="descricao" value="" title="#{message.adminFormDescriptionTitle}" requiredMessage="*" /> -->
-								<p:editor value="#{productController.product.description}" width="600px" height="350px"></p:editor>
+								<p:editor id="descricao" value="#{productController.product.description}" width="600px" height="350px"></p:editor>
 								<h:message for="descricao" style="color: RED" />
 							</td>
 						</tr>
@@ -69,8 +70,8 @@
 						<tr>
 							<td style="width: 40px" align="right"><h:outputLabel value="#{message.adminFormSmallImage}" /></td>
 							<td style="width: 600px">
-								<h:inputText id="smallImagem" value="#{productController.product.smallImage}" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
 								<h:form prependId="false" enctype="multipart/form-data" id="smallImageForm">
+									<h:inputText id="smallImagem" value="#{productController.product.smallImage}" size="50" disabled="true" title="#{message.adminFormSmallImageTitle}" requiredMessage="*" />
 									<p:fileUpload id="updateSmallImage" fileUploadListener="#{productController.fileUploadSmallImage}" allowTypes="*.jpg;*.gif;" description="Images"/> 
 								</h:form>
 								<h:message for="smallImagem" style="color: RED" />
