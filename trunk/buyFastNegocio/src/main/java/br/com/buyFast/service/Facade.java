@@ -1,5 +1,6 @@
 package br.com.buyFast.service;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import br.com.buyFast.model.Administrator;
 import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Employee;
 import br.com.buyFast.model.Person;
+import br.com.buyFast.model.Product;
 
 /**
  * Classe que representa a fachada para a camada de serviço da aplicação.
@@ -68,4 +70,62 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Category> getCategories() throws ServiceException;
+	
+	/**
+	 * Salva o arquivo de imagem em disco.
+	 * @param buf
+	 * @param inputStream
+	 * @param fileName nome do arquivo.
+	 * @param size tamanho do arquivo.
+	 * @param path caminho físico do arquivo.
+	 * @return <code>true</code> no sucesso da operação.
+	 * <code>false</code> caso contrário.
+	 * @throws ServiceException 
+	 */
+	void fileSave(byte[] buf, InputStream inputStream, String fileName, int size, String path) throws ServiceException;
+
+	/**
+	 * Salva o produto no banco de dados.
+	 * @param product o produto a ser persistido no banco.
+	 * @throws ServiceException
+	 */
+	void saveProduct(Product product) throws ServiceException;
+
+	/**
+	 * Remove o produto no banco de dados.
+	 * @param product o produto que será removido.
+	 * @throws ServiceException
+	 */
+	void removeProduct(Product product) throws ServiceException;
+
+	/**
+	 * Atualiza o produto no banco de dados.
+	 * @param product o produto que será atualizado.
+	 * @throws ServiceException
+	 */
+	void updateProduct(Product product) throws ServiceException;
+
+	/**
+	 * Verifica se o produto já existe no banco de dados.
+	 * @param product o produto que será verificado.
+	 * @return <code>true</code> caso já exista o produto.
+	 * <code>false</code> caso contrário.
+	 * @throws ServiceException 
+	 */
+	boolean isAnExistingProduct(Product product) throws ServiceException;
+
+	/**
+	 * Obter a categoria através da informação do id.
+	 * @param id o id da categoria.
+	 * @return a categoria do banco de dados.
+	 * @throws ServiceException
+	 */
+	Category getCategory(int id) throws ServiceException;
+
+	/**
+	 * Obter todos os produtos da base de dados.
+	 * @return conjunto com todos os produtos da base de dados.
+	 * @throws ServiceException
+	 */
+	List<Product> getAllProducts() throws ServiceException;
 }
