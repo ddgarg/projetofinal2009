@@ -32,7 +32,7 @@ public class Product implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	 
 	/**
 	 * O nome do produto.
@@ -83,14 +83,14 @@ public class Product implements Serializable {
 	/**
 	 * A categoria ao qual pertence este produto.
 	 */
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity=Category.class)
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Category.class, cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private Category category;
 
 	/**
 	 * O identificador do produto.
 	 * @return O identificador do produto.
 	 */
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -98,7 +98,7 @@ public class Product implements Serializable {
 	 * Ajustar o identificador do produto.
 	 * @param id - O novo identificador do produto.
 	 */
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
