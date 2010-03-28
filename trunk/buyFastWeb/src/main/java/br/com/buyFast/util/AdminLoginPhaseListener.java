@@ -46,9 +46,7 @@ public class AdminLoginPhaseListener implements PhaseListener {
 			Application app = context.getApplication();
 			
 			AdminController adminController = (AdminController) app.evaluateExpressionGet(
-					context, 
-					"#{adminController}",
-					AdminController.class);
+					context, "#{adminController}", AdminController.class);
 			
 			//Se não tiver administrador logado.
 			if (adminController.getAdmin().getId() == null) {
