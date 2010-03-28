@@ -10,9 +10,9 @@
 	<p:resources />
 	<title><ui:insert name="titulo"></ui:insert></title>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
-	<script language="JavaScript" src="css/carregador.js"></script>
 	</head>
 <body>
+<f:view>
 <!-- CABEÇALHO //-->
 <!-- INICIO -->
 <table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
@@ -117,7 +117,11 @@
 												<td class="li" align="left"><a href="#">Log In</a></td>
 											</tr>
 											<tr>
-												<td class="li" align="left"><a href="#">Área Administrativa</a></td>
+												<td class="li" align="left">
+													<form jsfc="h:form" prependId="false">
+														<a href="admin/index.jsp">Área Administrativa</a>
+													</form>
+												</td>
 											</tr>
 										</table>
 										</td>
@@ -451,19 +455,21 @@
 			</tr>
 			<tr>
 				<td class="row_3">
+				<form jsfc="h:form" prependId="false">
 				<table cellpadding="0" cellspacing="0" border="0" align="center"
 					class="footer">
 					<tr>
 						<td class="footer2_td"><span> <a href="#">Pesquisa
 						Avançada</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; <a href="#">Criar
 						Conta</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; <a href="#">Log
-						In</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; <a href="#">Área
-						Administrativa</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; </span> <br />
+						In</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+						<a href="admin/index.jsp">Área Administrativa</a></span> <br />
 						Copyright &copy; 2010 <a href="#">BuyFast</a> &nbsp;&nbsp; <b>
 						<!--<a href="#">Políticas de Privacidade</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
 					<a href="#">Termos e Condições Gerais</a>--> </b></td>
 					</tr>
 				</table>
+				</form> 
 				</td>
 			</tr>
 		</table>
@@ -472,6 +478,6 @@
 </table>
 
 <!-- FIM RODAPÉ //-->
-
+</f:view>
 </body>
 </html>
