@@ -38,10 +38,15 @@ public class AdminLoginPhaseListener implements PhaseListener {
 		if (viewId.equals("/admin/home.xhtml") ||
 				viewId.equals("/admin/home.jsf") ||
 				viewId.equals("/admin/registerCategory.jsf") ||
-				viewId.equals("/admin/registerCategory.xhtml")) {
+				viewId.equals("/admin/registerCategory.xhtml") ||
+				viewId.equals("/admin/registerProduct.xhtml") ||
+				viewId.equals("/admin/registerProduct.jsf") ||
+				viewId.equals("/admin/showCategory.xhtml") ||
+				viewId.equals("/admin/showCategory.jsf") ||
+				viewId.equals("/admin/showProducts.xhtml") ||
+				viewId.equals("/admin/showProducts.jsf")){
 			/*
-			 * Recupera os dados que estão em sessão
-			 * em adminController.
+			 * Recupera os dados que estão em sessão em adminController.
 			 */
 			Application app = context.getApplication();
 			
