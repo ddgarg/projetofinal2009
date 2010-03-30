@@ -6,360 +6,319 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.prime.com.tr/ui" lang="pt-br">
 
-<head>
+<f:view locale="#{localeController.currentLocale}">
+
+	<f:loadBundle var="message" basename="ui.Messages" />
+	
+	<head>
 	<p:resources />
 	<title><ui:insert name="titulo"></ui:insert></title>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
 	</head>
-<body>
-<f:view>
-<!-- CABEÇALHO //-->
-<!-- INICIO -->
-<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
-	<tr>
-		<td class="bg3_body">
+	
+	<body>
+	<!-- CABEÇALHO //-->
+	<!-- INICIO -->
+	<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body">
+		<tr>
+			<td class="bg3_body">
 
-		<table cellpadding="0" cellspacing="0" border="0" align="center" class="width_table">
-			<tr>
-				<td class="row_1">
+			<table cellpadding="0" cellspacing="0" border="0" align="center" class="width_table">
+				<tr>
+					<td class="row_1">
 
-				<table cellpadding="0" cellspacing="0" border="0">
-					<tr>
-						<td class="box_width_td_left">
-						<table cellpadding="0" cellspacing="0" border="0" class="box_width_left">
-							<!-- LOGO -->
-							<tr>
-								<td class="logo">
-									<table cellpadding="0" cellspacing="0" border="0" style="height: 0px">
+					<table cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td class="box_width_td_left">
+							<table cellpadding="0" cellspacing="0" border="0" class="box_width_left">
+								<!-- LOGO -->
+								<tr>
+									<td class="logo">
+									<table cellpadding="0" cellspacing="0" border="0" style="">
 										<tr style="height: 0px">
 											<td style="height: 0px">
-												<img src="images/logo.png" border="0" alt="Site Buyfast - Compras Online"
-													width="135" height="34" class="png"></img>
+											<img src="images/logo.png" border="0" alt="#{message.templatePageAltLogo}"
+											    width="135" height="34" class="png"></img>
 											</td>
 										</tr>
 									</table>
-								</td>
-							</tr>
-						</table>
-						</td>
+									</td>
+								</tr>
+							</table>
+							</td>
 
-						<td class="content_width_td">
-						<table cellpadding="0" cellspacing="0" border="0" class="header">
-							<tr>
-								<td style="width: 46%;">
-								<!-- LINGUAGEM   -->
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td class="languages">
-										<table border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td align="left">
-												<b>Escolha<br />
-												sua linguagem:</b> 
-												<a href="#"> <img src="css/includes/languages/brasil/images/icon.gif"
-													border="0" alt="Português" title=" Português " width="24"
-													height="15"></img></a>
-													<img src="images/spacer.gif" border="0" alt="" width="1" height="1"
-													style="margin: 0px 3px 0px 0px;"></img> <!--<a href="#">
-				<img src="includes/languages/english/images/icon.gif" border="0" alt="English" title=" English " width="24" height="15"></a>
-				<img src="images/spacer.gif" border="0" alt="" width="1" height="1"  style="margin:0px 3px 0px 0px;">
-				<a href="#">
-				<img src="includes/languages/espanol/images/icon.gif" border="0" alt="Espa&ntilde;ol" title=" Espa&ntilde;ol " width="24" height="15"></a>
-				--></td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-									<tr>
-										<td
-											style="background: url(images/line_x.gif) 0px center repeat-x;">
-										<img src="images/spacer.gif" border="0" alt="" width="1"
-											height="1"></img></td>
-									</tr>
-									<tr>
-										<td class="currencies"><!--  TABELA VALORES -->
-										<table border="0" cellspacing="0" cellpadding="0"
-											align="center">
-											<tr>
-												<td style="width: 100%" align="left">
-												<b>Moeda:</b>
-												<form name="currencies" action="#" method="get">
-												<select name="currency" onchange="this.form.submit();"
-													class="select">
-													<option value="REAL" selected="selected">Real</option>
-												</select> <input type="hidden" name="osCsid"
-													value="5120dba0fb47a11feb900209111a9fb3"></input></form>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
+							<td class="content_width_td">
+							<table cellpadding="0" cellspacing="0" border="0" class="header">
+								<tr>
+									<td style="width: 46%;">
+									<!-- LINGUAGEM   -->
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td class="languages">
+											<table border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td align="left">
+													<b><h:outputText value="#{message.templatePageChooseLanguage}" /></b>
+											<h:form id="idioma">
+												<h:commandLink styleClass="A" action="#{localeController.portugueseLocale}" value="">
+													<h:graphicImage url="/pages/css/images/brasilicon.gif" alt="#{message.languageBrazil}" />
+												</h:commandLink>
+												<h:outputText value=" " />
+												<h:commandLink styleClass="A" action="#{localeController.englishLocale}" value="">
+													<h:graphicImage url="/pages/css/images/englishicon.gif" alt="#{message.languageEnglish}" />
+												</h:commandLink>
+											</h:form>
+						<img src="images/spacer.gif" border="0" alt="" width="1" height="1" style="margin: 0px 3px 0px 0px;"></img>
+											</td>
+												</tr>
+											</table>
+											</td>
+										</tr>
+										<tr>
+											<td >
+												<!-- 
+											<img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img>
+												 -->
+											</td>
+										</tr>
+									</table>
 
 
-
-
-
-								<!-- MENU CENTRAL TOP --></td>
-								<td class="nav_separator"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-								<td style="width: 54%;">
-								<table cellpadding="0" cellspacing="0" border="0" style="margin: 2px 0px 0px 11px;">
-									<tr>
-										<td>
-										<table>
+									<!-- MENU CENTRAL TOP --></td>
+									<td class="nav_separator">
+									<img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img>
+									</td>
+									<td style="width: 54%;">
+									<h:form id="menuEscolha">
+										<table cellpadding="0" cellspacing="0" border="0" style="margin: 2px 0px 0px 11px;">
 											<tr>
-												<td class="li" align="left"><a href="#">Pesquisa Avançada</a></td>
-											</tr>
-											<tr>
-												<td class="li" align="left"><a href="#">Criar Conta</a></td>
-											</tr>
-											<tr>
-												<td class="li" align="left"><a href="#">Log In</a></td>
-											</tr>
-											<tr>
-												<td class="li" align="left">
-													<form jsfc="h:form" prependId="false">
-														<a href="admin/index.jsp">Área Administrativa</a>
-													</form>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
-								</td>
-								<td class="nav_separator"><img src="images/spacer.gif"
-									border="0" alt="" width="1" height="1"></img></td>
-									
-								<!--  CARRINHO -->
-								<td class="z1">
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td align="left">
-											<img src="images/spacer.gif" border="0"
-											alt="" width="1" height="1" align="left" style="height: 40px; width: 43px;"></img>
-											<strong>
-											Carrinho de compras
-											</strong>
-											Agora em seu carrinho 
-											<a href="#">0 itens</a></td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-						</table>
-						</td>
-					</tr>
-					
-					
-					
-					<tr>
-						<td height="1"><img src="images/spacer.gif" border="0" alt="" width="1" height="3"></img></td>
-					</tr>
-					
-					
-					
-					<tr>
-						<!--  CAIXA DE PESQUISA -->
-						<td class="box_width_td_left">
-						<table cellpadding="0" cellspacing="0" border="0" class="box_width_left">
-							<tr style="height: 0px">
-								<td class="search" style="height: 0px">
-								<table cellpadding="0" cellspacing="0" border="0" class="table2">
-									<tr>
-										<td class="td2" style="width: 100%">
-										<form name="search" action="#" method="get">
-										<table border="0" cellspacing="0" cellpadding="0" align="right" class="table">
-											<tr>
-												<td colspan="2" align="left">Pesquisar:</td>
-											</tr>
-											<tr>
-												<td class="search_input-rep" style="width: 100%">
-												<table cellpadding="0" cellspacing="0" border="0"
-													class="search_input-left">
+												<td>
+												<table>
 													<tr>
-														<td class="search_input-right" align="left">
-														<input type="text" style="width: 110px"
-															name="keywords" class="go" value="Palavra-chave..."
-															onblur="if(this.value=='') this.value='Palavra-chave...'"
-															onfocus="if(this.value =='Palavra-chave...' ) this.value=''">
-															</input>
+														<td class="li" align="left">
+														<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
+														</td>
+													</tr>
+													<tr>
+														<td class="li" align="left">
+														<h:commandLink value="#{message.templatePageRegisterCreate}" action="#" />
+														</td>
+													</tr>
+													<tr>
+														<td class="li" align="left">
+														<h:commandLink value="#{message.templatePageLogInItem}" action="#" />
 														</td>
 													</tr>
 												</table>
 												</td>
-												<td><img src="images/spacer.gif" border="0" alt="" width="4" height="1"></img></td>
-												<td class="search_button-rep">
-												<table cellpadding="0" cellspacing="0" border="0" class="search_button-left">
-													<tr>
-														<td class="search_button-right"><input type="image"
-															src="css/includes/languages/brasil/images/buttons/button_search_prod.gif"
-															alt="Pesquisar"> </input></td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-											<tr>
-												<td colspan="2" align="right"
-													style="padding: 0px 4px 0px 0px;"><a href="#"></a></td>
 											</tr>
 										</table>
-										</form>
-										</td>
-									</tr>
-								</table>
-								</td>
-							</tr>
-						</table>
-						</td>
-						<td>
-						<table cellpadding="0" cellspacing="0" border="0">
-							<!-- <tr> -->
-							<tr>
+									</h:form>
+									</td>
+									<td class="nav_separator"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img>
+									</td>
+
+									<!--  CARRINHO -->
+									<td class="z1">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td align="left"><img src="images/spacer.gif" border="0" alt="" width="1" height="1" align="left" style="height: 40px; width: 43px;"></img>
+										<strong> <h:outputText value="#{message.templatePageShoppingCart}" /> </strong>
+										<h:outputText value="#{message.templatePageNowInYourCart}" />
+										<a href="#">0 itens</a></td>
+										</tr>
+									</table>
+									</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
 
 
-								<td id="m1_br" onmouseout="this.id='m1_br';"
-									onmouseover="this.id='over_m1_br';" onclick="#">
-								<div>
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td><img src="images/spacer.gif" border="0" alt=""
-											width="1" height="1"></img></td>
-									</tr>
-								</table>
-								</div>
-								</td>
-								<td id="m2_br" onmouseout="this.id='m2_br';"
-									onmouseover="this.id='over_m2_br';" onclick="#">
-								<div>
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td><img src="images/spacer.gif" border="0" alt=""
-											width="1" height="1"></img></td>
-									</tr>
-								</table>
-								</div>
-								</td>
-								<td id="m3_br" onmouseout="this.id='m3_br';"
-									onmouseover="this.id='over_m3_br';" onclick="#">
-								<div>
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td><img src="images/spacer.gif" border="0" alt=""
-											width="1" height="1"></img></td>
-									</tr>
-								</table>
-								</div>
-								</td>
-								<td id="m4_br" onmouseout="this.id='m4_br';"
-									onmouseover="this.id='over_m4_br';" onclick="#">
-								<div>
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td><img src="images/spacer.gif" border="0" alt=""
-											width="1" height="1"></img></td>
-									</tr>
-								</table>
-								</div>
-								</td>
-								<td id="m5_br" onmouseout="this.id='m5_br';"
-									onmouseover="this.id='over_m5_br';" onclick="#">
-								<div>
-								<table cellpadding="0" cellspacing="0" border="0">
-									<tr>
-										<td><img src="images/spacer.gif" border="0" alt=""
-											width="1" height="1"></img></td>
-									</tr>
-								</table>
-								</div>
-								</td>
-							</tr>
-						</table>
-
-						</td>
-					</tr>
-					<tr>
-						<td><img src="images/spacer.gif" border="0" alt="" width="1"
-							height="3"></img></td>
-						<td></td>
-					</tr>
-				</table>
+						<tr>
+							<td height="3"></td>
+						</tr>
 
 
 
+						<tr>
+							<!--  CAIXA DE PESQUISA -->
+							<td class="box_width_td_left">
+							<table cellpadding="0" cellspacing="0" border="0" class="box_width_left" style="height:72px">
+								<tr>
+									<td class="search" style="height: 0px">
+									<table cellpadding="0" cellspacing="0" border="0" class="table2">
+										<tr>
+											<td class="td2" style="width: 100%">
+											<form name="search" method="get">
+											<table border="0" cellspacing="0" cellpadding="0" align="right" class="table">
+												<tr>
+													<td colspan="2" align="left"> <h:outputText value="#{message.templatePageSearchLabel}" /> </td>
+												</tr>
+												<tr>
+													<td class="search_input-rep" style="width: 100%">
+													<table cellpadding="0" cellspacing="0" border="0" class="search_input-left">
+														<tr>
+															<td class="search_input-right" align="left"><input
+																type="text" style="width: 110px" name="keywords"
+																class="go" value="#{message.templatePageTextFieldSearch}..."
+																onblur="if(this.value=='') this.value='#{message.templatePageTextFieldSearch}...'"
+																onfocus="if(this.value =='#{messgae.templatePageTextFieldSearch}...' ) this.value=''">
+															</input></td>
+														</tr>
+													</table>
+													</td>
+													<td><img src="images/spacer.gif" border="0" alt="" width="4" height="1"></img></td>
+													<td class="search_button-rep">
+													<table cellpadding="0" cellspacing="0" border="0" class="search_button-left">
+														<tr>
+															<td class="search_button-right"><input type="image"
+																src="css/includes/languages/brasil/images/buttons/button_search_prod.gif"
+																alt="#{message.templatePageSearchLabel}"> </input>
+															</td>
+														</tr>
+													</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" align="right" style="padding: 0px 4px 0px 0px;"><a href="#"></a></td>
+												</tr>
+											</table>
+											</form>
+											</td>
+										</tr>
+									</table>
+									</td>
+								</tr>
+							</table>
+							</td>
+							<td>
+							<table cellpadding="0" cellspacing="0" border="0">
+								<!-- <tr> -->
+								<tr>
+									<td id="m1_br" onmouseout="this.id='m1_br';" onmouseover="this.id='over_m1_br';" onclick="#">
+									<div>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+										</tr>
+									</table>
+									</div>
+									</td>
+									<td id="m2_br" onmouseout="this.id='m2_br';" onmouseover="this.id='over_m2_br';" onclick="#">
+									<div>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+										</tr>
+									</table>
+									</div>
+									</td>
+									<td id="m3_br" onmouseout="this.id='m3_br';" onmouseover="this.id='over_m3_br';" onclick="#">
+									<div>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+										</tr>
+									</table>
+									</div>
+									</td>
+									<td id="m4_br" onmouseout="this.id='m4_br';" onmouseover="this.id='over_m4_br';" onclick="#">
+									<div>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+										</tr>
+									</table>
+									</div>
+									</td>
+									<td id="m5_br" onmouseout="this.id='m5_br';" onmouseover="this.id='over_m5_br';" onclick="#">
+									<div>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+										</tr>
+									</table>
+									</div>
+									</td>
+								</tr>
+							</table>
 
-				</td>
-			</tr>
-			<tr>
-				<td class="row_2">
-				<!-- FIM CABEÇALHO //-->
-				
-				<!-- CORPO //-->
-				<table border="0" class="main_table" cellspacing="0" cellpadding="0">
-					<tr>
-						<td class="box_width_td_left">
-						<table border="0" class="box_width_left" cellspacing="0" cellpadding="0">
-							<!-- NAVEGAÇÃO ESQUERDA //-->
-							<!-- CATEGORIAS //-->
-							<tr>
-								<td>
-								<table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxHeading_table">
-									<tr>
-										<td class="infoBoxHeading_l"><img src="images/infoboxheading_tl.gif" border="0" alt=""
-											width="16" height="16"></img></td>
-										<td class="infoBoxHeading_td">
-										<font color="#00659c">
-											Categorias
-										</font></td>
-										<td class="infoBoxHeading_r"><img
-											src="images/infoboxheading_tr.gif" border="0" alt=""
-											width="16" height="16"></img></td>
-									</tr>
-								</table>
-								<table border="0" width="100%" cellspacing="0" cellpadding="0"
-									class="infoBox_table">
-									<tr>
-										<td class="infoBox_td">
-										<table border="0" width="100%" cellspacing="0" cellpadding="0"
-											class="infoBoxContents_table">
-											<tr>
-												<td class="boxText">
-												<table cellpadding="0" cellspacing="0" border="0"
-													class="table">
-													<tr>
-														<td class="td" align="left">
-														
-														
+							</td>
+						</tr>
+						
+						
+						
+						
+						<tr>
+							<td height="3"></td>
+						</tr>
+					</table>
+
+
+
+
+					</td>
+				</tr>
+				<tr>
+					<td class="row_2">
+					<!-- FIM CABEÇALHO //--> 
+					<!-- CORPO //-->
+					<table border="0" class="main_table" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="box_width_td_left">
+							<table border="0" class="box_width_left" cellspacing="0" cellpadding="0">
+								<!-- NAVEGAÇÃO ESQUERDA //-->
+								<!-- CATEGORIAS //-->
+								<tr>
+									<td>
+									<table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxHeading_table">
+										<tr>
+											<td class="infoBoxHeading_l">
+											<img src="images/infoboxheading_tl.gif" border="0" alt="" width="16" height="16"></img></td>
+											<td class="infoBoxHeading_td">
+											<font color="#00659c"> <h:outputText value="#{message.templatePageCategoryTitle}" /> </font></td>
+											<td class="infoBoxHeading_r">
+											<img src="images/infoboxheading_tr.gif" border="0" alt="" width="16" height="16"></img></td>
+										</tr>
+									</table>
+									<table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBox_table">
+										<tr>
+											<td class="infoBox_td">
+											<table border="0" width="100%" cellspacing="0" cellpadding="0" class="infoBoxContents_table">
+												<tr>
+													<td class="boxText">
+													<table cellpadding="0" cellspacing="0" border="0" class="table">
+														<tr>
+															<td class="td" align="left">
 															<!-- Categoria -->
 															<ul class="categories">
-																<li class="bg_list_un"><a href="#">Desktops</a></li>
-																<li class="bg_list"><a href="#">Notebooks-&gt;</a></li>
-																<li class="bg_list"><a href="#">Table PCs</a></li>
-																<li class="bg_list"><a href="#">Livros</a></li>
-																<li class="bg_list"><a href="#">Informática</a></li>
-																<li class="bg_list"><a href="#">Impressoras</a></li>
+																<ui:repeat value="#{homeController.allCategories}" var="item">
+																	<li class="bg_list">
+																		<a href="prodscat.jsf?cat=#{item.id}">
+																			#{item.name}
+																		</a>
+																	</li>
+																</ui:repeat>
 															</ul>
-															<!-- Fim categorias -->
-														
-														
-														</td>
-													</tr>
-												</table>
-												</td>
-											</tr>
-										</table>
-										</td>
-									</tr>
-								</table>
+															<!-- Fim categorias --></td>
+														</tr>
+													</table>
+													</td>
+												</tr>
+											</table>
+											</td>
+										</tr>
+									</table>
 
-								</td>
-							</tr>
+									</td>
+								</tr>
 
-							<!-- FIM CATEGORIA //-->
+								<!-- FIM CATEGORIA //-->
 
 
 
-							<!--  BANNER 
+								<!--  BANNER 
 <tr>
 	<td class="banner_02"><a href="#" target="_self">
 	<img src="images/banner_02.jpg" border="0" alt="Banner2" title=" Banner2 " width="200" height="98"> </a></td>
@@ -376,108 +335,92 @@
 
 
 
-							<!-- FIM NAVEGAÇÃO ESQUERDA //-->
-						</table>
-						</td>
+								<!-- FIM NAVEGAÇÃO ESQUERDA //-->
+							</table>
+							</td>
 
 
-						<!-- CORPO TEXTO //-->
-						<td class="content_width_td">
+							<!-- CORPO TEXTO //-->
+							<td class="content_width_td">
 
 
+							<table cellpadding="0" cellspacing="0" border="0" align="center" class="content_wrapper_table">
+								<tr>
+									<td class="content_wrapper_td">
+									<!-- MENSAGEM DE ALERTA E AVISOS -->
+									
+									<p:messages showDetail="true" globalOnly="true"/>
+									
+									<!-- MENSAGEM DE ALERTA E AVISOS FIM -->
+
+									<table border="0" width="100%" cellspacing="0" cellpadding="0" class="cont_heading_table">
+										<tr>
+											<td class="cont_heading_td">
+											<ui:insert name="messageBody"></ui:insert></td>
+										</tr>
+									</table>
 
 
-
-
-						<table cellpadding="0" cellspacing="0" border="0" align="center"
-							class="content_wrapper_table">
-							<tr>
-								<td class="content_wrapper_td">
-								
-								
-								<!-- MENSAGEM DE ALERTA E AVISOS --> 
-								<table border="0" width="100%" cellspacing="0" cellpadding="0">
-						          <tr><td class="main"><ui:insert name="message_aviso"></ui:insert></td></tr>
-						          <tr><td></td></tr>
-						          <tr><td class="main">
-						          <font color="RED">
-						          	<ui:insert name="message_alerta"></ui:insert>
-						          </font>
-						          </td></tr>
-						        </table>
-<!-- MENSAGEM DE ALERTA E AVISOS FIM -->
-
-								<table border="0" width="100%" cellspacing="0" cellpadding="0"
-									class="cont_heading_table">
-									<tr>
-										<td class="cont_heading_td">
-											<ui:insert name="messageBody"></ui:insert>
-										</td>
-									</tr>
-								</table>
-
-						
-<!-- Corpo da página -->
-						<ui:insert name="body"></ui:insert>
-								
-
-								</td>
-							</tr>
-						</table>
+									<!-- Corpo da página -->
+									<ui:insert name="body"></ui:insert></td>
+								</tr>
+							</table>
 
 
 
 
-						</td>
-						<!-- FIM CORPO TEXTO //-->
+							</td>
+							<!-- FIM CORPO TEXTO //-->
 
-						<td class="box_width_td_right">
-						<table border="0" class="box_width_right" cellspacing="0"
-							cellpadding="0">
-
-
-							<!-- NAVEGAÇÃO DIREITA //-->
-
-							<!-- FIM NAVEGAÇÃO DIREITA //-->
+							<td class="box_width_td_right">
+							<table border="0" class="box_width_right" cellspacing="0" cellpadding="0">
 
 
-						</table>
-						</td>
-					</tr>
-				</table>
+								<!-- NAVEGAÇÃO DIREITA //-->
+
+								<!-- FIM NAVEGAÇÃO DIREITA //-->
 
 
-				<!-- FIM CORPO //-->
-				
-				<!-- RODAPÉ //-->
-				
-				</td>
-			</tr>
-			<tr>
-				<td class="row_3">
-				<form jsfc="h:form" prependId="false">
-				<table cellpadding="0" cellspacing="0" border="0" align="center"
-					class="footer">
-					<tr>
-						<td class="footer2_td"><span> <a href="#">Pesquisa
-						Avançada</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; <a href="#">Criar
-						Conta</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp; <a href="#">Log
-						In</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-						<a href="admin/index.jsp">Área Administrativa</a></span> <br />
-						Copyright &copy; 2010 <a href="#">BuyFast</a> &nbsp;&nbsp; <b>
-						<!--<a href="#">Políticas de Privacidade</a> &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-					<a href="#">Termos e Condições Gerais</a>--> </b></td>
-					</tr>
-				</table>
-				</form> 
-				</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
-</table>
+							</table>
+							</td>
+						</tr>
+					</table>
 
-<!-- FIM RODAPÉ //-->
-</f:view>
+
+					<!-- FIM CORPO //-->
+					<!-- RODAPÉ //-->
+					</td>
+				</tr>
+				<tr>
+					<td class="row_3">
+					<form jsfc="h:form" prependId="false">
+					<table cellpadding="0" cellspacing="0" border="0" align="center" class="footer">
+						<tr>
+							<td class="footer2_td">
+							<span>
+							<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
+							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+							<h:commandLink value="#{message.templatePageRegisterCreate}" action="#" />
+							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+							<h:commandLink value="#{message.templatePageLogInItem}" action="#" />
+							</span> <br />
+							Copyright &copy; 2010 <a href="#">BuyFast</a>
+							&nbsp;&nbsp; <b>
+							<!--<a href="#">Políticas de Privacidade</a>
+							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
+							<a href="#">Termos e Condições Gerais</a>-->
+							</b></td>
+						</tr>
+					</table>
+					</form>
+					</td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+														
+	<!-- FIM RODAPÉ //-->
 </body>
+</f:view>
 </html>
