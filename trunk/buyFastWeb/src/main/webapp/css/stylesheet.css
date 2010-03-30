@@ -94,6 +94,15 @@ legend{
 	text-align: center;
 }
 
+/* -------------------------- */
+A:link {text-decoration:none}
+A:visited {text-decoration:none}
+A:active {text-decoration:none}
+A:hover {text-decoration:none}
+a img {
+border-width:0;
+}
+
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 /* ************************************************************************************* */
@@ -102,7 +111,7 @@ legend{
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 .main_table					{margin:0px 0px 0px 0px;}
-.box_width_left				{width:200px;}
+.box_width_left				{width:200px; height:10px;}
 .box_width_right			{width:0px;}
 
 .content_width_td			{width:100%;padding:0px 0px 0px 0px}
@@ -128,7 +137,7 @@ legend{
 /* ************************************************************************************* */
 .logo				{background:url(images/logo_bg.gif) 0px 0px repeat-x;}
 .logo table			{background:url(images/logo_left.gif) 0px 0px no-repeat;}
-.logo table td		{background:url(images/logo_right.gif) 100% 0px no-repeat;height:90px;padding:29px 0px 27px 1px; width:100%; text-align:center;}
+.logo table td		{background:url(images/logo_right.gif) 100% 0px no-repeat;padding:29px 0px 27px 1px; text-align:center;}
 .banner_02  		{padding:0px 0px 3px 0px;}
 .banner_03  		{padding:0px 0px 3px 0px;}
 /* ************************************************************************************* */
@@ -159,7 +168,7 @@ legend{
 
 .search					{background:url(images/search_bg.gif) 0px 0px repeat-x;}
 .search .table2			{background:url(images/search_left.gif) 0px 0px no-repeat;}
-.search .table2 .td2	{background:url(images/search_right.gif) 100% 0px no-repeat;height:71px;padding:7px 19px 7px 20px; width:100%; text-align:center; vertical-align:middle}
+.search .table2 .td2	{background:url(images/search_right.gif) 100% 0px no-repeat;padding:7px 19px 7px 20px; width:100%; text-align:center; vertical-align:middle}
 .search .go				{width:100%;border:1px solid #7f7f7f; border-bottom:0px; border-right:0px;background:#ffffff; color:#7f7f7f;vertical-align:middle;margin:2px 0px 2px 0px;padding:3px 9px 0px 9px; height:20px;}
 .search a				{color:#ffff9b; font-size:11px; line-height:12px; font-weight:normal; text-decoration:underline;}
 .search td				{color:#ffffff; font-size:11px; line-height:12px; font-weight:bold;}
