@@ -24,6 +24,14 @@ TEXTAREA 							{width: 60%;font-size:11px;font-family:Tahoma,Geneva,sans-serif;
 .table_banco 							{width: 30%; text-align: right;}
 
 
+#products {
+	width:475px;
+	padding:0px;
+	float:right;
+	position: relative;
+
+}
+
 fieldset{
 	padding-left: 25px;
 	border: solid #CCCCCC 2px;
