@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.model.Category;
+import br.com.buyFast.model.Product;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
@@ -17,9 +18,9 @@ import br.com.buyFast.util.FacesUtil;
 /**
  * Classe que representa o controller para a página principal.
  */
-@Controller("homeController")
+@Controller("shopController")
 @Scope("session")
-public class HomeController implements Serializable {
+public class ShopController implements Serializable {
 
 	/**
 	 * {@link Serializable}.
@@ -32,7 +33,7 @@ public class HomeController implements Serializable {
 	@Resource
 	private Facade facade;
 	
-	public HomeController() {
+	public ShopController() {
 		super();
 	}
 
@@ -47,5 +48,14 @@ public class HomeController implements Serializable {
 			FacesUtil.mensErro("", FacesUtil.getMessage("homeControllerErrogetAllCategories"));
 		}
 		return new ArrayList<Category>();
+	}
+	
+	public List<Product> getAllProducts() {
+		try {
+			return facade.getAllProducts();
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("homePageGetAllProductsError"));
+		}
+		return new ArrayList<Product>();
 	}
 }
