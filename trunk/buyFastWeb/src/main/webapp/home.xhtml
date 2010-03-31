@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<ui:composition template="/templates/templatepage.xhtml">
+	<ui:define name="titulo">#{message.homePageTitle}</ui:define>
+	
+	<ui:define name="messageBody">#{message.homePageTitleBody}</ui:define>
+	
+	<ui:define name="body">
+	<table cellpadding="0" cellspacing="0" border="0" class="content_wrapper3_table">
+									<tr>
+										<td class="content_wrapper3_td">
+										<table border="0" width="" cellspacing="0" cellpadding="0" class="tableBox_output_table">
+											<tr>
+												<td class="main">
+												<table border="0" width="" cellspacing="0" cellpadding="0">
+													<tr>
+														<td align="left" style="width: 100%;">
+														<table cellpadding="0" cellspacing="0" border="0" class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+						<div >							
+							<ui:repeat value="#{shopController.allProducts}" var="item" size="5">
+											<div>
+											<h:panelGrid columns="3" border="1" cellpadding="2" styleClass="products">
+												<h:graphicImage value="/thumbs/#{item.smallImage}" />
+												<h:panelGrid columns="1">
+													<h:panelGroup>
+														<h:outputText value="#{item.name}" styleClass="title">
+														</h:outputText>
+													</h:panelGroup>
+													<h:panelGroup>
+														<h:outputText value="#{item.smallDescription}" styleClass="text">
+														</h:outputText>
+													</h:panelGroup>
+
+													<h:panelGroup>
+														<h:outputText
+															value="#{item.discount > 0 ? 'Lista:':'Preço:'}" styleClass="text" />
+														<h:outputText value="#{item.price}" styleClass="#{item.discount > 0 ? 'listprice':'text'}">
+															<f:convertNumber type="currency" />
+														</h:outputText>
+													</h:panelGroup>
+													<h:panelGroup rendered="#{item.discount > 0}">
+														<h:outputText value="Preço:" styleClass="text" />
+														<h:outputText
+															value="#{item.price - (item.price * item.discount) / 100}" styleClass="price">
+															<f:convertNumber type="currency" />
+														</h:outputText>
+													</h:panelGroup>
+													<h:panelGroup rendered="#{item.discount > 0}">
+														<h:outputText value="Economize:" styleClass="text" />
+														<h:outputText value="#{(item.price * item.discount) / 100}" styleClass="price">
+															<f:convertNumber type="currency" />
+														</h:outputText>
+													</h:panelGroup>
+													<h:panelGroup>
+														<h:outputText value="Categoria:" styleClass="text" />
+														<h:outputText value="#{item.category.name}" styleClass="text" />
+													</h:panelGroup>
+
+													<h:outputLink value="detalhes.jsf?id=#{item.id}">
+														<h:outputText value="Mais detalhes aqui" styleClass="text" />
+													</h:outputLink>
+													<h:form prependId="false">
+													<h:commandLink action="#{carrinhoController.adicionarAoCarrinho}">
+														<h:outputText value="Adicionar ao carrinho" styleClass="text" />
+														<f:param name="id" value="#{item.id}" />
+													</h:commandLink>
+													</h:form>
+												</h:panelGrid>
+											</h:panelGrid>
+											
+											</div>
+										</ui:repeat>
+										
+										</div>
+										</td>
+															</tr>
+														</table>
+														</td>
+													</tr>
+												</table>
+												</td>
+											</tr>
+										</table>
+										<!-- new_products_eof //--></td>
+									</tr>
+								</table>
+		</ui:define>
+	
+</ui:composition>
+
+</html>
+
+
+<!-- 
+
+
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd">
+																		<a href="#"> Game Boy Nintendo </a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0" align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/nintendo.jpg" border="0"
+																					alt="Game Boy Nintendo" title="Game Boy Nintendo"
+																					width="120" height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">R$42.00</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1" /> </a> <a href="#"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2" /> </a></td>
+																	</tr>
+																</table>
+																
+																
+																
+																
+																
+																</td>
+															</tr>
+														</table>
+														</td>
+														<td class="prod_line_y padd_vv"><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
+														<td align="left" style="width: 33%;">
+														<table cellpadding="0" cellspacing="0" border="0" class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+																
+																
+																
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd"><a href="#">
+																		Notebook P4 </a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0"
+																			align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/notebook.jpg" border="0"
+																					alt="Notebook P4" title="Notebook P4" width="120"
+																					height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">R$1499.99</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1"></img> </a> <a href="#"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2"></img> </a></td>
+																	</tr>
+																</table>
+																
+																
+																
+																
+																
+																
+																
+																</td>
+															</tr>
+														</table>
+														</td>
+														<td class="prod_line_y padd_vv"><img
+															src="images/spacer.gif" border="0" alt="" width="1"
+															height="1"></img></td>
+														<td align="left" style="width: 33%;">
+														<table cellpadding="0" cellspacing="0" border="0"
+															class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+																
+																
+																
+																
+																
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd"><a href="#">
+																		Monitor LCD </a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0"
+																			align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/monitor.jpg" border="0"
+																					alt="Monitor LCD" title="Monitor LCD" width="120"
+																					height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">$499.99</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1"></img> </a> <a href="#"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2"></img> </a></td>
+																	</tr>
+																</table>
+																</td>
+															</tr>
+														</table>
+														</td>
+													</tr>
+													
+													
+													
+													
+													
+													<tr>
+														<td class="prod_line_x padd_gg" colspan="5"><img
+															src="images/spacer.gif" border="0" alt="" width="1"
+															height="1"></img></td>
+													</tr>
+													
+													
+													
+													<tr>
+														<td align="left" style="width: 33%;">
+														<table cellpadding="0" cellspacing="0" border="0"
+															class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+																
+																
+																
+																
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd"><a href="#">
+																		Celular Google Android </a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0"
+																			align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/celular.jpg" border="0"
+																					alt="Celular Google Android"
+																					title="Celular Google Android" width="120"
+																					height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">R$299.99</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1"></img> </a> <a href="#"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2"></img> </a></td>
+																	</tr>
+																</table>
+																
+																
+																
+																
+																
+																
+																</td>
+															</tr>
+														</table>
+														</td>
+														<td class="prod_line_y padd_vv"><img
+															src="images/spacer.gif" border="0" alt="" width="1"
+															height="1"></img></td>
+														<td align="left" style="width: 33%;">
+														<table cellpadding="0" cellspacing="0" border="0" class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+																
+																
+																
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd"><a href="#"> PDA
+																		</a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0"
+																			align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/pda.jpg" border="0" alt="PDA"
+																					title="PDA" width="120" height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">R$29.99</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1"></img> </a> <a href="#"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2"></img> </a></td>
+																	</tr>
+																</table>
+																
+																
+																
+																
+																
+																</td>
+															</tr>
+														</table>
+														</td>
+														<td class="prod_line_y padd_vv"><img
+															src="images/spacer.gif" border="0" alt="" width="1"
+															height="1"></img></td>
+														<td align="left" style="width: 33%;">
+														<table cellpadding="0" cellspacing="0" border="0"
+															class="prod2_table">
+															<tr>
+																<td class="prod2_td">
+																
+																
+																
+																
+																
+																
+																<table cellpadding="0" cellspacing="0" border="0">
+																	<tr>
+																		<td class="name name2_padd"><a href="#">
+																		Impressora </a></td>
+																	</tr>
+																	<tr>
+																		<td class="pic2_padd">
+																		<table cellpadding="0" cellspacing="0" border="0"
+																			align="center" class="wrapper_pic_table">
+																			<tr>
+																				<td class="wrapper_pic_td"><a href="#"> <img
+																					src="images/impressora.jpg" border="0"
+																					alt="Impressora" title="Impressora" width="120"
+																					height="120"></img> </a></td>
+																			</tr>
+																		</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="price2_padd"><b>Preço:</b>&nbsp;<span
+																			class="productSpecialPrice">R$29.99</span></td>
+																	</tr>
+																	<tr>
+																		<td class="button2_padd button2_marg"><a href="#">
+																		<img
+																			src="css/includes/languages/brasil/images/buttons/button_details.gif"
+																			border="0" alt="Informações do Produto" width="40"
+																			height="13" class="btn1"></img> </a> <a
+																			href="shopping_cart.php.htm"> <img
+																			src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
+																			border="0" alt="Adicionar ao Carrinho" width="75"
+																			height="13" class="btn2"></img> </a></td>
+																	</tr>
+																</table>
+
+ -->
