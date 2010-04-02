@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -62,6 +63,7 @@ public class Product implements Serializable {
 	/**
 	 * Representa a descrição do produto.
 	 */
+	@Lob
 	private String description;
 	 
 	/**
@@ -83,7 +85,7 @@ public class Product implements Serializable {
 	/**
 	 * A categoria ao qual pertence este produto.
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Category.class, cascade={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Category.class)
 	private Category category;
 
 	/**
