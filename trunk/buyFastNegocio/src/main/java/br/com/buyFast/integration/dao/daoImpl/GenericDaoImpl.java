@@ -257,7 +257,8 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 			logger.info("Iniciando sessão ...");
 			this.session = ConnectionFactory.getIntance();
 			logger.info("Obtendo todos os objetos do tipo " + getObjectClass().getSimpleName() + "...");
-			return session.createCriteria($Class).list();
+			/* Utilizado query por apresentar maior consistência na busca. */
+			return session.createQuery("FROM " + $Class.getName()).list();
 		} catch (Exception e) {
 			String messageError = "Erro ao executar query para " + getObjectClass().getSimpleName();
 			logger.error(messageError, e);
