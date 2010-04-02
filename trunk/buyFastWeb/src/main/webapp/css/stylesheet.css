@@ -1,5 +1,5 @@
 /* ************************************************************************************* */
-BODY 								{color:#353434;margin:0px;background:#ffffff;}
+BODY 								{color: #353434;margin: 0px;background: #ffffff;}
 .bg2_body							{height:100%;}
 .bg3_body							{height:100%;padding:34px 30px 20px 30px;}
 .infoBox 							{background:#cbcbcb;}
@@ -65,11 +65,51 @@ legend{
 .listprice{
 	text-decoration: line-through;
 	font-size: 10px;
+	color: Black
 }
 .price{
 	font-size: 10px;
 	color:red;
 }
+
+/* Apresentação de produtos */
+
+#right{
+	float:right;
+	vertical-align: top;
+}
+
+#right #cart{
+	padding-bottom: 10px;
+}
+/*determina o tamanho da tabela do carrinho na p�gina carrinho*/
+#right #cart table{
+	width: 470px;
+}
+
+.clear {
+	clear:both;
+}
+
+.clear:after {
+	content:"."; 
+	display:block; 
+	height:0; 
+	clear:both; 
+	visibility:hidden;
+}
+
+#content {
+	padding:0px 13px;
+	margin:0;
+	display:block;
+	position: relative;
+	height: auto;
+
+}
+
+* html .clear { height:1%; }
+/* End hide from IE-mac */
 
 /*-----------------------------------*/
 /* formata o carrinho de compras     */
@@ -129,7 +169,7 @@ border-width:0;
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 /* ************************************************************************************* */
-.width_table				{width:1024px; margin:auto;height:100%;}
+.width_table				{width:700px; margin:auto;height:100%;}
 .width_td					{padding:0px 0px 0px 0px;height:100%;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
@@ -451,7 +491,7 @@ del						 			{font-size:12px; line-height:14px;font-family:Tahoma,Geneva,sans-se
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 /* ************************************************************************************* */
-.content_wrapper_table		{margin:0px 0px 0px 0px;}
+.content_wrapper_table		{margin: 0px 0px 0px 0px;}
 .content_wrapper_td			{padding:0px 10px 0px 7px; width:100%;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
@@ -481,7 +521,7 @@ del						 			{font-size:12px; line-height:14px;font-family:Tahoma,Geneva,sans-se
 .cart_button_padd			{padding:17px 8px 9px 8px; }
 
 .remove 					{width:20%;}
-.products 					{width:45%;}
+.products 					{width: 45%;}
 .quantity 					{width:15%;}
 .total 						{width:20%;}
 /* ************************************************************************************* */
@@ -628,7 +668,7 @@ s									{color:#0064c8;font-size:14px;line-height:14px;font-weight:bold;font-f
 .button_marg input 							{margin:2px 1px 0px 0px;}
 
 .button2_marg img,
-.button2_marg input 						{margin:0px 0px 6px 0px;}
+.button2_marg input 						{margin: 0px 0px 6px 0px;}
 
 .button3_marg img, 
 .button3_marg input 						{margin:2px 0px 3px 0px;}
@@ -1155,6 +1195,26 @@ SPAN.errorText 						{color: #ff0000;font-family:Tahoma,Geneva,sans-serif;}
 #over_m3_br table td			{background:url(includes/languages/brasil/images/buttons/m3_act.gif) center 8px no-repeat;}
 #over_m4_br table td			{background:url(includes/languages/brasil/images/buttons/m4_act.gif) center 8px no-repeat;}
 #over_m5_br table td			{background:url(includes/languages/brasil/images/buttons/m5_act.gif) center 8px no-repeat;}
+
+.productsTitle {
+	color: #0064D4;
+	font-size: medium;
+	font-weight: bold
+}
+
+.productsLabels {
+	color: #0064D4;
+	font-weight: bold
+}
+
+.productsText {
+	color: Black
+}
+
+.text2 {
+	color: Black;
+	font-size: 10
+}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 /* ************************************************************************************* */
