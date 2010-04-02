@@ -13,7 +13,7 @@
 	<artifactId>buyFastWeb</artifactId>
 	<packaging>war</packaging>
 	<name>buyFastWeb</name>
-
+	
 	<dependencies>
 		<!--
 			<dependency> <groupId>org.apache.tomcat</groupId>
@@ -237,6 +237,7 @@
 				<filtering>false</filtering>
 				<includes>
 					<include>**/*.properties</include>
+					<include>**/*.xml</include>
 				</includes>
 			</resource>
 			<resource>
