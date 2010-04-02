@@ -135,7 +135,7 @@ public class FacadeImpl implements Facade {
 	public List<Category> getCategories() throws ServiceException {
 		try {
 			logger.info("Obter todas as categorias ...");
-			return categoryDao.allCategories();
+			return categoryDao.all();
 		} catch (Exception e) {
 			String messageError = "Erro ao obter todas as categorias.";
 			logger.error(messageError, e);
