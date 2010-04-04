@@ -277,5 +277,16 @@ public class FacadeImpl implements Facade {
 			throw new ServiceException(error, e);
 		}
 	}
+	
+	public Product getProduct(int id) throws ServiceException {
+		try {
+			logger.info("Obtendo o produto com id = " + id + " ...");
+			return productDao.searchById(id);
+		} catch (DaoException e) {
+			String error = "Erro ao obter produto.";
+			logger.error(error);
+			throw new ServiceException(error, e);
+		}
+	}
 
 }
