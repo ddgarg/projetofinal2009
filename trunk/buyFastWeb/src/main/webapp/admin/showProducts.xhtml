@@ -32,7 +32,18 @@
 					<f:facet name="header">
 						<h:outputText value="Produto" />
 					</f:facet>
-					<h:outputText value="#{cat.name}" />
+					<p:lightBox width="50%" height="50%">  
+					    <h:outputLink value="#" title="#{item.name}" >  
+					        <h:outputText value="#{item.name}"/>  
+					    </h:outputLink>  
+					                  
+					    <f:facet name="inline">  
+					        <h:panelGrid columns="2">  
+					            <h:graphicImage value="/thumbs/#{item.smallImage}"></h:graphicImage>  
+					        <h:outputText style="color:#FFFFFF" value="#{item.name}" escape="false" /> 
+					        </h:panelGrid>  
+					    </f:facet>  
+					</p:lightBox>  
 				</p:column>
 				
 				<p:column filterBy="#{cat.category}">
