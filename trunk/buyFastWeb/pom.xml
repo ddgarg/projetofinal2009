@@ -13,7 +13,7 @@
 	<artifactId>buyFastWeb</artifactId>
 	<packaging>war</packaging>
 	<name>buyFastWeb</name>
-	
+
 	<dependencies>
 		<!--
 			<dependency> <groupId>org.apache.tomcat</groupId>
@@ -277,6 +277,18 @@
 					<downloadJavadocs>true</downloadJavadocs>
 					<projectNameTemplate>[artifactId] -[version]</projectNameTemplate>
 					<manifest>src/main/webapp/META-INF/MANIFEST.MF</manifest>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/java</directory>
+						</resource>
+					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>
