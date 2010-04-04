@@ -56,6 +56,10 @@
    <from-outcome>showProducts</from-outcome>
    <to-view-id>/admin/showProducts.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>descriptionProduct</from-outcome>
+   <to-view-id>/descriptionProduct.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>

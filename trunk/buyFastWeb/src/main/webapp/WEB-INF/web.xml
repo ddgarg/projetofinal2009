@@ -74,17 +74,15 @@
 	</servlet-mapping>
 	<!-- Forçar codificação UTF-8 -->
 	<filter>
-		<display-name>EncodingFilter</display-name>
-		<filter-name>EncodingFilter</filter-name>
-		<filter-class>br.com.buyFast.util.EncodingFilter</filter-class>
+		<filter-name>encoding-filter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
-			<description>filtro para codificação dos caracteres</description>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>EncodingFilter</filter-name>
+		<filter-name>encoding-filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- Configuração do FileUpload do PrimeFaces -->

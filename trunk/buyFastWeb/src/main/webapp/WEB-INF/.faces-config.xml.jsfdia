@@ -23,6 +23,10 @@
    <PROCESS-ITEM-OUTPUT ID="showProducts::#admin#showProducts.xhtml"
     NAME="output5" PATH="/admin/showProducts.xhtml"
     TARGET="rules:#admin#showProducts.xhtml" TITLE="showProducts" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="descriptionProduct::#descriptionProduct.xhtml" NAME="output6"
+    PATH="/descriptionProduct.xhtml"
+    TARGET="rules:#descriptionProduct.xhtml" TITLE="descriptionProduct" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
@@ -41,5 +45,8 @@
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#admin#showProducts.xhtml"
   PATH="/admin/showProducts.xhtml" SHAPE="272,432,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#descriptionProduct.xhtml"
+  PATH="/descriptionProduct.xhtml" SHAPE="264,464,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>
