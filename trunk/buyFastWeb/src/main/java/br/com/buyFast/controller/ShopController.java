@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,11 @@ public class ShopController implements Serializable {
 	@Resource
 	private Facade facade;
 	
+	/**
+	 * Representa o produto.
+	 */
+	private Product product;
+	
 	public ShopController() {
 		super();
 	}
@@ -58,4 +64,37 @@ public class ShopController implements Serializable {
 		}
 		return new ArrayList<Product>();
 	}
+	
+	/**
+	 * Obtém o produto a partir do parâmetro passado na URL.<br />
+	 * Caso parâmetro seja nulo, será apresentado a mensagem de
+	 * erro.
+	 * @return o produto para apresentação.
+	 */
+	public String productDetail() {
+		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		if (id == null) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorIdProduct"));
+			return "descriptionProduct";
+		}
+		try {
+			this.product = facade.getProduct(new Integer(id));
+		} catch (NumberFormatException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorFormatIdProduct"));
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetProduct"));
+		}
+		
+		return "descriptionProduct";
+	}
+
+	/* Gettes e Settes */
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 }
