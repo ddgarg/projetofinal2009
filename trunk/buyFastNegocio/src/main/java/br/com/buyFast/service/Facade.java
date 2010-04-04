@@ -128,4 +128,12 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Product> getAllProducts() throws ServiceException;
+
+	/**
+	 * Obter o produto a partir do id informado.
+	 * @param id o id do produto.
+	 * @return o produto obtido a partir do id.
+	 * @throws ServiceException
+	 */
+	Product getProduct(int id) throws ServiceException;
 }
