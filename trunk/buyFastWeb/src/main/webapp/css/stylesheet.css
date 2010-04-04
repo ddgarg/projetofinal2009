@@ -64,7 +64,7 @@ legend{
 }
 .listprice{
 	text-decoration: line-through;
-	font-size: 10px;
+	font-size: 9px;
 	color: Black
 }
 .price{
@@ -387,7 +387,7 @@ border-width:0;
 .boxText span a					{color:#0064c8; font-size:11px; line-height:13px; font-weight:bold; font-family:Tahoma,Geneva,sans-serif; text-decoration:none;}
 .boxText span a:hover			{color:#0064c8; text-decoration:none;}
 
-.boxText span.productSpecialPrice 	{color:#14add7;font-size:12px; line-height:14px;font-family:Tahoma,Geneva,sans-serif; font-weight:bold; display:inline;}
+.boxText span.productSpecialPrice 	{color: #14add7;font-size: 12px; line-height: 14px;font-family: Tahoma, Geneva, sans-serif; font-weight: bold; display: inline;}
 .boxText b.productSpecialPrice 		{font-size:12px; line-height:14px;font-family:Tahoma,Geneva,sans-serif; font-weight:bold; display:inline;}
 del						 			{font-size:12px; line-height:14px;font-family:Tahoma,Geneva,sans-serif; font-weight:bold; }
 
@@ -642,7 +642,7 @@ s									{color:#0064c8;font-size:14px;line-height:14px;font-weight:bold;font-f
 .main .desc2_padd							{padding:0px 0px 11px 9px; height:6px;}
 .main .desc22_padd							{padding:1px 0px 0px 9px; height:6px; text-align:right;}
 .main .listing2_padd						{padding:0px 0px 6px 9px;}
-.main .price2_padd							{padding:0px 8px 4px 10px;vertical-align:middle; height:12px; width:100%;}
+.main .price2_padd							{padding:0px 8px 4px 10px;vertical-align:middle; height:12px;}
 .main .price2_padd b						{color:#000000; font-size:12px; line-height:12px; font-weight:bold;}
 .main .button2_padd							{padding:12px 0px 4px 10px; height:30px; text-align:left; vertical-align:middle;}
 .main .pr_desc2_padd						{padding:5px 0px 10px 0px;width:100%;}
@@ -1214,6 +1214,26 @@ SPAN.errorText 						{color: #ff0000;font-family:Tahoma,Geneva,sans-serif;}
 .text2 {
 	color: Black;
 	font-size: 10
+}
+
+.listPrice {
+	text-decoration: line-through;
+	font-size: small
+}
+
+.listText {
+	font-size: small;
+	text-align: left
+}
+
+.textProductDetail {
+	color: #26659C;
+	font-size: small
+}
+
+.productPriceDiscount {
+	color: Red;
+	font-size: small
 }
 /* ************************************************************************************* */
 /* ************************************************************************************* */
