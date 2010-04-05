@@ -15,7 +15,7 @@ import br.com.buyFast.model.Administrator;
  * Classe DAO que implementa a interface {@link AdminDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class AdminDaoImpl extends GenericDaoImpl<Administrator, Integer> implements AdminDao {
 
 	/**

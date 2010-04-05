@@ -11,7 +11,7 @@ import br.com.buyFast.model.Address;
  * Classe DAO que implementa a interface {@link AddressDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class AddressDaoImpl extends GenericDaoImpl<Address, Integer> implements AddressDao {
 
 }

@@ -11,7 +11,7 @@ import br.com.buyFast.model.Product;
  * Classe DAO que implementa a interface {@link ProductDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements ProductDao {
 
 }

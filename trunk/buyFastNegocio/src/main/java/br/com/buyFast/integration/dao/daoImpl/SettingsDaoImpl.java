@@ -11,7 +11,7 @@ import br.com.buyFast.model.Settings;
  * Classe DAO que implementa a interface {@link SettingsDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class SettingsDaoImpl extends GenericDaoImpl<Settings, Integer> implements SettingsDao {
 
 }

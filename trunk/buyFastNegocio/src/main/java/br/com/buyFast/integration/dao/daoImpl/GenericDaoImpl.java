@@ -22,7 +22,7 @@ import br.com.buyFast.integration.dao.GenericDao;
  * @param <ID>
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupport
 		implements GenericDao<T, ID> {
 

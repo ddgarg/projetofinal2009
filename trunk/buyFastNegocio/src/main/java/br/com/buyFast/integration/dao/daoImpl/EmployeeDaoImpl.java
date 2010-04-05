@@ -16,7 +16,7 @@ import br.com.buyFast.model.Employee;
  * Classe DAO que implementa a interface {@link EmployeeDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class EmployeeDaoImpl extends GenericDaoImpl<Employee, Integer> implements EmployeeDao {
 
 	/**

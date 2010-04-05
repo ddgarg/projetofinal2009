@@ -11,7 +11,7 @@ import br.com.buyFast.model.Order;
  * Classe DAO que implementa a interface {@link OrderDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class OrderDaoImpl extends GenericDaoImpl<Order, Integer> implements OrderDao {
 
 }

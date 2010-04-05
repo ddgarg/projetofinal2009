@@ -11,7 +11,7 @@ import br.com.buyFast.model.Category;
  * Classe DAO que implementa a interface {@link CategoryDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
 public class CategoryDaoImpl extends GenericDaoImpl<Category, Integer> implements CategoryDao {
 	
 }
