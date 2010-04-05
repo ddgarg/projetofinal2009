@@ -10,8 +10,6 @@
 	
 	<ui:define name="body">
 	
-		<h:panelGrid>
-			
 		<table cellpadding="0" cellspacing="0" border="0" align="center" class="content_wrapper_table">
 			<tr>
 				<td class="content_wrapper_td">
@@ -43,6 +41,10 @@
 												styleClass="productPriceDiscount">
 											<f:convertNumber type="currency" />
 										</h:outputText>
+									</h:panelGroup>
+									
+									<h:panelGroup>
+									 <h:outputText value="Produto com desconto de #{shopController.product.discount} %" styleClass="discountValue" />
 									</h:panelGroup>
 									<h:panelGroup>
 										<h:outputText value="#{message.homePageCategory}" styleClass="textProductDetail" />
@@ -76,10 +78,9 @@
 								
 								<div class="main">
 									<div class="desc2" style="text-align: left;">
-										<f:verbatim rendered="true" escape="false">
-											<h:outputText value="#{shopController.product.description}" escape="false"
-												styleClass="desc2" />
-										</f:verbatim>
+										<span>
+											<h:outputText value="#{shopController.product.description}" escape="false" />
+										</span>
 									</div>
 								</div>
 								<br />
@@ -122,10 +123,7 @@
 			</tr>
 		</table>
 			
-			
 
-		</h:panelGrid>
-	
 	</ui:define>
 
 </ui:composition>
