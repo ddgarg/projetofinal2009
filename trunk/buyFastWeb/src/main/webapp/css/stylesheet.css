@@ -1218,12 +1218,14 @@ SPAN.errorText 						{color: #ff0000;font-family:Tahoma,Geneva,sans-serif;}
 
 .listPrice {
 	text-decoration: line-through;
-	font-size: small
+	font-size: small;
+	color: Black
 }
 
 .listText {
 	font-size: small;
-	text-align: left
+	text-align: left;
+	color: Black
 }
 
 .textProductDetail {
@@ -1234,6 +1236,17 @@ SPAN.errorText 						{color: #ff0000;font-family:Tahoma,Geneva,sans-serif;}
 .productPriceDiscount {
 	color: Red;
 	font-size: small
+}
+
+.discountValue {
+	font-style: normal;
+	background-color: #F20000;
+	border-style: none;
+	font-weight: normal;
+	color: White;
+	font-family: Arial;
+	text-decoration: none;
+	text-align: right
 }
 /* ************************************************************************************* */
 /* ************************************************************************************* */
