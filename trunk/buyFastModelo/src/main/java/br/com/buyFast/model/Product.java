@@ -48,7 +48,7 @@ public class Product implements Serializable {
 	/**
 	 * O desconto do produto.
 	 */
-	private double discount;
+	private Integer discount;
 	 
 	/**
 	 * A quantidade do estoque.
@@ -140,7 +140,7 @@ public class Product implements Serializable {
 	 * Obter o desconto do produto.
 	 * @return O desconto do produto.
 	 */
-	public double getDiscount() {
+	public Integer getDiscount() {
 		return discount;
 	}
 
@@ -148,7 +148,7 @@ public class Product implements Serializable {
 	 * Ajustar o desconto do produto.
 	 * @param discount - O novo desconto do produto.
 	 */
-	public void setDiscount(double discount) {
+	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
 
