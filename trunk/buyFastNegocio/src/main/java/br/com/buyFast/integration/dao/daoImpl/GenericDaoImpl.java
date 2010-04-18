@@ -188,7 +188,7 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public List<T> all() throws DaoException {
 		try {
 			logger.info("Obtendo todos os objetos do tipo " + getObjectClass().getSimpleName() + "...");
-			return getHibernateTemplate().find("FROM " + $Class.getName());
+			return getHibernateTemplate().find("FROM " + $Class.getName() + " ORDER BY id DESC");
 		} catch (Exception e) {
 			String messageError = "Erro ao executar query para " + getObjectClass().getSimpleName();
 			logger.error(messageError, e);
