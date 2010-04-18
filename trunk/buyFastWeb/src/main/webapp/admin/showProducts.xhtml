@@ -18,9 +18,10 @@
 	<ui:define name="body">
 	
 	<div class="showCategories">
+	<p:messages showDetail="true" globalOnly="true" />
 		<h:form prependId="false">
 			<p:dataTable var="cat" value="#{productController.allProducts}" dynamic="true" 
-				paginator="true" selection="#{productController.product}" selectionMode="single" rows="10" width="300px">
+				paginator="true" selection="#{productController.product}" selectionMode="single" rows="5" width="300px">
 				<p:column filterBy="#{cat.id}">
 					<f:facet name="header">
 						<h:outputText value="Código" />
@@ -79,8 +80,6 @@
 			</p:dataTable>
 		</h:form>
 			
-			<p:messages showDetail="true" globalOnly="true" />
-		
 		</div>
 		
 	</ui:define>
