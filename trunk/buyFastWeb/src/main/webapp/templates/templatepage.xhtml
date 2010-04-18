@@ -11,19 +11,39 @@
 	<f:loadBundle var="message" basename="ui.Messages" />
 	
 	<head>
-	<p:resources />
 	<title><ui:insert name="titulo"></ui:insert></title>
+	<p:resources />
+	<link rel="stylesheet" type="text/css" href="css/lavalamp_menu.css" media="screen"></link>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
+	
+	<script type="text/javascript" src="css/jquery-1.2.3.min.js"></script>
+    <script type="text/javascript" src="css/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="css/jquery.lavalamp.min.js"></script>
+    
+    <ui:insert name="scripts"></ui:insert>
+    
+	<script type="text/javascript">
+        $(function() {
+            $("#1").lavaLamp({
+                fx: "backout",
+                speed: 400,
+                click: function(event, menuItem) {
+                    return false;
+                }
+            });
+        });
+    </script>
+	
 	</head>
 	
 	<body>
 	<!-- CABEÇALHO //-->
 	<!-- INICIO -->
-	<table cellpadding="0" cellspacing="0" border="0" align="center" class="bg2_body" >
+	<table cellpadding="0" cellspacing="0" border="0" align="center" >
 		<tr>
 			<td class="bg3_body">
 
-			<table cellpadding="0" cellspacing="0" border="0" align="center" class="width_table">
+			<table cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="white" class="width_table">
 				<tr>
 					<td class="row_1">
 
@@ -70,7 +90,7 @@
 													<h:graphicImage url="css/images/englishicon.gif" alt="#{message.languageEnglish}" />
 												</h:commandLink>
 											</h:form>
-						<img src="images/spacer.gif" border="0" alt="" width="1" height="1" style="margin: 0px 3px 0px 0px;"></img>
+											<img src="images/spacer.gif" border="0" alt="" width="1" height="1" style="margin: 0px 3px 0px 0px;"></img>
 											</td>
 												</tr>
 											</table>
@@ -196,53 +216,12 @@
 							</td>
 							<td>
 							<table cellpadding="0" cellspacing="0" border="0">
-								<!-- <tr> -->
+<!-- MENU -->
 								<tr>
-									<td id="m1_br" onmouseout="this.id='m1_br';" onmouseover="this.id='over_m1_br';" onclick="inde.jsp">
-									<div>
-									<table cellpadding="0" cellspacing="0" border="0">
-										<tr>
-											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-										</tr>
-									</table>
-									</div>
+									<td>
+										<ui:insert name="menu"></ui:insert>
 									</td>
-									<td id="m2_br" onmouseout="this.id='m2_br';" onmouseover="this.id='over_m2_br';" onclick="#">
-									<div>
-									<table cellpadding="0" cellspacing="0" border="0">
-										<tr>
-											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-										</tr>
-									</table>
-									</div>
-									</td>
-									<td id="m3_br" onmouseout="this.id='m3_br';" onmouseover="this.id='over_m3_br';" onclick="#">
-									<div>
-									<table cellpadding="0" cellspacing="0" border="0">
-										<tr>
-											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-										</tr>
-									</table>
-									</div>
-									</td>
-									<td id="m4_br" onmouseout="this.id='m4_br';" onmouseover="this.id='over_m4_br';" onclick="#">
-									<div>
-									<table cellpadding="0" cellspacing="0" border="0">
-										<tr>
-											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-										</tr>
-									</table>
-									</div>
-									</td>
-									<td id="m5_br" onmouseout="this.id='m5_br';" onmouseover="this.id='over_m5_br';" onclick="#">
-									<div>
-									<table cellpadding="0" cellspacing="0" border="0">
-										<tr>
-											<td><img src="images/spacer.gif" border="0" alt="" width="1" height="1"></img></td>
-										</tr>
-									</table>
-									</div>
-									</td>
+									<td><img src="images/menu_right2.gif" alt="" height="71px" width="25px"/></td>
 								</tr>
 							</table>
 
