@@ -136,4 +136,12 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	Product getProduct(int id) throws ServiceException;
+
+	/**
+	 * Obter os últimos produtos cadastrados na base de dados.
+	 * @param maxResult o máximo de resultados.
+	 * @return a lista dos últimos produtos cadastrados.
+	 * @throws ServiceException
+	 */
+	List<Product> getLatestProducts(int maxResult) throws ServiceException;
 }
