@@ -56,9 +56,26 @@ public class ShopController implements Serializable {
 		return new ArrayList<Category>();
 	}
 	
+	/**
+	 * Obter todos os produtos na base de dados.
+	 * @return a lista de produtos da base de dados.
+	 */
 	public List<Product> getAllProducts() {
 		try {
 			return facade.getAllProducts();
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("homePageGetAllProductsError"));
+		}
+		return new ArrayList<Product>();
+	}
+	
+	/**
+	 * Obtém os últimos produtos cadastrados na base de dados.
+	 * @return a lista com os últimos produtos cadastrados.
+	 */
+	public List<Product> getLatestProducts() {
+		try {
+			return facade.getLatestProducts(4);
 		} catch (ServiceException e) {
 			FacesUtil.mensErro("", FacesUtil.getMessage("homePageGetAllProductsError"));
 		}
