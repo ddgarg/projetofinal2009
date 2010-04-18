@@ -8,6 +8,39 @@
 <ui:composition template="/templates/templatepage.xhtml">
 	<ui:define name="titulo">#{message.descriptionProductTitle}</ui:define>
 	
+	<ui:define name="scripts">
+	
+	<script type="text/javascript" src="css/prototype.js"></script>
+	<script type="text/javascript" src="css/scriptaculous.js?load=effects,builder"></script>
+	<script type="text/javascript" src="css/lightbox.js"></script>
+	
+	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+	
+	</ui:define>
+	
+		<ui:define name="menu">
+		<h:form>
+			<ul class="lavaLampWithImage" id="1">
+				<!-- Para definir a página atual utilizar class="current" -->
+			    <li class="current">
+			    	<a href="" jsfc="h:commandLink" action="home">#{message.menuLabelHome}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="promotionProduct">#{message.menuLabelPromocao}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="myAccount">#{message.menuLabelConta}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="viewCart">#{message.menuLabelCarrinho}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="contact">#{message.menuLabelContato}</a>
+			    </li>
+			</ul>
+		</h:form>
+	</ui:define>
+	
 	<ui:define name="body">
 	
 		<table cellpadding="0" cellspacing="0" border="0" align="center" class="content_wrapper_table">
@@ -42,9 +75,14 @@
 											<f:convertNumber type="currency" />
 										</h:outputText>
 									</h:panelGroup>
-									
-									<h:panelGroup>
-									 <h:outputText value="Produto com desconto de #{shopController.product.discount} %" styleClass="discountValue" />
+								<!-- APRESENTAÇÃO DO DESCONTO DO PRODUTO
+									<h:panelGroup rendered="#{shopController.product.discount > 0}">
+									 	<h:outputText value="Produto com desconto de #{shopController.product.discount} %" styleClass="discountValue" />
+									</h:panelGroup>
+								-->
+									<!-- Produto fora de estoque -->
+									<h:panelGroup rendered="#{shopController.product.quantityStock == 0}">
+									 	<h:outputText value="#{message.descriptionProductOutOfStock}" styleClass="discountValue" />
 									</h:panelGroup>
 									<h:panelGroup>
 										<h:outputText value="#{message.homePageCategory}" styleClass="textProductDetail" />
@@ -65,11 +103,10 @@
 									<table cellpadding="0" cellspacing="0" border="0" align="center" class="wrapper_pic_table">
 										<tr>
 											<td class="wrapper_pic_td">
-												<p:lightBox>  
-	    											<h:outputLink value="thumbs/#{shopController.product.image}" title="#{shopController.product.name}">  
-											        	<h:graphicImage value="thumbs/#{shopController.product.smallImage}" title="#{shopController.product.name}" width="170" height="170"/>  
-											    	</h:outputLink>
-											    </p:lightBox>
+											<!-- Light Box -->
+												<a href="thumbs/#{shopController.product.image}" rel="lightbox" title="#{shopController.product.name}">
+													<img src="thumbs/#{shopController.product.smallImage}" alt="#{shopController.product.name}" width="187" height="187" />
+												</a>
 											</td>
 
 										</tr>
@@ -106,9 +143,13 @@
 
 											</td>
 											<td class="main button_marg" align="right">
-												<input type="hidden" name="products_id" value="3" />
-													<input type="image" src="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif"
-														border="0" alt="Adicionar ao Carrinho" title=" Adicionar ao Carrinho " />
+												<h:form id="cart">                                             <!-- Apresentar link somente quando quantidade > 0 -->
+													<h:commandLink value="" action="#{shopController.productDetail}" rendered="#{shopController.product.quantityStock > 0}">
+														<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif" 
+														      title="#{message.homePageProductCartAdd}" class="btn1" />
+														<f:param id="id" value="#{item.id}" name="id"/>
+													</h:commandLink>
+												</h:form>
 											</td>
 										</tr>
 									</table>
