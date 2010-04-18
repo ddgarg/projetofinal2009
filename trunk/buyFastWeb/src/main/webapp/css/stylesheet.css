@@ -1,7 +1,15 @@
 /* ************************************************************************************* */
-BODY 								{color: #353434;margin: 0px;background: #ffffff;}
-.bg2_body							{height:100%;}
-.bg3_body							{height:100%;padding:34px 30px 20px 30px;}
+BODY 								
+{
+	color: #353434;margin: 0px;
+	background-image: url("/images/fundo.jpg");
+  	background-attachment: fixed;
+  	background-position: 100% 100%;
+  	background-repeat: no-repeat;
+
+}
+.bg2_body							{height:100%; }
+.bg3_body							{height:100%;padding:15px 30px 20px 30px;}
 .infoBox 							{background:#cbcbcb;}
 .orderEdit 							{font-family:Tahoma,Geneva,sans-serif; font-size : 10px; color:#ff0000; text-decoration: underline; }
 TR.accountHistory-odd, TR.addressBook-odd, TR.alsoPurchased-odd, TR.payment-odd, TR.productListing-odd, TR.productReviews-odd, TR.upcomingProducts-odd, TR.shippingOptions-odd 				{background:#f5f5f5;}
@@ -727,7 +735,7 @@ P.smallText 			{font-size: 10px;font-family:Tahoma,Geneva,sans-serif; font-weigh
 .padd2_gg img				{height:2px;}
 .padd2_vv img				{width:28px;}
 
-.padd3_gg img				{height:31px;}
+.padd3_gg img				{height:10px;}
 /* ************************************************************************************* */
 /* ************************************************************************************* */
 .errorBox { font-family:Tahoma,Geneva,sans-serif; font-size : 10px; background: #ffb3b5; font-weight: bold; }
