@@ -47,13 +47,13 @@ public class ItemsOrder implements Serializable {
 	/**
 	 * O pedido ao qual pertence este item de pedido.
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Order.class)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL, targetEntity=Order.class)
 	private Order order;
 	
 	/**
 	 * O produto deste item de pedido.
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Product.class)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL, targetEntity=Product.class)
 	private Product product;
 
 	/**
