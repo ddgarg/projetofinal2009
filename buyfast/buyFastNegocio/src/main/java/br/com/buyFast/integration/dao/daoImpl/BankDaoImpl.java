@@ -11,7 +11,7 @@ import br.com.buyFast.model.Bank;
  * Classe DAO que implementa a interface {@link BankDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
 public class BankDaoImpl extends GenericDaoImpl<Bank, Integer> implements BankDao {
 
 }

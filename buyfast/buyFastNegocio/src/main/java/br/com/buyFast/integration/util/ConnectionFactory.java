@@ -9,6 +9,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 /**
  * Classe responsável por instanciar e abrir as sessões do hibernate.
  */
+@Deprecated
 public class ConnectionFactory {
 	
 	/**
@@ -40,7 +41,9 @@ public class ConnectionFactory {
 	/**
 	 * Responsável por abrir a sessão do hibernate.
 	 * @return a sessão do hibernate.
+	 * @deprecated Conexão gerenciada pelo Hibernate.
 	 */
+	@Deprecated
 	public static Session getIntance() {
 		Session session = threadLocal.get();
 		logger.debug("Abrindo sessão do hinernate...");
