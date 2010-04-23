@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cascade;
 
 /**
  * Classe que representa a categoria do produto.
@@ -44,7 +43,7 @@ public class Category implements Serializable {
 	/**
 	 * Os produtos que pertencem a essa categoria.
 	 */
-	@OneToMany(mappedBy="category", fetch=FetchType.EAGER, targetEntity=Product.class, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="category", fetch=FetchType.LAZY, targetEntity=Product.class, cascade=CascadeType.ALL)
 	private Set<Product> product;
 	
 	/**
