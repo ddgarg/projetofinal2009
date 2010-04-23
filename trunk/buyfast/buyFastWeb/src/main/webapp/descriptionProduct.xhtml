@@ -57,7 +57,7 @@
 								<h:panelGrid styleClass="right_part" style="text-align: left;">
 								    <h:panelGroup>
 										<h:outputText value="#{shopController.product.discount > 0 ? message.homePagePriceLista : message.homePagePrice}" styleClass="textProductDetail" />
-										<h:outputText value="#{shopController.product.price}" styleClass="listPrice">
+										<h:outputText value="#{shopController.product.price}" styleClass="#{shopController.product.discount > 0 ? 'listPrice' : 'listText'}">
 											<f:convertNumber type="currency" />
 										</h:outputText>
 									</h:panelGroup>
