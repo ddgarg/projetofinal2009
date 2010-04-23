@@ -11,7 +11,7 @@ import br.com.buyFast.model.Person;
  * Classe DAO que implementa a interface {@link PersonDao}.
  */
 @Repository
-@Transactional(readOnly=true, propagation=Propagation.REQUIRES_NEW)
+@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
 public class PersonDaoImpl extends GenericDaoImpl<Person, Integer> implements PersonDao {
 
 }
