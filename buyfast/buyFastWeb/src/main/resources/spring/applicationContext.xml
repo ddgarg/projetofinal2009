@@ -30,5 +30,8 @@
 		AutowiredAnnotationBeanPostProcessor e etc
 	-->
 	<context:annotation-config />
+	
+	<!-- Marcação de transações através de anotações  -->
+	<tx:annotation-driven />
 
 </beans>
