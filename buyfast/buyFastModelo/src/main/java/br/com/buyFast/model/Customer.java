@@ -23,7 +23,7 @@ public class Customer extends Person implements Serializable {
 	/**
 	 * O conjunto de pedidos deste cliente.
 	 */
-	@OneToMany(mappedBy="customer", cascade=CascadeType.ALL, fetch=FetchType.LAZY, targetEntity=Order.class)
+	@OneToMany(mappedBy="customer", cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity=Order.class)
 	private Set<Order> orders;
 	
 	/**
