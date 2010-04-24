@@ -16,24 +16,78 @@
 			    	<a href="" jsfc="h:commandLink" action="home">#{message.menuLabelHome}</a>
 			    </li>
 			    <li>
-			    	<a href="" jsfc="h:commandLink" action="promotionProduct">#{message.menuLabelPromocao}</a>
+			    	<a href="" jsfc="h:commandLink" action="promotionProduct" title="#{message.titleMenuPageProduct}">#{message.menuLabelPromocao}</a>
 			    </li>
 			    <li>
-			    	<a href="" jsfc="h:commandLink" action="myAccount">#{message.menuLabelConta}</a>
+			    	<a href="" jsfc="h:commandLink" action="myAccount" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
 			    </li>
 			    <li>
-			    	<a href="" jsfc="h:commandLink" action="viewCart">#{message.menuLabelCarrinho}</a>
+			    	<a href="" jsfc="h:commandLink" action="viewCart" title="#{message.titleMenuPageCart}">#{message.menuLabelCarrinho}</a>
 			    </li>
 			    <li class="current">
-			    	<a href="" jsfc="h:commandLink" action="contact">#{message.menuLabelContato}</a>
+			    	<a href="" jsfc="h:commandLink" action="contact" title="#{message.titleMenuPageContact}">#{message.menuLabelContato}</a>
 			    </li>
 			</ul>
 		</h:form>
 	</ui:define>
 	
 		<ui:define name="body">
-	
-		</ui:define>
+			<h:form>
+				<fieldset>
+					<legend>#{message.formTitle}</legend>
+					<table cellpadding="2" cellspacing="3" border="0">
+					<tr>
+						<td width="90px" align="right">
+							<h:outputText value="#{message.contactNameLabel}" styleClass="productsLabels" />
+						</td>
+						<td width="90px">
+							<h:inputText id="nome" maxlength="50" size="40" required="true" requiredMessage="*"/>
+						</td>
+						<td>	
+							<h:message for="nome" styleClass="inputRequirement"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="90px" align="right">	
+							<h:outputText value="#{message.contactEmailLabel}" styleClass="productsLabels" />
+						</td>
+						<td>
+							<h:inputText id="email" maxlength="50" size="40" required="true" requiredMessage="*"/>
+						</td>
+						<td>
+							<h:message for="email" styleClass="inputRequirement"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="90px" align="right">	
+							<h:outputText value="#{message.contactAssuntLabel}" styleClass="productsLabels" />
+						</td>
+						<td>
+							<h:inputText id="assunto" maxlength="50" size="40" required="true" requiredMessage="*"/>
+						</td>
+						<td>
+							<h:message for="assunto" styleClass="inputRequirement"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="90px" align="right">	
+							<h:outputText value="#{message.contactMessageLabel}" styleClass="productsLabels" />
+						</td>
+						<td>
+							<h:inputTextarea cols="7" rows="7" id="mensagem" value="" required="true" requiredMessage="*"
+								style="width: 252px;"/>
+						</td>
+						<td>
+							<h:message for="mensagem" styleClass="inputRequirement"/>
+						</td>
+					</tr>
+					</table>
+				</fieldset>
+				<h:commandButton action="#" value="#{message.contactSendButton}" />
+			</h:form>
+			<br />
+			<br />
+	</ui:define>
 	</ui:composition>
 	
 </html>

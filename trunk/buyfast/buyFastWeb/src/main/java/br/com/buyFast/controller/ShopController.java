@@ -2,10 +2,13 @@ package br.com.buyFast.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -44,16 +47,23 @@ public class ShopController implements Serializable {
 	}
 
 	/**
-	 * Obter a lista de categorias na base de dados da aplicação
-	 * @return a lista de categorias na base de dados da aplicação
+	 * Obter a lista de categorias na base de dados da aplicação.
+	 * Só serão obtidas as categorias onde há produtos cadastrados.
+	 * @return A lista de categorias na base de dados da aplicação
 	 */
 	public List<Category> getAllCategories() {
 		try {
-			return facade.getCategories();
+			List<Category> list = new ArrayList<Category>();
+			for (Category category : facade.getCategories()) {
+				if (!category.getProduct().isEmpty()) {
+					list.add(category);
+				}
+			}
+			return list;
 		} catch (ServiceException e) {
 			FacesUtil.mensErro("", FacesUtil.getMessage("homeControllerErrogetAllCategories"));
 		}
-		return new ArrayList<Category>();
+		return Collections.emptyList();
 	}
 	
 	/**
@@ -66,7 +76,7 @@ public class ShopController implements Serializable {
 		} catch (ServiceException e) {
 			FacesUtil.mensErro("", FacesUtil.getMessage("homePageGetAllProductsError"));
 		}
-		return new ArrayList<Product>();
+		return Collections.emptyList();
 	}
 	
 	/**
@@ -79,7 +89,20 @@ public class ShopController implements Serializable {
 		} catch (ServiceException e) {
 			FacesUtil.mensErro("", FacesUtil.getMessage("homePageGetAllProductsError"));
 		}
-		return new ArrayList<Product>();
+		return Collections.emptyList();
+	}
+	
+	/**
+	 * Obter os produtos em promoção na base de dados.
+	 * @return A lista com os produtos em promoção
+	 */
+	public List<Product> getAllPromotionProducts() {
+		try {
+			return facade.getAllPromotionProducts();
+		} catch (Exception e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetPromotionProducts"));
+		}
+		return Collections.emptyList();
 	}
 	
 	/**
@@ -105,7 +128,32 @@ public class ShopController implements Serializable {
 		return "descriptionProduct";
 	}
 
+	/**
+	 * Obter os produtos da categoria selecionada. A categoria
+	 * deverá ser passada pelo parâmetro da URL.
+	 * @return O dataModel com os produtos da categoria.
+	 */
+	public DataModel getProductToCategory() {
+		String cat = (String) FacesContext.getCurrentInstance().getExternalContext().
+			getRequestParameterMap().get("cat");
+		
+		if (cat == null) {
+			cat = "0";
+		}
+		
+		try {
+			return new ListDataModel(facade.getProductsToCategory(Integer.parseInt(cat)));
+		} catch (NumberFormatException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorFormatIdCategory"));
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetProtuctsToCategory"));
+		}
+		
+		return new ListDataModel();
+	}
+	
 	/* Gettes e Settes */
+	
 	public Product getProduct() {
 		return product;
 	}

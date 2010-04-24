@@ -49,15 +49,17 @@
 				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
 				<prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<!--  
 				<prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
 				<prop key="hibernate.transaction.auto_close_session">${hibernate.transaction.auto_close_session}</prop>
 				<prop key="hibernate.cglib.use_reflection_optimizer">${hibernate.cglib.use_reflection_optimizer}</prop>
-				<!--Configuração do pool de c3p0-->           
+				-->
+				<!--Configuração do pool de c3p0  
 	            <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size}</prop>
 	            <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size}</prop>
 	            <prop key="hibernate.c3p0.timeout">{hibernate.c3p0.timeout}</prop>
 	            <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements}</prop>
-	            <prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>
+	            <prop key="hibernate.c3p0.idle_test_period">${hibernate.c3p0.idle_test_period}</prop>-->         
 			</props>
 		</property>
 	</bean>
