@@ -144,4 +144,19 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Product> getLatestProducts(int maxResult) throws ServiceException;
+
+	/**
+	 * Obter todos os produtos em promoções.
+	 * @return a lista com os produtos em promoção.
+	 * @throws ServiceException
+	 */
+	List<Product> getAllPromotionProducts() throws ServiceException;
+
+	/**
+	 * Obter os produtos por categoria.
+	 * @param idCategory O código da categoria.
+	 * @return A lista com os produtos da categoria.
+	 * @throws ServiceException
+	 */
+	List<Product> getProductsToCategory(int idCategory) throws ServiceException;
 }

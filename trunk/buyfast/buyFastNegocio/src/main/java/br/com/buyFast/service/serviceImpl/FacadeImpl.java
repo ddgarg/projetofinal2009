@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -285,6 +284,33 @@ public class FacadeImpl implements Facade {
 			String query = "SELECT p FROM Product p ORDER BY id DESC";
 			Map<String, Object> params = new HashMap<String, Object>();
 			return productDao.listSearchParam(query, params, maxResult, 1);
+		} catch (DaoException e) {
+			String error = "Erro ao obter produtos.";
+			logger.error(error);
+			throw new ServiceException(error, e);
+		}
+	}
+	
+	public List<Product> getAllPromotionProducts() throws ServiceException {
+		logger.info("Obtendo produtos em promoção...");
+		String query = "SELECT p FROM Product p WHERE p.discount > 0 ORDER BY id DESC";
+		Map<String, Object> params = new HashMap<String, Object>();
+		try {
+			return productDao.listSearchParam(query, params);
+		} catch (DaoException e) {
+			String error = "Erro ao obter produtos.";
+			logger.error(error);
+			throw new ServiceException(error, e);
+		}
+	}
+	
+	public List<Product> getProductsToCategory(int idCategory) throws ServiceException {
+		logger.info("Obtendo produtos por categoria...");
+		String query = "SELECT p FROM Product p WHERE p.category.id = :idCategory";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("idCategory", idCategory);
+		try {
+			return productDao.listSearchParam(query, params);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produtos.";
 			logger.error(error);
