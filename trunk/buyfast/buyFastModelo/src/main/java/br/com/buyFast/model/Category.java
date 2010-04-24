@@ -43,7 +43,7 @@ public class Category implements Serializable {
 	/**
 	 * Os produtos que pertencem a essa categoria.
 	 */
-	@OneToMany(mappedBy="category", fetch=FetchType.LAZY, targetEntity=Product.class, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="category", fetch=FetchType.EAGER, targetEntity=Product.class, cascade=CascadeType.ALL)
 	private Set<Product> product;
 	
 	/**

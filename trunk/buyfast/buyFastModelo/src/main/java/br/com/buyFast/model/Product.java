@@ -79,13 +79,13 @@ public class Product implements Serializable {
 	/**
 	 * O conjunto de ítens de pedido que contém este produto.
 	 */
-	@OneToMany(mappedBy="product", fetch=FetchType.LAZY, targetEntity=ItemsOrder.class, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, targetEntity=ItemsOrder.class, cascade=CascadeType.ALL)
 	private Set<ItemsOrder> itemsOrder;
 	
 	/**
 	 * A categoria ao qual pertence este produto.
 	 */
-	@ManyToOne(fetch=FetchType.LAZY, targetEntity=Category.class)
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Category.class)
 	private Category category;
 
 	/**

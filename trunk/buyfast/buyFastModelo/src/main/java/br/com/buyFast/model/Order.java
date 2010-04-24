@@ -50,13 +50,13 @@ public class Order implements Serializable {
 	/**
 	 * O cliente deste pedido.
 	 */
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, targetEntity=Customer.class)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity=Customer.class)
 	private Customer customer;
 	
 	/**
 	 * O conjunto de ítens de pedido.
 	 */
-	@OneToMany(mappedBy="order", fetch=FetchType.LAZY, cascade=CascadeType.ALL, targetEntity=ItemsOrder.class)
+	@OneToMany(mappedBy="order", fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=ItemsOrder.class)
 	private Set<ItemsOrder> itemsOrders;
 	
 	/**
