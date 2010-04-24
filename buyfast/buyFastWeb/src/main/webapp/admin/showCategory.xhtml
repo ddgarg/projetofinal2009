@@ -19,34 +19,39 @@
 	
 	<div class="showCategories">
 		<h:form prependId="false">
-			<p:dataTable var="cat" value="#{categoryController.allCategories}" dynamic="true" 
+			<p:dataTable id="cat" var="cat" value="#{categoryController.allCategories}" dynamic="false" paginatorPosition="bottom"
+				firstPageLinkLabel="#{message.tableLabelfirst}"
+				previousPageLinkLabel="#{message.tableLabelPrev}"
+				lastPageLinkLabel="#{message.tableLabelLast}"
+				nextPageLinkLabel="#{message.tableLabelNext}"
+				emptyMessage="#{message.showCategoryEmpty}" lazy="false" 
 				paginator="true" selection="#{categoryController.category}" selectionMode="single" rows="10" width="300px">
 				<p:column filterBy="#{cat.id}">
 					<f:facet name="header">
-						<h:outputText value="Código" />
+						<h:outputText value="#{message.showCategoryColunmCode}" />
 					</f:facet>
 					<h:outputText value="#{cat.id}" />
 				</p:column>
 
 				<p:column filterBy="#{cat.name}">
 					<f:facet name="header">
-						<h:outputText value="Categoria" />
+						<h:outputText value="#{message.showCategoryColunmCategory}" />
 					</f:facet>
 					<h:outputText value="#{cat.name}" />
 				</p:column>
 
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Editar" />
+						<h:outputText value="#{message.showCategoryColunmEdit}" />
 					</f:facet>
-					<h:commandButton value="Editar" action="adminRegisterCategory" />
+					<h:commandButton value="#{message.showCategoryColunmEdit}" action="adminRegisterCategory" />
 				</p:column>
 				
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Excluir" />
+						<h:outputText value="#{message.showCategoryColunmDelete}" />
 					</f:facet>
-					<h:commandButton value="Excluir" onclick="if (!confirm('#{message.showCategoryMessageDialog}')) return false" action="#{categoryController.removeSelectedCategory}" />
+					<h:commandButton value="#{message.showCategoryColunmDelete}" onclick="if (!confirm('#{message.showCategoryMessageDialog}')) return false" action="#{categoryController.removeSelectedCategory}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
