@@ -11,6 +11,7 @@ import javax.faces.event.PhaseListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import br.com.buyFast.controller.CustomerController;
 import br.com.buyFast.controller.adminController.AdminController;
 
 public class AdminLoginPhaseListener implements PhaseListener {
@@ -24,6 +25,7 @@ public class AdminLoginPhaseListener implements PhaseListener {
 
 	@Override
 	public void afterPhase(PhaseEvent event) {
+		
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class AdminLoginPhaseListener implements PhaseListener {
 				viewId.equals("/admin/showCategory.xhtml") ||
 				viewId.equals("/admin/showCategory.jsf") ||
 				viewId.equals("/admin/showProducts.xhtml") ||
-				viewId.equals("/admin/showProducts.jsf")){
+				viewId.equals("/admin/showProducts.jsf")) {
 			/*
 			 * Recupera os dados que estão em sessão em adminController.
 			 */
@@ -75,6 +77,35 @@ public class AdminLoginPhaseListener implements PhaseListener {
 				FacesUtil.mensWarn(
 						FacesUtil.getMessage("adminAccessDeniedTitle"), 
 						FacesUtil.getMessage("adminAccessDeniedMessage"));
+			}
+		} else if (viewId.equals("/userLogged.xhtml") || 
+				   viewId.equals("/userLogged.jsf") ||
+				   viewId.equals("/myAccount.xhtml") || 
+				   viewId.equals("/myAccount.jsf")) {
+			/*
+			 * Recupera os dados que estão em sessão em CustomerController.
+			 */
+			Application app = context.getApplication();
+			
+			CustomerController customerController = (CustomerController) app.evaluateExpressionGet(
+					context, "#{customerController}", CustomerController.class);
+			
+			//Se não tiver usuário logado.
+			if (customerController.getCustomer().getId() == null) {
+				logger.debug("Usuário não logado.");
+				
+				/*
+				 * Armazena a página ao qual o usuário está
+				 * tentando entrar em sessão através
+				 * da classe customerController.
+				 */
+				customerController.setOriginViewId(viewId);
+				
+				FacesUtil.redirectPage("/userLogin.jsf");
+				
+				FacesUtil.mensWarn(
+						FacesUtil.getMessage("adminAccessDeniedTitle"), 
+						FacesUtil.getMessage("userAccessDeniedMessage"));
 			}
 		}
 	}

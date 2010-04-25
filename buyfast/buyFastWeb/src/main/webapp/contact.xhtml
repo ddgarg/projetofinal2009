@@ -19,7 +19,7 @@
 			    	<a href="" jsfc="h:commandLink" action="promotionProduct" title="#{message.titleMenuPageProduct}">#{message.menuLabelPromocao}</a>
 			    </li>
 			    <li>
-			    	<a href="" jsfc="h:commandLink" action="myAccount" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
+			    	<a href="" jsfc="h:commandLink" action="#{customerController.myAccount}" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
 			    </li>
 			    <li>
 			    	<a href="" jsfc="h:commandLink" action="viewCart" title="#{message.titleMenuPageCart}">#{message.menuLabelCarrinho}</a>
@@ -41,7 +41,7 @@
 							<h:outputText value="#{message.contactNameLabel}" styleClass="productsLabels" />
 						</td>
 						<td width="90px">
-							<h:inputText id="nome" maxlength="50" size="40" required="true" requiredMessage="*"/>
+							<h:inputText value="#{contactController.name}" id="nome" maxlength="50" size="40" required="true" requiredMessage="*"/>
 						</td>
 						<td>	
 							<h:message for="nome" styleClass="inputRequirement"/>
@@ -52,7 +52,9 @@
 							<h:outputText value="#{message.contactEmailLabel}" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:inputText id="email" maxlength="50" size="40" required="true" requiredMessage="*"/>
+							<h:inputText value="#{contactController.email}" id="email" maxlength="50" size="40" required="true" requiredMessage="*">
+								<f:validator validatorId="validateEmail" />
+							</h:inputText>
 						</td>
 						<td>
 							<h:message for="email" styleClass="inputRequirement"/>
@@ -63,7 +65,7 @@
 							<h:outputText value="#{message.contactAssuntLabel}" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:inputText id="assunto" maxlength="50" size="40" required="true" requiredMessage="*"/>
+							<h:inputText value="#{contactController.subject}" id="assunto" maxlength="50" size="40" required="true" requiredMessage="*"/>
 						</td>
 						<td>
 							<h:message for="assunto" styleClass="inputRequirement"/>
@@ -74,7 +76,7 @@
 							<h:outputText value="#{message.contactMessageLabel}" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:inputTextarea cols="7" rows="7" id="mensagem" value="" required="true" requiredMessage="*"
+							<h:inputTextarea cols="7" rows="7" id="mensagem" value="#{contactController.message}" required="true" requiredMessage="*"
 								style="width: 252px;"/>
 						</td>
 						<td>
@@ -83,7 +85,8 @@
 					</tr>
 					</table>
 				</fieldset>
-				<h:commandButton action="#" value="#{message.contactSendButton}" />
+				<br />
+				<h:commandButton action="#{contactController.sendContact}" value="#{message.contactSendButton}" />
 			</h:form>
 			<br />
 			<br />

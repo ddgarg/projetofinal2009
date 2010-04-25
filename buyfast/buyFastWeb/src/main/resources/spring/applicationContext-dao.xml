@@ -45,5 +45,7 @@
 	<bean id="employeeDao" class="br.com.buyFast.integration.dao.daoImpl.EmployeeDaoImpl" parent="genericDao">
 		<property name="sessionFactory" ref="hibernateSessionFactory"/>
 	</bean>
-	
+	<bean id="customerDao" class="br.com.buyFast.integration.dao.daoImpl.CustomerDaoImpl" parent="genericDao">
+		<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
 </beans>
