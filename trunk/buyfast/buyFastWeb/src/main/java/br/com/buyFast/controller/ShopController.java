@@ -42,6 +42,9 @@ public class ShopController implements Serializable {
 	 */
 	private Product product;
 	
+	/**
+	 * Construtor padrão.
+	 */
 	public ShopController() {
 		super();
 	}

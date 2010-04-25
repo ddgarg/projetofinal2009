@@ -13,6 +13,7 @@
 			<list>
 				<value>classpath:/jdbc.properties</value>
 				<value>classpath:/hibernate.properties</value>
+				<value>classpath:/emailService.properties</value>
 			</list>
 		</property>
 	</bean>

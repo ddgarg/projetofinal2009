@@ -36,6 +36,16 @@
   <managed-bean-class>br.com.buyFast.controller.ContactController</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>cartController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.controller.CartController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>customerController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.controller.CustomerController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <navigation-case>
    <from-outcome>adminlogin</from-outcome>
@@ -85,10 +95,23 @@
    <from-outcome>contact</from-outcome>
    <to-view-id>/contact.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>userLogged</from-outcome>
+   <to-view-id>/userLogged.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>userLogin</from-outcome>
+   <to-view-id>/userLogin.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>
  </navigation-rule>
+ <validator>
+  <description>Utilizado para validar e-mail.</description>
+  <validator-id>validateEmail</validator-id>
+  <validator-class>br.com.buyFast.validate.Validate_Email</validator-class>
+ </validator>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
   <!-- Configura o Spring 2.5 para trabalhar com JSF 1.2 -->
