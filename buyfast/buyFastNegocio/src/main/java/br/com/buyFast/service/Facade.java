@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.buyFast.model.Administrator;
 import br.com.buyFast.model.Category;
+import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
 import br.com.buyFast.model.Person;
 import br.com.buyFast.model.Product;
@@ -159,4 +160,12 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Product> getProductsToCategory(int idCategory) throws ServiceException;
+
+	/**
+	 * Obter o usuário pelo e-mail.
+	 * @param email o e-mail do usuário.
+	 * @return o usuário cadastrado na base de dados.
+	 * @throws ServiceException
+	 */
+	Customer getCustomerLogin(String email) throws ServiceException;
 }

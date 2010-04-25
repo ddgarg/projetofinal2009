@@ -15,11 +15,13 @@ import org.apache.commons.logging.LogFactory;
 
 import br.com.buyFast.integration.dao.AdminDao;
 import br.com.buyFast.integration.dao.CategoryDao;
+import br.com.buyFast.integration.dao.CustomerDao;
 import br.com.buyFast.integration.dao.DaoException;
 import br.com.buyFast.integration.dao.EmployeeDao;
 import br.com.buyFast.integration.dao.ProductDao;
 import br.com.buyFast.model.Administrator;
 import br.com.buyFast.model.Category;
+import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
 import br.com.buyFast.model.Product;
 import br.com.buyFast.service.Facade;
@@ -59,6 +61,11 @@ public class FacadeImpl implements Facade {
 	 * Objeto de acesso a dados de {@link Product}.
 	 */
 	private ProductDao productDao;
+
+	/**
+	 * Objeto de acesso a dados de {@link Customer}.
+	 */
+	private CustomerDao customerDao;
 	
 	/**
 	 * Instancia um novo {@link Facade}.
@@ -66,13 +73,15 @@ public class FacadeImpl implements Facade {
 	 * @param employeeDao
 	 * @param categoryDao
 	 * @param productDao
+	 * @param customerDao
 	 */
 	public FacadeImpl(AdminDao adminDao, EmployeeDao employeeDao, CategoryDao categoryDao,
-			ProductDao productDao) {
+			ProductDao productDao, CustomerDao customerDao) {
 		this.adminDao = adminDao;
 		this.employeeDao = employeeDao;
 		this.categoryDao = categoryDao;
 		this.productDao = productDao;
+		this.customerDao = customerDao;
 	}
 	
 	@Override
@@ -324,6 +333,27 @@ public class FacadeImpl implements Facade {
 			return productDao.searchById(id);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produto.";
+			logger.error(error);
+			throw new ServiceException(error, e);
+		}
+	}
+	
+	public Customer getCustomerLogin(String email) throws ServiceException {
+		logger.info("Obtendo usuário do e-mail " + email + " ...");
+		String query = "SELECT c FROM Customer c WHERE c.email = :email";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("email", email);
+		try {
+			List<Customer> list = customerDao.listSearchParam(query, params);
+			if (list != null) {
+				if (!list.isEmpty()) {
+					return list.get(0);
+				}
+			}
+			
+			return null;
+		} catch (DaoException e) {
+			String error = "Erro ao obter usuário.";
 			logger.error(error);
 			throw new ServiceException(error, e);
 		}
