@@ -247,6 +247,56 @@
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>3.3.2.GA</version>
 		</dependency>
+		<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib-full</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>1.6.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.transaction</groupId>
+		    <artifactId>jta</artifactId>
+		    <version>1.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>odmg</groupId>
+		    <artifactId>odmg</artifactId>
+		    <version>3.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.2.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-commons-annotations</artifactId>
+		    <version>3.1.0.GA</version>
+		</dependency>
+		<dependency>
+		    <groupId>apache-collections</groupId>
+		    <artifactId>commons-collections</artifactId>
+		    <version>3.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>asm</groupId>
+		    <artifactId>asm</artifactId>
+		    <version>3.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-log4j12</artifactId>
+		    <version>1.5.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -264,9 +314,6 @@
 					<include>**/*.properties</include>
 					<include>**/*.xml</include>
 				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
 		<testResources>
