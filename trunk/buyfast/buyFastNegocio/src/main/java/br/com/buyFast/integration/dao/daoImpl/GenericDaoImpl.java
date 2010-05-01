@@ -56,13 +56,9 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public T save(T object) throws DaoException {
 		try {
 			logger.info("Salvando objeto " + object + "...");
-			getSessionFactory().getCurrentSession().clear();
-			getSessionFactory().getCurrentSession().beginTransaction().begin();
 			getSessionFactory().getCurrentSession().save(object);
-			getSessionFactory().getCurrentSession().beginTransaction().commit();
 			logger.info("Objeto " + getObjectClass().getSimpleName() + " salvo com sucesso.");
 		} catch (Exception e) {
-			getSessionFactory().getCurrentSession().beginTransaction().rollback();
 			String messageError = "Erro ao salvar objeto " + getObjectClass().getSimpleName();
 			logger.error(messageError, e);
 			throw new DaoException(messageError, e);
@@ -76,13 +72,9 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public T update(T object) throws DaoException {
 		try {
 			logger.info("Atualizando objeto " + object + "...");
-			getSessionFactory().getCurrentSession().clear();
-			getSessionFactory().getCurrentSession().beginTransaction().begin();
 			getSessionFactory().getCurrentSession().update(object);
-			getSessionFactory().getCurrentSession().beginTransaction().commit();
 			logger.info("Objeto " + getObjectClass().getSimpleName() + " atualizado com sucesso.");
 		} catch (Exception e) {
-			getSessionFactory().getCurrentSession().beginTransaction().rollback();
 			String messageError = "Erro ao atualizar objeto " + getObjectClass().getSimpleName();
 			logger.error(messageError, e);
 			throw new DaoException(messageError, e);
@@ -96,13 +88,9 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public void delete(T object) throws DaoException {
 		try {
 			logger.info("Removendo objeto " + object + "...");
-			getSessionFactory().getCurrentSession().clear();
-			getSessionFactory().getCurrentSession().beginTransaction().begin();
 			getSessionFactory().getCurrentSession().delete(object);
-			getSessionFactory().getCurrentSession().beginTransaction().commit();
 			logger.info("Objeto " + getObjectClass().getSimpleName() + " removido com sucesso.");
 		} catch (Exception e) {
-			getSessionFactory().getCurrentSession().beginTransaction().rollback();
 			String messageError = "Erro ao remover objeto " + getObjectClass().getSimpleName();
 			logger.error(messageError, e);
 			throw new DaoException(messageError, e);
@@ -114,7 +102,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public List<T> listSearch(String query) throws DaoException {
 		try {
 			logger.info("Executando query e retornando lista de resultados ...");
-			getSessionFactory().getCurrentSession().clear();
 			return (List<T>) getSessionFactory().getCurrentSession().createQuery(query).list();
 		} catch (Exception e) {
 			String messageError = "Erro ao executar query para " + getObjectClass().getSimpleName();
@@ -128,7 +115,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public List<T> listSearchParam(String query, Map<String, Object> params) throws DaoException {
 		try {
 			logger.info("Executando query ...");
-			getSessionFactory().getCurrentSession().clear();
 			Query q = getSessionFactory().getCurrentSession().createQuery(query);
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));
@@ -148,7 +134,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 			throws DaoException {
 		try {
 			logger.info("Executando query ...");
-			getSessionFactory().getCurrentSession().clear();
 			Query q = getSessionFactory().getCurrentSession().createQuery(query)
 				.setMaxResults(maximum).setFirstResult(current);
 			for (String key : params.keySet()) {
@@ -168,7 +153,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public T searchById(ID id) throws DaoException {
 		try {
 			logger.info("Obtem objeto com ID = " + id);
-			getSessionFactory().getCurrentSession().clear();
 			T t = (T) getSessionFactory().getCurrentSession().load($Class, id);
 			return t;
 		}catch (Exception e) {
@@ -183,7 +167,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public T searchParam(String query, Map<String, Object> params) throws DaoException {
 		try {
 			logger.info("Executando query ...");
-			getSessionFactory().getCurrentSession().clear();
 			Query q = getSessionFactory().getCurrentSession().createQuery(query);
 			for (String key : params.keySet()) {
 				q.setParameter(key, params.get(key));
@@ -203,7 +186,6 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public List<T> all() throws DaoException {
 		try {
 			logger.info("Obtendo todos os objetos do tipo " + getObjectClass().getSimpleName() + "...");
-			getSessionFactory().getCurrentSession().clear();
 			List<T> list = getSessionFactory().getCurrentSession().createQuery("FROM " + $Class.getName() + " ORDER BY id DESC").list();
 			return list;
 		} catch (Exception e) {
