@@ -118,17 +118,22 @@
 												<table>
 													<tr>
 														<td class="li" align="left">
-														<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
+															<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
 														</td>
 													</tr>
 													<tr>
 														<td class="li" align="left">
-														<h:commandLink value="#{message.templatePageRegisterCreate}" action="#" />
+															<h:commandLink value="#{message.templatePageRegisterCreate}" 
+																action="#{customerController.myAccount}"
+																rendered="#{customerController.customer.email == null}" />
 														</td>
 													</tr>
 													<tr>
 														<td class="li" align="left">
-														<h:commandLink value="#{message.templatePageLogInItem}" action="#" />
+															<h:commandLink value="#{message.templatePageLogInItem}" 
+																action="#{customerController.myAccount}" rendered="#{customerController.customer.email == null}"/>
+															<h:commandLink value="#{message.templatePageLogOutItem}" 
+																action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
 														</td>
 													</tr>
 												</table>

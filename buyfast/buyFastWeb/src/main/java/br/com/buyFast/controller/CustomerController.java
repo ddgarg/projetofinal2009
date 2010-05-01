@@ -127,6 +127,21 @@ public class CustomerController implements Serializable {
 	}
 	
 	/**
+	 * Fecha o login do usuário.
+	 * @return retorna para a página.
+	 */
+	public String logout() {
+		session.removeAttribute("user");
+		
+		// caso a sessão msg esteja com valor, a remove
+		if (session.getAttribute("msg") != null) {
+			session.removeAttribute("msg");
+		}
+		
+		return "home";
+	}
+	
+	/**
 	 * Obter o usuário que tenha o e-mail informado pelo parâmetro.
 	 * @param email o e-mail do usuário.
 	 * @return o usuário cadastrado no sistema.
