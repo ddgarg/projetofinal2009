@@ -1,7 +1,5 @@
 package br.com.buyFast.integration.dao.daoImpl;
 
-import javax.persistence.Query;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.criterion.Restrictions;
@@ -23,11 +21,11 @@ public class EmployeeDaoImpl extends GenericDaoImpl<Employee, Integer> implement
 	
 	public Employee getLoginAndPassword(String user, String password) throws DaoException {
 		try  {
-			String query = "FROM Employee a WHERE a.user = :user AND a.password = :password ";
-			Query q = entityManager.createQuery(query);
-			q.setParameter("user", user);
-			q.setParameter("user", user);
-			return (Administrator) q.getSingleResult();
+			logger.info("Obtendo funcionário através de usuário e senha ...");
+			return (Administrator) getSessionFactory().getCurrentSession()
+				.createCriteria(Employee.class)
+					.add(Restrictions.ilike("user", user))
+					.add(Restrictions.ilike("password", password)).uniqueResult();
 		} catch (Exception e) {
 			String messageError = "Erro ao obter funcionário.";
 			logger.error(messageError, e);
