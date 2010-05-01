@@ -19,41 +19,41 @@
 	
 	<div class="showCategories">
 		<h:form prependId="false">
-			<p:dataTable id="cat" var="cat" value="#{categoryController.allCategories}" dynamic="false" paginatorPosition="bottom"
-				firstPageLinkLabel="#{message.tableLabelfirst}"
-				previousPageLinkLabel="#{message.tableLabelPrev}"
-				lastPageLinkLabel="#{message.tableLabelLast}"
-				nextPageLinkLabel="#{message.tableLabelNext}"
-				emptyMessage="#{message.showCategoryEmpty}" lazy="false" 
-				paginator="true" selection="#{categoryController.category}" selectionMode="single" rows="10" width="300px">
-				<p:column filterBy="#{cat.id}">
+			<h:dataTable id="cat" var="cat" value="#{categoryController.allCategories}"
+					cellpadding="0" cellspacing="0" border="0"
+					headerClass="shop-cart-header" columnClasses="col-a, col-b, col-c, col-d" 
+					rowClasses="row-a, row-b">
+				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#{message.showCategoryColunmCode}" />
 					</f:facet>
 					<h:outputText value="#{cat.id}" />
-				</p:column>
+				</h:column>
 
-				<p:column filterBy="#{cat.name}">
+				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#{message.showCategoryColunmCategory}" />
 					</f:facet>
 					<h:outputText value="#{cat.name}" />
-				</p:column>
+				</h:column>
 
-				<p:column>
+				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#{message.showCategoryColunmEdit}" />
 					</f:facet>
-					<h:commandButton value="#{message.showCategoryColunmEdit}" action="adminRegisterCategory" />
-				</p:column>
+					<h:commandButton value="#{message.showCategoryColunmEdit}" 
+							action="#{categoryController.editSelectedCategory}" />
+				</h:column>
 				
-				<p:column>
+				<h:column>
 					<f:facet name="header">
 						<h:outputText value="#{message.showCategoryColunmDelete}" />
 					</f:facet>
-					<h:commandButton value="#{message.showCategoryColunmDelete}" onclick="if (!confirm('#{message.showCategoryMessageDialog}')) return false" action="#{categoryController.removeSelectedCategory}" />
-				</p:column>
-			</p:dataTable>
+					<h:commandButton value="#{message.showCategoryColunmDelete}" 
+							onclick="if (!confirm('#{message.showCategoryMessageDialog}')) return false" 
+							action="#{categoryController.removeSelectedCategory}" />
+				</h:column>
+			</h:dataTable>
 		</h:form>
 			
 			<p:messages showDetail="true" globalOnly="true" />

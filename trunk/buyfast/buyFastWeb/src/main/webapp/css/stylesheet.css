@@ -154,14 +154,17 @@ legend{
 }
 
 .col-a{
-	
+	color: Gainsboro;
+	background-color: DarkSlateBlue
 }
 .col-b, .col-c{
 	text-align: center;
+	color: LemonChiffon;
+	background-color: SeaGreen
 }
 
 .col-d{
-	background-color: #EEE;
+	background-color: MediumVioletRed;
 	text-align: center;
 }
 

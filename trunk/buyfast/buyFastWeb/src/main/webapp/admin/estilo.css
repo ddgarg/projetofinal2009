@@ -208,7 +208,7 @@ text-align:left;
 }
 
 /*-----------------------------------*/
-/* formata o carrinho de compras     */
+/* formata o carrinho de compras   TABELAS  */ 
 /*-----------------------------------*/
 
 .shop-cart{
@@ -221,8 +221,9 @@ text-align:left;
 
 .shop-cart-header{
 	padding: 5px;
-	background-image: url(images/top_cart.gif);
+	background-image: url("images/top_cart.gif");
 	color: #FFF;
+	text-align: center
 }
 
 .shop-compra-header{
@@ -258,8 +259,24 @@ text-align:left;
 }
 
 .col-d{
-	background-color: #EEE;
 	text-align: center;
+}
+
+.row-a{
+	text-align: center
+}
+
+.row-b{
+	text-align: center;
+	background-color: #E5E5E5
+}
+
+.larguraTabela{
+	width: 900px
+}
+
+.col-productName {
+	text-align: left
 }
 
 /* ************************************************************************************* */

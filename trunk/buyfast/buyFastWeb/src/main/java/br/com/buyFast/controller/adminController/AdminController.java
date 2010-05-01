@@ -98,7 +98,7 @@ public class AdminController implements Serializable {
 				.getExternalContext().getSession(false);
 			
 			//Criar atributo na sessão com o nome do usuário logado.
-			session.setAttribute("name", employee.getName());
+			session.setAttribute("employee", employee);
 			
 			if (session.getAttribute("msg") != null) {
 				session.removeAttribute("msg");

@@ -12,6 +12,8 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletContext;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.context.annotation.Scope;
@@ -34,6 +36,11 @@ public class ProductController implements Serializable {
 	 * {@link Serializable}.
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Apresenta o log na aplicação.
+	 */
+	private static final Log logger = LogFactory.getLog(ProductController.class);
 	
 	/**
 	 * Representa a camada de serviço da aplicação.
@@ -105,14 +112,15 @@ public class ProductController implements Serializable {
 	 * Obtém todas as categorias da base de dados.
 	 * @return o map com as categorias da base de dados.
 	 */
-	public Map<String, Object> getAllCategories() {
-		Map<String, Object> categories = new LinkedHashMap<String, Object>();
+	public Map<String, String> getAllCategories() {
+		Map<String, String> categories = new LinkedHashMap<String, String>();
 		
 		try {
 			for (Category category : facade.getCategories()) {
-				categories.put(category.getName(), category.getId());
+				categories.put(category.getName(), category.getId().toString());
 			}
 		} catch (ServiceException e) {
+			logger.error("Erro ao obter categorias.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorGetCategories"));
 			return null;
 		}
@@ -128,6 +136,7 @@ public class ProductController implements Serializable {
 		try {
 			this.model = new ListDataModel(facade.getAllProducts());
 		} catch (ServiceException e) {
+			logger.error("Erro ao obter produtos.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorGetAllProducts"));
 			return null;
 		}
@@ -140,18 +149,36 @@ public class ProductController implements Serializable {
 	 * @return
 	 */
 	public String removeProduct() {
-		Product product = this.product;
+		this.product = getSelectedProduct();
 		if (product != null && product.getId() != null) {
 			try {
 				facade.removeProduct(product);
 			} catch (ServiceException e) {
+				logger.error("Erro ao remover produto.", e);
 				FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorRemoveProduct"));
 				return null;
 			}
 		}
 		return null;
 	}
+	
+	/**
+	 * Edita o produto da base de dados.
+	 * @return
+	 */
+	public String editProduct() {
+		this.product = getSelectedProduct();
+		return "registerProduct";
+	}
 
+	/**
+	 * Obtém o produto selecionado na tabela.
+	 * @return o produto selecionado na tabela.
+	 */
+	public Product getSelectedProduct() {
+		return (Product) model.getRowData();
+	}
+	
 	/**
 	 * Método responsável por salvar ou atualizar o produto.
 	 * @return o caminho para a página.
@@ -166,6 +193,7 @@ public class ProductController implements Serializable {
 				return null;
 			}
 		} catch (ServiceException e1) {
+			logger.error("Erro ao verificar existência de produto.", e1);
 			FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErroVerificProduct"));
 			return null;
 		}
@@ -205,6 +233,7 @@ public class ProductController implements Serializable {
 			try {
 				this.product.setCategory(facade.getCategory(this.product.getCategory().getId()));
 			} catch (ServiceException e1) {
+				logger.error("Erro ao obte categoria do produto.", e1);
 				FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorGetCategory"));
 				return null;
 			}
@@ -215,6 +244,7 @@ public class ProductController implements Serializable {
 				try {
 					facade.saveProduct(product);
 				} catch (ServiceException e) {
+					logger.error("Erro ao salvar produto.", e);
 					FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErroOnSave"));
 					return null;
 				}
@@ -222,6 +252,7 @@ public class ProductController implements Serializable {
 				try {
 					facade.updateProduct(product);
 				} catch (ServiceException e) {
+					logger.error("Erro ao atualizar produto.", e);
 					FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErroOnUpdate"));
 					return null;
 				}
@@ -253,6 +284,7 @@ public class ProductController implements Serializable {
 		try {
 			streamSmallFile = imageFileUpload.getInputstream();
 		} catch (IOException e) {
+			logger.error("Erro de E/S no upload do arquivo.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorInpustreamSmallImage"));
 			return false;
 		}
@@ -266,6 +298,7 @@ public class ProductController implements Serializable {
 			facade.fileSave(buffer, streamSmallFile, imageFileUpload.getFileName(), smallImageSize,
 					servletContext.getRealPath("/thumbs"));
 		} catch (ServiceException e) {
+			logger.error("Erro ao transferir arquivo.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("productControllerErrorSaveFileImage"));
 			return false;
 		}

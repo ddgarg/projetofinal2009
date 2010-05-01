@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -25,6 +27,11 @@ public class CategoryController implements Serializable {
 	 * {@link Serializable}.
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Apresenta o log na aplicação.
+	 */
+	private static final Log logger = LogFactory.getLog(CategoryController.class);
 	
 	/**
 	 * Representa a camada de serviço da aplicação.
@@ -73,6 +80,7 @@ public class CategoryController implements Serializable {
 				return null;
 			}
 		}catch (Exception e) {
+			logger.error("Erro ao vericicar categoria.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerCategoryExistsError"));
 			return null;
 		}
@@ -86,13 +94,13 @@ public class CategoryController implements Serializable {
 			}
 		} catch (ServiceException e) {
 			//Apresenta a mensagem de erro.
+			logger.error("Erro ao salvar categoria.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("adminRegisterCategoryError"));
 			return null;
-		} finally {
-			//Apresenta mensagem de sucesso na operação.
-			FacesUtil.mensInfo("", FacesUtil.getMessage("SuccessInOperationMessage"));
-			this.category = new Category();
 		}
+		//Apresenta mensagem de sucesso na operação.
+		FacesUtil.mensInfo("", FacesUtil.getMessage("SuccessInOperationMessage"));
+		this.category = new Category();
 		
 		return null;
 	}
@@ -106,6 +114,7 @@ public class CategoryController implements Serializable {
 			model = new ListDataModel(this.facade.getCategories());
 			return model;
 		} catch (ServiceException e) {
+			logger.error("Erro ao obter categorias.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerErrorGetAllCategories"));
 			model = new ListDataModel();
 			return model;
@@ -125,11 +134,12 @@ public class CategoryController implements Serializable {
 	 * @return a categoria selecionada na tabela.
 	 */
 	public String removeSelectedCategory() {
-		Category category = this.category;
+		this.category = getSelectedcategory();
 		if (category != null && category.getId() != null) {
 			try {
 				facade.removeCategory(category);
 			} catch (ServiceException e) {
+				logger.error("Erro ao remover categorias.", e);
 				FacesUtil.mensErro("", FacesUtil.getMessage("categoryControllerErrorRemoveCategory"));
 				return null;
 			}
@@ -137,6 +147,16 @@ public class CategoryController implements Serializable {
 		FacesUtil.mensInfo("", FacesUtil.getMessage("categoryControllerInfoRemoved"));
 		
 		return null;
+	}
+	
+	/**
+	 * Edita a categoria selecionada na tabela.
+	 * @return a categoria selecionada na tabela.
+	 */
+	public String editSelectedCategory() {
+		this.category = getSelectedcategory();
+		
+		return "adminRegisterCategory";
 	}
 	
 	/**
