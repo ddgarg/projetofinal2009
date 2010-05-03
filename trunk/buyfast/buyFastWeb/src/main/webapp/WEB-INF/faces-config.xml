@@ -103,6 +103,10 @@
    <from-outcome>userLogin</from-outcome>
    <to-view-id>/userLogin.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>customerForm</from-outcome>
+   <to-view-id>/customerForm.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>
@@ -111,6 +115,10 @@
   <description>Utilizado para validar e-mail.</description>
   <validator-id>validateEmail</validator-id>
   <validator-class>br.com.buyFast.validate.Validate_Email</validator-class>
+ </validator>
+ <validator>
+  <validator-id>validateCpf</validator-id>
+  <validator-class>br.com.buyFast.validate.Validate_Cpf</validator-class>
  </validator>
  <application>
   <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>

@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import br.com.buyFast.model.Address;
 import br.com.buyFast.model.Customer;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
@@ -39,6 +40,16 @@ public class CustomerController implements Serializable {
 	private Customer customer;
 	
 	/**
+	 * Utilizado para verificação de senha.
+	 */
+	private String validationPassword;
+	
+	/**
+	 * Utilizado para a verificação de email.
+	 */
+	private String validationEmail; 
+	
+	/**
 	 * Representa a camada de serviço da aplicação.
 	 */
 	@Resource
@@ -64,6 +75,7 @@ public class CustomerController implements Serializable {
 	 */
 	public CustomerController() {
 		this.customer = new Customer();
+		this.customer.setAddress(new Address());
 		this.fc = FacesContext.getCurrentInstance();
 		this.session = (HttpSession) fc.getExternalContext().getSession(false);
 	}
@@ -83,6 +95,15 @@ public class CustomerController implements Serializable {
 		return "userLogin";
 	}
 
+	/**
+	 * Retorna para a tela de cadastro de cliente.
+	 * @return Para a tela de cadastro de cliente.
+	 */
+	public String customerRegister() {
+		
+		return "customerForm";
+	}
+	
 	/**
 	 * Método responsável pelo login do usuário.
 	 * @return caso usuário logado, ir para a página do mesmo.
@@ -139,6 +160,15 @@ public class CustomerController implements Serializable {
 		}
 		
 		return "home";
+	}
+	
+	/**
+	 * Registra um novo usuário.
+	 * @return Retorna para a página de login.
+	 */
+	public String register() {
+		
+		return "userLogin";
 	}
 	
 	/**
@@ -203,6 +233,38 @@ public class CustomerController implements Serializable {
 	 */
 	public void setFacade(Facade facade) {
 		this.facade = facade;
+	}
+
+	/**
+	 * Obter validação da senha.
+	 * @return a senha para validação.
+	 */
+	public String getValidationPassword() {
+		return validationPassword;
+	}
+
+	/**
+	 * Ajustar a validação da senha.
+	 * @param validationPassword a senha para validação.
+	 */
+	public void setValidationPassword(String validationPassword) {
+		this.validationPassword = validationPassword;
+	}
+
+	/**
+	 * Obter o e-mail para validação.
+	 * @return o e-mail para validação.
+	 */
+	public String getValidationEmail() {
+		return validationEmail;
+	}
+
+	/**
+	 * Ajustar o e-mail para validação.
+	 * @param validationEmail O e-mail para validação.
+	 */
+	public void setValidationEmail(String validationEmail) {
+		this.validationEmail = validationEmail;
 	}
 	
 }

@@ -16,12 +16,15 @@
 	<link rel="stylesheet" type="text/css" href="css/lavalamp_menu.css" media="screen"></link>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
 	
+	<!-- Dando conflito no primeFaces
 	<script type="text/javascript" src="css/jquery-1.2.3.min.js"></script>
     <script type="text/javascript" src="css/jquery.easing.min.js"></script>
     <script type="text/javascript" src="css/jquery.lavalamp.min.js"></script>
+	 -->
     
     <ui:insert name="scripts"></ui:insert>
     
+    <!-- 
 	<script type="text/javascript">
         $(function() {
             $("#1").lavaLamp({
@@ -33,6 +36,7 @@
             });
         });
     </script>
+     -->
 	
 	</head>
 	
@@ -124,7 +128,7 @@
 													<tr>
 														<td class="li" align="left">
 															<h:commandLink value="#{message.templatePageRegisterCreate}" 
-																action="#{customerController.myAccount}"
+																action="#{customerController.customerRegister}"
 																rendered="#{customerController.customer.email == null}" />
 														</td>
 													</tr>
