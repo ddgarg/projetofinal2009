@@ -78,6 +78,12 @@ public class Address implements Serializable {
     private String district;
 
     /**
+     * Representa o CEP do endereço.
+     */
+    @Column(nullable = true, length = 10)
+    private String CEP;
+    
+    /**
      * Representa a cidade do endereço.
      */
     @Column(nullable = true, length = 50)
@@ -176,6 +182,22 @@ public class Address implements Serializable {
     }
 
     /**
+     * Obter o CEP do endereço.
+     * @return O CEP do endereço.
+     */
+    public String getCep() {
+		return CEP;
+	}
+
+    /**
+     * Ajustar o CEP do endereço.
+     * @param cep - O CEP do endereço.
+     */
+	public void setCep(String cep) {
+		CEP = cep;
+	}
+
+	/**
      * Obter a cidade do endereço.
      * @return A cidade do endereço.
      */
