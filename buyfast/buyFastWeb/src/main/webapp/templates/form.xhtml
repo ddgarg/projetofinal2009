@@ -89,7 +89,9 @@
 				</td>
 				<td class="main width2_100">
 					<h:inputText id="number" value="#{customerController.customer.address.number}" title="#{message.formNumberTitle}"
-							required="true" requiredMessage=" *"/>
+							required="true" requiredMessage=" *">
+						<f:convertNumber integerOnly="true"></f:convertNumber>
+					</h:inputText>
 					<h:message for="number" styleClass="inputRequirement"/>
 				</td>
 			</tr>
@@ -98,8 +100,7 @@
 					<strong>#{message.formComplementLabel}</strong>
 				</td>
 				<td class="main width2_100">
-					<h:inputText id="complement" value="#{customerController.customer.address.complement}" title="#{message.formComplementTitle}"
-							required="true" requiredMessage=" *"/>
+					<h:inputText id="complement" value="#{customerController.customer.address.complement}" title="#{message.formComplementTitle}"/>
 					<h:message for="complement" styleClass="inputRequirement"/>
 				</td>
 			</tr>

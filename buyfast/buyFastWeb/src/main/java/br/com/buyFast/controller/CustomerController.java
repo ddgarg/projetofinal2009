@@ -1,6 +1,8 @@
 package br.com.buyFast.controller;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.model.Address;
 import br.com.buyFast.model.Customer;
+import br.com.buyFast.service.EmailService;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
@@ -38,6 +41,17 @@ public class CustomerController implements Serializable {
 	 * Representa o cliente logado na aplicação.
 	 */
 	private Customer customer;
+	
+	/**
+	 * Utilizado para obter o e-mail do usuário que esqueceu a senha.
+	 */
+	private String email;
+	
+	/**
+	 * Responsável pelo serviço de e-mail.
+	 */
+	@Resource
+	private EmailService emailService;
 	
 	/**
 	 * Utilizado para verificação de senha.
@@ -74,8 +88,7 @@ public class CustomerController implements Serializable {
 	 * Construtor padrão.
 	 */
 	public CustomerController() {
-		this.customer = new Customer();
-		this.customer.setAddress(new Address());
+		resetCustomer();
 		this.fc = FacesContext.getCurrentInstance();
 		this.session = (HttpSession) fc.getExternalContext().getSession(false);
 	}
@@ -159,6 +172,8 @@ public class CustomerController implements Serializable {
 			session.removeAttribute("msg");
 		}
 		
+		resetCustomer();
+		
 		return "home";
 	}
 	
@@ -167,6 +182,42 @@ public class CustomerController implements Serializable {
 	 * @return Retorna para a página de login.
 	 */
 	public String register() {
+		
+		// Verifica a confirmação do e-mail.
+		if (!this.validationEmail.equals(this.customer.getEmail())) {
+			logger.error("Erro de confirmação de e-mail.");
+			FacesUtil.mensErro("", FacesUtil.getMessage("messageValidateConfirmEmail"));
+			
+			//Apagando e-mail de confirmação.
+			this.validationEmail = "";
+			
+			return null;
+		}
+		
+		//Verifica a confirmação da senha.
+		if (!this.validationPassword.equals(this.customer.getPassword())) {
+			logger.error("Erro de confirmação de senha.");
+			FacesUtil.mensErro("", FacesUtil.getMessage("messageValidateConfirmPassword"));
+			
+			//Apaga a senha de confirmação.
+			this.validationPassword = "";
+			
+			return null;
+		}
+		
+		try {
+			logger.info("Salavando cadastro do cliente...");
+			facade.customerRecord(customer);
+		} catch (ServiceException e) {
+			logger.error("Erro ao salvar registro do cliente " + this.customer, e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorRegisterCustomer"));
+			return null;
+		}
+		
+		//Mensagem de confirmação de cadastro.
+		FacesUtil.mensInfo("", FacesUtil.getMessage("customerControllerSuccessRegisterCustomer"));
+		
+		resetCustomer();
 		
 		return "userLogin";
 	}
@@ -180,6 +231,74 @@ public class CustomerController implements Serializable {
 	private Customer getCustomerLogin(String email) throws ServiceException {
 		
 		return facade.getCustomerLogin(email);
+	}
+	
+	/**
+	 * Envia a mensagem de confirmação de cadastro.
+	 * @throws ServiceException 
+	 */
+	public void sendContact() throws ServiceException {
+			logger.info("Enviando e-mail para " + this.customer);
+			
+			SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+			
+			StringBuilder builder = new StringBuilder();
+			
+			builder.append("<h2>Cadastro no site BuyFast:</h2><br />");
+			builder.append("<b>Hora do cadastro:</b> " + df.format(new Date()) + "<br />");
+			builder.append("<b>Nome:</b> " + this.customer.getName() + "<br />");
+			builder.append("<b>E-mail:</b> " + this.customer.getEmail() + "<br />");
+			builder.append("<b>Assunto:</b> Cadastro no site BuyFast<br />");
+			builder.append("<b>Mensagem:</b>");
+			builder.append("Seu cadastro foi efetuado com sucesso no site do buyFast.<br />");
+			builder.append("Dados para acesso ao site:<br />");
+			builder.append("Login: " + this.customer.getEmail());
+			builder.append("<br />");
+			builder.append("Senha: " + this.customer.getPassword());
+			
+			emailService.send(this.customer.getEmail(), "buyfast@buyfast.com", "Cadastro no site BuyFast", 
+					builder.toString());
+		
+	}
+	
+	/**
+	 * Utilizado para "resetar" customer. 
+	 */
+	private void resetCustomer() {
+		this.customer = new Customer();
+		this.customer.setAddress(new Address());
+	}
+	
+	/**
+	 * Prepara para a obtenção de senha do usuário.
+	 * @return para a página de login.
+	 */
+	public String sendForgotPassword() {
+		logger.info("Enviando e-mail para " + this.customer);
+		
+		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+		
+		StringBuilder builder = new StringBuilder();
+		
+		builder.append("<h2>site BuyFast:</h2><br />");
+		builder.append("<b>Hora do envio:</b> " + df.format(new Date()) + "<br />");
+		builder.append("<b>Dados:</b>");
+		builder.append("Seu cadastro foi efetuado com sucesso no site do buyFast.<br />");
+		builder.append("Dados para acesso ao site:<br />");
+		builder.append("Login: " + this.customer.getEmail());
+		builder.append("<br />");
+		builder.append("Senha: " + this.customer.getPassword());
+		
+		try {
+			emailService.send(this.customer.getEmail(), "buyfast@buyfast.com", "Cadastro no site BuyFast", 
+					builder.toString());
+		} catch (ServiceException e) {
+			logger.error("Erro ao enviar e-mail de recuperação de senha.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorForgotPassword"));
+			return null;
+		}
+		
+		return "userLogin";
 	}
 	
 	//Getters and Setters
@@ -265,6 +384,30 @@ public class CustomerController implements Serializable {
 	 */
 	public void setValidationEmail(String validationEmail) {
 		this.validationEmail = validationEmail;
+	}
+
+	/**
+	 * Obter o e-mail para receber senha.
+	 * @return O e-mail para receber senha.
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * Ajustar o e-mail para receber senha.
+	 * @param email O e-mail para receber senha.
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Ajustar o atributo responsável pelo envio de e-mail.
+	 * @param emailService A camada de serviço responsável pelo envio de e-mail.
+	 */
+	public void setEmailService(EmailService emailService) {
+		this.emailService = emailService;
 	}
 	
 }

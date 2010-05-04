@@ -89,7 +89,7 @@ public class ContactController implements Serializable {
 		
 		} catch (ServiceException e) {
 			logger.error("Erro ao enviar e-mail.", e);
-			FacesUtil.mensErro("", "Erro ao enviar e-mail");
+			FacesUtil.mensErro("", FacesUtil.getMessage("contactControllerErroSendMail"));
 			return null;
 		}
 		
@@ -97,7 +97,7 @@ public class ContactController implements Serializable {
 		email = "";
 		subject = "";
 		message = "";
-		FacesUtil.mensInfo("", "E-mail enviado com sucesso");
+		FacesUtil.mensInfo("", FacesUtil.getMessage("contactControllerSuccessSendMail"));
 		
 		return null;
 	}
