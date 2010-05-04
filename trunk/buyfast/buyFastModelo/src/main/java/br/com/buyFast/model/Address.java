@@ -62,7 +62,7 @@ public class Address implements Serializable {
     /**
      * Representa o número do endereço.
      */
-    @Column(nullable = true, length = 10)
+    @Column(nullable = true)
     private String number;
 
     /**
@@ -80,7 +80,7 @@ public class Address implements Serializable {
     /**
      * Representa o CEP do endereço.
      */
-    @Column(nullable = true, length = 10)
+    @Column(nullable = true)
     private String CEP;
     
     /**
