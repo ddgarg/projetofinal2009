@@ -14,6 +14,7 @@
 		<constructor-arg ref="categoryDao" />
 		<constructor-arg ref="productDao" />
 		<constructor-arg ref="customerDao" />
+		<constructor-arg ref="addressDao" />
 	</bean>
 	
 	<!-- Envio de E-mail -->

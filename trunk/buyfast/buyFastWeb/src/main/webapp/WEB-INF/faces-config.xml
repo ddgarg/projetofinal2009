@@ -107,6 +107,10 @@
    <from-outcome>customerForm</from-outcome>
    <to-view-id>/customerForm.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>userForgotPassword</from-outcome>
+   <to-view-id>/userForgotPassword.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>
