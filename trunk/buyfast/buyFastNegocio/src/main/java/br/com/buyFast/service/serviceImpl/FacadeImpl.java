@@ -13,6 +13,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import br.com.buyFast.integration.dao.AddressDao;
 import br.com.buyFast.integration.dao.AdminDao;
 import br.com.buyFast.integration.dao.CategoryDao;
 import br.com.buyFast.integration.dao.CustomerDao;
@@ -68,6 +69,11 @@ public class FacadeImpl implements Facade {
 	private CustomerDao customerDao;
 	
 	/**
+	 * Objeto de acesso a dados de {@link AddressDao}.
+	 */
+	private AddressDao addressDao;
+	
+	/**
 	 * Instancia um novo {@link Facade}.
 	 * @param adminDao
 	 * @param employeeDao
@@ -76,12 +82,13 @@ public class FacadeImpl implements Facade {
 	 * @param customerDao
 	 */
 	public FacadeImpl(AdminDao adminDao, EmployeeDao employeeDao, CategoryDao categoryDao,
-			ProductDao productDao, CustomerDao customerDao) {
+			ProductDao productDao, CustomerDao customerDao, AddressDao addressDao) {
 		this.adminDao = adminDao;
 		this.employeeDao = employeeDao;
 		this.categoryDao = categoryDao;
 		this.productDao = productDao;
 		this.customerDao = customerDao;
+		this.addressDao = addressDao;
 	}
 	
 	@Override
@@ -115,7 +122,7 @@ public class FacadeImpl implements Facade {
 			this.categoryDao.save(category);
 		} catch (Exception e) {
 			String messageError = "Erro ao salvar categoria " + category + ".";
-			logger.error(messageError);
+			logger.error(messageError, e);
 			throw new ServiceException(messageError, e);
 		}
 	}
@@ -230,7 +237,7 @@ public class FacadeImpl implements Facade {
 			this.productDao.save(product);
 		} catch (Exception e) {
 			String messageError = "Erro ao salvar produto " + product + ".";
-			logger.error(messageError);
+			logger.error(messageError, e);
 			throw new ServiceException(messageError, e);
 		}
 	}
@@ -282,7 +289,7 @@ public class FacadeImpl implements Facade {
 			return productDao.all();
 		} catch (DaoException e) {
 			String error = "Erro ao obter produtos.";
-			logger.error(error);
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}
@@ -295,7 +302,7 @@ public class FacadeImpl implements Facade {
 			return productDao.listSearchParam(query, params, maxResult, 1);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produtos.";
-			logger.error(error);
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}
@@ -308,7 +315,7 @@ public class FacadeImpl implements Facade {
 			return productDao.listSearchParam(query, params);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produtos.";
-			logger.error(error);
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}
@@ -322,7 +329,7 @@ public class FacadeImpl implements Facade {
 			return productDao.listSearchParam(query, params);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produtos.";
-			logger.error(error);
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}
@@ -333,7 +340,7 @@ public class FacadeImpl implements Facade {
 			return productDao.searchById(id);
 		} catch (DaoException e) {
 			String error = "Erro ao obter produto.";
-			logger.error(error);
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}
@@ -354,7 +361,20 @@ public class FacadeImpl implements Facade {
 			return null;
 		} catch (DaoException e) {
 			String error = "Erro ao obter usuário.";
-			logger.error(error);
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void customerRecord(Customer customer) throws ServiceException {
+		try {
+			logger.info("Salvando cadastro do cliente " + customer + "...");
+			addressDao.save(customer.getAddress());
+			customerDao.save(customer);
+		} catch (DaoException e) {
+			String error = "Erro ao salvar cadastro do cliente.";
+			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
 	}

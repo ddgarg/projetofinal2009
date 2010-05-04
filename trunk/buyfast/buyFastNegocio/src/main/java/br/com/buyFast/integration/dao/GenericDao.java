@@ -94,4 +94,20 @@ public interface GenericDao <T, ID extends Serializable> {
 	 * @throws DaoException 
 	 */
 	public T searchParam(String query, Map<String, Object> params) throws DaoException;
+
+	/**
+	 * Força para a sessão deste flush. Deve ser chamado no final de uma unidade
+	 * de trabalho, antes de confirmar a operação e fechar a sessão (dependendo do modo
+	 * flush, Transaction.commit () chama este método).
+	 * @throws DaoException 
+	 */
+	void flush() throws DaoException;
+
+	/**
+	 * Carrega o objeto persistido na base de dados.
+	 * @param object O objeto que ser carregado.
+	 * @return O objeto da base de dados.
+	 * @throws DaoException
+	 */
+	T load(T object) throws DaoException;
 }

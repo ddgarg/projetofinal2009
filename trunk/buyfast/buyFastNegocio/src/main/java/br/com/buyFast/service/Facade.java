@@ -168,4 +168,11 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	Customer getCustomerLogin(String email) throws ServiceException;
+	
+	/**
+	 * Persiste o registro do cliente em banco.
+	 * @param customer o cliente que será persistido.
+	 * @throws ServiceException
+	 */
+	void customerRecord(Customer customer) throws ServiceException;
 }
