@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+	<ui:composition template="/templates/templatepage.xhtml">
+		<ui:define name="titulo">#{message.myAccountTitle}</ui:define>
+	
+	<ui:define name="menu">
+		<h:form>
+			<ul class="lavaLampWithImage" id="1">
+				<!-- Para definir a página atual utilizar class="current" -->
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="home">#{message.menuLabelHome}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="promotionProduct" title="#{message.titleMenuPageProduct}">#{message.menuLabelPromocao}</a>
+			    </li>
+			    <li class="current">
+			    	<a href="" jsfc="h:commandLink" action="#{customerController.myAccount}" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="viewCart" title="#{message.titleMenuPageCart}">#{message.menuLabelCarrinho}</a>
+			    </li>
+			    <li>
+			    	<a href="" jsfc="h:commandLink" action="contact" title="#{message.titleMenuPageContact}">#{message.menuLabelContato}</a>
+			    </li>
+			</ul>
+		</h:form>
+	</ui:define>
+	
+		<ui:define name="body">
+				LOGADO!!!!!!!!!!!!!!!!!
+		</ui:define>
+	</ui:composition>
+	
+</html>
