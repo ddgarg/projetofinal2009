@@ -69,6 +69,22 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public T load(T object) throws DaoException {
+		try {
+			logger.info("Salvando objeto " + object + "...");
+			getSessionFactory().getCurrentSession().getEntityName(object);
+			logger.info("Objeto " + getObjectClass().getSimpleName() + " salvo com sucesso.");
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar objeto " + getObjectClass().getSimpleName();
+			logger.error(messageError, e);
+			throw new DaoException(messageError, e);
+		}
+		
+		return object;
+	}
+	
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T update(T object) throws DaoException {
 		try {
 			logger.info("Atualizando objeto " + object + "...");
@@ -153,7 +169,7 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	public T searchById(ID id) throws DaoException {
 		try {
 			logger.info("Obtem objeto com ID = " + id);
-			T t = (T) getSessionFactory().getCurrentSession().load($Class, id);
+			T t = (T) getSessionFactory().getCurrentSession().get($Class, id);
 			return t;
 		}catch (Exception e) {
 			String messageError = "Erro ao carregar objeto do tipo " + getObjectClass().getSimpleName();
@@ -190,6 +206,16 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 			return list;
 		} catch (Exception e) {
 			String messageError = "Erro ao executar query para " + getObjectClass().getSimpleName();
+			logger.error(messageError, e);
+			throw new DaoException(messageError, e);
+		}
+	}
+	
+	public void flush() throws DaoException {
+		try {
+			getSessionFactory().getCurrentSession().flush();
+		} catch (Exception e) {
+			String messageError = "Erro ao atualizar da sessão.";
 			logger.error(messageError, e);
 			throw new DaoException(messageError, e);
 		}
