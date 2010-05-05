@@ -106,7 +106,7 @@
 																			<img src="images/pixel_trans.gif" border="0" alt="" width="10" height="1" />
 																		</td>
 																		<td align="right">
-																			<a href="#" jsfc="h:commandLink" action="#{customerController.customerRegister}" >
+																			<a href="#" jsfc="h:commandLink" action="#{customerController.customerRegister}" title="#{message.userLoginContinueTitle}" >
 																				#{message.userLoginContinue}
 																			</a>
 																		</td>
@@ -127,7 +127,6 @@
 												<img src="images/pixel_trans.gif" border="0" alt="" width="1" height="1" />
 											</td>
 											<td width="50%" height="100%">
-		<h:form prependId="false">
 		
 		
 												<fieldset>
@@ -177,7 +176,9 @@
 										</tr>
 										<tr>
 											<td class="smallText">
-												<a href="#" jsfc="h:commandLink" action="userForgotPassword">#{message.userLoginNoPasswordMesssage}</a>
+												<h:form prependId="false">
+														<h:commandButton value="#{message.userLoginButtonLogar}" action="#{customerController.login}" title="#{message.userLoginButtonLogar}"/>
+												</h:form>
 											</td>
 										</tr>
 										<tr>
@@ -193,7 +194,9 @@
 															<img src="images/pixel_trans.gif" border="0" alt="" width="10" height="1" />
 														</td>
 														<td align="right">
-															<h:commandButton value="#{message.userLoginButtonLogar}" action="#{customerController.login}" title="#{message.userLoginButtonLogar}"/>
+															<h:form>
+																<a href="#" jsfc="h:commandLink" action="userForgotPassword">#{message.userLoginNoPasswordMesssage}</a>
+															</h:form>
 														</td>
 														<td width="10">
 															<img src="images/pixel_trans.gif" border="0" alt="" width="10" height="1" />
@@ -205,7 +208,6 @@
 									</table>
 		
 								</fieldset>
-		</h:form>
 								</td>
 							</tr>
 						</table>
