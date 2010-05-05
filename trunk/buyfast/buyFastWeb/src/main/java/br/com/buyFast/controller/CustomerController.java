@@ -174,7 +174,7 @@ public class CustomerController implements Serializable {
 		
 		resetCustomer();
 		
-		return "home";
+		return null;
 	}
 	
 	/**
@@ -214,6 +214,13 @@ public class CustomerController implements Serializable {
 			return null;
 		}
 		
+		try {
+			sendContact();
+		} catch (ServiceException e) {
+			logger.error("Erro ao enviar e-mail de confirmação de cadastro.", e);
+			FacesUtil.mensWarn("", FacesUtil.getMessage("customerControllerErrorSendEmailRegisterCustomer"));
+		}
+		
 		//Mensagem de confirmação de cadastro.
 		FacesUtil.mensInfo("", FacesUtil.getMessage("customerControllerSuccessRegisterCustomer"));
 		
@@ -240,7 +247,7 @@ public class CustomerController implements Serializable {
 	public void sendContact() throws ServiceException {
 			logger.info("Enviando e-mail para " + this.customer);
 			
-			SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
 			
 			StringBuilder builder = new StringBuilder();
 			
@@ -274,9 +281,17 @@ public class CustomerController implements Serializable {
 	 * @return para a página de login.
 	 */
 	public String sendForgotPassword() {
+		try {
+			this.customer = facade.getCustomerLogin(this.email);
+		} catch (ServiceException e1) {
+			logger.error("Erro ao obter dados do usuário.", e1);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetCustomerEmail"));
+			return null;
+		}
+		
 		logger.info("Enviando e-mail para " + this.customer);
 		
-		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
 		
 		StringBuilder builder = new StringBuilder();
 		
