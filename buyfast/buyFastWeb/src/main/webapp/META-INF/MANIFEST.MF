@@ -24,5 +24,6 @@ Class-Path: activation-1.1.jar antlr-2.7.6.jar aopalliance-1.0.jar asm
  3.jdbc4.jar primefaces-1.0.1.jar servlet-api-2.5.jar slf4j-api-1.5.8.
  jar slf4j-log4j12-1.5.8.jar spring-2.5.6.jar spring-beans-2.0.8.jar s
  pring-context-2.0.8.jar spring-core-2.0.8.jar spring-dao-2.0.8.jar sp
- ring-hibernate3-2.0.8.jar spring-jdbc-2.0.8.jar xml-apis-1.0.b2.jar
+ ring-hibernate3-2.0.8.jar spring-jdbc-2.5.6.jar spring-orm-2.5.6.jar 
+ spring-tx-2.5.6.jar xml-apis-1.0.b2.jar
 
