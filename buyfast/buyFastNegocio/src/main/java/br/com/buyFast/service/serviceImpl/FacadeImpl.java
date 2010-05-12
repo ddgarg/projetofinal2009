@@ -379,4 +379,16 @@ public class FacadeImpl implements Facade {
 		}
 	}
 
+	@Override
+	public List<Product> productSearch(String keyWord) throws ServiceException {
+		logger.info("Obtendo produtos pela chave " + keyWord);
+		try {
+			return this.productDao.productSearch(keyWord);
+		} catch (DaoException e) {
+			String error = "Erro ao obter lista de produtos para " + keyWord;
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
 }
