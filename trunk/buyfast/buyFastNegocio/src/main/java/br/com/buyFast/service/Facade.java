@@ -175,4 +175,12 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	void customerRecord(Customer customer) throws ServiceException;
+	
+	/**
+	 * Obter os produtos através da palavra-chave.
+	 * @param keyWord a palavra-chave para pesquisa.
+	 * @return os produtos relacionados com a palavra-chave.
+	 * @throws ServiceException
+	 */
+	List<Product> productSearch(String keyWord) throws ServiceException;
 }
