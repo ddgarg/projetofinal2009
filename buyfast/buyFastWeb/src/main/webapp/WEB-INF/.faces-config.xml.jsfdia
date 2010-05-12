@@ -53,6 +53,12 @@
     ID="userForgotPassword::#userForgotPassword.xhtml" NAME="output15"
     PATH="/userForgotPassword.xhtml"
     TARGET="rules:#userForgotPassword.xhtml" TITLE="userForgotPassword" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="productSearch::#productSearch.xhtml"
+    NAME="output16" PATH="/productSearch.xhtml"
+    TARGET="rules:#productSearch.xhtml" TITLE="productSearch" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="productCat::#productCat.xhtml"
+    NAME="output17" PATH="/productCat.xhtml"
+    TARGET="rules:#productCat.xhtml" TITLE="productCat" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
@@ -96,4 +102,9 @@
  <PROCESS-ITEM NAME="rules:#userForgotPassword.xhtml"
   PATH="/userForgotPassword.xhtml" SHAPE="232,736,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#productSearch.xhtml"
+  PATH="/productSearch.xhtml" SHAPE="248,792,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#productCat.xhtml" PATH="/productCat.xhtml"
+  SHAPE="248,840,50,25" model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

@@ -111,6 +111,14 @@
    <from-outcome>userForgotPassword</from-outcome>
    <to-view-id>/userForgotPassword.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>productSearch</from-outcome>
+   <to-view-id>/productSearch.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>productCat</from-outcome>
+   <to-view-id>/productCat.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>

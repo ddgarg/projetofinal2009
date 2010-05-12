@@ -32,7 +32,13 @@ public class AdminLoginPhaseListener implements PhaseListener {
 	public void beforePhase(PhaseEvent event) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
-		String viewId = context.getViewRoot().getViewId();
+		String viewId = "";
+		
+		if (context.getViewRoot() != null) {
+			if (context.getViewRoot().getViewId() != null) {
+				viewId = context.getViewRoot().getViewId();
+			}
+		}
 		
 		//Verifica as páginas que não tem acesso externo.
 		if (viewId.equals("/admin/home.xhtml") ||
