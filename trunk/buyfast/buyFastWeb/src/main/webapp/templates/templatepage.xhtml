@@ -122,7 +122,9 @@
 												<table>
 													<tr>
 														<td class="li" align="left">
-															<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
+															<h:form>
+																<h:commandLink value="#{message.templatePageAdvanceSearch}" action="productSearch" />
+															</h:form>
 														</td>
 													</tr>
 													<tr>
@@ -181,41 +183,44 @@
 									<table cellpadding="0" cellspacing="0" border="0" class="table2">
 										<tr>
 											<td class="td2" style="width: 100%">
-											<form name="search" method="get">
-											<table border="0" cellspacing="0" cellpadding="0" align="right" class="table">
-												<tr>
-													<td colspan="2" align="left"> <h:outputText value="#{message.templatePageSearchLabel}" /> </td>
-												</tr>
-												<tr>
-													<td class="search_input-rep" style="width: 100%">
-													<table cellpadding="0" cellspacing="0" border="0" class="search_input-left">
-														<tr>
-															<td class="search_input-right" align="left"><input
-																type="text" style="width: 110px" name="keywords"
-																class="go" value="#{message.templatePageTextFieldSearch}..."
-																onblur="if(this.value=='') this.value='#{message.templatePageTextFieldSearch}...'"
-																onfocus="if(this.value =='#{messgae.templatePageTextFieldSearch}...' ) this.value=''">
-															</input></td>
-														</tr>
-													</table>
-													</td>
-													<td><img src="images/spacer.gif" border="0" alt="" width="4" height="1"></img></td>
-													<td class="search_button-rep">
-													<table cellpadding="0" cellspacing="0" border="0" class="search_button-left">
-														<tr>
-															<td class="search_button-right"><input type="image"
-																src="css/includes/languages/brasil/images/buttons/button_search_prod.gif"
-																alt="#{message.templatePageSearchLabel}"> </input>
-															</td>
-														</tr>
-													</table>
-													</td>
-												</tr>
-												<tr>
-													<td colspan="2" align="right" style="padding: 0px 4px 0px 0px;"><a href="#"></a></td>
-												</tr>
-											</table>
-											</form>
+												<table border="0" cellspacing="0" cellpadding="0" align="right" class="table">
+													<tr>
+														<td colspan="2" align="left"> <h:outputText value="#{message.templatePageSearchLabel}" /> </td>
+													</tr>
+													<tr>
+														<td class="search_input-rep" style="width: 100%">
+														<table cellpadding="0" cellspacing="0" border="0" class="search_input-left">
+															<tr>
+																<td class="search_input-right" align="left">
+																	<h:form method="get">
+																		<h:panelGrid columns="3">
+																			<h:inputText id="fieldSearch" value="#{shopController.keyWord}" size="15" />
+																			<p:watermark for="fieldSearch" value="#{message.templatePageTextFieldSearch}..." />
+																			<h:commandLink action="#{shopController.search}" value="">
+																				<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_search_prod.gif" alt="#{message.templatePageSearchLabel}"/>
+																			</h:commandLink>
+																		</h:panelGrid>
+																	</h:form>
+																</td>
+															</tr>
+														</table>
+														</td>
+														<td>
+															<img src="images/spacer.gif" border="0" alt="" width="4" height="1"></img>
+														</td>
+														<td class="search_button-rep">
+														<table cellpadding="0" cellspacing="0" border="0" class="search_button-left">
+															<tr>
+																<td class="search_button-right">
+																</td>
+															</tr>
+														</table>
+														</td>
+													</tr>
+													<tr>
+														<td colspan="2" align="right" style="padding: 0px 4px 0px 0px;"><a href="#"></a></td>
+													</tr>
+												</table>
 											</td>
 										</tr>
 									</table>
@@ -287,9 +292,16 @@
 															<ul class="categories">
 																<ui:repeat value="#{shopController.allCategories}" var="item">
 																	<li class="bg_list">
+<!-- Categorias -->														<h:form>
+																			<h:commandLink action="productCat" value="#{item.name}">
+																				<f:param id="cat" value="#{item.id}" name="cat"/>
+																			</h:commandLink>
+																		</h:form>
+																		<!-- 
 																		<a href="productCat.jsf?cat=#{item.id}">
 																			#{item.name}
 																		</a>
+																		 -->
 																	</li>
 																</ui:repeat>
 															</ul>

@@ -43,10 +43,22 @@ public class ShopController implements Serializable {
 	private Product product;
 	
 	/**
+	 * Palavra-chave para busca de produtos.
+	 */
+	private String keyWord;
+	
+	/**
 	 * Construtor padrão.
 	 */
 	public ShopController() {
-		super();
+		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		try {
+			this.product = facade.getProduct(new Integer(id));
+		} catch (NumberFormatException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorFormatIdProduct"));
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetProduct"));
+		}
 	}
 
 	/**
@@ -155,14 +167,85 @@ public class ShopController implements Serializable {
 		return new ListDataModel();
 	}
 	
+	/**
+	 * Retorna para a página de pesquisa.
+	 * @return
+	 */
+	public String search() {
+		return "productSearch";
+	}
+	
+	/**
+	 * Obtém todos os produtos para a pesquisa.
+	 * @return a lista de produtos da pesquisa.
+	 */
+	public DataModel getProductsSearch() {
+		if (this.keyWord.equals("")) {
+			return null;
+		}
+		try {
+			List<Product> list = facade.productSearch(this.keyWord);
+			ListDataModel dataModel = new ListDataModel(list);
+			this.keyWord = "";
+			if (dataModel.getRowCount() == 0) {
+				return null;
+			}
+			return dataModel;
+		} catch (ServiceException e) {
+			this.keyWord = "";
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorProductsSearch"));
+			return  new ListDataModel(Collections.emptyList());
+		}
+	}
+	
 	/* Gettes e Settes */
 	
+	/**
+	 * Obter produto.
+	 * @return produto.
+	 */
 	public Product getProduct() {
 		return product;
 	}
 
+	/**
+	 * Ajustar produto.
+	 * @param product produto.
+	 */
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	/**
+	 * Obter a camada de serviço da aplicação.
+	 * @return a camada de serviço da aplicação.
+	 */
+	public Facade getFacade() {
+		return facade;
+	}
+
+	/**
+	 * Ajustar a camada de serviço da aplicação.
+	 * @param facade a camada de serviço da aplicação.
+	 */
+	public void setFacade(Facade facade) {
+		this.facade = facade;
+	}
+
+	/**
+	 * Obter a palavra-chave para busca de produtos.
+	 * @return a palavra-chave para busca de produtos.
+	 */
+	public String getKeyWord() {
+		return keyWord;
+	}
+
+	/**
+	 * Ajustar a palavra-chave para busca de produtos.
+	 * @param keyWord a palavra-chave para busca de produtos.
+	 */
+	public void setKeyWord(String keyWord) {
+		this.keyWord = keyWord;
 	}
 	
 }
