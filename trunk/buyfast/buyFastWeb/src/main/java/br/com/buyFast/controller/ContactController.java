@@ -168,14 +168,6 @@ public class ContactController implements Serializable {
 	}
 
 	/**
-	 * Obter o serviço de e-mail.
-	 * @return O serviço de e-mail.
-	 */
-	public EmailService getEmailService() {
-		return emailService;
-	}
-
-	/**
 	 * Ajustar o serviço de e-mail.
 	 * @param emailService O serviço de e-mail.
 	 */

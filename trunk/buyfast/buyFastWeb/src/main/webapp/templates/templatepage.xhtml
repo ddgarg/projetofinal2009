@@ -123,7 +123,7 @@
 													<tr>
 														<td class="li" align="left">
 															<h:form>
-																<h:commandLink value="#{message.templatePageAdvanceSearch}" action="productSearch" />
+																<h:outputLink value="advancedSearch.jsf">#{message.templatePageAdvanceSearch}</h:outputLink>
 															</h:form>
 														</td>
 													</tr>
@@ -158,7 +158,10 @@
 											<td align="left"><img src="images/spacer.gif" border="0" alt="" width="1" height="1" align="left" style="height: 40px; width: 43px;"></img>
 										<strong> <h:outputText value="#{message.templatePageShoppingCart}" /> </strong>
 										<h:outputText value="#{message.templatePageNowInYourCart}" />
-										<a href="#">0 itens</a></td>
+											<a href="viewCart.jsf">
+												<h:outputText value="#{cartController.quantitiesOfProducts}" /> itens
+											</a>
+										</td>
 										</tr>
 									</table>
 									</td>
@@ -293,15 +296,8 @@
 																<ui:repeat value="#{shopController.allCategories}" var="item">
 																	<li class="bg_list">
 <!-- Categorias -->														<h:form>
-																			<h:commandLink action="productCat" value="#{item.name}">
-																				<f:param id="cat" value="#{item.id}" name="cat"/>
-																			</h:commandLink>
+																			<h:outputLink value="productCat.jsf?cat=#{item.id}">#{item.name}</h:outputLink>
 																		</h:form>
-																		<!-- 
-																		<a href="productCat.jsf?cat=#{item.id}">
-																			#{item.name}
-																		</a>
-																		 -->
 																	</li>
 																</ui:repeat>
 															</ul>
@@ -394,11 +390,16 @@
 						<tr>
 							<td class="footer2_td">
 							<span>
-							<h:commandLink value="#{message.templatePageAdvanceSearch}" action="#" />
+								<h:outputLink value="advancedSearch.jsf">#{message.templatePageAdvanceSearch}</h:outputLink>
 							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-							<h:commandLink value="#{message.templatePageRegisterCreate}" action="#" />
+							<h:commandLink value="#{message.templatePageRegisterCreate}" 
+																action="#{customerController.customerRegister}"
+																rendered="#{customerController.customer.email == null}" />
 							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-							<h:commandLink value="#{message.templatePageLogInItem}" action="#" />
+							<h:commandLink value="#{message.templatePageLogInItem}" 
+																action="#{customerController.myAccount}" rendered="#{customerController.customer.email == null}"/>
+															<h:commandLink value="#{message.templatePageLogOutItem}" 
+																action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
 							</span> <br />
 							Copyright &copy; 2010 <a href="#">BuyFast</a>
 							&nbsp;&nbsp; <b>

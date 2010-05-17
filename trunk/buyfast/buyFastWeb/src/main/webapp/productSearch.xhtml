@@ -60,11 +60,10 @@
 				<table cellpadding="0" cellspacing="5" border="0" align="center" >
 				<tr>
 					<td class="wrapper_pic_td">
-						<h:form id="formm">
-							<h:commandLink value="" action="#{shopController.productDetail}">
-								<f:param id="id" value="#{item.id}" name="id"/>
+						<h:form id="formm" >
+							<h:outputLink value="descriptionProduct.jsf?id=#{item.id}">
 								<h:graphicImage value="thumbs/#{item.smallImage}" width="140" height="140" title="#{item.name}"/>
-							</h:commandLink>
+							</h:outputLink>
 						</h:form>
 					</td>
 					<td class="price2_padd">
@@ -112,19 +111,18 @@
 				</tr>
 				<tr>
 				<td class="button2_padd button2_marg" align="center">
-				<h:form id="horm"> 
-					<h:commandLink value="" action="#{shopController.productDetail}">
+				<h:form id="horm">
+					<h:outputLink value="descriptionProduct.jsf?id=#{item.id}">
 						<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_details.gif" 
 						      title="#{message.homePageProductInfo}" class="btn1" />
-						<f:param id="id" value="#{item.id}" name="id"/>
-					</h:commandLink>
+					</h:outputLink>
 				</h:form>
-				<h:form id="productAdd#{item.id}">   <!-- Apresentar link somente quando quantidade > 0 -->
-					<h:commandLink value="" action="#{shopController.productDetail}" rendered="#{item.quantityStock > 0}">
+				<h:form id="productAdd#{item.id}" prependId="false">
+					                                          <!-- Apresentar link somente quando quantidade > 0 -->
+					<h:outputLink value="addCart.jsf?id=#{item.id}" rendered="#{item.quantityStock > 0}">
 						<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif" 
 						      title="#{message.homePageProductCartAdd}" class="btn1" />
-						<f:param id="id" value="#{item.id}" name="id"/>
-					</h:commandLink>
+					</h:outputLink>
 				</h:form>
 				</td>
 				</tr>

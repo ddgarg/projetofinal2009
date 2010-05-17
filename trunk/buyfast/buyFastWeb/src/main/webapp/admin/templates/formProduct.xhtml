@@ -33,21 +33,27 @@
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormPrice}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="preco" value="#{productController.product.price}" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*" />
+								<h:inputText id="preco" value="#{productController.product.price}" size="12" required="true" title="#{message.adminFormPriceTitle}" requiredMessage="*">
+								</h:inputText>
 								<h:message for="preco" style="color: RED" />
 							</td>
 						</tr>
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormDiscount}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="desconto" value="#{productController.product.discount}" size="12" required="true" title="#{message.adminFormDiscountTitle}" requiredMessage="*" /><h:outputText value="%" />
+								<h:inputText id="desconto" value="#{productController.product.discount}" size="12" required="true" title="#{message.adminFormDiscountTitle}" requiredMessage="*">
+									<f:convertNumber integerOnly="true"></f:convertNumber>
+								</h:inputText>
+								<h:outputText value="%" />
 								<h:message for="desconto" style="color: RED" />
 							</td>
 						</tr>
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormQuantity}" /></td>
 							<td style="width: 400px">
-								<h:inputText id="quantidade" value="#{productController.product.quantityStock}" size="12" required="true" title="#{message.adminFormQuantityTitle}" requiredMessage="*" />
+								<h:inputText id="quantidade" value="#{productController.product.quantityStock}" size="12" required="true" title="#{message.adminFormQuantityTitle}" requiredMessage="*">
+									<f:convertNumber integerOnly="true"></f:convertNumber>
+								</h:inputText>
 								<h:message for="quantidade" style="color: RED" />
 							</td>
 						</tr>

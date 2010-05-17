@@ -36,5 +36,8 @@
 	
 	<!-- Marcação de transações através de anotações  -->
 	<tx:annotation-driven />
-
+	
+	<!-- Representa o carrinho de compras -->
+	<bean id="cart" class="br.com.buyFast.car.Cart" />
+	
 </beans>
