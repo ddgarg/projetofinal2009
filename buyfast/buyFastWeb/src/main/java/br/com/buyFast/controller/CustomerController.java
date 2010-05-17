@@ -147,11 +147,11 @@ public class CustomerController implements Serializable {
 			}
 			
 			//Retorna para a página do usuário.
-			if (originViewId != null) {
-				return originViewId;
-			} else {
+//			if (originViewId != null) {
+//				return originViewId;
+//			} else {
 				return "userLogged";
-			}
+//			}
 			
 		} else {
 			FacesUtil.mensErro("", FacesUtil.getMessage("customerPasswordLoginInvalid"));
@@ -351,14 +351,6 @@ public class CustomerController implements Serializable {
 	 */
 	public void setOriginViewId(String originViewId) {
 		this.originViewId = originViewId;
-	}
-
-	/**
-	 * Obter a camada de serviço da aplicação.
-	 * @return A camada de serviço da aplicação.
-	 */
-	public Facade getFacade() {
-		return facade;
 	}
 
 	/**

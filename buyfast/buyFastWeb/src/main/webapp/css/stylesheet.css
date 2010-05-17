@@ -161,18 +161,22 @@ legend{
 }
 
 .col-a{
-	color: Gainsboro;
-	background-color: DarkSlateBlue
+	text-align: left;
 }
 .col-b, .col-c{
 	text-align: center;
-	color: LemonChiffon;
-	background-color: SeaGreen
 }
 
 .col-d{
-	background-color: MediumVioletRed;
 	text-align: center;
+}
+
+.row-a{
+	
+	}
+
+.row-b{
+	background-color: Gainsboro
 }
 
 /* -------------------------- */

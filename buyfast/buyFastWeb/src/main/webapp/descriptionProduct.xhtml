@@ -50,7 +50,7 @@
 						<tr>
 							<td class="cont_heading_td">
 								<div class="left_part" style="text-align: center;">
-									<span style="font-size: 17px">#{shopController.product.name}</span>
+									<span jsfc="h:outputText" rendered="#{shopController.productDetail == true}" style="font-size: 17px">#{shopController.product.name}</span>
 									<br />
 									<br />
 								</div>
@@ -144,11 +144,10 @@
 											</td>
 											<td class="main button_marg" align="right">
 												<h:form id="cart">                                             <!-- Apresentar link somente quando quantidade > 0 -->
-													<h:commandLink value="" action="#{shopController.productDetail}" rendered="#{shopController.product.quantityStock > 0}">
+													<h:outputLink value="addCart.jsf?id=#{shopController.product.id}" rendered="#{shopController.product.quantityStock > 0}">
 														<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif" 
 														      title="#{message.homePageProductCartAdd}" class="btn1" />
-														<f:param id="id" value="#{item.id}" name="id"/>
-													</h:commandLink>
+													</h:outputLink>
 												</h:form>
 											</td>
 										</tr>

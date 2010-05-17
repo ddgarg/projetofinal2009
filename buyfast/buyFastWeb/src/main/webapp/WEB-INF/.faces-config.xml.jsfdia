@@ -59,6 +59,9 @@
    <PROCESS-ITEM-OUTPUT ID="productCat::#productCat.xhtml"
     NAME="output17" PATH="/productCat.xhtml"
     TARGET="rules:#productCat.xhtml" TITLE="productCat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="advancedSearch::#advancedSearch.xhtml"
+    NAME="output18" PATH="/advancedSearch.xhtml"
+    TARGET="rules:#advancedSearch.xhtml" TITLE="advancedSearch" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
@@ -107,4 +110,7 @@
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#productCat.xhtml" PATH="/productCat.xhtml"
   SHAPE="248,840,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#advancedSearch.xhtml"
+  PATH="/advancedSearch.xhtml" SHAPE="256,896,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

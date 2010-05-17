@@ -46,19 +46,13 @@ public class ShopController implements Serializable {
 	 * Palavra-chave para busca de produtos.
 	 */
 	private String keyWord;
-	
+
 	/**
 	 * Construtor padrão.
 	 */
 	public ShopController() {
-		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
-		try {
-			this.product = facade.getProduct(new Integer(id));
-		} catch (NumberFormatException e) {
-			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorFormatIdProduct"));
-		} catch (ServiceException e) {
-			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetProduct"));
-		}
+		this.product = new Product();
+		this.product.setCategory(new Category());
 	}
 
 	/**
@@ -144,6 +138,27 @@ public class ShopController implements Serializable {
 	}
 
 	/**
+	 * Obter o produto através do parâmetro passado pela URL.
+	 * Utilizado este método para detalhes de produtos após uma pesquisa
+	 * ou categoria.<br />
+	 * @return <code>true</code> Quando produto achado. <code>false</code> caso contrário. 
+	 */
+	public boolean getProductDetail() {
+		String id = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id");
+		if (id == null) {
+			return false;
+		}
+		try {
+			this.product = facade.getProduct(new Integer(id));
+		} catch (NumberFormatException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorFormatIdProduct"));
+		} catch (ServiceException e) {
+			FacesUtil.mensErro("", FacesUtil.getMessage("shopControllerErrorGetProduct"));
+		}
+		return true;
+	}
+	
+	/**
 	 * Obter os produtos da categoria selecionada. A categoria
 	 * deverá ser passada pelo parâmetro da URL.
 	 * @return O dataModel com os produtos da categoria.
@@ -214,14 +229,6 @@ public class ShopController implements Serializable {
 	 */
 	public void setProduct(Product product) {
 		this.product = product;
-	}
-
-	/**
-	 * Obter a camada de serviço da aplicação.
-	 * @return a camada de serviço da aplicação.
-	 */
-	public Facade getFacade() {
-		return facade;
 	}
 
 	/**

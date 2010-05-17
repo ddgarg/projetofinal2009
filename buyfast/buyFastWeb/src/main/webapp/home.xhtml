@@ -118,8 +118,8 @@
 					<f:param id="id" value="#{item.id}" name="id"/>
 				</h:commandLink>
 			</h:form>
-			<h:form id="productAdd#{item.id}">                                             <!-- Apresentar link somente quando quantidade > 0 -->
-				<h:commandLink value="" action="#{shopController.productDetail}" rendered="#{item.quantityStock > 0}">
+			<h:form id="productAdd#{item.id}" prependId="false">                       <!-- Apresentar link somente quando quantidade > 0 -->
+				<h:commandLink value="" action="#{cartController.addToCart}" rendered="#{item.quantityStock > 0}">
 					<h:graphicImage value="css/includes/languages/brasil/images/buttons/button_add_to_cart1.gif" 
 					      title="#{message.homePageProductCartAdd}" class="btn1" />
 					<f:param id="id" value="#{item.id}" name="id"/>
