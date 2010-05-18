@@ -378,7 +378,7 @@ public class FacadeImpl implements Facade {
 			throw new ServiceException(error, e);
 		}
 	}
-
+	
 	@Override
 	public List<Product> productSearch(String keyWord) throws ServiceException {
 		logger.info("Obtendo produtos pela chave " + keyWord);
@@ -386,6 +386,18 @@ public class FacadeImpl implements Facade {
 			return this.productDao.productSearch(keyWord);
 		} catch (DaoException e) {
 			String error = "Erro ao obter lista de produtos para " + keyWord;
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void customerUpdate(Customer customer) throws ServiceException {
+		logger.info("Atualizando cliente " + customer);
+		try {
+			this.customerDao.update(customer);
+		} catch (DaoException e) {
+			String error = "Erro ao atualizar cliente " + customer;
 			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
