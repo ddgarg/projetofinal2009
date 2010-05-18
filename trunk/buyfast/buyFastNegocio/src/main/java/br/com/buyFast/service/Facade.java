@@ -183,4 +183,11 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Product> productSearch(String keyWord) throws ServiceException;
+
+	/**
+	 * Atualiza o usuário na base de dados.
+	 * @param customer O modelo cliente que será atualizado.
+	 * @throws ServiceException
+	 */
+	void customerUpdate(Customer customer) throws ServiceException;
 }
