@@ -9,79 +9,15 @@
 		<ui:define name="titulo">#{message.advancedSearchTitlePage}</ui:define>
 	
 	<ui:define name="menu">
-		<h:form>
-			<ul class="lavaLampWithImage" id="1">
-				<!-- Para definir a página atual utilizar class="current" -->
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="home">#{message.menuLabelHome}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="promotionProduct" title="#{message.titleMenuPageProduct}">#{message.menuLabelPromocao}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="#{customerController.myAccount}" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="viewCart" title="#{message.titleMenuPageCart}">#{message.menuLabelCarrinho}</a>
-			    </li>
-			    <li class="current">
-			    	<a href="" jsfc="h:commandLink" action="contact" title="#{message.titleMenuPageContact}">#{message.menuLabelContato}</a>
-			    </li>
-			</ul>
-		</h:form>
+		<ui:include src="templates/menuMain.xhtml" />
 	</ui:define>
 	
-		<ui:define name="body">
-			<h:form>
-				<fieldset>
-					<legend>#{message.advancedSearchTitleForm}</legend>
-					<table cellpadding="2" cellspacing="3" border="0">
-					<tr>
-						<td width="130px" align="right">
-							<h:outputText value="#{message.advancedSearchProductNameLabel}:" styleClass="productsLabels" />
-						</td>
-						<td>
-							<h:inputText value="#{shopController.product.name}" id="nome" maxlength="50" size="30" required="true" requiredMessage="*"/>
-						</td>
-						<td>	
-							<h:message for="nome" styleClass="inputRequirement"/>
-						</td>
-					</tr>
-					<tr>
-						<td width="130px" align="right">	
-							<h:outputText value="#{message.advancedSearchDescriptionProduct}:" styleClass="productsLabels" />
-						</td>
-						<td>
-							<h:inputText value="#{shopController.product.description}" id="description" maxlength="50" size="30">
-							</h:inputText>
-						</td>
-						<td>
-							<h:message for="description" styleClass="inputRequirement"/>
-						</td>
-					</tr>
-					<tr>
-						<td width="130px" align="right">
-							<h:outputLabel value="#{message.advancedSearchCategory}" styleClass="productsLabels" />
-						</td>
-						<td>
-							<h:selectOneMenu value="#{shopController.product.category.id}" id="categories" title="#{message.advancedSearchCategorye}" style="width:100px" 
-									converter="categoryConverter">
-								<f:selectItems value="#{productController.allCategories}"></f:selectItems>
-							</h:selectOneMenu>
-							<h:message for="categories" style="color: RED" showDetail="true" />
-						</td>
-						<td>
-							<h:message for="categories" styleClass="inputRequirement"/>
-						</td>
-					</tr>
-					</table>
-				</fieldset>
-				<br />
-				<h:commandButton action="#{contactController.sendContact}" value="#{message.advancedSearchButton}" />
-			</h:form>
-			<br />
-			<br />
+	<ui:define name="body">
+
+		<ui:include src="templates/formAdvancedSearch.xhtml" />
+
 	</ui:define>
+	
 	</ui:composition>
 	
 </html>

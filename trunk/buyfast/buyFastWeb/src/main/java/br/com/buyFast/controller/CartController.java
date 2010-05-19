@@ -2,7 +2,9 @@ package br.com.buyFast.controller;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
@@ -16,7 +18,10 @@ import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.car.Cart;
 import br.com.buyFast.integration.dao.ProductDao;
+import br.com.buyFast.model.Bank;
 import br.com.buyFast.model.ItemsOrder;
+import br.com.buyFast.service.Facade;
+import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
 
 /**
@@ -37,6 +42,12 @@ public class CartController implements Serializable {
 	private static final Log logger = LogFactory.getLog(CartController.class);
 	
 	/**
+	 * Representa a camada de serviço da aplicação.
+	 */
+	@Resource
+	private Facade facade;
+	
+	/**
 	 * Carrinho de compras.
 	 */
 	@Resource
@@ -48,10 +59,30 @@ public class CartController implements Serializable {
 	@Resource
 	private ProductDao productDao;
 	
+	/**
+	 * Representa o tipo de pagamento escolhido pelo cliente.
+	 */
+	private String paymentType;
+	
+	/**
+	 * O banco escolhido pelo usuário.
+	 */
+	private Bank bank;
+	
 	private int count;
 	
 	public CartController() {
 		this.count = 0;
+		this.bank = new Bank();
+	}
+	
+	/**
+	 * Finalizar pedido do cliente.
+	 * @return
+	 */
+	public String finalizeOrder() {
+		
+		return null;
 	}
 	
 	/**
@@ -149,6 +180,25 @@ public class CartController implements Serializable {
 	}
 	
 	/**
+	 * Obter o map com os bancos.
+	 * @return O map com os bancos.
+	 */
+	public Map<String, String> getAllBanks() {
+		Map<String, String> map = new HashMap<String, String>();
+		try {
+			for (Bank bank : facade.getAllBanks()) {
+				map.put(bank.getBank(), bank.getId().toString());
+			}
+		} catch (ServiceException e) {
+			logger.error("Erro ao obter bancos.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorGetBanks"));
+		}
+		
+		return map;
+	}
+	
+	//Getters and Setters
+	/**
 	 * Obter a quantidade de produtos no carrinho de compras.
 	 * @return A quantidade de produtos no carrinho de compras.
 	 */
@@ -175,11 +225,52 @@ public class CartController implements Serializable {
 	}
 
 	/**
+	 * Obter a camada de serviço da aplicação.
+	 * @return A camada de serviço da aplicação.
+	 */
+	public Facade getFacade() {
+		return facade;
+	}
+
+	/**
 	 * Ajustar o modelo de acesso a dados de Produto.
 	 * @param productDao O modelo de acesso a dados de Produto.
 	 */
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
 	}
+
+	/**
+	 * Obter o tipo de pagamento.
+	 * @return O tipo de pagamento
+	 */
+	public String getPaymentType() {
+		return paymentType;
+	}
+
+	/**
+	 * Ajustar o tipo de pagamento
+	 * @param paymentType O tipo de pagamento
+	 */
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	/**
+	 * Obter o banco escolhido pelo usuário.
+	 * @return O banco escolhido pelo usuário.
+	 */
+	public Bank getBank() {
+		return bank;
+	}
+
+	/**
+	 * Ajustar o banco escolhido pelo usuário.
+	 * @param bank O banco escolhido pelo usuário.
+	 */
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+	
 	
 }

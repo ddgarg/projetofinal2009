@@ -391,16 +391,13 @@
 							<td class="footer2_td">
 							<span>
 								<h:outputLink value="advancedSearch.jsf">#{message.templatePageAdvanceSearch}</h:outputLink>
-							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-							<h:commandLink value="#{message.templatePageRegisterCreate}" 
-																action="#{customerController.customerRegister}"
-																rendered="#{customerController.customer.email == null}" />
-							&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;
-							<h:commandLink value="#{message.templatePageLogInItem}" 
-																action="#{customerController.myAccount}" rendered="#{customerController.customer.email == null}"/>
-															<h:commandLink value="#{message.templatePageLogOutItem}" 
-																action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
-							</span> <br />
+								&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+								<h:commandLink value="#{message.templatePageRegisterCreate}" action="#{customerController.customerRegister}" rendered="#{customerController.customer.email == null}" />
+								&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+								<h:commandLink value="#{message.templatePageLogInItem}" action="#{customerController.myAccount}" rendered="#{customerController.customer.email == null}"/>
+								<h:commandLink value="#{message.templatePageLogOutItem}" action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
+							</span>
+							<br />
 							Copyright &copy; 2010 <a href="#">BuyFast</a>
 							&nbsp;&nbsp; <b>
 							<!--<a href="#">Políticas de Privacidade</a>

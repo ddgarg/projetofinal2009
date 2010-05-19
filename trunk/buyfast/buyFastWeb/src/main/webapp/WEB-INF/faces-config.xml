@@ -46,6 +46,11 @@
   <managed-bean-class>br.com.buyFast.controller.CustomerController</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>bankController</managed-bean-name>
+  <managed-bean-class>br.com.buyFast.controller.adminController.BankController</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <navigation-case>
    <from-outcome>adminlogin</from-outcome>
@@ -122,6 +127,10 @@
   <navigation-case>
    <from-outcome>advancedSearch</from-outcome>
    <to-view-id>/advancedSearch.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>bankPage</from-outcome>
+   <to-view-id>/admin/bankPage.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <navigation-rule>

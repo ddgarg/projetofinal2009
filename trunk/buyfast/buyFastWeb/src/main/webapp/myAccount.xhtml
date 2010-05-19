@@ -8,32 +8,38 @@
 	<ui:composition template="/templates/templatepage.xhtml">
 		<ui:define name="titulo">#{message.myAccountTitle}</ui:define>
 	
-	<ui:define name="menu">
-		<h:form>
-			<ul class="lavaLampWithImage" id="1">
-				<!-- Para definir a página atual utilizar class="current" -->
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="home">#{message.menuLabelHome}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="promotionProduct" title="#{message.titleMenuPageProduct}">#{message.menuLabelPromocao}</a>
-			    </li>
-			    <li class="current">
-			    	<a href="" jsfc="h:commandLink" action="#{customerController.myAccount}" title="#{message.titleMenuPageMyAccount}">#{message.menuLabelConta}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="viewCart" title="#{message.titleMenuPageCart}">#{message.menuLabelCarrinho}</a>
-			    </li>
-			    <li>
-			    	<a href="" jsfc="h:commandLink" action="contact" title="#{message.titleMenuPageContact}">#{message.menuLabelContato}</a>
-			    </li>
-			</ul>
-		</h:form>
-	</ui:define>
+		<ui:define name="menu">
+			<ui:include src="templates/menuMain.xhtml" />
+		</ui:define>
 	
 		<ui:define name="body">
+		<h:form>
+		<fieldset>
+		
+			<legend><font color="#7cb700">#{message.userLoggerUserArea} - <b><i>#{customerController.customer.name} #{customerController.customer.secondName}</i></b></font></legend>
 	
-		</ui:define>
+			<table>
+				<tr>
+					<td>
+						<h:commandLink action="#{customerController.logout}">
+							<h:graphicImage value="#{message.userLoggerLogout}" title="#{message.userLoggerLogout}" url="images/logout_button.jpg" />
+						</h:commandLink>
+					</td>
+					<td>
+						<h:commandLink action="customerForm">
+							<h:graphicImage value="#{message.userLoggerRefreshData}" title="#{message.userLoggerRefreshData}" url="images/atualizar_dados.jpg" />
+						</h:commandLink>
+					</td>
+				</tr>
+			</table>
+
+		</fieldset>
+
+		<br />
+		<br />
+		
+		</h:form>
+	</ui:define>
 	</ui:composition>
 	
 </html>
