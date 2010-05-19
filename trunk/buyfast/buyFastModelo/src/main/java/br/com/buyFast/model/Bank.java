@@ -24,7 +24,7 @@ public class Bank implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	/**
 	 * O nome do banco.
@@ -51,7 +51,7 @@ public class Bank implements Serializable {
 	 * Obter o identificador do banco.
 	 * @return O identificador do banco.
 	 */
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -59,7 +59,7 @@ public class Bank implements Serializable {
 	 * Ajustar o identificador do banco.
 	 * @param id - O novo identificador do banco.
 	 */
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
