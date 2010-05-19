@@ -77,6 +77,15 @@ legend{
 .text{
 	font-size: 10px;
 }
+
+.text11{
+	font-size: 11px;
+}
+
+.text12{
+	font-size: 12px;
+}
+
 .listprice{
 	text-decoration: line-through;
 	font-size: 9px;

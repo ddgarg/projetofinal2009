@@ -62,6 +62,9 @@
    <PROCESS-ITEM-OUTPUT ID="advancedSearch::#advancedSearch.xhtml"
     NAME="output18" PATH="/advancedSearch.xhtml"
     TARGET="rules:#advancedSearch.xhtml" TITLE="advancedSearch" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="bankPage::#admin#bankPage.xhtml"
+    NAME="output19" PATH="/admin/bankPage.xhtml"
+    TARGET="rules:#admin#bankPage.xhtml" TITLE="bankPage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
@@ -112,5 +115,8 @@
   SHAPE="248,840,50,25" model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#advancedSearch.xhtml"
   PATH="/advancedSearch.xhtml" SHAPE="256,896,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#admin#bankPage.xhtml"
+  PATH="/admin/bankPage.xhtml" SHAPE="360,520,50,25"
   model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

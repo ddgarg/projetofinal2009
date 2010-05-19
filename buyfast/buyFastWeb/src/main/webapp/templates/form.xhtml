@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.prime.com.tr/ui">
+	xmlns:p="http://primefaces.prime.com.tr/ui" lang="pt-br">
+	
 <f:loadBundle var="message" basename="ui.Messages" />
 <ui:composition>
 	<h:form prependId="false">
@@ -192,60 +193,57 @@
 		</fieldset>
 						-->
 	
-	
-		<div style="padding: 0px 0px 4px 0px;"><img
-			src="images/spacer.gif" border="0" alt="" width="1" height="1" /></div>
+		<div style="padding: 0px 0px 4px 0px;"><img src="images/spacer.gif" border="0" alt="" width="1" height="1" /></div>
 	
 		<!--  Password do CLIENTE-->
-	
-	
-	
-		<fieldset><legend>#{message.formTitleInformationContact}</legend>
-		<table border="0" cellspacing="4" cellpadding="2">
-			<tr>
-				<td class="main b_width" align="right">
-					<strong>#{message.formEmailLabel}</strong>
-				</td>
-				<td class="main width2_100">
-					<h:inputText id="email" value="#{customerController.customer.email}" title="#{message.formEmailTitle}"
-							required="true" requiredMessage=" *">
-						<f:validator validatorId="validateEmail" />
-					</h:inputText>
-					<h:message for="email" styleClass="inputRequirement"/>
-				</td>
-			</tr>
-			<tr>
-				<td class="main b_width" align="right">
-					<strong>#{message.formEmailValidationLabel}</strong>
-				</td>
-				<td class="main width2_100">
-					<h:inputText id="emailValidation" value="#{customerController.validationEmail}" title="#{message.formEmailValidationTitle}"
-							required="true" requiredMessage=" *"/>
-					<h:message for="emailValidation" styleClass="inputRequirement"/>
-				</td>
-			</tr>
-			<tr>
-				<td class="main b_width" align="right">
-					<strong>#{message.formPasswordLabel}</strong>
-				</td>
-				<td class="main width2_100">
-					<h:inputSecret id="password" value="#{customerController.customer.password}" title="#{message.formPasswordTitle}"
-							required="true" requiredMessage=" *"/>
-					<h:message for="password" styleClass="inputRequirement"/>
-				</td>
-			</tr>
-			<tr>
-				<td class="main b_width" align="right">
-					<strong>#{message.formPasswordValidationLabel}</strong>
-				</td>
-				<td class="main width2_100">
-					<h:inputSecret id="passwordValidation" value="#{customerController.validationPassword}" title="#{message.formPasswordValidationTitle}"
-							required="true" requiredMessage=" *"/>
-					<h:message for="passwordValidation" styleClass="inputRequirement"/>
-				</td>
-			</tr>
-		</table>
+		<fieldset>
+			<legend>#{message.formTitleInformationContact}</legend>
+			<table border="0" cellspacing="4" cellpadding="2">
+				<tr>
+					<td class="main b_width" align="right">
+						<strong>#{message.formEmailLabel}</strong>
+					</td>
+					<td class="main width2_100">
+						<h:inputText id="email" value="#{customerController.customer.email}" title="#{message.formEmailTitle}"
+									required="true" requiredMessage=" *" disabled="#{customerController.customer.id != null}">
+							<f:validator validatorId="validateEmail" />
+						</h:inputText>
+						<h:message for="email" styleClass="inputRequirement"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="main b_width" align="right">
+						<strong>#{message.formEmailValidationLabel}</strong>
+					</td>
+					<td class="main width2_100">
+						<h:inputText id="emailValidation" value="#{customerController.validationEmail}" title="#{message.formEmailValidationTitle}"
+									required="true" requiredMessage=" *" disabled="#{customerController.customer.id != null}" />
+						<h:message for="emailValidation" styleClass="inputRequirement"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="main b_width" align="right">
+						<strong>#{message.formPasswordLabel}</strong>
+					</td>
+					<td class="main width2_100">
+						<h:inputSecret id="password" value="#{customerController.customer.password}" title="#{message.formPasswordTitle}"
+								required="true" requiredMessage=" *" disabled="#{customerController.customer.id != null}" />
+						<h:message for="password" styleClass="inputRequirement"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="main b_width" align="right">
+						<strong>#{message.formPasswordValidationLabel}</strong>
+					</td>
+					<td class="main width2_100">
+						<h:inputSecret id="passwordValidation" value="#{customerController.validationPassword}" title="#{message.formPasswordValidationTitle}"
+								required="true" requiredMessage=" *" disabled="#{customerController.customer.id != null}" />
+						<h:message for="passwordValidation" styleClass="inputRequirement"/>
+					</td>
+				</tr>
+			</table>
 		</fieldset>
+		
 		<br />
 		<h:commandButton action="#{customerController.register}" value="#{message.formButtonSave}" />
 		<br />

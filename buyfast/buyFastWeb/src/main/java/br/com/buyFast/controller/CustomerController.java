@@ -102,7 +102,7 @@ public class CustomerController implements Serializable {
 	public String myAccount() {
 		if (session.getAttribute("user") != null) {
 			//Se estiver logado, ir para este caminho.
-			return "userLogged";
+			return "myAccount";
 		}
 		//Se não estiver logado, ir para a página de login.
 		return "userLogin";
@@ -146,12 +146,14 @@ public class CustomerController implements Serializable {
 				session.removeAttribute("msg");
 			}
 			
-			//Retorna para a página do usuário.
-//			if (originViewId != null) {
-//				return originViewId;
-//			} else {
-				return "userLogged";
-//			}
+//			Retorna para a página do usuário.
+			if (originViewId != null) {
+				
+				FacesUtil.redirectPage(originViewId);
+				return null;
+			} else {
+				return "myAccount";
+			}
 			
 		} else {
 			FacesUtil.mensErro("", FacesUtil.getMessage("customerPasswordLoginInvalid"));
@@ -174,7 +176,7 @@ public class CustomerController implements Serializable {
 		
 		resetCustomer();
 		
-		return null;
+		return "home";
 	}
 	
 	/**
@@ -184,7 +186,7 @@ public class CustomerController implements Serializable {
 	public String register() {
 		
 		// Verifica a confirmação do e-mail.
-		if (!this.validationEmail.equals(this.customer.getEmail())) {
+		if (this.customer.getId() == null && !this.validationEmail.equals(this.customer.getEmail())) {
 			logger.error("Erro de confirmação de e-mail.");
 			FacesUtil.mensErro("", FacesUtil.getMessage("messageValidateConfirmEmail"));
 			
@@ -195,7 +197,7 @@ public class CustomerController implements Serializable {
 		}
 		
 		//Verifica a confirmação da senha.
-		if (!this.validationPassword.equals(this.customer.getPassword())) {
+		if (this.customer.getId() == null && !this.validationPassword.equals(this.customer.getPassword())) {
 			logger.error("Erro de confirmação de senha.");
 			FacesUtil.mensErro("", FacesUtil.getMessage("messageValidateConfirmPassword"));
 			
@@ -205,9 +207,27 @@ public class CustomerController implements Serializable {
 			return null;
 		}
 		
+		//Apaga as validações
+		this.validationPassword = "";
+		this.validationEmail = "";
+		
 		try {
 			logger.info("Salavando cadastro do cliente...");
-			facade.customerRecord(customer);
+			if (this.customer.getId() != null) {
+				facade.customerUpdate(customer);
+				
+				try {
+					sendContact();
+				} catch (ServiceException e) {
+					logger.error("Erro ao enviar e-mail de confirmação de cadastro.", e);
+					FacesUtil.mensWarn("", FacesUtil.getMessage("customerControllerErrorSendEmailRegisterCustomer"));
+				}
+				
+				return "userLogged";
+				
+			} else {
+				facade.customerRecord(customer);
+			}
 		} catch (ServiceException e) {
 			logger.error("Erro ao salvar registro do cliente " + this.customer, e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorRegisterCustomer"));
@@ -227,6 +247,7 @@ public class CustomerController implements Serializable {
 		resetCustomer();
 		
 		return "userLogin";
+		
 	}
 	
 	/**
@@ -251,7 +272,11 @@ public class CustomerController implements Serializable {
 			
 			StringBuilder builder = new StringBuilder();
 			
-			builder.append("<h2>Cadastro no site BuyFast:</h2><br />");
+			if (this.customer.getId() != null) {
+				builder.append("<h2>Atualização no cadastro do site BuyFast:</h2><br />");
+			} else {
+				builder.append("<h2>Cadastro no site BuyFast:</h2><br />");
+			}
 			builder.append("<b>Hora do cadastro:</b> " + df.format(new Date()) + "<br />");
 			builder.append("<b>Nome:</b> " + this.customer.getName() + "<br />");
 			builder.append("<b>E-mail:</b> " + this.customer.getEmail() + "<br />");
