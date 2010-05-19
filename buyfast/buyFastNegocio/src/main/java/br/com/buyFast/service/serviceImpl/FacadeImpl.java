@@ -15,12 +15,14 @@ import org.apache.commons.logging.LogFactory;
 
 import br.com.buyFast.integration.dao.AddressDao;
 import br.com.buyFast.integration.dao.AdminDao;
+import br.com.buyFast.integration.dao.BankDao;
 import br.com.buyFast.integration.dao.CategoryDao;
 import br.com.buyFast.integration.dao.CustomerDao;
 import br.com.buyFast.integration.dao.DaoException;
 import br.com.buyFast.integration.dao.EmployeeDao;
 import br.com.buyFast.integration.dao.ProductDao;
 import br.com.buyFast.model.Administrator;
+import br.com.buyFast.model.Bank;
 import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
@@ -74,21 +76,29 @@ public class FacadeImpl implements Facade {
 	private AddressDao addressDao;
 	
 	/**
+	 * Objeto de acesso a dados de {@link BankDao}.
+	 */
+	private BankDao bankDao;
+	
+	/**
 	 * Instancia um novo {@link Facade}.
 	 * @param adminDao
 	 * @param employeeDao
 	 * @param categoryDao
 	 * @param productDao
 	 * @param customerDao
+	 * @param bankDao
 	 */
 	public FacadeImpl(AdminDao adminDao, EmployeeDao employeeDao, CategoryDao categoryDao,
-			ProductDao productDao, CustomerDao customerDao, AddressDao addressDao) {
+			ProductDao productDao, CustomerDao customerDao, AddressDao addressDao,
+			BankDao bankDao) {
 		this.adminDao = adminDao;
 		this.employeeDao = employeeDao;
 		this.categoryDao = categoryDao;
 		this.productDao = productDao;
 		this.customerDao = customerDao;
 		this.addressDao = addressDao;
+		this.bankDao = bankDao;
 	}
 	
 	@Override
@@ -403,4 +413,53 @@ public class FacadeImpl implements Facade {
 		}
 	}
 
+	@Override
+	public List<Bank> getAllBanks() throws ServiceException {
+		logger.info("Obtendo a lista de bancos...");
+		try {
+			return this.bankDao.all();
+		} catch (DaoException e) {
+			String error = "Erro ao obter a lista de bancos da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void removeBank(Bank bank) throws ServiceException {
+		logger.info("Removendo o banco " + bank + " da base de dados.");
+		try {
+			this.bankDao.delete(bank);
+		} catch (DaoException e) {
+			String error = "Erro ao remover banco " + bank + " da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+		
+	}
+
+	@Override
+	public void saveBank(Bank bank) throws ServiceException {
+		logger.info("Salvando banco " + bank + " na base de dados.");
+		try {
+			this.bankDao.save(bank);
+		} catch (DaoException e) {
+			String error = "Erro ao persistir banco " + bank + ".";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void updateBank(Bank bank) throws ServiceException {
+		logger.info("Atualizando banco " + bank + " na base de dados.");
+		try {
+			this.bankDao.update(bank);
+		} catch (DaoException e) {
+			String error = "Erro ao atualizar banco " + bank + ".";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+	
 }
