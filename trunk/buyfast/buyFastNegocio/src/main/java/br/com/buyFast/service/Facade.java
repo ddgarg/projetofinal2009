@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import br.com.buyFast.model.Administrator;
+import br.com.buyFast.model.Bank;
 import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
@@ -190,4 +191,32 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	void customerUpdate(Customer customer) throws ServiceException;
+	
+	/**
+	 * Obter todos os bancos da base de dados.
+	 * @return O conjunto de bancos da base de dados.
+	 * @throws ServiceException
+	 */
+	List<Bank> getAllBanks() throws ServiceException;
+	
+	/**
+	 * Persiste o banco na base de dados.
+	 * @param bank O banco que será persistido.
+	 * @throws ServiceException
+	 */
+	void saveBank(Bank bank) throws ServiceException;
+	
+	/**
+	 * Remove da base de dados o banco.
+	 * @param bank O banco que será removido da base de dados.
+	 * @throws ServiceException
+	 */
+	void removeBank(Bank bank) throws ServiceException;
+	
+	/**
+	 * Atualiza o banco na base de dados.
+	 * @param bank O banco que será atualizado. 
+	 * @throws ServiceException
+	 */
+	void updateBank(Bank bank) throws ServiceException;
 }
