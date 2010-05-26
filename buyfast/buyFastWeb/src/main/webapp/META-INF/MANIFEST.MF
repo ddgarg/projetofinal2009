@@ -16,14 +16,15 @@ Class-Path: activation-1.1.jar antlr-2.7.6.jar aopalliance-1.0.jar asm
  notations-3.3.1.GA.jar hibernate-c3p0-3.3.2.GA.jar hibernate-commons-
  annotations-3.1.0.GA.jar hibernate-core-3.3.2.GA.jar hibernate-ehcach
  e-3.3.1.GA.jar hibernate-entitymanager-3.4.0.GA.jar hibernate-tools-3
- .2.3.GA.jar itext-1.4.8.jar javassist-3.4.GA.jar jcommon-1.0.0.jar jf
- reechart-1.0.0.jar jsf-api-1.2_13.jar jsf-facelets-1.1.15.jar jsf-imp
- l-1.2_13.jar jstl-1.1.2.jar jta-1.1.jar jtidy-r8-20060801.jar junit-3
- .8.jar log4j-1.2.13.jar mail-1.4.3.jar myfaces-build-1.2.4.jar odmg-3
- .0.jar optimus-0.9.0-SNAPSHOT.jar poi-3.2-FINAL.jar postgresql-8.3-60
- 3.jdbc4.jar primefaces-1.0.1.jar servlet-api-2.5.jar slf4j-api-1.5.8.
- jar slf4j-log4j12-1.5.8.jar spring-2.5.6.jar spring-beans-2.0.8.jar s
- pring-context-2.0.8.jar spring-core-2.0.8.jar spring-dao-2.0.8.jar sp
- ring-hibernate3-2.0.8.jar spring-jdbc-2.5.6.jar spring-orm-2.5.6.jar 
- spring-tx-2.5.6.jar xml-apis-1.0.b2.jar
+ .2.3.GA.jar itext-1.4.8.jar javassist-3.4.GA.jar jbarcodebean-1.2.0.j
+ ar jBoleto-1.0.jar jcommon-1.0.0.jar jfreechart-1.0.0.jar jsf-api-1.2
+ _13.jar jsf-facelets-1.1.15.jar jsf-impl-1.2_13.jar jstl-1.1.2.jar jt
+ a-1.1.jar jtidy-r8-20060801.jar junit-3.8.jar log4j-1.2.13.jar mail-1
+ .4.3.jar myfaces-build-1.2.4.jar odmg-3.0.jar optimus-0.9.0-SNAPSHOT.
+ jar poi-3.2-FINAL.jar postgresql-8.3-603.jdbc4.jar primefaces-1.0.1.j
+ ar servlet-api-2.5.jar slf4j-api-1.5.8.jar slf4j-log4j12-1.5.8.jar sp
+ ring-2.5.6.jar spring-beans-2.0.8.jar spring-context-2.0.8.jar spring
+ -core-2.0.8.jar spring-dao-2.0.8.jar spring-hibernate3-2.0.8.jar spri
+ ng-jdbc-2.5.6.jar spring-orm-2.5.6.jar spring-tx-2.5.6.jar xml-apis-1
+ .0.b2.jar
 
