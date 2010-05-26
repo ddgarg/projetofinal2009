@@ -100,6 +100,22 @@
 		    <version>2.0.8</version>
 		</dependency>
 		-->
+		<!-- Dependência JBoleto -->
+		<dependency>
+		   <groupId>jBoleto</groupId>
+		   <artifactId>jBoleto</artifactId>
+		   <version>1.0</version>
+		</dependency>
+		<dependency>
+		   <groupId>jbarcodebean</groupId>
+		   <artifactId>jbarcodebean</artifactId>
+		   <version>1.2.0</version>
+		</dependency>
+		<dependency>
+		   <groupId>com.lowagie</groupId>
+		   <artifactId>itext</artifactId>
+		   <version>2.1.2</version>
+		</dependency>
 		<!-- E-mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
