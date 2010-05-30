@@ -1,6 +1,5 @@
 package br.com.buyFast.service;
 
-import org.springframework.mail.MailException;
 
 
 /**
