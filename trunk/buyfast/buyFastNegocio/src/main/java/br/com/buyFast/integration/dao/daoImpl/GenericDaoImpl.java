@@ -69,6 +69,22 @@ public class GenericDaoImpl<T, ID extends Serializable> extends HibernateDaoSupp
 	
 	@Override
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
+	public T merge(T object) throws DaoException {
+		try {
+			logger.info("Salvando objeto " + object + "...");
+			getSessionFactory().getCurrentSession().merge(object);
+			logger.info("Objeto " + getObjectClass().getSimpleName() + " salvo com sucesso.");
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar objeto " + getObjectClass().getSimpleName();
+			logger.error(messageError, e);
+			throw new DaoException(messageError, e);
+		}
+		
+		return object;
+	}
+	
+	@Override
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T load(T object) throws DaoException {
 		try {
 			logger.info("Salvando objeto " + object + "...");

@@ -26,6 +26,14 @@ public interface GenericDao <T, ID extends Serializable> {
 	public T save(T object) throws DaoException;
 	
 	/**
+	 * Persiste o objeto no banco de dados.
+	 * @param object o objeto que será persistido.
+	 * @return o objeto atualizado.
+	 * @throws DaoException 
+	 */
+	public T merge(T object) throws DaoException;
+	
+	/**
 	 * Pesquisa o objeto pelo código.
 	 * @param id o código do objeto que será pesquisado.
 	 * @return o modelo pesquisado no banco de dados.

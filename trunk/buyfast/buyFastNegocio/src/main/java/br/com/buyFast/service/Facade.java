@@ -9,6 +9,8 @@ import br.com.buyFast.model.Bank;
 import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
+import br.com.buyFast.model.ItemsOrder;
+import br.com.buyFast.model.Order;
 import br.com.buyFast.model.Person;
 import br.com.buyFast.model.Product;
 
@@ -219,4 +221,51 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	void updateBank(Bank bank) throws ServiceException;
+	
+	/**
+	 * Persiste o pedido na base de dados.
+	 * @param order O pedido que será persistido.
+	 * @return O pedido atualizado da base de dados.
+	 */
+	Order saveOrder(Order order) throws ServiceException;
+	
+	/**
+	 * Persiste o item de pedido na base de dados.
+	 * @param itemsOrder O item de pedido que será persistido.
+	 * @return O item de pedido atualizado da base de dados.
+	 * @throws ServiceException
+	 */
+	ItemsOrder saveItemsOrder(ItemsOrder itemsOrder) throws ServiceException;
+	
+	/**
+	 * Persiste o item de pedido na base de dados.
+	 * @param itemsOrder O item de pedido que será persistido.
+	 * @return O item de pedido atualizado da base de dados.
+	 * @throws ServiceException
+	 */
+	ItemsOrder mergeItemsOrder(ItemsOrder itemsOrder) throws ServiceException;
+	
+	/**
+	 * Gera o boleto de pagamento.
+	 * @param order O pedido para gerar o boleto.
+	 * @throws Exception 
+	 * @throws ServiceException
+	 */
+	void generateBoleto(Order order) throws Exception;
+
+	/**
+	 * Obter o banco pelo Id.
+	 * @param id O identificador do Banco.
+	 * @return O banco da base de dados.
+	 * @throws ServiceException
+	 */
+	Bank getBankToId(Integer id) throws ServiceException;
+	
+	/**
+	 * Obter os pedidos não pagos do cliente.
+	 * @param customer O cliente ao qual será verificado os pedidos.
+	 * @return A lista de pedidos não pagos do cliente.
+	 * @throws ServiceException
+	 */
+	List<Order> getOrdersNotPaid(Customer customer) throws ServiceException;
 }
