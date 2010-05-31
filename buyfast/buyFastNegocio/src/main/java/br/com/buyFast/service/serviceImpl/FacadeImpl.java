@@ -20,13 +20,19 @@ import br.com.buyFast.integration.dao.CategoryDao;
 import br.com.buyFast.integration.dao.CustomerDao;
 import br.com.buyFast.integration.dao.DaoException;
 import br.com.buyFast.integration.dao.EmployeeDao;
+import br.com.buyFast.integration.dao.ItemsOrderDao;
+import br.com.buyFast.integration.dao.OrderDao;
 import br.com.buyFast.integration.dao.ProductDao;
 import br.com.buyFast.model.Administrator;
 import br.com.buyFast.model.Bank;
 import br.com.buyFast.model.Category;
 import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.Employee;
+import br.com.buyFast.model.ItemsOrder;
+import br.com.buyFast.model.Order;
 import br.com.buyFast.model.Product;
+import br.com.buyFast.model.StatusEnum;
+import br.com.buyFast.service.BoletoService;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 
@@ -81,17 +87,37 @@ public class FacadeImpl implements Facade {
 	private BankDao bankDao;
 	
 	/**
+	 * Objeto de acesso a dados de {@link OrderDao}.
+	 */
+	private OrderDao orderDao;
+	
+	/**
+	 * Objeto de acesso a dados de {@link ItemsOrder}.
+	 */
+	private ItemsOrderDao itemsOrderDao;
+	
+	/**
+	 * Camada de serviço para geração de boleto.
+	 */
+	private BoletoService boletoService;
+	
+	/**
 	 * Instancia um novo {@link Facade}.
 	 * @param adminDao
 	 * @param employeeDao
 	 * @param categoryDao
 	 * @param productDao
 	 * @param customerDao
+	 * @param addressDao
 	 * @param bankDao
+	 * @param orderDao
+	 * @param itemsOrderDao
+	 * @param boletoService
 	 */
 	public FacadeImpl(AdminDao adminDao, EmployeeDao employeeDao, CategoryDao categoryDao,
 			ProductDao productDao, CustomerDao customerDao, AddressDao addressDao,
-			BankDao bankDao) {
+			BankDao bankDao, OrderDao orderDao, ItemsOrderDao itemsOrderDao,
+			BoletoService boletoService) {
 		this.adminDao = adminDao;
 		this.employeeDao = employeeDao;
 		this.categoryDao = categoryDao;
@@ -99,6 +125,9 @@ public class FacadeImpl implements Facade {
 		this.customerDao = customerDao;
 		this.addressDao = addressDao;
 		this.bankDao = bankDao;
+		this.orderDao = orderDao;
+		this.itemsOrderDao = itemsOrderDao;
+		this.boletoService = boletoService;
 	}
 	
 	@Override
@@ -413,6 +442,17 @@ public class FacadeImpl implements Facade {
 		}
 	}
 
+	public Bank getBankToId(Integer id) throws ServiceException {
+		logger.info("Obtendo banco...");
+		try {
+			return this.bankDao.searchById(id);
+		} catch (DaoException e) {
+			String error = "Erro ao obter banco.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+	
 	@Override
 	public List<Bank> getAllBanks() throws ServiceException {
 		logger.info("Obtendo a lista de bancos...");
@@ -461,5 +501,73 @@ public class FacadeImpl implements Facade {
 			throw new ServiceException(error, e);
 		}
 	}
+
+	@Override
+	public Order saveOrder(Order order) throws ServiceException {
+		try {
+			logger.info("Salvando pedido " + order + " no banco de dados ...");
+			return this.orderDao.save(order);
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar pedido " + order + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
 	
+	@Override
+	public ItemsOrder saveItemsOrder(ItemsOrder itemsOrder) throws ServiceException {
+		try {
+			logger.info("Salvando item de pedido " + itemsOrder + " no banco de dados ...");
+			return this.itemsOrderDao.save(itemsOrder);
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar item de pedido " + itemsOrder + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+	
+	@Override
+	public ItemsOrder mergeItemsOrder(ItemsOrder itemsOrder) throws ServiceException {
+		try {
+			logger.info("Salvando item de pedido " + itemsOrder + " no banco de dados ...");
+			return this.itemsOrderDao.merge(itemsOrder);
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar item de pedido " + itemsOrder + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public void generateBoleto(Order order) throws Exception {
+		if (order.getBank().getBank() == null) {
+			try {
+				order.setBank(getBankToId(order.getBank().getId()));
+			} catch (ServiceException e) {
+				logger.error("Erro ao obter banco para o boleto.", e);
+				throw new ServiceException("Erro ao obter banco para o boleto.", e);
+			}
+		}
+		try {
+			boletoService.generateBoleto(order);
+		} catch (Exception e) {
+			logger.error("Erro ao gerar boleto.", e);
+			throw new Exception("Erro ao gerar boleto.", e);
+		}
+	}
+
+	@Override
+	public List<Order> getOrdersNotPaid(Customer customer) throws ServiceException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customer.getId());
+		params.put("status", StatusEnum.CHECKPAYMENT);
+		String query = "FROM Order o WHERE o.customer.id = :id AND o.statusEnum = :status";
+		try {
+			return this.orderDao.listSearchParam(query, params);
+		} catch (DaoException e) {
+			logger.error("Erro ao obter pedidos não pagos do cliente " + customer.getName(), e);
+			throw new ServiceException("Erro ao obter pedidos não pagos do cliente " + customer.getName(), e);
+		}
+	}
+
 }

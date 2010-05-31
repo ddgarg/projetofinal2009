@@ -16,6 +16,9 @@
 		<constructor-arg ref="customerDao" />
 		<constructor-arg ref="addressDao" />
 		<constructor-arg ref="bankDao" />
+		<constructor-arg ref="orderDao" />
+		<constructor-arg ref="itemsOrderDao" />
+		<constructor-arg ref="boletoService" />
 	</bean>
 	
 	<bean id="emailService" class="br.com.buyFast.service.serviceImpl.EmailServiceImpl"> 
