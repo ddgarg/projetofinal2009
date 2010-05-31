@@ -132,6 +132,10 @@
    <from-outcome>bankPage</from-outcome>
    <to-view-id>/admin/bankPage.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>showBoleto</from-outcome>
+   <to-view-id>/showBoleto.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <navigation-rule>
   <from-view-id>/admin/login.xhtml</from-view-id>

@@ -85,7 +85,9 @@ public class AdminLoginPhaseListener implements PhaseListener {
 		} else if (viewId.equals("/userLogged.xhtml") || 
 				   viewId.equals("/userLogged.jsf") ||
 				   viewId.equals("/myAccount.xhtml") || 
-				   viewId.equals("/myAccount.jsf")) {
+				   viewId.equals("/myAccount.jsf") ||
+				   viewId.equals("/showBoleto.xhtml") ||
+				   viewId.equals("/showBoleto.jsf")) {
 			/*
 			 * Recupera os dados que estão em sessão em CustomerController.
 			 */

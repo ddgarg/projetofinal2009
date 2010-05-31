@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
@@ -248,6 +250,22 @@ public class CustomerController implements Serializable {
 		
 		return "userLogin";
 		
+	}
+	
+	/**
+	 * Obter os pedidos não pagos do cliente logado.
+	 * @return A lista dos pedidos não pagos do cliente.
+	 */
+	public DataModel getOrdersNotPaid() {
+		try {
+			DataModel dataModel = new ListDataModel(facade.getOrdersNotPaid(customer));
+			return dataModel;
+		} catch (ServiceException e) {
+			logger.error("Erro ao obter lista de pedidos não pagos.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetOrderNotPaid"));
+		}
+		
+		return new ListDataModel();
 	}
 	
 	/**

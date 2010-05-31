@@ -40,6 +40,8 @@ public class Cart {
 			itemsOrder.setProduct(product);
 			itemsOrder.setQuantity(1);
 			
+			itemsOrder.setPrice(realPrice(product.getPrice(), product.getDiscount()));
+			
 			itemsOrder.setSubTotal(subTotal(product.getPrice(), product.getDiscount(), itemsOrder.getQuantity()));
 			
 			items.put(product.getId(), itemsOrder);
@@ -62,6 +64,20 @@ public class Cart {
 		}
 		
 		return (price - (price * discount)/100) * qtd;
+	}
+	
+	/**
+	 * Calcula o valor real do produto, caso o mesmo tenha desconto.
+	 * @param price O preço do produto.
+	 * @param discount O desconto do produto.
+	 * @return O valor real do produto.
+	 */
+	public double realPrice(double price, int discount) {
+		if (discount == 0) {
+			discount = 0;
+		}
+		
+		return (price - (price * discount)/100);
 	}
 	
 	/**
