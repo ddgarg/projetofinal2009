@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:p="http://primefaces.prime.com.tr/ui">
 
 	<ui:composition template="/templates/templatepage.xhtml">
@@ -34,7 +35,58 @@
 			</table>
 
 		</fieldset>
+		
+		<br />
+		
+		<c:choose>
+		<c:when test="#{customerController.ordersNotPaid.rowCount == 0}">
+		
+		</c:when>
+		
+		<c:otherwise>
+		
+		<fieldset> 
+		<legend><font color="#7cb700">Confirmar Pagamento do Boleto</font></legend> 
+ 
+ 				<h:dataTable id="items" var="item" value="#{customerController.ordersNotPaid}"
+						cellpadding="0" cellspacing="0" border="0"
+						headerClass="shop-pagamento-header" columnClasses="col-a, col-b, col-c, col-d" 
+						rowClasses="row-a, row-b" >
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Código Pedido" styleClass="text" />
+						</f:facet>
+							<h:outputText id="cod" value="#{item.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data Pedido" styleClass="text" />
+						</f:facet>
+						<h:outputText id="dtPed" value="#{item.orderDate}" >
+							<f:convertDateTime pattern="dd/MM/yyy"></f:convertDateTime>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Status Pedido" styleClass="text" />
+						</f:facet>
+						<h:outputText id="status" value="#{item.statusEnum.status}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Confimar Pagamento" styleClass="text" />
+						</f:facet>
+						<a href="#"><img src="images/check.jpg" alt=" Confirmar Pagamento " title=" Confirmar Pagamento "/></a> 
+					</h:column>
+				</h:dataTable>
+				
+	
+		</fieldset> 
 
+
+		</c:otherwise>
+		</c:choose>
+		
 		<br />
 		<br />
 		

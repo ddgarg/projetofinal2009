@@ -1,15 +1,23 @@
 package br.com.buyFast.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,9 +25,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.car.Cart;
-import br.com.buyFast.integration.dao.ProductDao;
 import br.com.buyFast.model.Bank;
+import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.ItemsOrder;
+import br.com.buyFast.model.Order;
+import br.com.buyFast.model.StatusEnum;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
@@ -54,12 +64,6 @@ public class CartController implements Serializable {
 	private Cart cart;
 	
 	/**
-	 * Representa o modelo de acesso a dados para produtos.
-	 */
-	@Resource
-	private ProductDao productDao;
-	
-	/**
 	 * Representa o tipo de pagamento escolhido pelo cliente.
 	 */
 	private String paymentType;
@@ -68,6 +72,11 @@ public class CartController implements Serializable {
 	 * O banco escolhido pelo usuário.
 	 */
 	private Bank bank;
+	
+	/**
+	 * Recebe o pedido após finalizar compra. Será apagado após gerar boleto.
+	 */
+	private Order orderBoleto;
 	
 	private int count;
 	
@@ -82,7 +91,130 @@ public class CartController implements Serializable {
 	 */
 	public String finalizeOrder() {
 		
+		if (this.cart.getTotal() > 0) {
+			/*
+			 * Utilizado o procedimento abaixo para obter o usuário logado.
+			 */
+			FacesContext context = FacesContext.getCurrentInstance();
+			Application app = context.getApplication();
+			CustomerController customerController = 
+				(CustomerController) app.evaluateExpressionGet(context, "#{customerController}", 
+						CustomerController.class);
+			
+			Order order = new Order();
+			order.setCustomer(customerController.getCustomer());
+			order.setOrderDate(new Timestamp((new Date()).getTime()));
+			order.setStatusEnum(StatusEnum.CHECKPAYMENT);
+			order.setBank(this.bank);
+			
+			try {
+				// Salvar pedido.
+				order = facade.saveOrder(order);
+			} catch (ServiceException e) {
+				logger.error("Erro ao salvar pedido.", e);
+				FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorSaveOrder"));
+			}
+			
+			order.setItemsOrders(new HashSet<ItemsOrder>());
+			
+			for (ItemsOrder itemsOrder : this.cart.getProducts()) {
+				// Novo item de pedido com Chave composta.
+				ItemsOrder newItemsOrder = new ItemsOrder(order.getId(), itemsOrder.getProduct().getId(),
+						itemsOrder.getQuantity(), itemsOrder.getSubTotal());
+				// Configurando pedido.
+				newItemsOrder.setOrder(order);
+				// Configurando Produto.
+				newItemsOrder.setProduct(itemsOrder.getProduct());
+				try {
+					// Salvando Item de pedido.
+					facade.mergeItemsOrder(newItemsOrder);
+				} catch (ServiceException e) {
+					logger.error("Erro ao salvar item de pedido - " + itemsOrder, e);
+					FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorSaveItemOrder") 
+							+ itemsOrder);
+				}
+				// Adicionando a lista de item de pedido.
+				order.getItemsOrders().add(newItemsOrder);
+			}
+			
+			try {
+				facade.generateBoleto(order);
+			} catch (Exception e) {
+				logger.error("Erro ao gerar Boleto.", e);
+				FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorGenerateBoleto"));
+			}
+			
+			FacesUtil.mensInfo("", FacesUtil.getMessage("cartControllerMessageFinalizedOrder"));
+			
+			// Limpar Carrinho.
+			this.cart.cleanCart();
+			
+			this.orderBoleto = order;
+			
+			return "showBoleto";
+		}
+		
+		// Não tendo produto, limpar carrinho.
+		this.cart.cleanCart();
+		
+		// Retornar para a mesma página.
 		return null;
+	}
+	
+	/**
+	 * Apresenta o boleto.
+	 * @return
+	 */
+	public String viewBoleto() {
+		// Apresentar boleto.
+		try {
+			showBoleto(this.orderBoleto.getCustomer());
+			this.orderBoleto = new Order();
+		} catch (Exception e) {
+			logger.error("Erro ao exibir boleto.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorShowBoleto"));
+		}
+		
+		return "myAccount";
+	}
+	
+	/**
+	 * Exibe o boleto gerado.
+	 * @throws Exception 
+	 */
+	private void showBoleto(Customer customer) throws Exception {
+		try {
+			File arq = new File("/" + customer.getName() + "_boleto.pdf");
+			byte[] b = fileToByte(arq);
+
+			HttpServletResponse response = (HttpServletResponse) FacesContext
+			.getCurrentInstance().getExternalContext().getResponse();
+			response.setContentType("application/pdf");
+			response.setHeader("Content-disposition", "inline; filename=\""	+ arq.getName() + "\"");
+			response.getOutputStream().write(b);
+			response.getCharacterEncoding();
+			FacesContext.getCurrentInstance().responseComplete();
+		} catch (Exception e) {
+			logger.error("Erro ao exibir boleto.", e);
+			throw new Exception("Erro ao exibir boleto.", e);
+		}
+	}
+	
+	/**
+	 * Converte o arquivo informado para o tipo byte.
+	 * @param arquivo O arquivo que será convertido.
+	 * @return O bytes do arquivo informado.
+	 * @throws Exception
+	 */
+	private static byte[] fileToByte(File arquivo) throws Exception {
+		FileInputStream fis = new FileInputStream(arquivo);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[] buffer = new byte[8192];
+		int bytesRead = 0;
+		while ((bytesRead = fis.read(buffer, 0, 8192)) != -1) {
+			baos.write(buffer, 0, bytesRead);
+		}
+		return baos.toByteArray();
 	}
 	
 	/**
@@ -104,7 +236,7 @@ public class CartController implements Serializable {
 		
 		try {
 			if (!id.equals("")) {
-				cart.addToCart(productDao.searchById(Integer.parseInt(id)));
+				cart.addToCart(facade.getProduct(Integer.parseInt(id)));
 			}
 		} catch (Exception e) {
 			logger.error("Erro ao adicionar produto no carrinho.", e);
@@ -126,7 +258,7 @@ public class CartController implements Serializable {
 		
 		try {
 			if (id != null && count == 1) {
-				cart.addToCart(productDao.searchById(Integer.parseInt(id)));
+				cart.addToCart(facade.getProduct(Integer.parseInt(id)));
 			}
 		} catch (Exception e) {
 			logger.error("Erro ao adicionar produto no carrinho.", e);
@@ -152,7 +284,7 @@ public class CartController implements Serializable {
 		String id = FacesContext.getCurrentInstance()
 			.getExternalContext().getRequestParameterMap().get("id");
 		try {
-			cart.removeProductCart(productDao.searchById(Integer.parseInt(id)));
+			cart.removeProductCart(facade.getProduct(Integer.parseInt(id)));
 		} catch (Exception e) {
 			logger.error("Erro ao remover produto no carrinho.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorAddToCart"));
@@ -230,14 +362,6 @@ public class CartController implements Serializable {
 	 */
 	public Facade getFacade() {
 		return facade;
-	}
-
-	/**
-	 * Ajustar o modelo de acesso a dados de Produto.
-	 * @param productDao O modelo de acesso a dados de Produto.
-	 */
-	public void setProductDao(ProductDao productDao) {
-		this.productDao = productDao;
 	}
 
 	/**

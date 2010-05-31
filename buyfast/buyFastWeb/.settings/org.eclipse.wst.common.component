@@ -101,9 +101,6 @@
     <dependent-module archiveName="ejb3-persistence-1.0.1.GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/hibernate/ejb3-persistence/1.0.1.GA/ejb3-persistence-1.0.1.GA.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
-    <dependent-module archiveName="el-api-2.2.1-b02.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/javax/el/el-api/2.2.1-b02/el-api-2.2.1-b02.jar">
-      <dependency-type>uses</dependency-type>
-    </dependent-module>
     <dependent-module archiveName="facestrace-1.1.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/primefaces/facestrace/1.1.1-SNAPSHOT/facestrace-1.1.1-SNAPSHOT.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
