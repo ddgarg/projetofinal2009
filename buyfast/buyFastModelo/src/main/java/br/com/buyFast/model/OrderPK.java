@@ -29,6 +29,7 @@ public class OrderPK implements Serializable {
 	 * O construtor da classe.
 	 */
 	public OrderPK() {
+		//Construtor padrão.
 	}
 	
 	/**

@@ -57,6 +57,26 @@ public class ItemsOrder implements Serializable {
 	private Product product;
 
 	/**
+	 * Construtor padrão.
+	 */
+	public ItemsOrder() {
+		// Construtor padrão.
+	}
+	
+	/**
+	 * Instancia um novo item de pedido.
+	 * @param orderId O identificador do pedido.
+	 * @param ProductId O identificador do produto.
+	 * @param qtd Quantidade do pedido.
+	 * @param price Preço total do pedido.
+	 */
+	public ItemsOrder(long orderId, long prodId, int qtd, double price) {
+		this.id = new OrderPK(orderId, prodId);
+		this.quantity = qtd;
+		this.price = price;
+	}
+	
+	/**
 	 * Obter o identificador deste item de pedido.<br>
 	 * Representa a chave primária do banco de dados.
 	 * @return O identificador deste item de pedido.
