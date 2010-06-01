@@ -230,6 +230,14 @@ public interface Facade extends Serializable {
 	Order saveOrder(Order order) throws ServiceException;
 	
 	/**
+	 * Atualiza o pedido na base de dados.
+	 * @param order O pedido que será atualizado.
+	 * @return O pedido atualizado.
+	 * @throws ServiceException
+	 */
+	Order updateOrder(Order order) throws ServiceException;
+	
+	/**
 	 * Persiste o item de pedido na base de dados.
 	 * @param itemsOrder O item de pedido que será persistido.
 	 * @return O item de pedido atualizado da base de dados.
@@ -268,4 +276,12 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	List<Order> getOrdersNotPaid(Customer customer) throws ServiceException;
+	
+	/**
+	 * Obter os pedidos do cliente.
+	 * @param customer O cliente ao qual será verificado os pedidos.
+	 * @return A lista de pedidos do cliente.
+	 * @throws ServiceException
+	 */
+	List<Order> getOrders(Customer customer) throws ServiceException;
 }
