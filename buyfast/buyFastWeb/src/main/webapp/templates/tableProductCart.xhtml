@@ -78,19 +78,22 @@
 				</td>
 			</tr> 
 			<tr> 
-				<td>
-				<h:outputLink value="home.jsf" title=" #{message.viewCartBuyMoreProduct} ">
-						<h:graphicImage url="/images/cart_home.jpg"/>
-				</h:outputLink>
+				<td valign="middle">
+					<h:outputLink value="home.jsf" title=" #{message.viewCartBuyMoreProduct} ">
+							<h:graphicImage url="/images/cart_home.jpg"/>
+							<h:outputText value="#{message.viewCartBuyMoreProduct}" />
+					</h:outputLink>
 				</td> 
-				<td>
+				<td valign="middle">
 					<h:commandLink action="#{cartController.updateItems}" title=" #{message.viewCartUpdateCart} ">
 						<h:graphicImage url="/images/cart_update.jpg"/>
+						<h:outputText value="#{message.viewCartUpdate}" />
 					</h:commandLink>
 				</td> 
-				<td> 
+				<td valign="middle"> 
 					<h:outputLink value="userLogged.jsf" title=" #{message.viewCartBuyEnd} ">
 						<h:graphicImage url="/images/cart_checkout.jpg"/>
+						<h:outputText value="#{message.viewCartBuyEnd}" />
 					</h:outputLink>
 				</td> 
 			</tr> 
