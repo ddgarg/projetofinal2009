@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,6 +31,7 @@ import br.com.buyFast.model.Customer;
 import br.com.buyFast.model.ItemsOrder;
 import br.com.buyFast.model.Order;
 import br.com.buyFast.model.StatusEnum;
+import br.com.buyFast.service.EmailService;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
 import br.com.buyFast.util.FacesUtil;
@@ -62,6 +64,12 @@ public class CartController implements Serializable {
 	 */
 	@Resource
 	private Cart cart;
+	
+	/**
+	 * Responsável pelo serviço de e-mail.
+	 */
+	@Resource
+	private EmailService emailService;
 	
 	/**
 	 * Representa o tipo de pagamento escolhido pelo cliente.
@@ -138,6 +146,13 @@ public class CartController implements Serializable {
 			}
 			
 			try {
+				sendConfirmOrder(order);
+			} catch (ServiceException e1) {
+				logger.error("Erro ao enviar e-mail.", e1);
+				FacesUtil.mensWarn("", FacesUtil.getMessage("customerControllerErrorSendEmailRegisterCustomer"));
+			}
+			
+			try {
 				facade.generateBoleto(order);
 			} catch (Exception e) {
 				logger.error("Erro ao gerar Boleto.", e);
@@ -159,6 +174,44 @@ public class CartController implements Serializable {
 		
 		// Retornar para a mesma página.
 		return null;
+	}
+	
+	/**
+	 * Envia a mensagem de confirmação de pedido.
+	 * @throws ServiceException 
+	 */
+	public void sendConfirmOrder(Order order) throws ServiceException {
+			Customer customer = order.getCustomer();
+		
+			logger.info("Enviando e-mail para " + customer);
+			
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
+			
+			StringBuilder builder = new StringBuilder();
+			
+			builder.append("<h2>Confirmação de pedido do site BuyFast:</h2><br />");
+			builder.append("<h2>Dados do Pedido:</h2><br />");
+			builder.append("<b>Hora do cadastro:</b> " + df.format(new Date()) + "<br />");
+			builder.append("<b>Nome:</b> " + customer.getName() + "<br />");
+			builder.append("<b>E-mail:</b> " + customer.getEmail() + "<br />");
+			builder.append("<b>Assunto:</b> Pedido Finalizado<br />");
+			builder.append("<b>Produtos:</b><br />");
+			double total = 0.0d;
+			for (ItemsOrder itemsOrder : order.getItemsOrders()) {
+				builder.append(itemsOrder.getQuantity());
+				builder.append(" - ");
+				builder.append(itemsOrder.getProduct().getName());
+				builder.append(" - R$ ");
+				builder.append(itemsOrder.getPrice());
+				builder.append("<br />");
+				total += itemsOrder.getPrice();
+			}
+			
+			builder.append("<br />>Total: R$ " + total);
+			
+			emailService.send(customer.getEmail(), "buyfast@buyfast.com", "Pedido Finalizado no Site BuyFast", 
+					builder.toString());
+		
 	}
 	
 	/**

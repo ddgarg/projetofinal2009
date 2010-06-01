@@ -1,6 +1,7 @@
 package br.com.buyFast.controller;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.model.Address;
 import br.com.buyFast.model.Customer;
+import br.com.buyFast.model.Order;
+import br.com.buyFast.model.StatusEnum;
 import br.com.buyFast.service.EmailService;
 import br.com.buyFast.service.Facade;
 import br.com.buyFast.service.ServiceException;
@@ -85,6 +88,16 @@ public class CustomerController implements Serializable {
 	 * Representa a sessão.
 	 */
 	private HttpSession session;
+
+	/**
+	 * DataModel de pedidos não pagos.
+	 */
+	private DataModel dataModelOrderNotPaid;
+
+	/**
+	 * DataModel de pedidos.
+	 */
+	private DataModel dataModelOrders;
 	
 	/**
 	 * Construtor padrão.
@@ -258,14 +271,57 @@ public class CustomerController implements Serializable {
 	 */
 	public DataModel getOrdersNotPaid() {
 		try {
-			DataModel dataModel = new ListDataModel(facade.getOrdersNotPaid(customer));
-			return dataModel;
+			dataModelOrderNotPaid = new ListDataModel(facade.getOrdersNotPaid(customer));
+			return dataModelOrderNotPaid;
 		} catch (ServiceException e) {
 			logger.error("Erro ao obter lista de pedidos não pagos.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetOrderNotPaid"));
 		}
 		
 		return new ListDataModel();
+	}
+	
+	/**
+	 * Obter os pedidos do cliente logado.
+	 * @return A lista dos pedidos do cliente.
+	 */
+	public DataModel getOrders() {
+		try {
+			dataModelOrders = new ListDataModel(facade.getOrders(customer));
+			return dataModelOrders;
+		} catch (ServiceException e) {
+			logger.error("Erro ao obter lista de pedidos.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetOrder"));
+		}
+		
+		return new ListDataModel();
+	}
+	
+	/**
+	 * Confirmar o pedido selecionado na tabela de não pagos.
+	 * @return
+	 */
+	public String confirmPayment() {
+		Order order = (Order) dataModelOrderNotPaid.getRowData();
+		// Altera para o status "Em processo".
+		order.setStatusEnum(StatusEnum.INPROCESS);
+		// Data do pagamento.
+		order.setPaymentDate(new Timestamp((new Date()).getTime()));
+		try {
+			facade.updateOrder(order);
+		} catch (ServiceException e) {
+			logger.error("Erro ao atualizar status do pedido.", e);
+			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetOrderNotPaid"));
+		}
+		
+		try {
+			sendConfirmPayment(order);
+		} catch (ServiceException e) {
+			logger.error("Erro ao enviar e-mail de confirmação de pagamento.", e);
+			FacesUtil.mensWarn("", FacesUtil.getMessage("customerControllerErrorSendConfirmPayment"));
+		}
+		
+		return null;
 	}
 	
 	/**
@@ -307,6 +363,29 @@ public class CustomerController implements Serializable {
 			builder.append("Senha: " + this.customer.getPassword());
 			
 			emailService.send(this.customer.getEmail(), "buyfast@buyfast.com", "Cadastro no site BuyFast", 
+					builder.toString());
+		
+	}
+	
+	/**
+	 * Envia a mensagem de confirmação de pagamento de pedido.
+	 * @throws ServiceException 
+	 */
+	public void sendConfirmPayment(Order order) throws ServiceException {
+			logger.info("Enviando e-mail para " + this.customer);
+			
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
+			
+			StringBuilder builder = new StringBuilder();
+			
+			builder.append("<h2>Confirmação de pagamento de pedido - site BuyFast:</h2><br />");
+			builder.append("<b>Hora do pagamento:</b> " + df.format(new Date()) + "<br />");
+			builder.append("<b>Mensagem:</b>");
+			builder.append("Confirmação de pagamento do pedido código " + order.getId() + ".<br />");
+			builder.append("<b>Dados do pedido:</b> <br />");
+			builder.append("<b>Data do pedido:</b> " + df.format(order.getOrderDate()));
+			
+			emailService.send(this.customer.getEmail(), "buyfast@buyfast.com", "Confirmação de Pagamento - site BuyFast", 
 					builder.toString());
 		
 	}

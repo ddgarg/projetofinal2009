@@ -46,7 +46,7 @@
 		<c:otherwise>
 		
 		<fieldset> 
-		<legend><font color="#7cb700">Confirmar Pagamento do Boleto</font></legend> 
+			<legend><font color="#7cb700">#{message.myAccountTitleFieldOrderNotPaid}</font></legend> 
  
  				<h:dataTable id="items" var="item" value="#{customerController.ordersNotPaid}"
 						cellpadding="0" cellspacing="0" border="0"
@@ -54,13 +54,13 @@
 						rowClasses="row-a, row-b" >
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Código Pedido" styleClass="text" />
+							<h:outputText value="#{message.myAccountOrderCode}" styleClass="text" />
 						</f:facet>
 							<h:outputText id="cod" value="#{item.id}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Data Pedido" styleClass="text" />
+							<h:outputText value="#{message.myAccountOrderDate}" styleClass="text" />
 						</f:facet>
 						<h:outputText id="dtPed" value="#{item.orderDate}" >
 							<f:convertDateTime pattern="dd/MM/yyy"></f:convertDateTime>
@@ -68,21 +68,74 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Status Pedido" styleClass="text" />
+							<h:outputText value="#{message.myAccountOrderStatus}" styleClass="text" />
 						</f:facet>
 						<h:outputText id="status" value="#{item.statusEnum.status}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Confimar Pagamento" styleClass="text" />
+							<h:outputText value="#{message.myAccountPaidConf}" styleClass="text" />
 						</f:facet>
-						<a href="#"><img src="images/check.jpg" alt=" Confirmar Pagamento " title=" Confirmar Pagamento "/></a> 
+							<h:commandLink action="#{customerController.confirmPayment}" >
+								<img src="images/check.jpg" alt=" Confirmar Pagamento " title=" #{message.myAccountPaidConf} "/>
+							</h:commandLink>
 					</h:column>
 				</h:dataTable>
-				
-	
-		</fieldset> 
+		</fieldset>
 
+		<br />
+		
+		</c:otherwise>
+		</c:choose>
+		</h:form>
+		
+		
+		
+		<h:form>
+	    <c:choose>
+		<c:when test="#{customerController.orders.rowCount == 0}">
+		
+		</c:when>
+		
+		<c:otherwise>
+		
+		<fieldset> 
+			<legend><font color="#7cb700">#{message.myAccountTitleFieldOrder}</font></legend> 
+ 
+ 				<h:dataTable id="itemsPag" var="item" value="#{customerController.orders}"
+						cellpadding="0" cellspacing="0" border="0"
+						headerClass="shop-compra-header" columnClasses="col-a, col-b, col-c, col-d" 
+						rowClasses="row-a, row-b" >
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.myAccountOrderCode}" styleClass="text" />
+						</f:facet>
+							<h:outputText id="codPag" value="#{item.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.myAccountOrderDate}" styleClass="text" />
+						</f:facet>
+						<h:outputText id="dtPedPag" value="#{item.orderDate}" >
+							<f:convertDateTime pattern="dd/MM/yyy"></f:convertDateTime>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.myAccountOrderDatePayment}" styleClass="text" />
+						</f:facet>
+						<h:outputText id="dtPag" value="#{item.paymentDate}" >
+							<f:convertDateTime pattern="dd/MM/yyy"></f:convertDateTime>
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.myAccountOrderStatus}" styleClass="text" />
+						</f:facet>
+						<h:outputText id="statusPag" value="#{item.statusEnum.status}" />
+					</h:column>
+				</h:dataTable>
+		</fieldset>
 
 		</c:otherwise>
 		</c:choose>
