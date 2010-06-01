@@ -56,10 +56,11 @@ public class GenerateBoleto {
 			valorBoleto += itemsOrder.getPrice();
 		}
 		descricoes.add("Produtos:");
+		descricoes.add("Código do pedido: " + order.getId());
 		descricoes.add("Boleto referente a compras no site BuyFast");
 		boletoBean.setDescricoes(descricoes);
-		boletoBean.setLocalPagamento("ATE O VENCIMENTO, PREFERENCIALMENTE " + order.getBank().getBank());
-		boletoBean.setLocalPagamento2("APOS O VENCIMENTO, SOMENTE NO " + order.getBank().getBank());
+		boletoBean.setLocalPagamento("ATE O VENCIMENTO, PREFERENCIALMENTE " + order.getBank().getBank().toUpperCase());
+		boletoBean.setLocalPagamento2("APOS O VENCIMENTO, SOMENTE NO " + order.getBank().getBank().toUpperCase());
 		boletoBean.setInstrucao1("APOS O VENCIMENTO COBRAR MULTA DE 2%");
 		boletoBean.setInstrucao2("APOS O VENCIMENTO, COBRAR MULTA DE  R$ 0.50 AO DIA");
 		boletoBean.setInstrucao3("APOS O VENCIMENTO NÃO APLICAR DESCONTO");

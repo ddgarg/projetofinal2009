@@ -570,4 +570,30 @@ public class FacadeImpl implements Facade {
 		}
 	}
 
+	@Override
+	public Order updateOrder(Order order) throws ServiceException {
+		try {
+			logger.info("Atualiza o pedido " + order + " no banco de dados ...");
+			return this.orderDao.update(order);
+		} catch (Exception e) {
+			String messageError = "Erro ao atualizar pedido " + order + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public List<Order> getOrders(Customer customer) throws ServiceException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", customer.getId());
+		params.put("status", StatusEnum.CHECKPAYMENT);
+		String query = "FROM Order o WHERE o.customer.id = :id AND NOT o.statusEnum = :status";
+		try {
+			return this.orderDao.listSearchParam(query, params);
+		} catch (DaoException e) {
+			logger.error("Erro ao obter pedidos do cliente " + customer.getName(), e);
+			throw new ServiceException("Erro ao obter pedidos do cliente " + customer.getName(), e);
+		}
+	}
+
 }
