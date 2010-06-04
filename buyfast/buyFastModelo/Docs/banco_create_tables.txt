@@ -1,146 +1,427 @@
-    create table Address (
-        id  bigserial not null,
-        city varchar(50),
-        complement varchar(100),
-        country varchar(50),
-        district varchar(50),
-        number varchar(10),
-        state varchar(50),
-        street varchar(100),
-        primary key (id)
-    );
+CREATE TABLE address
+(
+  id bigserial NOT NULL,
+  cep character varying(255),
+  city character varying(50),
+  complement character varying(100),
+  country character varying(50),
+  district character varying(50),
+  "number" character varying(255),
+  state character varying(50),
+  street character varying(100),
+  CONSTRAINT address_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE address OWNER TO postgres;
 
-    create table Administrator (
-        id int4 not null,
-        primary key (id)
-    );
 
-    create table Bank (
-        id  bigserial not null,
-        name varchar(100) not null,
-        primary key (id)
-    );
+-- Table: administrator
 
-    create table Category (
-        id  bigserial not null,
-        name varchar(100) not null,
-        primary key (id)
-    );
+-- DROP TABLE administrator;
 
-    create table Customer (
-        id int4 not null,
-        address_id int8,
-        primary key (id)
-    );
+CREATE TABLE administrator
+(
+  id integer NOT NULL,
+  CONSTRAINT administrator_pkey PRIMARY KEY (id),
+  CONSTRAINT fk8bef2ad643833e5 FOREIGN KEY (id)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE administrator OWNER TO postgres;
 
-    create table Employee (
-        user_login varchar(100) not null unique,
-        id int4 not null,
-        primary key (id)
-    );
 
-    create table ItemsOrder (
-        orderId int8 not null,
-        prodId int8 not null,
-        price float8 not null,
-        quantity int4 not null,
-        order_id int8,
-        product_id int8,
-        primary key (orderId, prodId)
-    );
+-- Table: bank
 
-    create table Order_buy (
-        id  bigserial not null,
-        orderDate timestamp,
-        paymentDate timestamp,
-        statusEnum varchar(255),
-        bank_id int8,
-        customer_id int4,
-        primary key (id)
-    );
+-- DROP TABLE bank;
 
-    create table Person (
-        id  serial not null,
-        cpf varchar(14),
-        email varchar(100) not null,
-        name varchar(100) not null,
-        password varchar(50) not null,
-        secondName varchar(100) not null,
-        primary key (id)
-    );
+CREATE TABLE bank
+(
+  id bigserial NOT NULL,
+  "name" character varying(100) NOT NULL,
+  CONSTRAINT bank_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE bank OWNER TO postgres;
 
-    create table Product (
-        id  bigserial not null,
-        description varchar(255),
-        discount float8 not null,
-        image varchar(255),
-        name varchar(255),
-        price float8 not null,
-        quantityStock int4 not null,
-        smallDescription varchar(255),
-        category_id int8,
-        primary key (id)
-    );
 
-    create table Settings (
-        id  bigserial not null,
-        authentic bool not null,
-        emailContact varchar(100),
-        emailSystem varchar(100),
-        host varchar(50),
-        messageContact text,
-        numberPage int4,
-        password_EmailContact varchar(100),
-        password_EmailSystem varchar(100),
-        port varchar(10),
-        protocol varchar(10),
-        secureConnection bool not null,
-        userName_EmailContact varchar(100),
-        userName_EmailSystem varchar(100),
-        primary key (id)
-    );
- 
-    alter table Administrator 
-        add constraint FK8BEF2AD643833E5 
-        foreign key (id) 
-        references Employee;
+-- Table: category
 
-    alter table Customer 
-        add constraint FK27FBE3FEFF423F8C 
-        foreign key (id) 
-        references Person;
+-- DROP TABLE category;
 
-    alter table Customer 
-        add constraint FK27FBE3FE1CFAC99E 
-        foreign key (address_id) 
-        references Address;
+CREATE TABLE category
+(
+  id serial NOT NULL,
+  "name" character varying(100) NOT NULL,
+  CONSTRAINT category_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE category OWNER TO postgres;
 
-    alter table Employee 
-        add constraint FK4AFD4ACEFF423F8C 
-        foreign key (id) 
-        references Person;
 
-    alter table ItemsOrder 
-        add constraint FK229D638E5A079C5E 
-        foreign key (order_id) 
-        references Order_buy;
+-- Table: customer
 
-    alter table ItemsOrder 
-        add constraint FK229D638E677EE3BE 
-        foreign key (product_id) 
-        references Product;
+-- DROP TABLE customer;
 
-    alter table Order_buy 
-        add constraint FK601FFDF5E428A656 
-        foreign key (bank_id) 
-        references Bank;
+CREATE TABLE customer
+(
+  id integer NOT NULL,
+  address_id bigint,
+  CONSTRAINT customer_pkey PRIMARY KEY (id),
+  CONSTRAINT fk27fbe3fe1cfac99e FOREIGN KEY (address_id)
+      REFERENCES address (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk27fbe3feff423f8c FOREIGN KEY (id)
+      REFERENCES person (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE customer OWNER TO postgres;
 
-    alter table Order_buy 
-        add constraint FK601FFDF5D7973D16 
-        foreign key (customer_id) 
-        references Customer;
 
-    alter table Product 
-        add constraint FK50C664CF7BC0A916 
-        foreign key (category_id) 
-        references Category;
+-- Table: employee
+
+-- DROP TABLE employee;
+
+CREATE TABLE employee
+(
+  user_login character varying(100) NOT NULL,
+  id integer NOT NULL,
+  CONSTRAINT employee_pkey PRIMARY KEY (id),
+  CONSTRAINT fk4afd4aceff423f8c FOREIGN KEY (id)
+      REFERENCES person (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT employee_user_login_key UNIQUE (user_login)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE employee OWNER TO postgres;
+
+
+-- Table: itemsorder
+
+-- DROP TABLE itemsorder;
+
+CREATE TABLE itemsorder
+(
+  orderid bigint NOT NULL,
+  prodid bigint NOT NULL,
+  price double precision NOT NULL,
+  quantity integer NOT NULL,
+  order_id bigint,
+  product_id integer,
+  CONSTRAINT itemsorder_pkey PRIMARY KEY (orderid, prodid),
+  CONSTRAINT fk229d638e5a079c5e FOREIGN KEY (order_id)
+      REFERENCES order_buy (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk229d638e677ee3be FOREIGN KEY (product_id)
+      REFERENCES product (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE itemsorder OWNER TO postgres;
+
+
+-- Table: order_buy
+
+-- DROP TABLE order_buy;
+
+CREATE TABLE order_buy
+(
+  id bigserial NOT NULL,
+  orderdate timestamp without time zone,
+  paymentdate timestamp without time zone,
+  statusenum character varying(255),
+  bank_id bigint,
+  customer_id integer,
+  CONSTRAINT order_buy_pkey PRIMARY KEY (id),
+  CONSTRAINT fk601ffdf5d7973d16 FOREIGN KEY (customer_id)
+      REFERENCES customer (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk601ffdf5e428a656 FOREIGN KEY (bank_id)
+      REFERENCES bank (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE order_buy OWNER TO postgres;
+
+
+-- Table: person
+
+-- DROP TABLE person;
+
+CREATE TABLE person
+(
+  id serial NOT NULL,
+  cpf character varying(14),
+  email character varying(100) NOT NULL,
+  "name" character varying(100) NOT NULL,
+  "password" character varying(50) NOT NULL,
+  secondname character varying(100) NOT NULL,
+  CONSTRAINT person_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE person OWNER TO postgres;
+
+
+-- Table: product
+
+-- DROP TABLE product;
+
+CREATE TABLE product
+(
+  id serial NOT NULL,
+  description text,
+  discount integer,
+  image character varying(255),
+  "name" character varying(255),
+  price double precision NOT NULL,
+  quantitystock integer NOT NULL,
+  smalldescription character varying(255),
+  smallimage character varying(255),
+  category_id integer,
+  CONSTRAINT product_pkey PRIMARY KEY (id),
+  CONSTRAINT fk50c664cf7bc0a916 FOREIGN KEY (category_id)
+      REFERENCES category (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE product OWNER TO postgres;
+
+
+-- Table: settings
+
+-- DROP TABLE settings;
+
+CREATE TABLE settings
+(
+  id bigserial NOT NULL,
+  authentic boolean NOT NULL,
+  emailcontact character varying(100),
+  emailsystem character varying(100),
+  host character varying(50),
+  messagecontact text,
+  numberpage integer,
+  password_emailcontact character varying(100),
+  password_emailsystem character varying(100),
+  port character varying(10),
+  protocol character varying(10),
+  secureconnection boolean NOT NULL,
+  username_emailcontact character varying(100),
+  username_emailsystem character varying(100),
+  CONSTRAINT settings_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE settings OWNER TO postgres;CREATE TABLE address
+(
+  id bigserial NOT NULL,
+  cep character varying(255),
+  city character varying(50),
+  complement character varying(100),
+  country character varying(50),
+  district character varying(50),
+  "number" character varying(255),
+  state character varying(50),
+  street character varying(100),
+  CONSTRAINT address_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE address OWNER TO postgres;
+
+
+-- Table: administrator
+
+-- DROP TABLE administrator;
+
+CREATE TABLE administrator
+(
+  id integer NOT NULL,
+  CONSTRAINT administrator_pkey PRIMARY KEY (id),
+  CONSTRAINT fk8bef2ad643833e5 FOREIGN KEY (id)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE administrator OWNER TO postgres;
+
+
+-- Table: bank
+
+-- DROP TABLE bank;
+
+CREATE TABLE bank
+(
+  id bigserial NOT NULL,
+  "name" character varying(100) NOT NULL,
+  CONSTRAINT bank_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE bank OWNER TO postgres;
+
+
+-- Table: category
+
+-- DROP TABLE category;
+
+CREATE TABLE category
+(
+  id serial NOT NULL,
+  "name" character varying(100) NOT NULL,
+  CONSTRAINT category_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE category OWNER TO postgres;
+
+
+-- Table: customer
+
+-- DROP TABLE customer;
+
+CREATE TABLE customer
+(
+  id integer NOT NULL,
+  address_id bigint,
+  CONSTRAINT customer_pkey PRIMARY KEY (id),
+  CONSTRAINT fk27fbe3fe1cfac99e FOREIGN KEY (address_id)
+      REFERENCES address (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk27fbe3feff423f8c FOREIGN KEY (id)
+      REFERENCES person (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE customer OWNER TO postgres;
+
+
+-- Table: employee
+
+-- DROP TABLE employee;
+
+CREATE TABLE employee
+(
+  user_login character varying(100) NOT NULL,
+  id integer NOT NULL,
+  CONSTRAINT employee_pkey PRIMARY KEY (id),
+  CONSTRAINT fk4afd4aceff423f8c FOREIGN KEY (id)
+      REFERENCES person (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT employee_user_login_key UNIQUE (user_login)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE employee OWNER TO postgres;
+
+
+-- Table: itemsorder
+
+-- DROP TABLE itemsorder;
+
+CREATE TABLE itemsorder
+(
+  orderid bigint NOT NULL,
+  prodid bigint NOT NULL,
+  price double precision NOT NULL,
+  quantity integer NOT NULL,
+  order_id bigint,
+  product_id integer,
+  CONSTRAINT itemsorder_pkey PRIMARY KEY (orderid, prodid),
+  CONSTRAINT fk229d638e5a079c5e FOREIGN KEY (order_id)
+      REFERENCES order_buy (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk229d638e677ee3be FOREIGN KEY (product_id)
+      REFERENCES product (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE itemsorder OWNER TO postgres;
+
+
+-- Table: order_buy
+
+-- DROP TABLE order_buy;
+
+CREATE TABLE order_buy
+(
+  id bigserial NOT NULL,
+  orderdate timestamp without time zone,
+  paymentdate timestamp without time zone,
+  statusenum character varying(255),
+  bank_id bigint,
+  customer_id integer,
+  CONSTRAINT order_buy_pkey PRIMARY KEY (id),
+  CONSTRAINT fk601ffdf5d7973d16 FOREIGN KEY (customer_id)
+      REFERENCES customer (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk601ffdf5e428a656 FOREIGN KEY (bank_id)
+      REFERENCES bank (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE order_buy OWNER TO postgres;
+
+
+-- Table: person
+
+-- DROP TABLE person;
+
+CREATE TABLE person
+(
+  id serial NOT NULL,
+  cpf character varying(14),
+  email character varying(100) NOT NULL,
+  "name" character varying(100) NOT NULL,
+  "password" character varying(50) NOT NULL,
+  secondname character varying(100) NOT NULL,
+  CONSTRAINT person_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE person OWNER TO postgres;
+
+
+-- Table: product
+
+-- DROP TABLE product;
+
+CREATE TABLE product
+(
+  id serial NOT NULL,
+  description text,
+  discount integer,
+  image character varying(255),
+  "name" character varying(255),
+  price double precision NOT NULL,
+  quantitystock integer NOT NULL,
+  smalldescription character varying(255),
+  smallimage character varying(255),
+  category_id integer,
+  CONSTRAINT product_pkey PRIMARY KEY (id),
+  CONSTRAINT fk50c664cf7bc0a916 FOREIGN KEY (category_id)
+      REFERENCES category (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (OIDS=FALSE);
+ALTER TABLE product OWNER TO postgres;
+
+
+-- Table: settings
+
+-- DROP TABLE settings;
+
+CREATE TABLE settings
+(
+  id bigserial NOT NULL,
+  authentic boolean NOT NULL,
+  emailcontact character varying(100),
+  emailsystem character varying(100),
+  host character varying(50),
+  messagecontact text,
+  numberpage integer,
+  password_emailcontact character varying(100),
+  password_emailsystem character varying(100),
+  port character varying(10),
+  protocol character varying(10),
+  secureconnection boolean NOT NULL,
+  username_emailcontact character varying(100),
+  username_emailsystem character varying(100),
+  CONSTRAINT settings_pkey PRIMARY KEY (id)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE settings OWNER TO postgres;
