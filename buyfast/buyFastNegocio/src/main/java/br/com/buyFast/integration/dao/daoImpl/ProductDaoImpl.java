@@ -27,7 +27,7 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
 			logger.info("Obter lista de produtos pela chave " + keyWord + "...");
 			return getSession().createCriteria(Product.class)
 			.add(Restrictions.ilike("name", keyWord, MatchMode.ANYWHERE))
-			.add(Restrictions.ilike("smallDescription", keyWord, MatchMode.ANYWHERE))
+//			.add(Restrictions.ilike("smallDescription", keyWord, MatchMode.ANYWHERE))
 			.list();
 		} catch (Exception e) {
 			String error = "Erro ao obter lista de produto pela chave " + keyWord;
