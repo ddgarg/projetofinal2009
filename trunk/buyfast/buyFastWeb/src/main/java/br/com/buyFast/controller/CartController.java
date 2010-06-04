@@ -221,8 +221,11 @@ public class CartController implements Serializable {
 	public String viewBoleto() {
 		// Apresentar boleto.
 		try {
-			showBoleto(this.orderBoleto.getCustomer());
+			Customer customer = new Customer();
+			customer = this.orderBoleto.getCustomer();
+			// Nova instancia do pedido.
 			this.orderBoleto = new Order();
+			showBoleto(customer);
 		} catch (Exception e) {
 			logger.error("Erro ao exibir boleto.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("cartControllerMessageErrorShowBoleto"));

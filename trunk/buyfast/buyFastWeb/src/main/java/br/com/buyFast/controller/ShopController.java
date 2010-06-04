@@ -187,6 +187,7 @@ public class ShopController implements Serializable {
 	 * @return
 	 */
 	public String search() {
+		
 		return "productSearch";
 	}
 	
@@ -196,14 +197,14 @@ public class ShopController implements Serializable {
 	 */
 	public DataModel getProductsSearch() {
 		if (this.keyWord.equals("")) {
-			return null;
+			return new ListDataModel(Collections.emptyList());
 		}
 		try {
 			List<Product> list = facade.productSearch(this.keyWord);
 			ListDataModel dataModel = new ListDataModel(list);
 			this.keyWord = "";
 			if (dataModel.getRowCount() == 0) {
-				return null;
+				return new ListDataModel(Collections.emptyList());
 			}
 			return dataModel;
 		} catch (ServiceException e) {
@@ -213,7 +214,7 @@ public class ShopController implements Serializable {
 		}
 	}
 	
-	/* Gettes e Settes */
+	/* Gettes and Settes */
 	
 	/**
 	 * Obter produto.
