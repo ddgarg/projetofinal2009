@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+ <f:view locale="#{localeController.currentLocale}">
+ 
+	<f:loadBundle var="message" basename="ui.Messages" />
+	
+<ui:composition template="templates/admin.xhtml">
+
+	<ui:define name="titulo">#{message.adminRegisterCategoryTitle}</ui:define>
+
+	<ui:define name="tituloCategoria">#{message.adminRegisterCategoryTitleCategory}</ui:define>
+
+	<ui:define name="body">
+	
+	<div class="showCategories">
+	<p:messages showDetail="true" globalOnly="true" />
+		<h:form prependId="false">
+				<p:dataTable id="prod" var="cat" value="#{productController.allProducts}"
+					dynamic="false" lazy="true" paginatorPosition="bottom"
+					firstPageLinkLabel="#{message.tableLabelfirst}"
+					previousPageLinkLabel="#{message.tableLabelPrev}"
+					lastPageLinkLabel="#{message.tableLabelLast}"
+					nextPageLinkLabel="#{message.tableLabelNext}"
+					emptyMessage="#{message.showProductEmpty}" paginator="true"
+					selection="#{productController.product}" selectionMode="single"
+					rows="5" width="300px">
+					<p:column filterBy="#{cat.id}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmCode}" />
+						</f:facet>
+						<h:outputText value="#{cat.id}" />
+					</p:column>
+
+					<p:column filterBy="#{cat.name}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmProduct}" />
+						</f:facet>
+						<h:outputText value="#{cat.name}" />
+					</p:column>
+
+					<p:column filterBy="#{cat.category}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmCategory}" />
+						</f:facet>
+						<h:outputText value="#{cat.category}" />
+					</p:column>
+
+					<p:column filterBy="#{cat.price}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmPrice}" />
+						</f:facet>
+						<h:outputText value="#{cat.price}" />
+					</p:column>
+
+					<p:column filterBy="#{cat.discount}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmDiscount}" />
+						</f:facet>
+						<h:outputText value="#{cat.discount}%" />
+					</p:column>
+
+					<p:column filterBy="#{cat.quantityStock}">
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmQuantityStock}" />
+						</f:facet>
+						<h:outputText value="#{cat.quantityStock}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmEdit}" />
+						</f:facet>
+						<h:commandButton value="#{message.showProductColunmEdit}"
+							action="registerProduct" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{message.showProductColunmDelete}" />
+						</f:facet>
+						<h:commandButton value="#{message.showProductColunmDelete}"
+							onclick="if (!confirm('#{message.showProductsMessageDialogRemoveProduct}')) return false"
+							action="#{productController.removeProduct}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			
+		</div>
+		
+	</ui:define>
+			<ui:define name="bodyRight"></ui:define>
+</ui:composition>
+
+ </f:view>
+</html>
