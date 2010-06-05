@@ -1,0 +1,5 @@
+Execute o maven2:
+
+mvn eclipse:eclispe
+
+mvn resources:resources
