@@ -1,4 +1,4 @@
-Execute o maven2:
+Execute o maven2: 
 
 mvn eclipse:eclispe
 
