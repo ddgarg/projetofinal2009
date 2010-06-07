@@ -2,6 +2,7 @@ package br.com.buyFast.controller;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.buyFast.model.Address;
 import br.com.buyFast.model.Customer;
+import br.com.buyFast.model.ItemsOrder;
 import br.com.buyFast.model.Order;
 import br.com.buyFast.model.StatusEnum;
 import br.com.buyFast.service.EmailService;
@@ -313,7 +315,7 @@ public class CustomerController implements Serializable {
 			logger.error("Erro ao atualizar status do pedido.", e);
 			FacesUtil.mensErro("", FacesUtil.getMessage("customerControllerErrorGetOrderNotPaid"));
 		}
-		
+		// Envio de e-mail.
 		try {
 			sendConfirmPayment(order);
 		} catch (ServiceException e) {
@@ -377,13 +379,25 @@ public class CustomerController implements Serializable {
 			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
 			
 			StringBuilder builder = new StringBuilder();
+			NumberFormat format = NumberFormat.getCurrencyInstance();
 			
 			builder.append("<h2>Confirmação de pagamento de pedido - site BuyFast:</h2><br />");
 			builder.append("<b>Hora do pagamento:</b> " + df.format(new Date()) + "<br />");
 			builder.append("<b>Mensagem:</b>");
 			builder.append("Confirmação de pagamento do pedido código " + order.getId() + ".<br />");
 			builder.append("<b>Dados do pedido:</b> <br />");
-			builder.append("<b>Data do pedido:</b> " + df.format(order.getOrderDate()));
+			double total = 0.0d;
+			for (ItemsOrder itemsOrder : order.getItemsOrders()) {
+				builder.append(itemsOrder.getQuantity());
+				builder.append(" - ");
+				builder.append(itemsOrder.getProduct().getName());
+				builder.append(" - ");
+				builder.append(format.format(itemsOrder.getPrice()));
+				builder.append("<br />");
+				total += itemsOrder.getPrice();
+			}
+			builder.append("<br /><b>Total:</b> " + format.format(total));
+			builder.append("<br /><b>Data do pedido:</b> " + df.format(order.getOrderDate()));
 			
 			emailService.send(this.customer.getEmail(), "buyfast@buyfast.com", "Confirmação de Pagamento - site BuyFast", 
 					builder.toString());

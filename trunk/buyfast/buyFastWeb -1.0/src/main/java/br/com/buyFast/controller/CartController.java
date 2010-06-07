@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -149,7 +150,7 @@ public class CartController implements Serializable {
 				sendConfirmOrder(order);
 			} catch (ServiceException e1) {
 				logger.error("Erro ao enviar e-mail.", e1);
-				FacesUtil.mensWarn("", FacesUtil.getMessage("customerControllerErrorSendEmailRegisterCustomer"));
+				FacesUtil.mensWarn("", FacesUtil.getMessage("cartControllerMessageErrorSendEmailOrder"));
 			}
 			
 			try {
@@ -188,10 +189,11 @@ public class CartController implements Serializable {
 			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy - HH:mm:ss");
 			
 			StringBuilder builder = new StringBuilder();
+			NumberFormat format = NumberFormat.getCurrencyInstance();
 			
 			builder.append("<h2>Confirmação de pedido do site BuyFast:</h2><br />");
 			builder.append("<h2>Dados do Pedido:</h2><br />");
-			builder.append("<b>Hora do cadastro:</b> " + df.format(new Date()) + "<br />");
+			builder.append("<b>Hora:</b> " + df.format(new Date()) + "<br />");
 			builder.append("<b>Nome:</b> " + customer.getName() + "<br />");
 			builder.append("<b>E-mail:</b> " + customer.getEmail() + "<br />");
 			builder.append("<b>Assunto:</b> Pedido Finalizado<br />");
@@ -201,13 +203,12 @@ public class CartController implements Serializable {
 				builder.append(itemsOrder.getQuantity());
 				builder.append(" - ");
 				builder.append(itemsOrder.getProduct().getName());
-				builder.append(" - R$ ");
-				builder.append(itemsOrder.getPrice());
+				builder.append(" - ");
+				builder.append(format.format(itemsOrder.getPrice()));
 				builder.append("<br />");
 				total += itemsOrder.getPrice();
 			}
-			
-			builder.append("<br />>Total: R$ " + total);
+			builder.append("<br /><b>Total:</b>" + format.format(total));
 			
 			emailService.send(customer.getEmail(), "buyfast@buyfast.com", "Pedido Finalizado no Site BuyFast", 
 					builder.toString());
