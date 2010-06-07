@@ -46,6 +46,22 @@ public interface Facade extends Serializable {
 	void saveCategory(Category category) throws ServiceException;
 
 	/**
+	 * Persiste o funcionário na base de dados.
+	 * @see Employee
+	 * @param employee O funcionário do sistema. 
+	 * @throws ServiceException
+	 */
+	void saveEmployee(Employee employee) throws ServiceException;
+	
+	/**
+	 * Persiste o administrador na base de dados.
+	 * @see Administrator
+	 * @param employee O administrador do sistema. 
+	 * @throws ServiceException
+	 */
+	void saveAdmin(Administrator administrator) throws ServiceException;
+	
+	/**
 	 * Remove a categoria no banco de dados.
 	 * @param category a categoria que será removida do banco de dados.
 	 * @throws ServiceException
@@ -108,6 +124,20 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	void updateProduct(Product product) throws ServiceException;
+	
+	/**
+	 * Atualiza o administrador no banco de dados.
+	 * @param admin O administrador que será atualizado.
+	 * @throws ServiceException
+	 */
+	void updateAdmin(Administrator admin) throws ServiceException;
+	
+	/**
+	 * Atualiza o funcionário no banco de dados.
+	 * @param employee O funcionário que será atualizado.
+	 * @throws ServiceException
+	 */
+	void updateEmployee(Employee employee) throws ServiceException;
 
 	/**
 	 * Verifica se o produto já existe no banco de dados.
@@ -202,6 +232,20 @@ public interface Facade extends Serializable {
 	List<Bank> getAllBanks() throws ServiceException;
 	
 	/**
+	 * Obter todos os funcionário da base de dados.
+	 * @return O conjunto de funcionário da base de dados.
+	 * @throws ServiceException
+	 */
+	List<Employee> getAllEmployee() throws ServiceException;
+	
+	/**
+	 * Obter todos os administradores do sistema.
+	 * @return O conjunto de administradores da base de dados.
+	 * @throws ServiceException
+	 */
+	List<Administrator> getAllAdministrator() throws ServiceException;
+	
+	/**
 	 * Persiste o banco na base de dados.
 	 * @param bank O banco que será persistido.
 	 * @throws ServiceException
@@ -214,6 +258,20 @@ public interface Facade extends Serializable {
 	 * @throws ServiceException
 	 */
 	void removeBank(Bank bank) throws ServiceException;
+	
+	/**
+	 * Remove da base de dados o administrador.
+	 * @param admin O administrador que será removido da base de dados.
+	 * @throws ServiceException
+	 */
+	void removeAdmin(Administrator admin) throws ServiceException;
+	
+	/**
+	 * Remove da base de dados o funcionário.
+	 * @param employee O funcionário que será removido da base de dados.
+	 * @throws ServiceException
+	 */
+	void removeEmployee(Employee employee) throws ServiceException;
 	
 	/**
 	 * Atualiza o banco na base de dados.
