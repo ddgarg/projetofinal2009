@@ -475,7 +475,6 @@ public class FacadeImpl implements Facade {
 			logger.error(error, e);
 			throw new ServiceException(error, e);
 		}
-		
 	}
 
 	@Override
@@ -593,6 +592,102 @@ public class FacadeImpl implements Facade {
 		} catch (DaoException e) {
 			logger.error("Erro ao obter pedidos do cliente " + customer.getName(), e);
 			throw new ServiceException("Erro ao obter pedidos do cliente " + customer.getName(), e);
+		}
+	}
+
+	@Override
+	public void saveEmployee(Employee employee) throws ServiceException {
+		try {
+			logger.info("Salvando funcionário " + employee + " no banco de dados ...");
+			this.employeeDao.save(employee);
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar funcionário " + employee + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public List<Employee> getAllEmployee() throws ServiceException {
+		logger.info("Obtendo a lista de funcionários...");
+		try {
+			return this.employeeDao.all();
+		} catch (DaoException e) {
+			String error = "Erro ao obter a lista de funcionários da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public List<Administrator> getAllAdministrator() throws ServiceException {
+		logger.info("Obtendo a lista de administradores...");
+		try {
+			return this.adminDao.all();
+		} catch (DaoException e) {
+			String error = "Erro ao obter a lista de administradores da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void saveAdmin(Administrator administrator) throws ServiceException {
+		try {
+			logger.info("Salvando administrador " + administrator + " no banco de dados ...");
+			this.adminDao.save(administrator);
+		} catch (Exception e) {
+			String messageError = "Erro ao salvar administrador " + administrator + ".";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public void removeAdmin(Administrator admin) throws ServiceException {
+		logger.info("Removendo o administrador " + admin + " da base de dados.");
+		try {
+			this.adminDao.delete(admin);
+		} catch (DaoException e) {
+			String error = "Erro ao remover administrador " + admin + " da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void removeEmployee(Employee employee) throws ServiceException {
+		logger.info("Removendo o funcionário " + employee + " da base de dados.");
+		try {
+			this.employeeDao.delete(employee);
+		} catch (DaoException e) {
+			String error = "Erro ao remover funcionário " + employee + " da base de dados.";
+			logger.error(error, e);
+			throw new ServiceException(error, e);
+		}
+	}
+
+	@Override
+	public void updateAdmin(Administrator admin) throws ServiceException {
+		try {
+			logger.info("Atualizando administrador " + admin + " ...");
+			adminDao.update(admin);
+		} catch (DaoException e) {
+			String messageError = "Erro ao atualizar administrador.";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
+		}
+	}
+
+	@Override
+	public void updateEmployee(Employee employee) throws ServiceException {
+		try {
+			logger.info("Atualizando funcionário " + employee + " ...");
+			employeeDao.update(employee);
+		} catch (DaoException e) {
+			String messageError = "Erro ao atualizar funcionário.";
+			logger.error(messageError, e);
+			throw new ServiceException(messageError, e);
 		}
 	}
 
