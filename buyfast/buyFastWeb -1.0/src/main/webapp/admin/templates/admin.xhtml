@@ -74,8 +74,7 @@
 															<li class="bg_list"><a href="#" jsfc="h:commandLink" action="showCategory">#{message.adminMenuShowCategories}</a></li>
 															<li class="bg_list"><a href="#" jsfc="h:commandLink" action="#{productController.registerProduct}">#{message.adminMenuRegisterProduct}</a></li>
 															<li class="bg_list"><a href="#" jsfc="h:commandLink" action="showProducts">#{message.adminMenuShowProducts}</a></li>
-															<li class="bg_list"><a href="#">#{message.adminMenuRegisterUserSystem}</a></li>
-															<li class="bg_list"><a href="#">#{message.adminMenuShowUsersSystem}</a></li>
+															<li class="bg_list"><a href="#" jsfc="h:commandLink" action="userSystemPage">#{message.adminMenuRegisterUserSystem}</a></li>
 															<li class="bg_list"><a href="#">#{message.adminMenuShowCustomers}</a></li>
 															<li class="bg_list"><a href="#" jsfc="h:commandLink" action="#{bankController.manageBank}">#{message.adminMenuRegisterBank}</a></li>
 															<li class="bg_list"><a href="#">#{message.adminMenuManagerOrders}</a></li>
@@ -122,6 +121,7 @@
 								<table cellpadding="" cellspacing="20" border="0">
 								<tr>
 									<td align="left">
+										<p:growl id="growl" showDetail="true" />
 										<font size="2">
 										<ui:insert name="body"></ui:insert>
 										</font>

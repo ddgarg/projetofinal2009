@@ -43,6 +43,11 @@ public class ShopController implements Serializable {
 	private Product product;
 	
 	/**
+	 * Representa o produto para pesquisa.
+	 */
+	private Product searchProduct;
+	
+	/**
 	 * Palavra-chave para busca de produtos.
 	 */
 	private String keyWord;
@@ -53,6 +58,8 @@ public class ShopController implements Serializable {
 	public ShopController() {
 		this.product = new Product();
 		this.product.setCategory(new Category());
+		this.searchProduct = new Product();
+		this.searchProduct.setCategory(new Category());
 	}
 
 	/**
@@ -214,6 +221,14 @@ public class ShopController implements Serializable {
 		}
 	}
 	
+	/**
+	 * Pesquisa avançada de produtos.
+	 * @return
+	 */
+	public String advanceSearchProduct() {
+		return null;
+	}
+	
 	/* Gettes and Settes */
 	
 	/**
@@ -254,6 +269,22 @@ public class ShopController implements Serializable {
 	 */
 	public void setKeyWord(String keyWord) {
 		this.keyWord = keyWord;
+	}
+
+	/**
+	 * Obter o produto para pesquisa.
+	 * @return O produto para pesquisa.
+	 */
+	public Product getSearchProduct() {
+		return searchProduct;
+	}
+
+	/**
+	 * Ajustar o produto para pesquisa.
+	 * @param searchProduct O produto para pesquisa.
+	 */
+	public void setSearchProduct(Product searchProduct) {
+		this.searchProduct = searchProduct;
 	}
 	
 }

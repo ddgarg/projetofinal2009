@@ -68,6 +68,9 @@
    <PROCESS-ITEM-OUTPUT ID="showBoleto::#showBoleto.xhtml"
     NAME="output20" PATH="/showBoleto.xhtml"
     TARGET="rules:#showBoleto.xhtml" TITLE="showBoleto" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="userSystemPage::#admin#userSystemPage.xhtml"
+    NAME="output21" PATH="/admin/userSystemPage.xhtml"
+    TARGET="rules:#admin#userSystemPage.xhtml" TITLE="userSystemPage" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#admin#login.xhtml" PATH="/admin/login.xhtml"
@@ -124,4 +127,7 @@
   model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#showBoleto.xhtml" PATH="/showBoleto.xhtml"
   SHAPE="264,968,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#admin#userSystemPage.xhtml"
+  PATH="/admin/userSystemPage.xhtml" SHAPE="368,576,50,25"
+  model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

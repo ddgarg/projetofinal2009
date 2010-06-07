@@ -13,14 +13,15 @@
 					<legend>#{message.advancedSearchTitleForm}</legend>
 					<table cellpadding="2" cellspacing="3" border="0">
 					<tr>
-						<td width="130px" align="right">
+						<td width="110px" align="right">
 							<h:outputText value="#{message.advancedSearchProductNameLabel}:" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:inputText value="#{shopController.product.name}" id="nome" maxlength="50" size="30" required="true" requiredMessage="*"/>
-						</td>
-						<td>	
+							<h:inputText value="#{shopController.searchProduct.name}" id="nome" maxlength="50" size="30" required="true" requiredMessage="*"/>
 							<h:message for="nome" styleClass="inputRequirement"/>
+						</td>
+						<td align="left" width="50px">
+							
 						</td>
 					</tr>
 					<tr>
@@ -28,7 +29,7 @@
 							<h:outputText value="#{message.advancedSearchDescriptionProduct}:" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:inputText value="#{shopController.product.description}" id="description" maxlength="50" size="30">
+							<h:inputText value="#{shopController.searchProduct.description}" id="description" maxlength="50" size="30">
 							</h:inputText>
 						</td>
 						<td>
@@ -40,7 +41,7 @@
 							<h:outputLabel value="#{message.advancedSearchCategory}" styleClass="productsLabels" />
 						</td>
 						<td>
-							<h:selectOneMenu value="#{shopController.product.category.id}" id="categories" title="#{message.advancedSearchCategorye}" style="width:100px" 
+							<h:selectOneMenu value="#{shopController.searchProduct.category.id}" id="categories" title="#{message.advancedSearchCategorye}" style="width:100px" 
 									converter="categoryConverter">
 								<f:selectItems value="#{productController.allCategories}"></f:selectItems>
 							</h:selectOneMenu>
@@ -53,7 +54,7 @@
 					</table>
 				</fieldset>
 				<br />
-				<h:commandButton action="#{contactController.sendContact}" value="#{message.advancedSearchButton}" />
+				<h:commandButton action="#{shopController.advanceSearchProduct}" value="#{message.advancedSearchButton}" />
 			</h:form>
 			<br />
 			<br />
