@@ -48,7 +48,7 @@ public class Product implements Serializable {
 	/**
 	 * O preço do produto.
 	 */
-	@Column(nullable = false)
+	@Column(nullable = false, precision = 17, scale = 17)
 	@NotNull
 	private double price;
 	 
