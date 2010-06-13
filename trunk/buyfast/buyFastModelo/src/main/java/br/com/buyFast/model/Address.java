@@ -63,7 +63,7 @@ public class Address implements Serializable {
      */
     @Column(nullable = false, length = 10)
     @NotNull @Length(min = 10, max = 10)
-    private String CEP;
+    private String cep;
     
     /**
      * Representa a cidade do endereço.
@@ -95,23 +95,29 @@ public class Address implements Serializable {
 
     /**
      * Instancia um novo endereço.
-     * @param street rua, avenida, estrada e etc...
-     * @param number o número da casa ou apartamento.
-     * @param district bairro
-     * @param city cidade
-     * @param state estado
-     * @param country país
+     * @param id O identificador.
+     * @param cep O CEP do endereço.
+     * @param city A cidade.
+     * @param complement O complemento.
+     * @param country O País.
+     * @param district O bairro.
+     * @param number O número do endereço.
+     * @param state O estado.
+     * @param street Rua, Av., Laougradouro...
      */
-    public Address(final String street, final String number,
-            final String district, final String city, final String state,
-            final String country) {
-        this.street = street;
-        this.number = number;
-        this.district = district;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-    }
+	public Address(long id, String cep, String city, String complement,
+			String country, String district, String number, String state,
+			String street) {
+		this.id = id;
+		this.cep = cep;
+		this.city = city;
+		this.complement = complement;
+		this.country = country;
+		this.district = district;
+		this.number = number;
+		this.state = state;
+		this.street = street;
+	}
     
     /**
      * Obter o identificado do endereço.
@@ -198,7 +204,7 @@ public class Address implements Serializable {
      * @return O CEP do endereço.
      */
     public String getCep() {
-		return CEP;
+		return this.cep;
 	}
 
     /**
@@ -206,7 +212,7 @@ public class Address implements Serializable {
      * @param cep - O CEP do endereço.
      */
 	public void setCep(String cep) {
-		CEP = cep;
+		this.cep = cep;
 	}
 
 	/**
@@ -261,7 +267,7 @@ public class Address implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((CEP == null) ? 0 : CEP.hashCode());
+		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
@@ -277,10 +283,10 @@ public class Address implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Address other = (Address) obj;
-		if (CEP == null) {
-			if (other.CEP != null)
+		if (cep == null) {
+			if (other.cep != null)
 				return false;
-		} else if (!CEP.equals(other.CEP))
+		} else if (!cep.equals(other.cep))
 			return false;
 		if (id != other.id)
 			return false;

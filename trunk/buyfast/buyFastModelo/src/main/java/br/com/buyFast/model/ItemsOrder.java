@@ -40,7 +40,7 @@ public class ItemsOrder implements Serializable {
 	/**
 	 * O preço deste produto.
 	 */
-	@Column(nullable = false)
+	@Column(nullable = false, precision = 17, scale = 17)
 	@NotNull
 	private double price;
 	 
