@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa o endereço do cliente.
@@ -24,8 +27,65 @@ public class Address implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private long id;
 
+    /**
+     * Representa a rua do endereço.
+     */
+    @Column(nullable = false, length = 100)
+    @NotNull @Length(max = 100)
+    private String street;
+
+    /**
+     * Representa o número do endereço.
+     */
+    @Column(nullable = false, length = 10)
+    @NotNull @Length(max = 10)
+    private String number;
+
+    /**
+     * Representa o complemento do endereço.
+     */
+    @Column(nullable = true, length = 100)
+    @Length(max = 100)
+    private String complement;
+
+    /**
+     * Representa o bairro do endereço.
+     */
+    @Column(nullable = false, length = 50)
+    @NotNull @Length(max = 50)
+    private String district;
+
+    /**
+     * Representa o CEP do endereço.
+     */
+    @Column(nullable = false, length = 10)
+    @NotNull @Length(min = 10, max = 10)
+    private String CEP;
+    
+    /**
+     * Representa a cidade do endereço.
+     */
+    @Column(nullable = false, length = 50)
+    @NotNull @Length(max = 50)
+    private String city;
+
+    /**
+     * Representa o estado do endereço.
+     */
+    @Column(nullable = false, length = 20)
+    @NotNull @Length(max = 50)
+    private String state;
+
+    /**
+     * Representa o país do endereço.
+     */
+    @Column(nullable = false, length = 20)
+    @NotNull @Length(max = 20)
+    private String country;
+    
     /**
      * Instancia um novo endereço.
      */
@@ -52,55 +112,7 @@ public class Address implements Serializable {
         this.state = state;
         this.country = country;
     }
-
-    /**
-     * Representa a rua do endereço.
-     */
-    @Column(nullable = true, length = 100)
-    private String street;
-
-    /**
-     * Representa o número do endereço.
-     */
-    @Column(nullable = true)
-    private String number;
-
-    /**
-     * Representa o complemento do endereço.
-     */
-    @Column(nullable = true, length = 100)
-    private String complement;
-
-    /**
-     * Representa o bairro do endereço.
-     */
-    @Column(nullable = true, length = 50)
-    private String district;
-
-    /**
-     * Representa o CEP do endereço.
-     */
-    @Column(nullable = true)
-    private String CEP;
     
-    /**
-     * Representa a cidade do endereço.
-     */
-    @Column(nullable = true, length = 50)
-    private String city;
-
-    /**
-     * Representa o estado do endereço.
-     */
-    @Column(nullable = true, length = 50)
-    private String state;
-
-    /**
-     * Representa o país do endereço.
-     */
-    @Column(nullable = true, length = 50)
-    private String country;
-
     /**
      * Obter o identificado do endereço.
      * @return O identificado do endereço.
@@ -245,43 +257,49 @@ public class Address implements Serializable {
         this.country = country;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((number == null) ? 0 : number.hashCode());
-        result = prime * result + ((street == null) ? 0 : street.hashCode());
-        return result;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((CEP == null) ? 0 : CEP.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((street == null) ? 0 : street.hashCode());
+		return result;
 	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Address other = (Address) obj;
-        if (id != other.id)
-            return false;
-        if (number == null) {
-            if (other.number != null)
-                return false;
-        } else if (!number.equals(other.number))
-            return false;
-        if (street == null) {
-            if (other.street != null)
-                return false;
-        } else if (!street.equals(other.street))
-            return false;
-        return true;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		if (CEP == null) {
+			if (other.CEP != null)
+				return false;
+		} else if (!CEP.equals(other.CEP))
+			return false;
+		if (id != other.id)
+			return false;
+		if (number == null) {
+			if (other.number != null)
+				return false;
+		} else if (!number.equals(other.number))
+			return false;
+		if (street == null) {
+			if (other.street != null)
+				return false;
+		} else if (!street.equals(other.street))
+			return false;
+		return true;
 	}
 
-    @Override
-    public String toString() {
-        return this.street;
-    }
+	@Override
+	public String toString() {
+		return "Address [street=" + street + "]";
+	}
 
 }

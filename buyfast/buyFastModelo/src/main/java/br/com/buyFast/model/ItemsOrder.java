@@ -2,12 +2,13 @@ package br.com.buyFast.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 /**
  * Classe que representa os ítens de pedido.
@@ -26,16 +27,21 @@ public class ItemsOrder implements Serializable {
 	 * a classe {@link OrderPK}.
 	 */
 	@EmbeddedId
+	@NotNull
 	private OrderPK id = new OrderPK();
 
 	/**
 	 * A quantidade do produto neste item.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private int quantity;
 	 
 	/**
 	 * O preço deste produto.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private double price;
 	 
 	/**
@@ -47,13 +53,13 @@ public class ItemsOrder implements Serializable {
 	/**
 	 * O pedido ao qual pertence este item de pedido.
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Order.class)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Order order;
 	
 	/**
 	 * O produto deste item de pedido.
 	 */
-	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Product.class)
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Product product;
 
 	/**

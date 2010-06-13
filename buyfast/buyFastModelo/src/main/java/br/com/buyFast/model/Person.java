@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa as pessoas usuárias do sistema.
@@ -29,36 +32,42 @@ public abstract class Person implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	protected Integer id;
 	
 	/**
 	 * O nome.
 	 */
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
+	@NotNull @Length(max = 100)
 	protected String name;
 	
 	/**
 	 * O sobrenome.
 	 */
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
+	@NotNull @Length(max = 100)
 	protected String secondName;
 	
 	/**
 	 * O cadastro de pessoa física.
 	 */
-	@Column(nullable=true, length=14)
+	@Column(nullable = false, length = 14)
+	@NotNull @Length(max = 14)
 	protected String cpf;
 
 	/**
 	 * O e-mail.
 	 */
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
+	@NotNull @Length(max = 100)
 	protected String email;
 	
 	/**
 	 * A senha.
 	 */
-	@Column(nullable=false, length=50)
+	@Column(nullable = false, length = 50)
+	@NotNull @Length(max = 50)
 	protected String password;
 	
 	/**

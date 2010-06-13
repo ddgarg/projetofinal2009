@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa o pedido do cliente.
@@ -35,33 +38,40 @@ public class Order implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private long id;
 	
 	/**
 	 * A data do pedido.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private Timestamp orderDate;
 	 
 	/**
 	 * A data do pagamento.
 	 */
+	@Column(nullable = true)
 	private Timestamp paymentDate;
 	
 	/**
 	 * O cliente deste pedido.
 	 */
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER, targetEntity=Customer.class)
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Customer.class)
 	private Customer customer;
 	
 	/**
 	 * O conjunto de ítens de pedido.
 	 */
-	@OneToMany(mappedBy="order", fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=ItemsOrder.class)
+	@OneToMany(mappedBy="order", fetch=FetchType.EAGER, targetEntity=ItemsOrder.class)
 	private Set<ItemsOrder> itemsOrders;
 	
 	/**
 	 * O status do pedido.
 	 */
+	@Column(name = "status", nullable = false, length = 20)
+	@NotNull
+	@Length(max = 20)
 	@Enumerated(EnumType.STRING)
 	private StatusEnum statusEnum;
 	
