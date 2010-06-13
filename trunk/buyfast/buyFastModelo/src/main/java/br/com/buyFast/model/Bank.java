@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa o banco com o qual o sistema trabalha.
@@ -23,13 +26,15 @@ public class Bank implements Serializable {
 	 * O identificador do banco.
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private Integer id;
 	
 	/**
 	 * O nome do banco.
 	 */
-	@Column(nullable=false, length=100)
+	@Column(nullable = false, length = 100)
+	@NotNull @Length(max = 100)
 	private String name;
 
 	/**

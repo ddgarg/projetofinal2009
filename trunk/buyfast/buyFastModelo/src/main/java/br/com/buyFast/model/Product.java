@@ -3,7 +3,7 @@ package br.com.buyFast.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa o produto.
@@ -33,31 +35,42 @@ public class Product implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private Integer id;
 	 
 	/**
 	 * O nome do produto.
 	 */
+	@Column(nullable = false, length = 100)
+	@NotNull @Length(max = 100)
 	private String name;
 	 
 	/**
 	 * O preço do produto.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private double price;
 	 
 	/**
 	 * O desconto do produto.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private Integer discount;
 	 
 	/**
 	 * A quantidade do estoque.
 	 */
+	@Column(nullable = false)
+	@NotNull
 	private int quantityStock;
 	 
 	/**
 	 * Representa a pequena descrição.
 	 */
+	@Column(nullable = false, length = 200)
+	@NotNull @Length(max = 200)
 	private String smallDescription;
 	 
 	/**
@@ -69,17 +82,21 @@ public class Product implements Serializable {
 	/**
 	 * O caminho da imagem do produto.
 	 */
+	@Column(nullable = false, length = 50)
+	@NotNull @Length(max = 50)
 	private String image;
 	
 	/**
 	 * O caminho da imagem de apresentação do produto.
 	 */
+	@Column(nullable = false, length = 50)
+	@NotNull @Length(max = 50)
 	private String smallImage;
 	
 	/**
 	 * O conjunto de ítens de pedido que contém este produto.
 	 */
-	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, targetEntity=ItemsOrder.class, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="product", fetch=FetchType.EAGER, targetEntity=ItemsOrder.class)
 	private Set<ItemsOrder> itemsOrder;
 	
 	/**

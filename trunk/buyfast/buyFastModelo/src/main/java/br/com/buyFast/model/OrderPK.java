@@ -73,6 +73,31 @@ public class OrderPK implements Serializable {
 	public void setProdId(long prodId) {
 		this.prodId = prodId;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (orderId ^ (orderId >>> 32));
+		result = prime * result + (int) (prodId ^ (prodId >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderPK other = (OrderPK) obj;
+		if (orderId != other.orderId)
+			return false;
+		if (prodId != other.prodId)
+			return false;
+		return true;
+	}
 	
 }
  

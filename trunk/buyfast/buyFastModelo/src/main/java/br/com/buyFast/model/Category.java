@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa a categoria do produto.
@@ -32,12 +34,14 @@ public class Category implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private Integer id;
 	
 	/**
 	 * O nome da categoria.
 	 */
 	@Column(nullable=false, length=100)
+	@NotNull @Length(max = 100)
 	private String name;
 
 	/**

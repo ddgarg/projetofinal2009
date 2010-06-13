@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa a configuração do sistema.
@@ -29,18 +31,21 @@ public class Settings implements Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@NotNull
 	private long id;
 	
 	/**
 	 * O e-mail do sistema.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String emailSystem;
 	
 	/**
 	 * O e-mail do contato.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String emailContact;
 	
 	/**
@@ -53,61 +58,71 @@ public class Settings implements Serializable {
 	 * O host.
 	 * Exemplo: <i>smtp.gmail.com</i>.
 	 */
-	@Column(nullable=true, length=50)
+	@Column(nullable = true, length = 50)
+	@Length(max = 50)
 	private String host;
 	
 	/**
 	 * O número da porta.
 	 */
-	@Column(nullable=true, length=10)
+	@Column(nullable = true, length = 10)
+	@Length(max = 10)
 	private String port;
 	 
 	/**
 	 * O protocolo. Exemplo: <i>smtp</i>.
 	 */
-	@Column(nullable=true, length=10)
+	@Column(nullable = true, length = 10)
+	@Length(max = 10)
 	private String protocol;
 	
 	/**
 	 * O userName do e-mail de contato.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String userName_EmailContact;
 	
 	/**
 	 * O password do e-mail de contato.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String password_EmailContact;
 	
 	/**
 	 * Indica se é um e-mail autenticado.
 	 */
-	@Column(nullable=false, length=1)
+	@Column(nullable = true, length = 1)
+	@Length(max = 1)
 	private boolean authentic;
 	
 	/**
 	 * Indica se utiliza conexão segura.
 	 */
-	@Column(nullable=false, length=1)
+	@Column(nullable = false, length = 1)
+	@Length(max = 1)
 	private boolean secureConnection;
 	
 	/**
 	 * Número de produtos por página.
 	 */
-	@Column(nullable=true, length=10)
+	@Column(nullable = true, length = 10, precision = 10)
+	@Length(max = 10)
 	private int numberPage;
 	
 	/**
 	 * UserName do e-mail do sistema.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String userName_EmailSystem;
 	
 	/**
 	 * Password do e-mail do sistema.
 	 */
-	@Column(nullable=true, length=100)
+	@Column(nullable = true, length = 100)
+	@Length(max = 100)
 	private String password_EmailSystem;
 
 	/**
@@ -358,8 +373,8 @@ public class Settings implements Serializable {
 
 	@Override
 	public String toString() {
-		return Settings.class.getName() + " - " + id;
+		return "Settings [id=" + id + "]";
 	}
-	
+
 }
  

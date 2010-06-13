@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Classe que representa o funcionário do sistema.
@@ -21,7 +24,8 @@ public class Employee extends Person implements Serializable {
 	 * O userName do funcionário.<br>
 	 * Usado para fazer login na área administrativa do sistema.
 	 */
-	@Column(name="user_login", nullable=false, length=100, unique=true)
+	@Column(name="user_login", nullable=false, length=20, unique=true)
+	@NotNull @Length(max = 20)
 	protected String user;
 
 	/**
