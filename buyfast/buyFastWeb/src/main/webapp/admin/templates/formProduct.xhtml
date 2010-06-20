@@ -23,8 +23,7 @@
 						<tr>
 							<td style="width: 20px" align="right"><h:outputLabel value="#{message.adminFormCategoriesLabel}" /></td>
 							<td style="width: 400px">
-								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" style="width:315px" 
-										converter="categoryConverter">
+								<h:selectOneMenu value="#{productController.product.category.id}" id="categories" title="#{message.adminFormCategoriesTitle}" style="width:315px">
 									<f:selectItems value="#{productController.allCategories}"></f:selectItems>
 								</h:selectOneMenu>
 								<h:message for="categories" style="color: RED" showDetail="true" />

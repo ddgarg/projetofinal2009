@@ -103,16 +103,28 @@ public class UserSystemController implements Serializable {
 				administrator.setPassword(this.employee.getPassword());
 				administrator.setSecondName(this.employee.getSecondName());
 				administrator.setUser(this.employee.getUser());
-				if (this.employee.getId() == null) {
-					facade.saveAdmin(administrator);
-				} else {
-					facade.updateAdmin(administrator);
-				}
+				// Removendo o funcionário para termos certeza que será cadastrado como admin.
+				facade.removeEmployee(this.employee);
+				// Persistindo como Administrador. 
+				facade.saveAdmin(administrator);
 			} else {
-				if (this.employee.getId() == null) {
-					facade.saveEmployee(this.employee);
+				if (employee instanceof Administrator) {
+					Administrator admin = (Administrator) this.employee;
+					facade.removeAdmin(admin);
+					Employee emp = new Employee();
+					emp.setName(this.employee.getName());
+					emp.setCpf(this.employee.getCpf());
+					emp.setEmail(this.employee.getEmail());
+					emp.setPassword(this.employee.getPassword());
+					emp.setSecondName(this.employee.getSecondName());
+					emp.setUser(this.employee.getUser());
+					facade.saveEmployee(emp);
 				} else {
-					facade.updateEmployee(this.employee);
+					if (this.employee.getId() == null) {
+						facade.saveEmployee(this.employee);
+					} else {
+						facade.updateEmployee(this.employee);
+					}
 				}
 			}
 		} catch (ServiceException e) {
@@ -301,5 +313,5 @@ public class UserSystemController implements Serializable {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-	
+
 }

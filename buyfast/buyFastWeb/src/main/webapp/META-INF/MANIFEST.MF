@@ -26,10 +26,10 @@ Class-Path: activation-1.1.jar antlr-2.7.6.jar aopalliance-1.0.jar asm
  .aop-2.5.6.jar org.springframework.beans-2.5.6.jar org.springframewor
  k.context-2.5.6.jar org.springframework.core-2.5.6.jar org.springfram
  ework.transaction-2.5.6.jar poi-3.2-FINAL.jar postgresql-8.3-603.jdbc
- 4.jar primefaces-1.0.1.jar servlet-api-2.5.jar slf4j-api-1.5.6.jar sl
- f4j-log4j12-1.5.8.jar spring-2.5.6.jar spring-beans-2.5.6.jar spring-
- context-2.5.6.jar spring-core-2.5.6.jar spring-dao-2.0.8.jar spring-h
- ibernate3-2.0.8.jar spring-jdbc-2.5.6.jar spring-orm-2.5.6.jar spring
- -tx-2.5.6.jar stax-api-1.0-2.jar validation-api-1.0.0.GA.jar xml-apis
- -1.0.b2.jar
+ 4.jar primefaces-1.0.3-SNAPSHOT.jar servlet-api-2.5.jar slf4j-api-1.5
+ .6.jar slf4j-log4j12-1.5.8.jar spring-2.5.6.jar spring-beans-2.5.6.ja
+ r spring-context-2.5.6.jar spring-core-2.5.6.jar spring-dao-2.0.8.jar
+  spring-hibernate3-2.0.8.jar spring-jdbc-2.5.6.jar spring-orm-2.5.6.j
+ ar spring-tx-2.5.6.jar stax-api-1.0-2.jar validation-api-1.0.0.GA.jar
+  xml-apis-1.0.b2.jar
 

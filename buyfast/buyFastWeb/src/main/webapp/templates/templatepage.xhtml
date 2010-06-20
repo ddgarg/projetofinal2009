@@ -16,28 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="css/lavalamp_menu.css" media="screen"></link>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"></link>
 	
-	<!-- Dando conflito no primeFaces
-	<script type="text/javascript" src="css/jquery-1.2.3.min.js"></script>
-    <script type="text/javascript" src="css/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="css/jquery.lavalamp.min.js"></script>
-	 -->
-    
     <ui:insert name="scripts"></ui:insert>
     
-    <!-- 
-	<script type="text/javascript">
-        $(function() {
-            $("#1").lavaLamp({
-                fx: "backout",
-                speed: 400,
-                click: function(event, menuItem) {
-                    return false;
-                }
-            });
-        });
-    </script>
-     -->
-	
 	</head>
 	
 	<body>
@@ -138,8 +118,18 @@
 														<td class="li" align="left">
 															<h:commandLink value="#{message.templatePageLogInItem}" 
 																action="#{customerController.myAccount}" rendered="#{customerController.customer.email == null}"/>
-															<h:commandLink value="#{message.templatePageLogOutItem}" 
+														</td>
+													</tr>
+													<tr>
+														<td align="left">
+															<br />
+															<b>
+																<font size="2" color="#7cb700">
+																	<h:outputText value="Olá #{customerController.customer.name}! " rendered="#{customerController.customer.email != null}"/>
+																</font>
+																<h:commandLink value="(#{message.templatePageLogOutItem})"
 																action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
+															</b>
 														</td>
 													</tr>
 												</table>
