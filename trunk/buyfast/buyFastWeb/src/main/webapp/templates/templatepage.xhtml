@@ -124,11 +124,14 @@
 														<td align="left">
 															<br />
 															<b>
-																<font size="2" color="#7cb700">
-																	<h:outputText value="Olá #{customerController.customer.name}! " rendered="#{customerController.customer.email != null}"/>
-																</font>
-																<h:commandLink value="(#{message.templatePageLogOutItem})"
-																action="#{customerController.logout}" rendered="#{customerController.customer.email != null}"/>
+																<h:panelGroup rendered="#{customerController.customer.email != null}">
+																	<font size="2" color="#7cb700">
+																		<h:outputText value="#{message.helloCustomer} #{customerController.customer.name}! " rendered="#{customerController.customer.email != null}"/>
+																	</font>
+																	<h:outputText value="(" />
+																	<h:commandLink value="#{message.templatePageLogOutItem}" action="#{customerController.logout}"/>
+																	<h:outputText value=")" />
+																</h:panelGroup>
 															</b>
 														</td>
 													</tr>
