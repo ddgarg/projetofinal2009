@@ -3,10 +3,6 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
  <description>Projeto Final do curso de Sistema de informações - Estácio de Sá - Nova Iguaçu</description>
  <display-name>buyFastWeb</display-name>
- <icon>
-  <small-icon>/css/images/carrinho.jpg</small-icon>
-  <large-icon>/css/images/carrinho.jpg</large-icon>
- </icon>
  <context-param>
   <param-name>javax.faces.CONFIG_FILES</param-name>
   <param-value>/WEB-INF/faces-config.xml</param-value>
