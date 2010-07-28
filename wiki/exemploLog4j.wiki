@@ -12,7 +12,8 @@ Exemplo Log4j
 #
  
 log4j.threshold=ALL
- 
+
+
 log4j.logger.org.springframework=OFF
 log4j.logger.org.acegisecurity=OFF
 log4j.logger.org.ajax4jsf=OFF
@@ -30,7 +31,10 @@ log4j.logger.org.richfaces.component.UIScrollableDataTable=OFF
 log4j.logger.org.richfaces.convert.selection.ClientSelectionConverter=OFF
 log4j.logger.org.richfaces.model.DataModelCache=OFF
 log4j.logger.org.richfaces.skin.SkinFactoryImpl=OFF
+log4j.logger.org.hibernate=WARN, CONSOLE, fileout
+#log4j.logger.org.jboss.seam=WARN, CONSOLE, fileout
 
+# Path
 logsPath=${user.home}${file.separator}Meus documentos${file.separator}Logs${file.separator}
 
 log4j.rootLogger=ALL, CONSOLE, LOG
