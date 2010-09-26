@@ -63,6 +63,7 @@
 		</dependency>
 	</dependencies>
 
+	<url>http://code.google.com/p/projetofinal2009/</url>
 	<build>
 		<!-- Estruturas de diretórios -->
 		<sourceDirectory>src/main/java</sourceDirectory>
