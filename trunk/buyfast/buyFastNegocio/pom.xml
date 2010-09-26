@@ -222,6 +222,7 @@
 		</dependency>
 	</dependencies>
 
+	<url>http://code.google.com/p/projetofinal2009/</url>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>src/test/java</testSourceDirectory>
