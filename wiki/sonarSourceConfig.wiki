@@ -27,3 +27,7 @@ O Sonar é uma plataforma Web aberta para gerenciar a qualidade de código, ofer
 
 
 [http://www.sonarsource.org/]
+
+== plug-in JSF e JSP ==
+
+[http://docs.codehaus.org/display/SONAR/Web+Plugin]
