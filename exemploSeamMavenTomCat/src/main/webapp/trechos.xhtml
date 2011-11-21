@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="layout/template.xhtml">
+		<ui:define name="titulo">Trechos</ui:define>
+		
+		<ui:define name="conteudo">
+			<h1>Cadastro de Trechos</h1>
+			<h:form>
+			
+				<h:inputHidden value="#{trechoHandler.trecho.id}" />
+			
+				Origem:
+				<br/>
+				<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
+					<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+						noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+						<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+				</h:selectOneMenu>
+				<h:message for="origem" />
+				<br/>
+				
+				Destino:
+				<br/>
+				<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
+					<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+						noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+						<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+				</h:selectOneMenu>
+				<h:message for="destino" />
+				<br/>
+				
+				<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
+			</h:form>
+			
+			<br/>
+			<br />
+			
+			<h:form>
+				<rich:dataTable value="#{trechos}" var="t" style="width: 60%">
+					<rich:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputText value="#{t.id}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Origem</f:facet>
+						<h:outputText value="#{t.origem.nome}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Destino</f:facet>
+						<h:outputText value="#{t.destino.nome}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="#{trechoHandler.editar}" value="Editar" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Remover</f:facet>
+						<h:commandLink action="#{trechoHandler.remover}" value="Remover" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Cadastro de Voo</f:facet>
+						<s:link action="#{vooHandler.manipulaVoos(t)}">
+							<h:outputText value="Cadastro Voo" />
+						</s:link>
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
