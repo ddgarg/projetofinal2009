@@ -1,5 +1,6 @@
 package br.com.caelum.aeris.handler;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
@@ -16,7 +17,9 @@ import org.jboss.seam.log.Log;
 import br.com.caelum.aeris.entity.Trecho;
 
 @Name("trechoHandler")
-public class TrechoHandler {
+public class TrechoHandler implements Serializable {
+
+	private static final long serialVersionUID = 2384006743750900280L;
 
 	@Logger
 	private Log log;

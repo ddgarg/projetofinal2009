@@ -1,8 +1,8 @@
 package br.com.caelum.aeris.handler;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 
 import org.jboss.seam.ScopeType;
@@ -22,7 +22,9 @@ import br.com.caelum.aeris.entity.Voo;
 
 @Name("vooHandler")
 @Scope(ScopeType.CONVERSATION)
-public class VooHandler {
+public class VooHandler implements Serializable {
+
+	private static final long serialVersionUID = 4007562693132758699L;
 
 	@Logger
 	private Log log;
@@ -61,7 +63,7 @@ public class VooHandler {
 		return "/voos.xhtml";
 	}
 	
-	public void salvarVoo(final ActionEvent event) {
+	public void salvarVoo() {
 		if (this.voo.getId() != null) {
 			salvar();
 		} else {
@@ -92,6 +94,10 @@ public class VooHandler {
 
 	public Voo getVoo() {
 		return voo;
+	}
+
+	public void setVoo(Voo voo) {
+		this.voo = voo;
 	}
 
 }
