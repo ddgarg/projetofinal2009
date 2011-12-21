@@ -11,6 +11,7 @@ import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
@@ -34,6 +35,8 @@ public class VooHandler implements Serializable {
 	
 	private Trecho trechoSelecionado;
 	
+	@In(required = false)
+	@Out(required = false)
 	private Voo voo = new Voo();
 	
 	@DataModelSelection
@@ -63,14 +66,17 @@ public class VooHandler implements Serializable {
 		return "/voos.xhtml";
 	}
 	
-	public void salvarVoo() {
+	public String salvarVoo() {
 		if (this.voo.getId() != null) {
 			salvar();
 		} else {
+			this.voo.setTrecho(trechoSelecionado);
 			log.info("Salvando: #0", this.voo);
 			entityManager.persist(this.voo);
 		}
 		this.voo = new Voo();
+		
+		return "/voos.xhtml";
 	}
 
 	public void salvar() {
