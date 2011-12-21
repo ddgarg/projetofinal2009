@@ -45,7 +45,6 @@ public class VooHandler implements Serializable {
 	@DataModel
 	private List<Voo> voos;
 	
-//	@PersistenceContext(type = PersistenceContextType.EXTENDED)
 	@In
 	private EntityManager entityManager;
 	
@@ -53,6 +52,7 @@ public class VooHandler implements Serializable {
 	public String manipulaVoos(final Trecho trecho) {
 		this.trechoSelecionado = entityManager.merge(trecho);
 		log.info("Trecho selecionado: #0", this.trechoSelecionado);
+		log.info("EntityManager: #0", entityManager);
 		log.info("Id da conversação atual: #0", conversation.getId());
 		return "/voos.xhtml";
 	}
@@ -62,31 +62,36 @@ public class VooHandler implements Serializable {
 	}
 	
 	public String remover() {
-		this.entityManager.remove(this.voo);
+		log.info("EntityManager: #0", entityManager);
+		log.info("Removendo voo: #0", this.vooSelecionado);
+		this.entityManager.remove(this.vooSelecionado);
+		this.voo = new Voo();
 		return "/voos.xhtml";
 	}
 	
 	public String salvarVoo() {
-		if (this.voo.getId() != null) {
-			salvar();
-		} else {
-			this.voo.setTrecho(trechoSelecionado);
+		log.info("EntityManager: #0", entityManager);
+		if (this.voo.getId() == null) {
+			this.trechoSelecionado.getVoos().add(this.voo);
+			this.voo.setTrecho(this.trechoSelecionado);
 			log.info("Salvando: #0", this.voo);
 			entityManager.persist(this.voo);
+		} else {
+			salvar();
 		}
 		this.voo = new Voo();
-		
 		return "/voos.xhtml";
 	}
-
+	
 	public void salvar() {
-		log.info("Salvando: #0", this.voo);
+		log.info("Atualizando: #0", this.voo);
+		this.voo.setTrecho(this.trechoSelecionado);
 		entityManager.merge(this.voo);
-		this.voo = new Voo();
 	}
 	
-	@Factory("voos")
+	@Factory(value = "voos")
 	public void inicioVoos() {
+		log.info("Obtendo voos!", new Object());
 		this.voos = this.trechoSelecionado.getVoos();
 	}
 	
