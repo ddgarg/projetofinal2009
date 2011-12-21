@@ -10,10 +10,12 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.NotNull;
@@ -28,7 +30,8 @@ public class Trecho implements Serializable {
 	private static final long serialVersionUID = -7389468436897921917L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trecho_sequence_generator")
+	@SequenceGenerator(name = "trecho_sequence_generator", sequenceName = "trecho_sequence", initialValue = 1, allocationSize = 3)  
 	@NotNull
 	private Long id;
 

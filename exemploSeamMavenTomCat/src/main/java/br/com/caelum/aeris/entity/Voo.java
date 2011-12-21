@@ -3,12 +3,13 @@ package br.com.caelum.aeris.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +28,8 @@ public class Voo implements Serializable {
 	private static final long serialVersionUID = 8721687440155064708L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "voo_sequence_generator")
+	@SequenceGenerator(name = "voo_sequence_generator", sequenceName = "voo_sequence", initialValue = 1, allocationSize = 4) 
 	@NotNull
 	private Long id;
 
@@ -50,7 +52,6 @@ public class Voo implements Serializable {
 	private Date horaChegada;
 
 	@ManyToOne(
-			cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY,
 			targetEntity = Trecho.class)
 	@NotNull
