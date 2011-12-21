@@ -64,6 +64,14 @@ public class VooHandler implements Serializable {
 	public String remover() {
 		log.info("EntityManager: #0", entityManager);
 		log.info("Removendo voo: #0", this.vooSelecionado);
+		/*
+		 * Temos que remover o vôo do trecho, porque o trecho está sendo
+		 * gerenciado pelo entityManager. Ao remover o vôo, o JPA informa
+		 * que o vôo está sendo gerenciado e peristido, não permitindo a
+		 * remoção.
+		 */
+		this.trechoSelecionado.getVoos().remove(this.vooSelecionado);
+		this.vooSelecionado.setTrecho(null);
 		this.entityManager.remove(this.vooSelecionado);
 		this.voo = new Voo();
 		return "/voos.xhtml";
