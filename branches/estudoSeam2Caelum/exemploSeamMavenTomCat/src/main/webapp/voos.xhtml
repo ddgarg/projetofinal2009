@@ -65,47 +65,48 @@
 			
 			<rich:spacer height="20"></rich:spacer>
 			
-			<rich:dataTable value="#{voos}" var="voo" style="width: 60%">
-				<f:facet name="header"> Voos Cadastrados</f:facet>
-				
-				<rich:column>
-					<f:facet name="header">Código do Voo</f:facet>
-					<h:outputText value="#{voo.codigo}" />
-				</rich:column>
-				
-				<rich:column>
-					<f:facet name="header">Partida</f:facet>
-					<h:outputText value="#{voo.dataPartida}">
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-					</h:outputText>
-					<h:outputText value=" - " />
-					<h:outputText value="#{voo.horaPartida}">
-						<f:convertDateTime type="time" pattern="HH:mm"/>
-					</h:outputText>
-				</rich:column>
-				
-				<rich:column>
-					<f:facet name="header">Chegada</f:facet>
-					<h:outputText value="#{voo.dataChegada}">
-						<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
-					</h:outputText>
-					<h:outputText value=" - " />
-					<h:outputText value="#{voo.horaChegada}">
-						<f:convertDateTime type="time" pattern="HH:mm"/>
-					</h:outputText>
-				</rich:column>
-				
-				<rich:column>
-					<f:facet name="header">Editar</f:facet>
-					<h:commandLink action="#{vooHandler.editar}" value="Editar" />
-				</rich:column>
-				
-				<rich:column>
-					<f:facet name="header">Remover</f:facet>
-					<h:commandLink action="#{vooHandler.remover}" value="Remover" />
-				</rich:column>
-			</rich:dataTable>
-			
+			<h:form>
+				<rich:dataTable value="#{voos}" var="vo" style="width: 60%">
+					<f:facet name="header"> Voos Cadastrados</f:facet>
+					
+					<rich:column>
+						<f:facet name="header">Código do Voo</f:facet>
+						<h:outputText value="#{vo.codigo}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Partida</f:facet>
+						<h:outputText value="#{vo.dataPartida}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						<h:outputText value=" - " />
+						<h:outputText value="#{vo.horaPartida}">
+							<f:convertDateTime type="time" pattern="HH:mm"/>
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Chegada</f:facet>
+						<h:outputText value="#{vo.dataChegada}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						<h:outputText value=" - " />
+						<h:outputText value="#{vo.horaChegada}">
+							<f:convertDateTime type="time" pattern="HH:mm"/>
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="#{vooHandler.editar}" value="Editar" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">Remover</f:facet>
+						<h:commandLink action="#{vooHandler.remover}" value="Remover" />
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
 		</ui:define>
 		
 	</ui:composition>
