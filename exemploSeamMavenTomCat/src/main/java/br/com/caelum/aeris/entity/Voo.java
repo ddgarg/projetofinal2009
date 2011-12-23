@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.Future;
+import org.hibernate.validator.Length;
+import org.hibernate.validator.NotEmpty;
 import org.hibernate.validator.NotNull;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
@@ -33,6 +36,9 @@ public class Voo implements Serializable {
 	@NotNull
 	private Long id;
 
+	@NotNull(message = "Informar código do vôo")
+	@NotEmpty
+	@Length(min = 6, max  = 6, message = "Código deve ter 6 dígitos")
 	private String codigo;
 
 	@Temporal(TemporalType.DATE)
@@ -40,15 +46,16 @@ public class Voo implements Serializable {
 	private Date dataPartida;
 
 	@Temporal(TemporalType.TIME)
-	@NotNull(message="Informar data")
+	@NotNull(message="Informar hora em HH:mm")
 	private Date horaPartida;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message="Informar data")
+	@Future
 	private Date dataChegada;
 
 	@Temporal(TemporalType.TIME)
-	@NotNull(message="Informar data")
+	@NotNull(message="Informar hora em HH:mm")
 	private Date horaChegada;
 
 	@ManyToOne(

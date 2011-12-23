@@ -11,39 +11,77 @@
 		<ui:define name="titulo">Trechos</ui:define>
 		
 		<ui:define name="conteudo">
+		
+		<rich:panel style="width: 300px">
 			<h1>Cadastro de Trechos</h1>
-			<h:form>
+			
+			<p>
+				<rich:messages globalOnly="true" style="color:RED"></rich:messages>
+			</p>
+			
+			<h:form id="cadTrecho">
 			
 				<h:inputHidden value="#{trechoHandler.trecho.id}" />
 			
-				Origem:
-				<br/>
-				<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
-					<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-						noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
-						<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
-				</h:selectOneMenu>
-				<h:message for="origem" />
-				<br/>
+				<h:panelGrid>
+					<rich:panel>
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">Origem:</ui:define>
+						</s:decorate>
+						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
+							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+						</h:selectOneMenu>
+						<h:message for="origem" style="color:RED" />
+					</rich:panel>				
+				</h:panelGrid>
 				
-				Destino:
-				<br/>
-				<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
-					<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-						noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
-						<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
-				</h:selectOneMenu>
-				<h:message for="destino" />
-				<br/>
+				<rich:spacer height="20"></rich:spacer>
 				
-				<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
+				<rich:panel>
+					<f:facet name="header">
+						Destino:
+					</f:facet>
+				
+					<br/>
+					<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
+						<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+							noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+							<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+					</h:selectOneMenu>
+					<h:message for="destino" style="color:RED" />
+					<br/>
+				</rich:panel>
+				
+				<rich:spacer height="40"></rich:spacer>
+				
+				<a4j:form ajaxSubmit="true" reRender="formListTrecho">
+					<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
+ 				</a4j:form>
 			</h:form>
+		
+		</rich:panel>
+		
+			<br/>
+			
+			<rich:spacer height="20"></rich:spacer>
 			
 			<br/>
-			<br />
 			
-			<h:form>
-				<rich:dataTable value="#{trechos}" var="t" style="width: 60%">
+			<a4j:form id="formListTrecho">
+				<rich:dataTable  onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			                     cellpadding="0"
+			                     cellspacing="0" 
+			                     width="700"
+			                     border="0"
+			                     value="#{trechos}"
+			                     var="t"
+			                     style="width: 500px">
+			                     
+					<f:facet name="header">Trechos</f:facet>
+
 					<rich:column>
 						<f:facet name="header">Id</f:facet>
 						<h:outputText value="#{t.id}" />
@@ -72,7 +110,7 @@
 						</s:link>
 					</rich:column>
 				</rich:dataTable>
-			</h:form>
+			</a4j:form>
 		</ui:define>
 	</ui:composition>
 </html>
