@@ -11,7 +11,7 @@
 		<ui:define name="titulo">Voos</ui:define>
 		
 		<ui:define name="conteudo">
-			<rich:panel>
+			<rich:panel style="width: 300px">
 				<h1>Cadastro de Voos</h1>
 				
 				<h:form>
@@ -55,7 +55,7 @@
 						</h:inputText>
 					</rich:panel>
 					
-					<rich:spacer height="20"></rich:spacer>
+					<rich:spacer height="40"></rich:spacer>
 					
 					<h:commandButton action="#{vooHandler.salvarVoo}" value="Salvar" />
 					<s:button action="/trechos.xhtml" value="Voltar" propagation="end" />
@@ -68,7 +68,15 @@
 			<rich:spacer height="20"></rich:spacer>
 			
 			<h:form id="listaVoos">
-				<rich:dataTable value="#{voos}" var="vo" style="width: 60%">
+				<rich:dataTable  onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			                     cellpadding="0"
+			                     cellspacing="0" 
+			                     width="700"
+			                     border="0"
+			                     value="#{voos}"
+			                     var="vo"
+			                     style="width: 500px">
 					<f:facet name="header"> Voos Cadastrados</f:facet>
 					
 					<rich:column>
