@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="richfaces-demo-3.3.3.Final-tomcat6">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/ImportedClasses"/>
+        <property name="context-root" value="richfaces-demo-3.3.3.Final-tomcat6"/>
+        <property name="java-output-path" value="/richfaces-demo-3.3.3.Final-tomcat6/build/classes"/>
+    </wb-module>
+</project-modules>
