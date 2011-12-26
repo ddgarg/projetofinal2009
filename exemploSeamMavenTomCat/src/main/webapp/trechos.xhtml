@@ -26,31 +26,27 @@
 				<h:panelGrid>
 					<rich:panel>
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Origem:</ui:define>
+							<ui:define name="label">Origem</ui:define>
+							<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
+								<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+									noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+									<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+							</h:selectOneMenu>
 						</s:decorate>
-						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
-							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
-								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
-						</h:selectOneMenu>
-						<h:message for="origem" style="color:RED" />
 					</rich:panel>				
 				</h:panelGrid>
 				
 				<rich:spacer height="20"></rich:spacer>
 				
 				<rich:panel>
-					<f:facet name="header">
-						Destino:
-					</f:facet>
-				
-					<br/>
-					<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
-						<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-							noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
-							<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
-					</h:selectOneMenu>
-					<h:message for="destino" style="color:RED" />
+					<s:decorate template="layout/validation.xhtml">
+						<ui:define name="label">Destino</ui:define>
+						<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
+							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+						</h:selectOneMenu>
+					</s:decorate>
 					<br/>
 				</rich:panel>
 				
