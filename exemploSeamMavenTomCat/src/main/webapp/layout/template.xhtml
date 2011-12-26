@@ -5,12 +5,15 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:s="http://jboss.com/products/seam/taglib"
       xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+      xmlns:a="http://richfaces.org/a4j">
 
 	<head>
-		<title>
-			<ui:insert name="titulo">Aeris</ui:insert>
-		</title>
+    	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	      <title><ui:insert name="titulo">Aeris</ui:insert></title>
+	      <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
+	      <a:loadStyle src="/stylesheet/theme.xcss"/>
+	      <a:loadStyle src="/stylesheet/theme.css"/>
+	      <ui:insert name="head"/>
 	</head>
 	<body>
 		<ui:insert name="conteudo"></ui:insert>
