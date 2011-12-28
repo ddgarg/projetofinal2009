@@ -1,38 +1,27 @@
 package br.com.caelum.aeris.handler;
 
-import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Begin;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.In;
-import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
-import org.jboss.seam.core.Conversation;
-import org.jboss.seam.log.Log;
+import org.jboss.seam.international.StatusMessage.Severity;
 
 import br.com.caelum.aeris.entity.Trecho;
 import br.com.caelum.aeris.entity.Voo;
 
 @Name("vooHandler")
 @Scope(ScopeType.CONVERSATION)
-public class VooHandler implements Serializable {
+public class VooHandler extends BaseHandler {
 
 	private static final long serialVersionUID = 4007562693132758699L;
 
-	@Logger
-	private Log log;
-	
-	@In
-	private Conversation conversation;
-	
 	private Trecho trechoSelecionado;
 	
 	@In(required = false)
@@ -44,9 +33,6 @@ public class VooHandler implements Serializable {
 	
 	@DataModel
 	private List<Voo> voos;
-	
-	@In
-	private EntityManager entityManager;
 	
 	@Begin
 	public String manipulaVoos(final Trecho trecho) {
@@ -67,13 +53,14 @@ public class VooHandler implements Serializable {
 		/*
 		 * Temos que remover o vôo do trecho, porque o trecho está sendo
 		 * gerenciado pelo entityManager. Ao remover o vôo, o JPA informa
-		 * que o vôo está sendo gerenciado e peristido, não permitindo a
+		 * que o vôo está sendo gerenciado e persistido, não permitindo a
 		 * remoção.
 		 */
 		this.trechoSelecionado.getVoos().remove(this.vooSelecionado);
 		this.vooSelecionado.setTrecho(null);
 		this.entityManager.remove(this.vooSelecionado);
 		this.voo = new Voo();
+		facesMessages.add(Severity.INFO, "Vôo removido!", new Object());
 		return "/voos.xhtml";
 	}
 	
@@ -87,6 +74,7 @@ public class VooHandler implements Serializable {
 		} else {
 			salvar();
 		}
+		facesMessages.add(Severity.INFO, "Trecho salvo com sucesso! #0", this.voo);
 		this.voo = new Voo();
 		return "/voos.xhtml";
 	}
