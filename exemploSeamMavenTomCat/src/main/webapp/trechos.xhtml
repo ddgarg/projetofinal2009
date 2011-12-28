@@ -12,33 +12,27 @@
 		
 		<ui:define name="conteudo">
 		
-		<rich:panel style="width: 300px">
-			<h1>Cadastro de Trechos</h1>
+			<h:form id="cadTrecho" styleClass="edit">
 			
-			<p>
-				<rich:messages globalOnly="true" style="color:RED"></rich:messages>
-			</p>
+				<rich:panel styleClass="painelCadastro">
+					
+					<f:facet name="header">
+						<h1>Cadastro de Trechos</h1>
+					</f:facet>
 			
-			<h:form id="cadTrecho">
-			
-				<h:inputHidden value="#{trechoHandler.trecho.id}" />
-			
-				<h:panelGrid>
-					<rich:panel>
-						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Origem</ui:define>
-							<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
-								<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-									noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
-									<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
-							</h:selectOneMenu>
-						</s:decorate>
-					</rich:panel>				
-				</h:panelGrid>
+					<h:inputHidden value="#{trechoHandler.trecho.id}" />
 				
-				<rich:spacer height="20"></rich:spacer>
-				
-				<rich:panel>
+					<s:decorate template="layout/validation.xhtml">
+						<ui:define name="label">Origem</ui:define>
+						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
+							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+						</h:selectOneMenu>
+					</s:decorate>
+					
+					<rich:spacer height="20"></rich:spacer>
+					
 					<s:decorate template="layout/validation.xhtml">
 						<ui:define name="label">Destino</ui:define>
 						<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
@@ -47,19 +41,25 @@
 								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
 						</h:selectOneMenu>
 					</s:decorate>
+					
+					<rich:spacer height="40"></rich:spacer>
+					
 					<br/>
+					<br/>
+					
+					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
+						<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
+	 				</a4j:form>
+		
 				</rich:panel>
-				
-				<rich:spacer height="40"></rich:spacer>
-				
-				<a4j:form ajaxSubmit="true" reRender="formListTrecho">
-					<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
- 				</a4j:form>
+			
 			</h:form>
 		
-		</rich:panel>
-		
 			<br/>
+			
+			<p>
+				<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
+			</p>
 			
 			<rich:spacer height="20"></rich:spacer>
 			
@@ -70,11 +70,10 @@
 			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
 			                     cellpadding="0"
 			                     cellspacing="0" 
-			                     width="700"
 			                     border="0"
 			                     value="#{trechos}"
 			                     var="t"
-			                     style="width: 500px">
+			                     style="width: 550px">
 			                     
 					<f:facet name="header">Trechos</f:facet>
 
