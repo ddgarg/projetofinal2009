@@ -280,8 +280,11 @@
 					<include>**/*.xml</include>
 				</includes>
 			</resource>
-			<!-- <resource> <directory>${path.webapp}</directory> </resource> -->
+			<resource>
+				<!-- <directory>${path.webapp}</directory> -->
+			</resource>
 		</resources>
+		
 		<!-- LOCAL DOS RECURSOS PARA OS TESTES -->
 		<testResources>
 			<testResource>

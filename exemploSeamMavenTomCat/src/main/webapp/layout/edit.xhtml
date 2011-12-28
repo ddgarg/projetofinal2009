@@ -8,18 +8,22 @@
       xmlns:a4j="http://richfaces.org/a4j">
 
 	<div>
-		<s:label styleClass="#{invalid?'error':''}">
-			<ui:insert name="label"></ui:insert>
-			<s:span styleClass="required" rendered="#{required}">*</s:span>
-		</s:label>
-		
-		<s:span styleClass="#{invalid?'error':''}">
-			<s:validateAll>
-				<ui:insert></ui:insert>
-			</s:validateAll>
-		</s:span>
-		
-		<s:message styleClass="error"></s:message>
+		<s:label styleClass="name #{invalid?'errors':''}">
+            <s:span styleClass="required" rendered="#{required}">* </s:span>
+            <ui:insert name="label"/>:
+        </s:label>
+
+        <span class="value #{invalid?'errors':''}">
+            <s:validateAll>
+                <ui:insert/>
+            </s:validateAll>
+        </span>
+
+        <span class="error">
+            <h:graphicImage value="/img/error001.jpg" width="13px" height="13px" rendered="#{invalid}" styleClass="errors"/>
+            <h:outputText value=" " />
+            <s:message styleClass="errors"/>
+        </span>
 	</div>
 
 </ui:composition>

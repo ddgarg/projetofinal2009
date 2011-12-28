@@ -12,7 +12,7 @@
 		
 		<ui:define name="conteudo">
 		
-			<h:form id="cadTrecho" styleClass="edit">
+			<h:form id="cadTrecho">
 			
 				<rich:panel styleClass="painelCadastro">
 					
@@ -22,7 +22,7 @@
 			
 					<h:inputHidden value="#{trechoHandler.trecho.id}" />
 				
-					<s:decorate template="layout/validation.xhtml">
+					<s:decorate template="layout/edit.xhtml">
 						<ui:define name="label">Origem</ui:define>
 						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
 							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
@@ -33,7 +33,7 @@
 					
 					<rich:spacer height="20"></rich:spacer>
 					
-					<s:decorate template="layout/validation.xhtml">
+					<s:decorate template="layout/edit.xhtml">
 						<ui:define name="label">Destino</ui:define>
 						<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
 							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
@@ -41,16 +41,14 @@
 								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
 						</h:selectOneMenu>
 					</s:decorate>
+		
 					
-					<rich:spacer height="40"></rich:spacer>
-					
-					<br/>
-					<br/>
-					
+					<rich:spacer height="10"></rich:spacer>
+				
 					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
 						<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
 	 				</a4j:form>
-		
+	 				
 				</rich:panel>
 			
 			</h:form>
@@ -73,7 +71,7 @@
 			                     border="0"
 			                     value="#{trechos}"
 			                     var="t"
-			                     style="width: 550px">
+			                     styleClass="tableCad">
 			                     
 					<f:facet name="header">Trechos</f:facet>
 
