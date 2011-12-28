@@ -1,0 +1,394 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.teste</groupId>
+	<artifactId>exemploSeamMavenTomCat</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>exemploSeamMavenTomCat Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- PROPRIEDADES DO POM -->
+	<properties>
+		<!-- O NOME DO TOMCAT CONFIGURADO NO ECLIPSE -->
+		<server.tomcat.name>Apache Tomcat v6.0</server.tomcat.name>
+		<java.source>src/main/java</java.source>
+		<java.resources>src/main/resources</java.resources>
+		<test.resources>src/test/resources</test.resources>
+		<java.output>target/classes</java.output>
+		<path.webapp>src/main/webapp</path.webapp>
+		<test.source>src/test/java</test.source>
+		<java.version>1.6</java.version>
+		<project.encoding>UTF-8</project.encoding>
+	</properties>
+
+	<!-- ADICIONADO REPOSITÓRIOS -->
+	<repositories>
+		<!-- The JBoss public Nexus repository is a composite repository of several 
+			major repositories -->
+		<!-- see http://community.jboss.org/wiki/MavenGettingStarted-Users -->
+		<!-- At the time of writing, Arquillian and the JBoss Java EE specification 
+			POMs are only in the JBoss Community public repository (not Maven central) -->
+		<repository>
+			<id>jboss-public-repository</id>
+			<name>JBoss Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>ApacheRepository</id>
+			<name>Apache</name>
+			<url>http://ftp.cica.es/mirrors/maven2/</url>
+		</repository>
+		<repository>
+			<id>JBossRepository</id>
+			<name>JBoss</name>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+		</repository>
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository for Maven</name>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository</id>
+			<name>JBoss Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- https://repository.sonatype.org/index.html#welcome -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>3.4</version>
+		</dependency>
+
+		<!-- COMMONS -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<!-- BANCO DE DADOS POSTGRES -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.0-801.jdbc4</version>
+		</dependency>
+
+		<!-- BANCO DE DADOS MYSQL <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+			<version>5.1.9</version> </dependency> -->
+
+		<!-- HIBERNATE -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.1.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.4.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>3.1.0.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.15.0-GA</version>
+		</dependency>
+
+		<!-- JBOSS -->
+		<dependency>
+			<groupId>org.jboss.el</groupId>
+			<artifactId>jboss-el</artifactId>
+			<version>1.0_02.CR5</version>
+			<exclusions>
+				<!-- A DEPENDÊNCIA ABAIXO JÁ TEM NO TOMCAT -->
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam</artifactId>
+			<version>2.2.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-debug</artifactId>
+			<version>2.2.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-ui</artifactId>
+			<version>2.2.2.Final</version>
+		</dependency>
+
+		<!-- JSF -->
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>1.2_15</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>1.2_15</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-facelets</artifactId>
+			<version>1.1.14</version>
+		</dependency>
+
+		<!-- PERSISTÊNCIA -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- OUTROS -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<!-- RICHFACES -->
+		<dependency>
+			<groupId>org.richfaces.framework</groupId>
+			<artifactId>richfaces-api</artifactId>
+			<version>3.3.3.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.framework</groupId>
+			<artifactId>richfaces-impl</artifactId>
+			<version>3.3.3.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-ui</artifactId>
+			<version>3.3.3.Final</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<!-- NOME FINAL DO PROJETO, USAR O MESMO CONFIGURADO NO POM -->
+		<finalName>${project.artifactId}</finalName>
+
+		<!-- DEFININDO DIRETÓRIOS -->
+		<sourceDirectory>${java.source}</sourceDirectory>
+		<testSourceDirectory>${test.source}</testSourceDirectory>
+
+		<!-- PASTA ONDE ESTÃO OS RECURSOS -->
+		<resources>
+			<!-- http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html -->
+			<resource>
+				<directory>${java.resources}</directory>
+				<filtering>false</filtering>
+				<!-- ITEM A SEREM INCLUÍDOS NA PACOTE DE RECURSOS NA COMPILAÇÃO -->
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<!-- ADICIONANDO O DIRETÓRIO WEBAPP NO PROJECT EXPLORER DO ECLIPSE -->
+			<resource>
+				<directory>${path.webapp}</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+		<!-- LOCAL DOS RECURSOS PARA OS TESTES -->
+		<testResources>
+			<testResource>
+				<directory>${test.resources}</directory>
+			</testResource>
+		</testResources>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+			
+			<!-- PLUGIN PARA COMPILAR EM JAVA6 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- PLUGIN PARA RODAR A APLICAÇÃO NO TOMCAT PELO MAVEN -->
+			<!-- Tomcat embutido (package tomcat:run) -->
+			<!-- Standalone Tomcat (package tomcat:deploy) -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<!-- Embedded port -->
+					<port>9090</port>
+					<!-- As credenciais de autenticação padrão para implementação remota 
+						são "admin" username sem senha. Para substituir as credenciais, definir um 
+						servidor em settings.xml e ativá-lo usando o elemento <servidor> -->
+					<url>http://localhost:9090/manager</url>
+				</configuration>
+			</plugin>
+
+			<!-- PLUGIN PARA CONFIGURAR O PROJETO PARA O ECLIPSE -->
+			<!-- Ao executar eclipse:eclipse, o maven já criar o projeto para o eclipse 
+				com todas as configurações padrões de um projeto web. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<encoding>${project.encoding}</encoding>
+					<wtpversion>2.0</wtpversion>
+					<wtpmanifest>true</wtpmanifest>
+					<manifest>${basedir}/${path.webapp}/META-INF/MANIFEST.MF</manifest>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<additionalProjectFacets>
+						<jst.web>2.5</jst.web>
+						<wst.jsdt.web>1.0</wst.jsdt.web>
+					</additionalProjectFacets>
+					<buildcommands>
+						<buildcommand>org.eclipse.wst.jsdt.core.javascriptValidator</buildcommand>
+						<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+						<buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>
+						<buildcommand>org.eclipse.wst.validation.validationbuilder</buildcommand>
+						<buildcommand>org.eclipse.wst.common.modulecore.ComponentStructuralBuilder</buildcommand>
+						<buildcommand>org.eclipse.wst.common.modulecore.ComponentStructuralBuilderDependencyResolver</buildcommand>
+					</buildcommands>
+					<classpathContainers>
+						<classpathContainer>org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/${server.tomcat.name}</classpathContainer>
+						<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+						<classpathContainer>org.eclipse.jst.j2ee.internal.web.container/${project.artifactId}</classpathContainer>
+						<classpathContainer>org.eclipse.jst.j2ee.internal.module.container</classpathContainer>
+					</classpathContainers>
+					<projectnatures>
+						<projectnature>org.eclipse.jem.workbench.JavaEMFNature</projectnature>
+						<projectnature>org.eclipse.wst.common.modulecore.ModuleCoreNature</projectnature>
+						<projectnature>org.eclipse.wst.common.project.facet.core.nature</projectnature>
+						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+						<projectnature>org.eclipse.wst.jsdt.core.jsNature</projectnature>
+					</projectnatures>
+					<additionalConfig>
+						<!-- CRIA UM ORG.ECLIPSE.WST.COMMON.COMPONENT PERSONALIZADO -->
+						<file>
+							<name>.settings/org.eclipse.wst.common.component</name>
+							<content>
+                                  <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+									<project-modules id="moduleCoreId" project-version="1.5.0">
+									  <wb-module deploy-name="${project.build.finalName}">
+									    <property name="context-root" value="${project.build.finalName}"/>
+									    <wb-resource deploy-path="/" source-path="${path.webapp}"/>
+									    <property name="java-output-path" value="${java.output}"/>
+									    <wb-resource deploy-path="/WEB-INF/classes" source-path="${java.source}"/>
+									    <wb-resource deploy-path="/WEB-INF/classes" source-path="${java.resources}"/>
+									  </wb-module>
+									</project-modules>]]>
+							</content>
+						</file>
+					</additionalConfig>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
