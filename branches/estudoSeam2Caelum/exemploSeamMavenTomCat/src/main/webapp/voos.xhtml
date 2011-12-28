@@ -14,7 +14,7 @@
 		
 			<h:form id="cadVoo" styleClass="edit">
 		
-				<rich:panel styleClass="painelCadastro">
+				<rich:panel styleClass="painelCadastroVoo">
 				
 				    <f:facet name="header">
 						<h1>Cadastro de Voos</h1>
@@ -22,7 +22,7 @@
 					
 					<h:inputHidden value="#{voo.id}" />
 				
-					<h:panelGrid style="width: 90%" >
+					<h:panelGrid style="width: 90%">
 					
 						<s:decorate template="layout/validation.xhtml">
 							<ui:define name="label">Código</ui:define>
@@ -30,51 +30,52 @@
 						</s:decorate>
 						
 						<rich:separator lineType="solid" height="2"/>
-						<rich:spacer height="20"/>
+						<rich:spacer height="15"/>
 						
-						<rich:panel>
-							<f:facet name="header">
-								Origem: #{vooHandler.trechoSelecionado.origem.nome}
-							</f:facet>
+						<h:outputText styleClass="rich-panel-header" value="Origem: #{vooHandler.trechoSelecionado.origem.nome}" />
+						
+						<rich:spacer height="10"/>
 							
-							<s:decorate template="layout/validation.xhtml">
-								<ui:define name="label">Dia</ui:define>
-								<rich:calendar value="#{voo.dataPartida}" datePattern="dd/MM/yyyy" />
-							</s:decorate>
-			
-							<s:decorate template="layout/validation.xhtml">
-								<ui:define name="label">Hora</ui:define>
-								<h:inputText value="#{voo.horaPartida}">
-									<f:convertDateTime type="time" pattern="HH:mm"/>
-								</h:inputText>
-							</s:decorate>
-						</rich:panel>
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">Dia</ui:define>
+							<rich:calendar value="#{voo.dataPartida}" datePattern="dd/MM/yyyy" />
+						</s:decorate>
+		
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">Hora</ui:define>
+							<h:inputText value="#{voo.horaPartida}">
+								<f:convertDateTime type="time" pattern="HH:mm"/>
+							</h:inputText>
+						</s:decorate>
 						
 						
-						<rich:panel>
-							<f:facet name="header">
-								Destino: #{vooHandler.trechoSelecionado.destino.nome}
-							</f:facet>
+						<rich:separator lineType="solid" height="2"/>
+						<rich:spacer height="15"/>
+												
+						<h:outputText styleClass="rich-panel-header" value="Destino: #{vooHandler.trechoSelecionado.destino.nome}" />
 						
-							<s:decorate template="layout/validation.xhtml">
-								<ui:define name="label">Dia</ui:define>
-								<rich:calendar value="#{voo.dataChegada}" datePattern="dd/MM/yyyy" />
-							</s:decorate>
-							
-							<s:decorate template="layout/validation.xhtml">
-								<ui:define name="label">Hora</ui:define>
-								<h:inputText value="#{voo.horaChegada}">
-									<f:convertDateTime type="time" pattern="HH:mm"/>
-								</h:inputText>
-							</s:decorate>
-						</rich:panel>
+						<rich:spacer height="10"/>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">Dia</ui:define>
+							<rich:calendar value="#{voo.dataChegada}" datePattern="dd/MM/yyyy" />
+						</s:decorate>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">Hora</ui:define>
+							<h:inputText value="#{voo.horaChegada}">
+								<f:convertDateTime type="time" pattern="HH:mm"/>
+							</h:inputText>
+						</s:decorate>
 
 					</h:panelGrid>
+				
+				</rich:panel>
+				
 					
-					<rich:spacer height="40"></rich:spacer>
-					
-					<br/>
-					
+				<rich:spacer height="10"></rich:spacer>
+				
+				<rich:panel styleClass="painelCadastroVoo">	
 					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
 						<h:commandButton action="#{vooHandler.salvarVoo}" value="Salvar" />
 						<s:button action="/trechos.xhtml" value="Voltar" propagation="end" />
@@ -101,7 +102,7 @@
 			                     border="0"
 			                     value="#{voos}"
 			                     var="vo"
-			                     style="width: 500px">
+			                     styleClass="tableCad">
 					<f:facet name="header"> Voos Cadastrados</f:facet>
 					
 					<rich:column>

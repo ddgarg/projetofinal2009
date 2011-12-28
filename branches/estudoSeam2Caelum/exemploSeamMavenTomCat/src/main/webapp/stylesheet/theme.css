@@ -250,4 +250,21 @@ table.radio input[type=radio] {
 
 .painelCadastro {
 	width: 400px;
+	position: relative;
+	margin: auto;
+}
+
+.painelCadastroVoo {
+	width: 400px;
+	position: relative;
+	margin: auto;
+}
+
+.tableCad {
+	margin: auto;
+	width: 500px;
+}
+.prop {
+	position: relative;
+	margin: auto;
 }
