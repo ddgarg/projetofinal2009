@@ -56,6 +56,7 @@ select {
 .body {
 	padding: 30px;
 }
+
 .message {
 	padding: 5px;
 	list-style: none;
@@ -72,6 +73,36 @@ select {
 	padding-top: 1px;
 	padding-left: 20px;
 	margin-left: 3px;
+}
+
+.infomsg {
+	background:       no-repeat left center;
+	padding-top:      1px;
+	padding-left:     20px;
+	padding-bottom:   1px;
+	margin-left:      3px;
+	color:            #436EEE;
+	background-image: url(../img/msginfo.png);
+}
+
+.errormsg {
+	background:       no-repeat left center;
+	padding-top:      1px;
+	padding-left:     20px;
+	padding-bottom:   1px;
+	margin-left:      3px;
+	color:            #FF0000;
+	background-image: url(../img/msgerror.png);
+}
+
+.warnmsg {
+	background:       no-repeat left center;
+	padding-top:      1px;
+	padding-left:     20px;
+	padding-bottom:   1px;
+	margin-left:      3px;
+	color:            #DAA520;
+	background-image: url(../img/msgwarn.png);
 }
 
 .message li.infomsg {
@@ -215,4 +246,8 @@ table.radio td {
 
 table.radio input[type=radio] {
    vertical-align: bottom;
+}
+
+.painelCadastro {
+	width: 400px;
 }
