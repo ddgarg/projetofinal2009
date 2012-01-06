@@ -12,6 +12,8 @@
 		
 		<ui:define name="conteudo">
 		
+		<rich:spacer height="30"></rich:spacer>
+		
 			<h:form id="cadVoo" styleClass="edit">
 		
 				<rich:panel styleClass="painelCadastroVoo">
@@ -80,15 +82,12 @@
 						<h:commandButton action="#{vooHandler.salvarVoo}" value="Salvar" />
 						<s:button action="/trechos.xhtml" value="Voltar" propagation="end" />
 					</a4j:form>
+					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
 				</rich:panel>
 				
 			</h:form>
 			
 			<br/>
-			
-			<p>
-				<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
-			</p>
 			
 			<rich:spacer height="20"></rich:spacer>
 			

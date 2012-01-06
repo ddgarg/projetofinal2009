@@ -22,10 +22,14 @@ import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
+import br.com.caelum.aeris.validators.ChegadaMaiorQuePartida;
+import br.com.caelum.aeris.validators.Maiusculo;
+
 @Entity
 @Table(name = "voo")
 @Name("voo")
 @Scope(ScopeType.EVENT)
+@ChegadaMaiorQuePartida(message = "{validator.ChegadaMaiorQuePartida.msg}")
 public class Voo implements Serializable {
 
 	private static final long serialVersionUID = 8721687440155064708L;
@@ -36,26 +40,28 @@ public class Voo implements Serializable {
 	@NotNull
 	private Long id;
 
-	@NotNull(message = "Informar código do vôo")
-	@NotEmpty
-	@Length(min = 6, max  = 6, message = "Código deve ter 6 dígitos")
+	@Maiusculo
+	@NotNull(message = "{notNull.codigo.voo.msg}")
+	@NotEmpty(message = "{notEmpty.codigo.voo.msg}")
+	@Length(min = 6, max  = 6, message = "{length.codigo.voo.msg}")
 	private String codigo;
 
+	@Future(message = "{future.date.msg}")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Informar data")
+	@NotNull(message="{notNull.dataPartida.msg}")
 	private Date dataPartida;
 
 	@Temporal(TemporalType.TIME)
-	@NotNull(message="Informar hora em HH:mm")
+	@NotNull(message="{notNull.horaPartida.msg}")
 	private Date horaPartida;
 
 	@Temporal(TemporalType.DATE)
-	@NotNull(message="Informar data")
-	@Future
+	@NotNull(message="{notNull.dataChegada.msg}")
+	@Future(message = "{future.date.msg}")
 	private Date dataChegada;
 
 	@Temporal(TemporalType.TIME)
-	@NotNull(message="Informar hora em HH:mm")
+	@NotNull(message="{notNull.horaChegada.msg}")
 	private Date horaChegada;
 
 	@ManyToOne(

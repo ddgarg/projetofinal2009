@@ -74,7 +74,8 @@ public class VooHandler extends BaseHandler {
 		} else {
 			salvar();
 		}
-		facesMessages.add(Severity.INFO, "Trecho salvo com sucesso! #0", this.voo);
+		facesMessages.add(Severity.INFO, "Trecho salvo com sucesso! ID: #0",
+				this.voo.getId());
 		this.voo = new Voo();
 		return "/voos.xhtml";
 	}

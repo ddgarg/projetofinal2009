@@ -36,11 +36,11 @@ public class Trecho implements Serializable {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Informar Local de Origem")
+	@NotNull(message = "{notNull.localidate.origem.msg}")
 	private Localidade origem;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Informar Local de Destino")
+	@NotNull(message = "{notNull.localidade.destino.msg}")
 	private Localidade destino;
 
 	@OneToMany(
