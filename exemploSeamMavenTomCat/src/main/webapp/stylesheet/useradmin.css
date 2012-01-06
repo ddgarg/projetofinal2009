@@ -110,3 +110,15 @@ fieldset.roles .roles {
 table.iceSelMnyCb td {
   text-align: left;
 }
+
+.dialog {
+	margin: auto;
+	width: 400px;
+	position: relative;
+}
+
+.actionButtons {
+	margin: auto;
+	width: 400px;
+	position: relative;
+}
