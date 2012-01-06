@@ -12,6 +12,8 @@
 		
 		<ui:define name="conteudo">
 		
+		<rich:spacer height="30"></rich:spacer>
+		
 			<h:form id="cadTrecho">
 			
 				<rich:panel styleClass="painelCadastro">
@@ -41,23 +43,22 @@
 								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
 						</h:selectOneMenu>
 					</s:decorate>
-		
 					
-					<rich:spacer height="10"></rich:spacer>
+					<rich:spacer height="46"></rich:spacer>
+					
+				</rich:panel>
+			
+				<rich:spacer height="10"></rich:spacer>
 				
+				<rich:panel styleClass="painelCadastroVoo">	
 					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
 						<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
 	 				</a4j:form>
-	 				
-				</rich:panel>
+					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
+				</rich:panel>		
 			
 			</h:form>
-		
 			<br/>
-			
-			<p>
-				<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
-			</p>
 			
 			<rich:spacer height="20"></rich:spacer>
 			
