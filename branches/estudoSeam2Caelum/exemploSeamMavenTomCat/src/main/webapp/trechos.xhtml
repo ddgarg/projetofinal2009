@@ -8,7 +8,7 @@
       xmlns:a4j="http://richfaces.org/a4j">
 
 	<ui:composition template="layout/template.xhtml">
-		<ui:define name="titulo">Trechos</ui:define>
+		<ui:define name="titulo">#{messages.trechosTitle}</ui:define>
 		
 		<ui:define name="conteudo">
 		
@@ -19,16 +19,16 @@
 				<rich:panel styleClass="painelCadastro">
 					
 					<f:facet name="header">
-						<h1>Cadastro de Trechos</h1>
+						<h1>#{messages.trechosPanelTitleRegister}</h1>
 					</f:facet>
 			
 					<h:inputHidden value="#{trechoHandler.trecho.id}" />
 				
 					<s:decorate template="layout/edit.xhtml">
-						<ui:define name="label">Origem</ui:define>
+						<ui:define name="label">#{messages.trechosLabelOrigem}</ui:define>
 						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
 							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+								noSelectionLabel="#{messages.noSelectionLabelMsg}" hideNoSelectionLabel="true"/>
 								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
 						</h:selectOneMenu>
 					</s:decorate>
@@ -36,10 +36,10 @@
 					<rich:spacer height="20"></rich:spacer>
 					
 					<s:decorate template="layout/edit.xhtml">
-						<ui:define name="label">Destino</ui:define>
+						<ui:define name="label">#{messages.trechosLabelDestino}</ui:define>
 						<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
 							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
-								noSelectionLabel="Escolha um" hideNoSelectionLabel="true"/>
+								noSelectionLabel="#{messages.noSelectionLabelMsg}" hideNoSelectionLabel="true"/>
 								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
 						</h:selectOneMenu>
 					</s:decorate>
@@ -52,7 +52,7 @@
 				
 				<rich:panel styleClass="painelCadastroVoo">	
 					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
-						<h:commandButton value="Salvar" actionListener="#{trechoHandler.salvar}" />
+						<h:commandButton value="#{messages.trechosButtonSaveValue}" actionListener="#{trechoHandler.salvar}" />
 	 				</a4j:form>
 					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
 				</rich:panel>		
@@ -74,33 +74,33 @@
 			                     var="t"
 			                     styleClass="tableCad">
 			                     
-					<f:facet name="header">Trechos</f:facet>
+					<f:facet name="header">#{messages.trechosTableTitle}</f:facet>
 
 					<rich:column>
-						<f:facet name="header">Id</f:facet>
+						<f:facet name="header">#{messages.trechosTableHeaderId}</f:facet>
 						<h:outputText value="#{t.id}" />
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">Origem</f:facet>
+						<f:facet name="header">#{messages.trechosTableHeaderOrigem}</f:facet>
 						<h:outputText value="#{t.origem.nome}" />
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">Destino</f:facet>
+						<f:facet name="header">#{messages.trechosTableHeaderDestino}</f:facet>
 						<h:outputText value="#{t.destino.nome}" />
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">Editar</f:facet>
-						<h:commandLink action="#{trechoHandler.editar}" value="Editar" />
+						<f:facet name="header">#{messages.trechosTableHeaderEditar}</f:facet>
+						<h:commandLink action="#{trechoHandler.editar}" value="#{messages.trechosTableHeaderEditar}" />
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">Remover</f:facet>
-						<h:commandLink action="#{trechoHandler.remover}" value="Remover" />
+						<f:facet name="header">#{messages.trechosTableHeaderRemover}</f:facet>
+						<h:commandLink action="#{trechoHandler.remover}" value="#{messages.trechosTableHeaderRemover}" />
 					</rich:column>
 					<rich:column>
-						<f:facet name="header">Cadastro de Voo</f:facet>
+						<f:facet name="header">#{messages.trechosTableHeaderCadastroVoo}</f:facet>
 						<!-- TAG que propaga a conversação -->
 						<s:link action="#{vooHandler.manipulaVoos(t)}">
-							<h:outputText value="Cadastro Voo" />
+							<h:outputText value="#{messages.trechosTableHeaderCadastroVoo}" />
 						</s:link>
 					</rich:column>
 				</rich:dataTable>

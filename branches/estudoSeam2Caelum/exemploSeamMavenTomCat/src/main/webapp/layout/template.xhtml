@@ -17,6 +17,14 @@
 	      <ui:insert name="head"/>
 	</head>
 	<body>
+		<h:form>
+			<h:outputLabel />
+			<h:selectOneMenu value="#{localeSelector.language}">
+				<f:selectItem itemLabel="English" itemValue="en"/>
+				<f:selectItem itemLabel="Português" itemValue="pt"/>
+			</h:selectOneMenu>
+			<h:commandButton action="#{localeSelector.select}" value="#{messages.buttonSelectLanguageValue}" />
+		</h:form>
 		<ui:insert name="conteudo"></ui:insert>
 	</body>
 </html>

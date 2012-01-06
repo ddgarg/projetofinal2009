@@ -8,16 +8,16 @@
       xmlns:a4j="http://richfaces.org/a4j">
 
 	<ui:composition template="layout/template.xhtml">
-		<ui:define name="titulo">Erros</ui:define>
+		<ui:define name="titulo">#{messages.errorTitle}</ui:define>
 		
 		<ui:define name="conteudo">
 			<h:form>
 				<rich:panel>
-						<f:facet name="header">Ocorreu um Erro:</f:facet>
-						<h:messages globalOnly="true" style="color:RED"/>
+						<f:facet name="header">#{messages.errorPanelTitle}:</f:facet>
+						<h:messages globalOnly="false" style="color:RED"/>
 				</rich:panel>
 				<br/>
-				<s:button action="/trechos.xhtml" value="Voltar" propagation="end" />
+				<s:button action="/trechos.xhtml" value="#{messages.buttonBackValue}" propagation="end" />
 			</h:form>
 		</ui:define>
 	</ui:composition>

@@ -1,41 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
       xmlns:s="http://jboss.com/products/seam/taglib">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title>JBoss Suites: Seam Framework</title>
-</head>
-<body id="pgHome">
-<f:view>
-	<h1>Hello World!!</h1>
+
+<ui:composition template="layout/template.xhtml">
+
+	<ui:define name="titulo">#{messages.homeTitle}</ui:define>
+	<ui:define name="head">
+		 <a4j:loadStyle src="/stylesheet/useradmin.css"/>
+	</ui:define>
+	<ui:define name="conteudo">
 	
-	 <h:form id="login">
-			<fieldset>
-				<div>
-					<h:outputLabel for="username">Login Name</h:outputLabel>
-					<h:inputText id="username" value="#{identity.username}" style="width: 175px;"/>
-					<div class="errors"><h:message for="username"/></div>
-				</div>
-				<div>
-					<h:outputLabel for="password">Password</h:outputLabel>
-					<h:inputSecret id="password" value="#{identity.password}" style="width: 175px;"/>
-				</div>
-				<div class="errors"><h:messages globalOnly="true"/></div>
-				<div class="buttonBox"><h:commandButton id="login" action="#{identity.quietLogin}" value="Account Login"/></div>
-				<div class="notes"><s:link id="register" view="/register.xhtml" value="Register New User"/></div>
-                <div class="subnotes">
-                    Or use a demo account:
-                    <ul>
-                        <li>admin/admin</li>
-                        <li>demo/demo</li>
-                    </ul>
-                </div>
-			</fieldset>
-            </h:form>
-            
-</f:view>
-</body>
+	    <h:form id="loginForm">
+	        <rich:panel styleClass="dialog">
+	        
+	            <f:facet name="header">#{messages.homeTitlePanelLogin}</f:facet>
+	
+	            <p>#{messages.homeMessageLogin}</p>
+	
+	            <div>
+	                <h:panelGrid styleClass="painelCadastro">
+	                	<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.homeLabelUserName}</ui:define>
+							<h:inputText id="username" value="#{credentials.username}" required="true" />
+						</s:decorate>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.homeLabelPassword}</ui:define>
+							<h:inputText id="password" value="#{credentials.password}" required="true" />
+						</s:decorate>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.homeLabelRememberMe}</ui:define>
+							 <h:selectBooleanCheckbox id="rememberMe" value="#{rememberMe.enabled}"/>
+						</s:decorate>
+	                </h:panelGrid>
+	            </div>
+	
+	            <p>
+	              <i>#{messages.homeLabelNote}</i> #{messages.homeMessageNote}
+	            </p>
+	
+	        </rich:panel>
+	
+	        <div class="actionButtons">
+	        	<h:commandButton id="submit" value="#{messages.homeButtonValue}" action="#{identity.login}"/>
+	        	<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
+	        </div>
+	
+	    </h:form>
+	 </ui:define>
+	 
+</ui:composition>
 </html>

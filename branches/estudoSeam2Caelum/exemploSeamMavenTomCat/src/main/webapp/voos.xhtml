@@ -8,7 +8,7 @@
       xmlns:s="http://jboss.com/products/seam/taglib">
 
 	<ui:composition template="layout/template.xhtml">
-		<ui:define name="titulo">Voos</ui:define>
+		<ui:define name="titulo">#{messages.voosTitle}</ui:define>
 		
 		<ui:define name="conteudo">
 		
@@ -19,7 +19,7 @@
 				<rich:panel styleClass="painelCadastroVoo">
 				
 				    <f:facet name="header">
-						<h1>Cadastro de Voos</h1>
+						<h1>#{messages.voosPanelTitleRegister}</h1>
 					</f:facet>
 					
 					<h:inputHidden value="#{voo.id}" />
@@ -27,24 +27,24 @@
 					<h:panelGrid style="width: 90%">
 					
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Código</ui:define>
+							<ui:define name="label">#{messages.voosLabelCodigo}</ui:define>
 							<h:inputText value="#{voo.codigo}" />
 						</s:decorate>
 						
 						<rich:separator lineType="solid" height="2"/>
 						<rich:spacer height="15"/>
 						
-						<h:outputText styleClass="rich-panel-header" value="Origem: #{vooHandler.trechoSelecionado.origem.nome}" />
+						<h:outputText styleClass="rich-panel-header" value="#{messages.trechosLabelOrigem}: #{vooHandler.trechoSelecionado.origem.nome}" />
 						
 						<rich:spacer height="10"/>
 							
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Dia</ui:define>
+							<ui:define name="label">#{messages.voosLabelDay}</ui:define>
 							<rich:calendar value="#{voo.dataPartida}" datePattern="dd/MM/yyyy" />
 						</s:decorate>
 		
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Hora</ui:define>
+							<ui:define name="label">#{messages.voosLabelHour}</ui:define>
 							<h:inputText value="#{voo.horaPartida}">
 								<f:convertDateTime type="time" pattern="HH:mm"/>
 							</h:inputText>
@@ -54,17 +54,17 @@
 						<rich:separator lineType="solid" height="2"/>
 						<rich:spacer height="15"/>
 												
-						<h:outputText styleClass="rich-panel-header" value="Destino: #{vooHandler.trechoSelecionado.destino.nome}" />
+						<h:outputText styleClass="rich-panel-header" value="#{messages.trechosLabelDestino}: #{vooHandler.trechoSelecionado.destino.nome}" />
 						
 						<rich:spacer height="10"/>
 						
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Dia</ui:define>
+							<ui:define name="label">#{messages.voosLabelDay}</ui:define>
 							<rich:calendar value="#{voo.dataChegada}" datePattern="dd/MM/yyyy" />
 						</s:decorate>
 						
 						<s:decorate template="layout/validation.xhtml">
-							<ui:define name="label">Hora</ui:define>
+							<ui:define name="label">#{messages.voosLabelHour}</ui:define>
 							<h:inputText value="#{voo.horaChegada}">
 								<f:convertDateTime type="time" pattern="HH:mm"/>
 							</h:inputText>
@@ -79,8 +79,8 @@
 				
 				<rich:panel styleClass="painelCadastroVoo">	
 					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
-						<h:commandButton action="#{vooHandler.salvarVoo}" value="Salvar" />
-						<s:button action="/trechos.xhtml" value="Voltar" propagation="end" />
+						<h:commandButton action="#{vooHandler.salvarVoo}" value="#{messages.voosButtonSaveValue}" />
+						<s:button action="/trechos.xhtml" value="#{messages.voosButtonBackValue}" propagation="end" />
 					</a4j:form>
 					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
 				</rich:panel>
@@ -102,15 +102,15 @@
 			                     value="#{voos}"
 			                     var="vo"
 			                     styleClass="tableCad">
-					<f:facet name="header"> Voos Cadastrados</f:facet>
+					<f:facet name="header">#{messages.voosTableTitle}</f:facet>
 					
 					<rich:column>
-						<f:facet name="header">Código do Voo</f:facet>
+						<f:facet name="header">#{messages.voosTableHeaderCodigoVoo}</f:facet>
 						<h:outputText value="#{vo.codigo}" />
 					</rich:column>
 					
 					<rich:column>
-						<f:facet name="header">Partida</f:facet>
+						<f:facet name="header">#{messages.voosTableHeaderPartida}</f:facet>
 						<h:outputText value="#{vo.dataPartida}">
 							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
 						</h:outputText>
@@ -121,7 +121,7 @@
 					</rich:column>
 					
 					<rich:column>
-						<f:facet name="header">Chegada</f:facet>
+						<f:facet name="header">#{messages.voosTableHeaderChegada}</f:facet>
 						<h:outputText value="#{vo.dataChegada}">
 							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
 						</h:outputText>
@@ -132,13 +132,13 @@
 					</rich:column>
 					
 					<rich:column>
-						<f:facet name="header">Editar</f:facet>
-						<h:commandLink action="#{vooHandler.editar}" value="Editar" />
+						<f:facet name="header">#{messages.voosTableHeaderEdit}</f:facet>
+						<h:commandLink action="#{vooHandler.editar}" value="#{messages.voosTableHeaderEdit}" />
 					</rich:column>
 					
 					<rich:column>
-						<f:facet name="header">Remover</f:facet>
-						<h:commandLink action="#{vooHandler.remover}" value="Remover" />
+						<f:facet name="header">#{messages.voosTableHeaderRemove}</f:facet>
+						<h:commandLink action="#{vooHandler.remover}" value="#{messages.voosTableHeaderRemove}" />
 					</rich:column>
 				</rich:dataTable>
 			</h:form>

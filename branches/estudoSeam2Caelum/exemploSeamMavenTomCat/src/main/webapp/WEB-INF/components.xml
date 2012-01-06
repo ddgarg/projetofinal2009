@@ -44,6 +44,13 @@
 		<action execute="#{redirect.returnToCapturedView}" />
 	</event>
 
-	<security:identity authenticate-method="#{authenticator.authenticate}" />
+	<security:identity authenticate-method="#{autenticador.autenticar}" />
+	
+	<core:resource-loader>
+		<core:bundle-names>
+			<value>messages</value>
+			<value>messagesApp</value>
+		</core:bundle-names>
+	</core:resource-loader>
 
 </components>
