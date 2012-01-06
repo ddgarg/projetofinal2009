@@ -11,6 +11,7 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
+import org.jboss.seam.annotations.security.Restrict;
 import org.jboss.seam.international.StatusMessage.Severity;
 
 import br.com.caelum.aeris.entity.Trecho;
@@ -35,12 +36,12 @@ public class VooHandler extends BaseHandler {
 	private List<Voo> voos;
 	
 	@Begin
+	@Restrict("#{s:hasRole('empresa')}")
 	public String manipulaVoos(final Trecho trecho) {
 		this.trechoSelecionado = entityManager.merge(trecho);
 		log.info("Trecho selecionado: #0", this.trechoSelecionado);
 		log.info("EntityManager: #0", entityManager);
 		log.info("Id da conversação atual: #0", conversation.getId());
-		
 		return "/voos.xhtml";
 	}
 
@@ -61,7 +62,7 @@ public class VooHandler extends BaseHandler {
 		this.vooSelecionado.setTrecho(null);
 		this.entityManager.remove(this.vooSelecionado);
 		this.voo = new Voo();
-		facesMessages.add(Severity.INFO, "Vôo removido!", new Object());
+		facesMessages.add(Severity.INFO, "#{messages.vooHandlerRemoveMsg}", new Object());
 		return "/voos.xhtml";
 	}
 	
@@ -75,7 +76,7 @@ public class VooHandler extends BaseHandler {
 		} else {
 			salvar();
 		}
-		facesMessages.add(Severity.INFO, "Trecho salvo com sucesso! ID: #0",
+		facesMessages.add(Severity.INFO, "#{messages.vooHandlerSucessSaveFlightMsg} Id: #0",
 				this.voo.getId());
 		this.voo = new Voo();
 		return "/voos.xhtml";
