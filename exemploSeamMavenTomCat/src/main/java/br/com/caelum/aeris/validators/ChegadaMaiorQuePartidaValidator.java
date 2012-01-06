@@ -11,7 +11,6 @@ public class ChegadaMaiorQuePartidaValidator implements Validator<ChegadaMaiorQu
 	@SuppressWarnings("unused")
 	private ChegadaMaiorQuePartida anotation;
 	
-	@Override
 	public boolean isValid(Object value) {
 		Voo voo = (Voo) value;
 		Date chegada = voo.getDataChegada();
@@ -19,7 +18,6 @@ public class ChegadaMaiorQuePartidaValidator implements Validator<ChegadaMaiorQu
 		return chegada.after(partida);
 	}
 
-	@Override
 	public void initialize(ChegadaMaiorQuePartida parameters) {
 		this.anotation = parameters;
 	}

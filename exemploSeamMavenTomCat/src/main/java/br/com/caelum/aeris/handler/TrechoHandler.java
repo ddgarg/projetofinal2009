@@ -36,7 +36,7 @@ public class TrechoHandler extends BaseHandler {
 			log.info("Salvando: #0", this.trecho);
 			entityManager.persist(this.trecho);
 		}
-		facesMessages.add(Severity.INFO, "Trecho salvo com sucesso! #0", this.trecho);
+		facesMessages.add(Severity.INFO, "#{messages.trechoHandlerSucessSaveTrechoMsg} #0", this.trecho.getId());
 		this.trecho = new Trecho();
 	}
 
@@ -58,7 +58,7 @@ public class TrechoHandler extends BaseHandler {
 	
 	public String remover() {
 		this.entityManager.remove(trechoSelecionado);
-		facesMessages.add(Severity.INFO, "Trecho removido!", new Object());
+		facesMessages.add(Severity.INFO, "#{messages.trechoHandlerRemoveMsg}", new Object());
 		return "/trechos.xhtml";
 	}
 	
