@@ -40,6 +40,7 @@ public class VooHandler extends BaseHandler {
 		log.info("Trecho selecionado: #0", this.trechoSelecionado);
 		log.info("EntityManager: #0", entityManager);
 		log.info("Id da conversação atual: #0", conversation.getId());
+		
 		return "/voos.xhtml";
 	}
 
