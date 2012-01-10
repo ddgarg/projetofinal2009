@@ -7,8 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 public class JUnitSeamTest extends AbstractSeamTest {
-	// static helper instance to call non static methods in
-	// a static method
+	// Exemplo, auxiliar estática para chamar métodos não static em um método estático.
 	private static JUnitSeamTest seamTest = new JUnitSeamTest();
 	private static boolean batch = false;
 
@@ -46,12 +45,12 @@ public class JUnitSeamTest extends AbstractSeamTest {
 	 * Helper methods
 	 */
 
-	// starts the JBoss embedded ejb container
+	// Inicia o JBoss incorporado container ejb.
 	public void startContainer() throws Exception {
 		super.startSeam();
 	}
 
-	// stops the JBoss embedded ejb container
+	// Pára o JBoss incorporado container ejb.
 	public void stopContainer() throws Exception {
 		super.stopSeam();
 	}
@@ -60,7 +59,7 @@ public class JUnitSeamTest extends AbstractSeamTest {
 		return batch;
 	}
 
-	// used by a JUnit.Suite runner to set the batch flag
+	// Usada por um corredor JUnit.Suite para definir o sinalizador de lote.
 	public void setBatch(final boolean fBatch) {
 		batch = fBatch;
 	}

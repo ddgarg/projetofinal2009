@@ -12,13 +12,11 @@ public class JUnitSeamTestSuiteRunner {
     @BeforeClass
     public static  void setUpBeforeClass() throws Exception {    
         // set the flag to signal batch mode
-        seamTest.setBatch(true);
         seamTest.startContainer();
     }
  
     @AfterClass
     public static void tearDownAfterClass() throws Exception {        
         seamTest.stopContainer();
-        seamTest.setBatch(false);
     }
 }
