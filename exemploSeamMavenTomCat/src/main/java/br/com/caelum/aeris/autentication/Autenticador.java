@@ -44,4 +44,10 @@ public class Autenticador {
 		return false;
 	}
 	
+	public String logout() {
+		credentials.invalidate();
+		identity.unAuthenticate();
+		return "/home.xhtml";
+	}
+	
 }
