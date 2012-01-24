@@ -25,6 +25,9 @@
 			</h:selectOneMenu>
 			<h:commandButton action="#{localeSelector.select}" value="#{messages.buttonSelectLanguageValue}" />
 		</h:form>
+		<h:form>
+			<h:commandButton value="Logout" immediate="true" action="#{autenticador.logout}" rendered="#{identity.isLoggedIn()}"/>
+		</h:form>
 		<ui:insert name="conteudo"></ui:insert>
 	</body>
 </html>

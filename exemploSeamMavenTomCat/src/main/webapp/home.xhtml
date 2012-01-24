@@ -31,7 +31,7 @@
 						
 						<s:decorate template="layout/validation.xhtml">
 							<ui:define name="label">#{messages.homeLabelPassword}</ui:define>
-							<h:inputText id="password" value="#{credentials.password}" required="true" />
+							<h:inputSecret id="password" value="#{credentials.password}" required="true"/>
 						</s:decorate>
 						
 						<s:decorate template="layout/validation.xhtml">
