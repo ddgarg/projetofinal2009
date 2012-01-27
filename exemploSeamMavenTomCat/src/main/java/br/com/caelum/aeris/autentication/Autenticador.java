@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Begin;
 import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
@@ -34,6 +35,7 @@ public class Autenticador {
 		this.roles.put("cliente", "comprador");
 	}
 
+	@Begin(pageflow="login")
 	public boolean autenticar() {
 		String username = credentials.getUsername();
 		log.info("Autenticando #0", username);
@@ -47,7 +49,14 @@ public class Autenticador {
 	public String logout() {
 		credentials.invalidate();
 		identity.unAuthenticate();
-		return "/home.xhtml";
+		return "/login.xhtml";
 	}
 	
+	public boolean isEmpresa() {
+		return identity.hasRole("empresa");
+	}
+	
+	public boolean isComprador() {
+		return identity.hasRole("comprador");
+	}
 }
