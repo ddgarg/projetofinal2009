@@ -11,7 +11,7 @@ import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.annotations.datamodel.DataModel;
 import org.jboss.seam.annotations.datamodel.DataModelSelection;
-import org.jboss.seam.annotations.security.Restrict;
+import org.jboss.seam.faces.Redirect;
 import org.jboss.seam.international.StatusMessage.Severity;
 
 import br.com.caelum.aeris.entity.Trecho;
@@ -36,7 +36,7 @@ public class VooHandler extends BaseHandler {
 	private List<Voo> voos;
 	
 	@Begin
-	@Restrict("#{s:hasRole('empresa')}")
+//	@Restrict("#{s:hasRole('empresa')}")
 	public String manipulaVoos(final Trecho trecho) {
 		this.trechoSelecionado = entityManager.merge(trecho);
 		log.info("Trecho selecionado: #0", this.trechoSelecionado);
@@ -47,6 +47,10 @@ public class VooHandler extends BaseHandler {
 
 	public void editar() {
 		this.voo = this.vooSelecionado;
+	}
+	
+	public void novo() {
+		this.voo = new Voo();
 	}
 	
 	public String remover() {
@@ -76,8 +80,8 @@ public class VooHandler extends BaseHandler {
 		} else {
 			salvar();
 		}
-		facesMessages.add(Severity.INFO, "#{messages.vooHandlerSucessSaveFlightMsg} Id: #0",
-				this.voo.getId());
+		facesMessages.add(Severity.INFO, "#{messages.vooHandlerSucessSaveFligthMsg} Id: #0",
+        this.voo.getId());
 		this.voo = new Voo();
 		return "/voos.xhtml";
 	}
@@ -91,7 +95,11 @@ public class VooHandler extends BaseHandler {
 	@Factory(value = "voos")
 	public void inicioVoos() {
 		log.info("Obtendo voos!", new Object());
-		this.voos = this.trechoSelecionado.getVoos();
+		if (this.trechoSelecionado == null) {
+			Redirect.instance().setViewId("/trechos.xhtml");
+		} else {
+			this.voos = this.trechoSelecionado.getVoos();
+		}
 	}
 	
 	public Trecho getTrechoSelecionado() {

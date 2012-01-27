@@ -105,7 +105,7 @@ public class Voo implements Serializable {
 	}
 
 	public void setCodigo(final String codigo) {
-		this.codigo = codigo;
+		this.codigo = codigo.toUpperCase();
 	}
 
 	public Date getDataPartida() {

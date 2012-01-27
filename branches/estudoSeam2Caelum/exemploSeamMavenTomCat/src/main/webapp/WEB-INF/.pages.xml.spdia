@@ -29,10 +29,6 @@
   <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
    TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
  </item>
- <item ID="*" NAME="*" PATH="*" SHAPE="24,433,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
-  <output ID="/home.xhtml" NAME="output" PATH="/home.xhtml"
-   TARGET="#xhome.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
- </item>
  <item ID="org.jboss.seam.framework.EntityNotFoundException"
   NAME="exception:org.jboss.seam.framework.EntityNotFoundException"
   PATH="org.jboss.seam.framework.EntityNotFoundException"
