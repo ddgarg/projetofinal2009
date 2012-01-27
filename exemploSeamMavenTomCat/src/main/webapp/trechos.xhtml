@@ -16,7 +16,7 @@
 		
 			<h:form id="cadTrecho">
 			
-				<rich:panel styleClass="painelCadastro">
+				<rich:panel styleClass="painelCadastro" rendered="#{s:hasRole('empresa')}">
 					
 					<f:facet name="header">
 						<h1>#{messages.trechosPanelTitleRegister}</h1>
@@ -51,7 +51,7 @@
 				<rich:spacer height="10"></rich:spacer>
 				
 				<rich:panel styleClass="painelCadastroVoo">	
-					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
+					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn" rendered="#{s:hasRole('empresa')}">
 						<h:commandButton value="#{messages.trechosButtonSaveValue}" actionListener="#{trechoHandler.salvar}" />
 	 				</a4j:form>
 					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
@@ -88,20 +88,25 @@
 						<f:facet name="header">#{messages.trechosTableHeaderDestino}</f:facet>
 						<h:outputText value="#{t.destino.nome}" />
 					</rich:column>
-					<rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
 						<f:facet name="header">#{messages.trechosTableHeaderEditar}</f:facet>
 						<h:commandLink action="#{trechoHandler.editar}" value="#{messages.trechosTableHeaderEditar}" />
 					</rich:column>
-					<rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
 						<f:facet name="header">#{messages.trechosTableHeaderRemover}</f:facet>
 						<h:commandLink action="#{trechoHandler.remover}" value="#{messages.trechosTableHeaderRemover}" />
 					</rich:column>
-					<rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
 						<f:facet name="header">#{messages.trechosTableHeaderCadastroVoo}</f:facet>
 						<!-- TAG que propaga a conversação -->
 						<s:link action="#{vooHandler.manipulaVoos(t)}">
 							<h:outputText value="#{messages.trechosTableHeaderCadastroVoo}" />
 						</s:link>
+					</rich:column>
+					
+					<rich:column rendered="#{s:hasRole('comprador')}">
+						<f:facet name="header">#{messages.trechosTableHeaderVoos}</f:facet>
+						<h:commandLink action="#{vooHandler.manipulaVoos(t)}" value="#{messages.trechosTableHeaderVer}" />
 					</rich:column>
 				</rich:dataTable>
 			</a4j:form>

@@ -26,12 +26,12 @@
 	                <h:panelGrid styleClass="painelCadastro">
 	                	<s:decorate template="layout/validation.xhtml">
 							<ui:define name="label">#{messages.homeLabelUserName}</ui:define>
-							<h:inputText id="username" value="#{credentials.username}" required="true" />
+							<h:inputText id="username" value="#{credentials.username}" required="true" onmouseover="this.focus();"/>
 						</s:decorate>
 						
 						<s:decorate template="layout/validation.xhtml">
 							<ui:define name="label">#{messages.homeLabelPassword}</ui:define>
-							<h:inputSecret id="password" value="#{credentials.password}" required="true"/>
+							<h:inputSecret id="password" value="#{credentials.password}" required="true" onmouseover="this.focus();"/>
 						</s:decorate>
 						
 						<s:decorate template="layout/validation.xhtml">

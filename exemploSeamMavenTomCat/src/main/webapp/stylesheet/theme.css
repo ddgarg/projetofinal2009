@@ -270,3 +270,7 @@ table.radio input[type=radio] {
 	position: relative;
 	margin: auto;
 }
+
+input.upper {
+	text-transform: uppercase;
+}
