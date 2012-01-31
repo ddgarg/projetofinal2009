@@ -22,8 +22,7 @@
 		<redirect />
 	</page>
 
-<!-- 	<page view-id="/cliente.xhtml" name="cliente"> -->
-	<page view-id="/trechos.xhtml" name="cliente">
+    <page view-id="/cliente.xhtml" name="cliente">
 		<end-conversation />
 		<redirect />
 	</page>

@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +31,7 @@ import br.com.caelum.aeris.validators.Maiusculo;
 @Table(name = "voo")
 @Name("voo")
 @Scope(ScopeType.EVENT)
+@NamedQueries(value = { @NamedQuery(name = "voos", query = "from Voo") })
 @ChegadaMaiorQuePartida(message = "{validator.ChegadaMaiorQuePartida.msg}")
 public class Voo implements Serializable {
 

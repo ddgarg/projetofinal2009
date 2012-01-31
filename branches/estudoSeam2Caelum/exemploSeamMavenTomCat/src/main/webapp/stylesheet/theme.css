@@ -271,6 +271,17 @@ table.radio input[type=radio] {
 	margin: auto;
 }
 
+.painelReservaVoo {
+	width: 750px;
+	position: relative;
+	margin: auto;
+}
+
+.tableReservaVoo {
+	margin: auto;
+	width: 700px;
+}
+
 input.upper {
 	text-transform: uppercase;
 }

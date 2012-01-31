@@ -1,0 +1,25 @@
+<process-definition name="passagem" xmlns="urn:jbpm.org:jpdl-3.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:jbpm.org:jpdl-3.2 http://jbpm.org/xsd/jpdl-3.2.xsd">
+
+	<start-state name="reserva">
+		<transition to="confirmacao" />
+	</start-state>
+
+	<task-node name="confirmacao">
+		<task name="confirmacao pagamento" description="#{passagem.cliente} - #{passagem.voo.codigo}">
+			<assignment pooled-actors="empresa" />
+		</task>
+		<transition to="reservada" />
+	</task-node>
+
+	<task-node name="reservada">
+		<task name="checkin" description="#{passagem.voo.codigo}">
+			<assignment actor-id="#{passagem.cliente}" />
+		</task>
+		<transition to="embarque" />
+	</task-node>
+
+	<end-state name="embarque" />
+
+</process-definition>
