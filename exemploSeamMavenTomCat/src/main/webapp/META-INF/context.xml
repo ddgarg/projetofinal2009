@@ -1,0 +1,30 @@
+<Context>
+
+	<!-- maxActive: Número máximo de conexões de banco de dados na piscina. 
+		Certifique-se de configurar o mysqld max_connections grande o suficiente 
+		para lidar com todas as suas conexões de banco de dados. Defina como -1 para 
+		sem limite. -->
+
+	<!-- maxIdle: Número máximo de conexões de banco de dados idle manter na 
+		piscina. Defina como -1 para sem limite. Veja também a documentação do DBCP 
+		sobre este e o parâmetro de configuração minEvictableIdleTimeMillis. -->
+
+	<!-- maxWait: Tempo máximo de espera para uma conexão de banco de dados 
+		para tornar-se disponível em ms, nesse exemplo 10 segundos. Uma exceção é 
+		lançada se este limite é excedido. Definido como -1 para esperar indefinidamente. -->
+
+	<!-- username and password: MySQL username e senha para conexões de banco 
+		de dados -->
+
+	<!-- driverClassName: Nome da classe do driver JDBC velha mm.mysql é org.gjt.mm.mysql.Driver 
+		- recomendamos a utilização Connector / J embora. Nome da classe para o motorista 
+		oficial MySQL Connector / J é com.mysql.jdbc.Driver. -->
+
+	<!-- url: The JDBC connection url for connecting to your MySQL database. -->
+
+	<Resource name="jdbc/Ds" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="postgres"
+		password="adminadmin" driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/teste" />
+
+</Context>

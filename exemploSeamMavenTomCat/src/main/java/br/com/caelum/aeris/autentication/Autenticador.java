@@ -9,6 +9,7 @@ import org.jboss.seam.annotations.In;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.bpm.Actor;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
@@ -19,6 +20,9 @@ public class Autenticador {
 
 	@In
 	private Identity identity;
+	
+	@In
+	private Actor actor;
 	
 	@In
 	private Credentials credentials;
@@ -41,6 +45,10 @@ public class Autenticador {
 		log.info("Autenticando #0", username);
 		if ("aeris".equals(username) || "cliente".equals(username)) {
 			identity.addRole(this.roles.get(username));
+			
+			actor.setId(credentials.getUsername());
+			actor.getGroupActorIds().add(this.roles.get(username));
+			
 			return true;
 		}
 		return false;

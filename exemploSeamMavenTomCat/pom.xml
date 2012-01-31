@@ -14,6 +14,7 @@
 		<server.tomcat.name>Apache Tomcat v6.0</server.tomcat.name>
 		<java.source>src/main/java</java.source>
 		<java.resources>src/main/resources</java.resources>
+		<java.jbpm>src/main/jbpm</java.jbpm>
 		<test.resources>src/test/resources</test.resources>
 		<java.output>target/classes</java.output>
 		<path.webapp>src/main/webapp</path.webapp>
@@ -322,6 +323,14 @@
 				<directory>${java.resources}</directory>
 				<filtering>false</filtering>
 				<!-- ITEM A SEREM INCLUÍDOS NA PACOTE DE RECURSOS NA COMPILAÇÃO -->
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${java.jbpm}</directory>
+				<filtering>false</filtering>
 				<includes>
 					<include>**/*.properties</include>
 					<include>**/*.xml</include>

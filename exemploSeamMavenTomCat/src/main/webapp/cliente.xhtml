@@ -17,6 +17,47 @@
 		<h:form>
 			<h1>Cliente: #{identity.username}</h1>
 		</h:form>
+		
+		<rich:panel styleClass="painelReservaVoo">
+			<h:form id="formPanel">
+				<rich:dataTable 
+				                 onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			                     cellpadding="0"
+			                     cellspacing="0" 
+			                     border="0"
+			                     styleClass="tableReservaVoo"
+				                 value="#{voosDisponiveis}"
+				                 var="voo">
+					<h:column>
+						<f:facet name="header">Código</f:facet>
+						#{voo.codigo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Origem</f:facet>
+						#{voo.trecho.origem}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Destino</f:facet>
+						#{voo.trecho.destino}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Partida</f:facet>
+						#{voo.dataPartida} - #{voo.horaPartida}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Chegada</f:facet>
+						#{voo.dataChegada} - #{voo.horaChegada}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Reservar</f:facet>
+						<center>
+							<s:button value="Reservar" action="#{reservaHandler.reservar}"></s:button>
+						</center>
+					</h:column>
+				</rich:dataTable>
+			</h:form>
+		</rich:panel>
 	
 	</ui:define>
 	</ui:composition>
