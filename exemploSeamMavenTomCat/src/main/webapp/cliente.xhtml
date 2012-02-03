@@ -9,19 +9,19 @@
 
 	<ui:composition template="layout/template.xhtml">
 
-	<ui:define name="titulo">Cliente</ui:define>
-	<ui:define name="head">
-	</ui:define>
+	<ui:define name="titulo">#{messages.clienteTitlePage}</ui:define>
+	
+	<ui:define name="head"></ui:define>
+	
 	<ui:define name="conteudo">
 	
 		<h:form>
-			<h1>Cliente: #{identity.username}</h1>
+			<h1>#{messages.clienteTitleMsg} #{identity.username}</h1>
 		</h:form>
 		
 		<rich:panel styleClass="painelReservaVoo">
 			<h:form id="formPanel">
-				<rich:dataTable 
-				                 onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+				<rich:dataTable  onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
 			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
 			                     cellpadding="0"
 			                     cellspacing="0" 
@@ -30,29 +30,29 @@
 				                 value="#{voosDisponiveis}"
 				                 var="voo">
 					<h:column>
-						<f:facet name="header">Código</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTableCod}</f:facet>
 						#{voo.codigo}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Origem</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTableOr}</f:facet>
 						#{voo.trecho.origem}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Destino</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTableDes}</f:facet>
 						#{voo.trecho.destino}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Partida</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTablePar}</f:facet>
 						#{voo.dataPartida} - #{voo.horaPartida}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Chegada</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTableCheg}</f:facet>
 						#{voo.dataChegada} - #{voo.horaChegada}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Reservar</f:facet>
+						<f:facet name="header">#{messages.clienteHeaderTableRes}</f:facet>
 						<center>
-							<s:button value="Reservar" action="#{reservaHandler.reservar}"></s:button>
+							<s:button value="#{messages.clienteValueButtonRes}" action="#{reservaHandler.reservar}"></s:button>
 						</center>
 					</h:column>
 				</rich:dataTable>
@@ -61,7 +61,7 @@
 	
 	
 	    <rich:panel>
-	    	<h:outputLink value="checkin.seam">Fazer CheckIn</h:outputLink>
+	    	<h:outputLink value="checkin.seam">#{messages.clienteValueButtonCheckin}</h:outputLink>
 	    </rich:panel>
 	
 	
