@@ -9,7 +9,7 @@
 
 	<head>
     	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	      <title><ui:insert name="titulo">Aeris</ui:insert></title>
+	      <title><ui:insert name="titulo">#{messages.titleDefault}</ui:insert></title>
 	      <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
 	      <a:loadStyle src="/stylesheet/cssreset.css"/>
 	      <a:loadStyle src="/stylesheet/theme.xcss"/>
@@ -20,13 +20,13 @@
 		<h:form>
 			<h:outputLabel />
 			<h:selectOneMenu value="#{localeSelector.language}">
-				<f:selectItem itemLabel="English" itemValue="en"/>
-				<f:selectItem itemLabel="Português" itemValue="pt"/>
+				<f:selectItem itemLabel="#{messages.itemLabelValueEnglish}" itemValue="en"/>
+				<f:selectItem itemLabel="#{messages.itemLabelValuePortuguese}" itemValue="pt"/>
 			</h:selectOneMenu>
 			<h:commandButton action="#{localeSelector.select}" value="#{messages.buttonSelectLanguageValue}" />
 		</h:form>
 		<h:form>
-			<h:commandButton value="Logout" immediate="true" action="#{autenticador.logout}" rendered="#{identity.isLoggedIn()}"/>
+			<h:commandButton value="#{messages.valueButtonLogout}" immediate="true" action="#{autenticador.logout}" rendered="#{identity.isLoggedIn()}"/>
 		</h:form>
 		<ui:insert name="conteudo"></ui:insert>
 	</body>

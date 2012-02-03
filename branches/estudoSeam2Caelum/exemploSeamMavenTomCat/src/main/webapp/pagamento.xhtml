@@ -1,35 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:s="http://jboss.com/products/seam/taglib"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
-	<ui:composition template="layout/template.xhtml">
-		<ui:define name="titulo">#{messages.trechosTitle}</ui:define>
-		
-		<ui:define name="conteudo">
-		
-		
-			<h1>Pagamentos Pendentes</h1>
-		
-		
-			<h:form>
-			    <rich:dataTable value="#{pooledTaskInstanceList}" var="task">
-			        <h:column>
-			        	<f:facet name="reader">Tarefa</f:facet>
+<ui:composition template="layout/template.xhtml">
+	<ui:define name="titulo">#{messages.pagamentoTitlePage}</ui:define>
+
+	<ui:define name="conteudo">
+
+
+		<h1>#{messages.pagamentoTitle}</h1>
+
+
+		<h:form>
+			<rich:dataTable value="#{pooledTaskInstanceList}" var="task">
+				<h:column>
+					<f:facet name="reader">#{messages.pagamentoHeaderTableTar}</f:facet>
 			        	#{task.description}
 			        </h:column>
-			        <h:column>
-			        	<f:facet name="reader">Confirmação</f:facet>
-			        	<s:button value="Confirmar" action="#{passagemHandler.confirmaPagamento}"
-			        	     taskInstance="#{task}"/>
-			        </h:column>
-			    </rich:dataTable>
-			</h:form>
-		
-		</ui:define>
-	</ui:composition>
+				<h:column>
+					<f:facet name="reader">#{messages.pagamentoHeaderTableConf}</f:facet>
+					<s:button value="#{messages.pagamentoValueButton}"
+						action="#{passagemHandler.confirmaPagamento}"
+						taskInstance="#{task}" />
+				</h:column>
+			</rich:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
 </html>

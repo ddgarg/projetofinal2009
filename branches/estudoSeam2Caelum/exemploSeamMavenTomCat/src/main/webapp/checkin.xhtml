@@ -8,21 +8,21 @@
       xmlns:a4j="http://richfaces.org/a4j">
 
 	<ui:composition template="layout/template.xhtml">
-		<ui:define name="titulo">#{messages.trechosTitle}</ui:define>
+		<ui:define name="titulo">#{messages.checkinTitlePage}</ui:define>
 		
 		<ui:define name="conteudo">
 		
 		
-			<h1>Pagamentos Pendentes</h1>
+			<h1>#{messages.checkinTitle}</h1>
 		
 		    <rich:dataTable value="#{taskInstanceList}" var="task">
 		    	<h:column>
-		    		<f:facet name="header">Voo</f:facet>
+		    		<f:facet name="header">#{messages.checkinHeaderTableVoo}</f:facet>
 		    		#{task.description}
 		    	</h:column>
 		    	<h:column>
-		    		<f:facet name="header">Confirmação</f:facet>
-		    		<s:button value="Check In" action="#{passagemHandler.confirmaCheckIn}" taskInstance="#{task}"></s:button>
+		    		<f:facet name="header">#{messages.checkinHeaderTableConfirm}</f:facet>
+		    		<s:button value="#{messages.checkinValueButton}" action="#{passagemHandler.confirmaCheckIn}" taskInstance="#{task}"></s:button>
 		    	</h:column>
 		    </rich:dataTable>
 		

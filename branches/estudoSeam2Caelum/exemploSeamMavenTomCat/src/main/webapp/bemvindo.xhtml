@@ -9,14 +9,15 @@
 
 	<ui:composition template="layout/template.xhtml">
 
-	<ui:define name="titulo">Bem vindo</ui:define>
-	<ui:define name="head">
-	</ui:define>
+	<ui:define name="titulo">#{messages.bomvindoTitlePage}</ui:define>
+	
+	<ui:define name="head"></ui:define>
+	
 	<ui:define name="conteudo">
 	
 		<h:form>
-			<h1>Bem vindo #{identity.username}</h1>
-			<h:commandButton action="comecar" value="Página Inicial" />
+			<h1>#{messages.bomvindoBeginMsg} #{identity.username}</h1>
+			<h:commandButton action="comecar" value="#{messages.bomvindoValueButton}" />
 		</h:form>
 	
 	</ui:define>
