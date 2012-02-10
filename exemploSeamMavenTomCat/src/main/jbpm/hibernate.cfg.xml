@@ -10,22 +10,23 @@
 <!-- hibernate dialect -->
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
-    <!-- JDBC connection properties (begin) -->
+    <!-- JDBC connection properties (begin) 
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/teste</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/cadastrosvoos</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">adminadmin</property>
-    <!-- JDBC connection properties (end) -->
+     JDBC connection properties (end) -->
     
     <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
     
     <!-- DataSource properties (begin) -->
-    <!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/Ds</property> -->
+    <property name="hibernate.connection.datasource">java:/comp/env/jdbc/postgres</property>
     <!-- DataSource properties (end) -->
 
     <property name="show_sql">true</property>
-    <!-- <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property> -->
-    <!-- <property name="transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property> -->
+    <property name="hibernate.format_sql">false</property>
+    <!-- <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
+    <property name="transaction.manager_lookup_class">org.hibernate.transaction.JBossTransactionManagerLookup</property> -->
     <property name="cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
     <property name="hbm2ddl.auto">update</property>
     <!--property name="transaction.flush_before_completion">true</property-->

@@ -7,7 +7,7 @@
 	</start-state>
 
 	<task-node name="confirmacao">
-		<task name="confirmacao pagamento" description="#{passagem.cliente} - #{passagem.voo.codigo}">
+		<task name="confirmacao pagamento" description="#{passagem.voo.codigo} - #{passagem.cliente}">
 			<assignment pooled-actors="empresa" />
 		</task>
 		<transition to="reservada" />

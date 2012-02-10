@@ -5,6 +5,7 @@
        <factory>
           <bean class="org.jbpm.persistence.db.DbPersistenceServiceFactory">
              <field name="isTransactionEnabled"><false/></field>
+             <field name="isCurrentSessionEnabled"><false /></field>
           </bean>
        </factory>
     </service>
