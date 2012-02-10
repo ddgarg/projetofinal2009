@@ -16,7 +16,8 @@ public class PassagemHandler extends BaseHandler {
 
 	private static final long serialVersionUID = -2379589701344942615L;
 	
-	@In(scope = ScopeType.BUSINESS_PROCESS)
+	@Out(scope= ScopeType.BUSINESS_PROCESS, required = false)
+	@In(scope= ScopeType.BUSINESS_PROCESS, required = false)
 	private Long passagemId;
 	
 	@Out(required = false)

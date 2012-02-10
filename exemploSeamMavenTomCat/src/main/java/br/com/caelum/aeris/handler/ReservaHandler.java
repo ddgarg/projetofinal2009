@@ -51,7 +51,14 @@ public class ReservaHandler extends BaseHandler {
 		this.passagem = new Passagem(voo, actor.getId());
 		entityManager.persist(passagem);
 		this.passagemId = passagem.getId();
-		return "/cliente.xhtml";
+//		return "/cliente.xhtml";
+		/*
+		 * TODO
+		 * Ao redirecionar para a mesma página, está lançando exceção
+		 * de transação ativa, por isso, foi criada uma página para redirecionar
+		 * automaticamente para a página cliente.
+		 */
+		return "/confirmarReserva.xhtml";
 	}
 
 	public List<Voo> getVoosDisponiveis() {
