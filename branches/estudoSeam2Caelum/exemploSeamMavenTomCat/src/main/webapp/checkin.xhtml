@@ -22,9 +22,16 @@
 		    	</h:column>
 		    	<h:column>
 		    		<f:facet name="header">#{messages.checkinHeaderTableConfirm}</f:facet>
-		    		<s:button value="#{messages.checkinValueButton}" action="#{passagemHandler.confirmaCheckIn}" taskInstance="#{task}"></s:button>
+		    		<s:button id="buttonCheckin" value="#{messages.checkinValueButton}" action="#{passagemHandler.confirmaCheckIn}" taskInstance="#{task}"></s:button>
 		    	</h:column>
 		    </rich:dataTable>
+		    
+		    <rich:panel>
+		    	<h:form id="botoes">
+		    		<s:button value="#{messages.buttonBackValue}" action="/cliente.xhtml"></s:button>
+		    		<h:messages globalOnly="false" style="color:RED"/>
+		    	</h:form>
+		    </rich:panel>
 		
 		</ui:define>
 	</ui:composition>
