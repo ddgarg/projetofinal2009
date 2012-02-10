@@ -85,14 +85,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.9</version>
-			<!-- <scope>test</scope> -->
 		</dependency>
 
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.3.1</version>
-			<!-- <scope>test</scope> -->
 		</dependency>
 
 		<!-- TESTES SELENIUM -->
