@@ -15,7 +15,6 @@
 
 		<h1>#{messages.pagamentoTitle}</h1>
 
-
 		<h:form>
 			<rich:dataTable value="#{pooledTaskInstanceList}" var="task">
 				<h:column>
@@ -30,6 +29,13 @@
 				</h:column>
 			</rich:dataTable>
 		</h:form>
+		
+		<rich:panel>
+	    	<h:form id="botoes">
+	    		<s:button value="#{messages.buttonBackValue}" action="/trechos.xhtml"></s:button>
+	    		<h:messages globalOnly="false" style="color:RED"/>
+	    	</h:form>
+	    </rich:panel>
 
 	</ui:define>
 </ui:composition>
