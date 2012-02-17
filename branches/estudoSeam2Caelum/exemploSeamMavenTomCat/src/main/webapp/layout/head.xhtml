@@ -7,15 +7,14 @@
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a="http://richfaces.org/a4j">
 
-	<head>
-	      <title><ui:insert name="titulo">#{messages.titleDefault}</ui:insert></title>
-    	  <ui:include src="/layout/head.xhtml" />
-	</head>
 	<body>
-		<ui:include src="/layout/localeSelector.xhtml" />
-		
-		<ui:include src="/layout/buttonLogin.xhtml" />
-		
-		<ui:insert name="conteudo"></ui:insert>
+	
+	      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	      <link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
+	      <a:loadStyle src="/stylesheet/cssreset.css"/>
+	      <a:loadStyle src="/stylesheet/theme.xcss"/>
+	      <a:loadStyle src="/stylesheet/theme.css"/>
+	      <ui:insert name="head"/>
+	      
 	</body>
 </html>
