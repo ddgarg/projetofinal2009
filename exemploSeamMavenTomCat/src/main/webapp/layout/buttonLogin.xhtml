@@ -7,15 +7,11 @@
       xmlns:rich="http://richfaces.org/rich"
       xmlns:a="http://richfaces.org/a4j">
 
-	<head>
-	      <title><ui:insert name="titulo">#{messages.titleDefault}</ui:insert></title>
-    	  <ui:include src="/layout/head.xhtml" />
-	</head>
 	<body>
-		<ui:include src="/layout/localeSelector.xhtml" />
+	
+		<h:form>
+		    <s:button id="buttonLogin" value="#{messages.valueButtonLogout}" action="#{autenticador.logout}" rendered="#{identity.isLoggedIn()}" propagation="end"></s:button>
+		</h:form>
 		
-		<ui:include src="/layout/buttonLogin.xhtml" />
-		
-		<ui:insert name="conteudo"></ui:insert>
 	</body>
 </html>
