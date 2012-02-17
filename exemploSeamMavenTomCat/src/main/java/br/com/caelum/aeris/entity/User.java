@@ -24,9 +24,8 @@ import org.hibernate.validator.NotNull;
 @Table(name = "usuario")
 @NamedQueries(value = {
 		@NamedQuery(name = "User.findAll", query = "FROM User"),
-		@NamedQuery(
-				name = "User.findByLogin",
-				query = "SELECT u FROM User u WHERE u.login = :login") })
+		@NamedQuery(name = "User.findByLogin", query = "SELECT u FROM User u WHERE u.login = :login"),
+		@NamedQuery(name = "User.login", query = "SELECT u FROM User u WHERE u.login = :login AND u.senha = :senha")})
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 3643452685183146994L;
