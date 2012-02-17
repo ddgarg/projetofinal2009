@@ -1,7 +1,10 @@
 package br.com.caelum.aeris.autentication;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
 
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Begin;
@@ -14,9 +17,14 @@ import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
 
+import br.com.caelum.aeris.entity.Role;
+import br.com.caelum.aeris.entity.User;
+
 @Name("autenticador")
 @Scope(ScopeType.APPLICATION)
-public class Autenticador {
+public class Autenticador implements Serializable{
+
+	private static final long serialVersionUID = -3334272871657291277L;
 
 	@In
 	private Identity identity;
@@ -30,6 +38,9 @@ public class Autenticador {
 	@Logger
 	Log log;
 	
+	@In
+	EntityManager entityManager;
+	
 	private Map<String, String> roles;
 	
 	public Autenticador() {
@@ -42,15 +53,24 @@ public class Autenticador {
 	@Begin(pageflow="login")
 	public boolean autenticar() {
 		String username = credentials.getUsername();
+		String password = credentials.getPassword();
+		
 		log.info("Autenticando #0", username);
-		if ("aeris".equals(username) || "cliente".equals(username)) {
-			identity.addRole(this.roles.get(username));
-			
-			actor.setId(credentials.getUsername());
-			actor.getGroupActorIds().add(this.roles.get(username));
-			
+		
+		User user = (User) entityManager.createNamedQuery("User.login")
+				.setParameter("login", username)
+				.setParameter("senha", password)
+				.getSingleResult();
+		
+		if (user != null) {
+			for (Role role : user.getRoles()) {
+				identity.addRole(role.getType());
+				actor.getGroupActorIds().add(role.getType());
+			}
+			actor.setId(username);
 			return true;
 		}
+		
 		return false;
 	}
 	
