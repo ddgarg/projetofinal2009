@@ -5,21 +5,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:s="http://jboss.com/products/seam/taglib"
       xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+      xmlns:a="http://richfaces.org/a4j">
 
-	<ui:composition template="layout/template.xhtml">
-
-	<ui:define name="titulo">#{messages.bomvindoTitlePage}</ui:define>
-	
-	<ui:define name="head"></ui:define>
-	
-	<ui:define name="conteudo">
+    <head>
+	      <title>#{messages.bomvindoTitlePage}</title>
+	      <ui:include src="/layout/head.xhtml" />
+	</head>
+	<body>
+		<ui:include src="/layout/localeSelector.xhtml" />
 	
 		<h:form>
 			<h1>#{messages.bomvindoBeginMsg} #{identity.username}</h1>
+			<!-- <h1><rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages></h1> -->
 			<h:commandButton action="comecar" value="#{messages.bomvindoValueButton}" />
 		</h:form>
-	
-	</ui:define>
-	</ui:composition>
+	</body>
+
 </html>
