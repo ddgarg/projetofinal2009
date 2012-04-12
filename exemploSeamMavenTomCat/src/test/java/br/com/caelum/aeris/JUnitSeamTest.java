@@ -60,7 +60,7 @@ public class JUnitSeamTest extends AbstractSeamTest {
 	}
 
 	// Usada por um corredor JUnit.Suite para definir o sinalizador de lote.
-	public void setBatch(final boolean fBatch) {
-		batch = fBatch;
-	}
+//	public void setBatch(final boolean fBatch) {
+//		batch = fBatch;
+//	}
 }
