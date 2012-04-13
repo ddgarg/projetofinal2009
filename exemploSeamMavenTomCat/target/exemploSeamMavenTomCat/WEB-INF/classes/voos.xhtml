@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib">
+
+	<ui:composition template="layout/template.xhtml">
+		<ui:define name="titulo">#{messages.voosTitle}</ui:define>
+		
+		<ui:define name="head">
+			<a4j:loadScript src="/js/jquery.maskedinput-1.3.js"></a4j:loadScript>
+		</ui:define>
+		
+		<ui:define name="conteudo">
+		
+		<rich:spacer height="30"></rich:spacer>
+		
+			<h:form id="cadVoo" styleClass="edit">
+		
+				<rich:panel styleClass="painelCadastroVoo" rendered="#{s:hasRole('empresa')}">
+				
+				    <f:facet name="header">
+						<h1>#{messages.voosPanelTitleRegister}</h1>
+					</f:facet>
+					
+					<h:inputHidden value="#{voo.id}" />
+				
+					<h:panelGrid style="width: 90%">
+					
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.voosLabelCodigo}</ui:define>
+							<h:inputText id="codigoVoo"  maxlength="6" value="#{voo.codigo}" onmouseover="this.focus();" styleClass="upper" required="true">
+								<rich:jQuery selector="#codigoVoo" query="mask('******',{placeholder:''})" timing="onload"/>
+								<f:converter converterId="upperCodigo" binding="#{converterToUpperCase}"/>
+							</h:inputText>
+						</s:decorate>
+						
+						<rich:separator lineType="solid" height="2"/>
+						<rich:spacer height="15"/>
+						
+						<h:outputText styleClass="rich-panel-header" value="#{messages.trechosLabelOrigem}: #{vooHandler.trechoSelecionado.origem.nome}" />
+						
+						<rich:spacer height="10"/>
+							
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.voosLabelDay}</ui:define>
+							<rich:calendar value="#{voo.dataPartida}" datePattern="dd/MM/yyyy" required="true" />
+						</s:decorate>
+		
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.voosLabelHour}</ui:define>
+							<h:inputText id="horaPartida" value="#{voo.horaPartida}" onmouseover="this.focus();" required="true">
+								<rich:jQuery selector="#horaPartida" query="mask('99:99',{placeholder:'_'})" timing="onload"/>
+								<f:convertDateTime type="time" pattern="HH:mm"/>
+							</h:inputText>
+						</s:decorate>
+						
+						<rich:separator lineType="solid" height="2"/>
+						<rich:spacer height="15"/>
+												
+						<h:outputText styleClass="rich-panel-header" value="#{messages.trechosLabelDestino}: #{vooHandler.trechoSelecionado.destino.nome}" />
+						
+						<rich:spacer height="10"/>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.voosLabelDay}</ui:define>
+							<rich:calendar value="#{voo.dataChegada}" datePattern="dd/MM/yyyy" required="true"/>
+						</s:decorate>
+						
+						<s:decorate template="layout/validation.xhtml">
+							<ui:define name="label">#{messages.voosLabelHour}</ui:define>
+							<h:inputText id="horaChegada" value="#{voo.horaChegada}" onmouseover="this.focus();" required="true">
+								<rich:jQuery selector="#horaChegada" query="mask('99:99',{placeholder:'_'})" timing="onload"/>
+								<f:convertDateTime type="time" pattern="HH:mm"/>
+							</h:inputText>
+						</s:decorate>
+
+					</h:panelGrid>
+				
+				</rich:panel>
+				
+					
+				<rich:spacer height="10"></rich:spacer>
+				
+				<rich:panel styleClass="painelCadastroVoo">	
+					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn">
+						<h:commandButton action="#{vooHandler.salvarVoo}" value="#{messages.voosButtonSaveValue}" rendered="#{s:hasRole('empresa')}"/>
+						<s:button action="/trechos.xhtml" value="#{messages.voosButtonBackValue}" propagation="end" />
+					</a4j:form>
+					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
+				</rich:panel>
+				
+			</h:form>
+			
+			<br/>
+			
+			<rich:spacer height="20"></rich:spacer>
+			
+			<br/>
+			
+			<h:form id="listaVoos">
+				<rich:dataTable  onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			                     cellpadding="0"
+			                     cellspacing="0" 
+			                     border="0"
+			                     value="#{voos}"
+			                     var="vo"
+			                     styleClass="tableCad">
+					<f:facet name="header">#{messages.voosTableTitle}</f:facet>
+					
+					<rich:column>
+						<f:facet name="header">#{messages.voosTableHeaderCodigoVoo}</f:facet>
+						<h:outputText value="#{vo.codigo}" />
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">#{messages.voosTableHeaderPartida}</f:facet>
+						<h:outputText value="#{vo.dataPartida}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						<h:outputText value=" - " />
+						<h:outputText value="#{vo.horaPartida}">
+							<f:convertDateTime type="time" pattern="HH:mm"/>
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column>
+						<f:facet name="header">#{messages.voosTableHeaderChegada}</f:facet>
+						<h:outputText value="#{vo.dataChegada}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						<h:outputText value=" - " />
+						<h:outputText value="#{vo.horaChegada}">
+							<f:convertDateTime type="time" pattern="HH:mm"/>
+						</h:outputText>
+					</rich:column>
+					
+					<rich:column rendered="#{s:hasRole('empresa')}">
+						<f:facet name="header">#{messages.voosTableHeaderEdit}</f:facet>
+						<h:commandLink action="#{vooHandler.editar}" value="#{messages.voosTableHeaderEdit}" />
+					</rich:column>
+					
+					<rich:column rendered="#{s:hasRole('empresa')}">
+						<f:facet name="header">#{messages.voosTableHeaderRemove}</f:facet>
+						<h:commandLink action="#{vooHandler.remover}" value="#{messages.voosTableHeaderRemove}" />
+					</rich:column>
+				</rich:dataTable>
+			</h:form>
+		</ui:define>
+		
+	</ui:composition>
+</html>
