@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="layout/template.xhtml">
+		<ui:define name="titulo">#{messages.trechosTitle}</ui:define>
+		
+		<ui:define name="conteudo">
+		
+		<rich:spacer height="30"></rich:spacer>
+		
+			<h:form id="cadTrecho">
+			
+				<rich:panel styleClass="painelCadastro" rendered="#{s:hasRole('empresa')}">
+					
+					<f:facet name="header">
+						<h1>#{messages.trechosPanelTitleRegister}</h1>
+					</f:facet>
+			
+					<h:inputHidden value="#{trechoHandler.trecho.id}" />
+				
+					<s:decorate template="layout/edit.xhtml">
+						<ui:define name="label">#{messages.trechosLabelOrigem}</ui:define>
+						<h:selectOneMenu id="origem" value="#{trechoHandler.trecho.origem}" required="true">
+							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+								noSelectionLabel="#{messages.noSelectionLabelMsg}" hideNoSelectionLabel="true"/>
+								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+						</h:selectOneMenu>
+					</s:decorate>
+					
+					<rich:spacer height="20"></rich:spacer>
+					
+					<s:decorate template="layout/edit.xhtml">
+						<ui:define name="label">#{messages.trechosLabelDestino}</ui:define>
+						<h:selectOneMenu id="destino" value="#{trechoHandler.trecho.destino}" required="true">
+							<s:selectItems value="#{localidades}" var="localidade" label="#{localidade.nome}"
+								noSelectionLabel="#{messages.noSelectionLabelMsg}" hideNoSelectionLabel="true"/>
+								<f:converter converterId="org.jboss.seam.ui.EnumConverter"/>
+						</h:selectOneMenu>
+					</s:decorate>
+					
+					<rich:spacer height="46"></rich:spacer>
+					
+				</rich:panel>
+			
+				<rich:spacer height="10"></rich:spacer>
+				
+				<rich:panel styleClass="painelCadastroVoo">	
+					<a4j:form ajaxSubmit="true" reRender="formListTrecho, msn" rendered="#{s:hasRole('empresa')}">
+						<h:commandButton value="#{messages.trechosButtonSaveValue}" actionListener="#{trechoHandler.salvar}" />
+	 				</a4j:form>
+					<rich:messages id="msn" globalOnly="true" styleClass="message" errorClass="errormsg" infoClass="infomsg" warnClass="warnmsg"></rich:messages>
+				</rich:panel>		
+			
+			</h:form>
+			<br/>
+			
+			<rich:spacer height="20"></rich:spacer>
+			
+			<br/>
+			
+			<a4j:form id="formListTrecho">
+				<rich:dataTable  onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+			                     onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+			                     cellpadding="0"
+			                     cellspacing="0" 
+			                     border="0"
+			                     value="#{trechos}"
+			                     var="t"
+			                     styleClass="tableCad">
+			                     
+					<f:facet name="header">#{messages.trechosTableTitle}</f:facet>
+
+					<rich:column>
+						<f:facet name="header">#{messages.trechosTableHeaderId}</f:facet>
+						<h:outputText value="#{t.id}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">#{messages.trechosTableHeaderOrigem}</f:facet>
+						<h:outputText value="#{t.origem.nome}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">#{messages.trechosTableHeaderDestino}</f:facet>
+						<h:outputText value="#{t.destino.nome}" />
+					</rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
+						<f:facet name="header">#{messages.trechosTableHeaderEditar}</f:facet>
+						<h:commandLink action="#{trechoHandler.editar}" value="#{messages.trechosTableHeaderEditar}" />
+					</rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
+						<f:facet name="header">#{messages.trechosTableHeaderRemover}</f:facet>
+						<h:commandLink action="#{trechoHandler.remover}" value="#{messages.trechosTableHeaderRemover}" />
+					</rich:column>
+					<rich:column rendered="#{s:hasRole('empresa')}">
+						<f:facet name="header">#{messages.trechosTableHeaderCadastroVoo}</f:facet>
+						<!-- TAG que propaga a conversação -->
+						<s:link action="#{vooHandler.manipulaVoos(t)}">
+							<h:outputText value="#{messages.trechosTableHeaderCadastroVoo}" />
+						</s:link>
+					</rich:column>
+					
+					<rich:column rendered="#{s:hasRole('comprador')}">
+						<f:facet name="header">#{messages.trechosTableHeaderVoos}</f:facet>
+						<h:commandLink action="#{vooHandler.manipulaVoos(t)}" value="#{messages.trechosTableHeaderVer}" />
+					</rich:column>
+				</rich:dataTable>
+			</a4j:form>
+		</ui:define>
+	</ui:composition>
+</html>
