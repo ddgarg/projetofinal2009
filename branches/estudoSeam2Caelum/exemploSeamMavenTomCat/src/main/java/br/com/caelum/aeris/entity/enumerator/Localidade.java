@@ -2,7 +2,7 @@ package br.com.caelum.aeris.entity.enumerator;
 
 public enum Localidade {
 
-	SAO_PAULO("São Paulo"),
+	SAO_PAULO("SÃ£o Paulo"),
 	RIO_DE_JANEIRO("Rio de Janeiro"),
 	NOVA_IORQUE("Nova Iorque"),
 	PARIS("Paris"),

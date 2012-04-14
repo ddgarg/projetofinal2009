@@ -2,6 +2,7 @@ package br.com.caelum.aeris.autentication;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.bpm.Actor;
+import org.jboss.seam.faces.FacesMessages;
 import org.jboss.seam.log.Log;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
@@ -35,11 +37,14 @@ public class Autenticador implements Serializable{
 	@In
 	private Credentials credentials;
 	
+	@In
+	private FacesMessages facesMessages;
+	
 	@Logger
-	Log log;
+	private Log log;
 	
 	@In
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	private Map<String, String> roles;
 	
@@ -57,10 +62,20 @@ public class Autenticador implements Serializable{
 		
 		log.info("Autenticando #0", username);
 		
-		User user = (User) entityManager.createNamedQuery("User.login")
+		@SuppressWarnings("unchecked")
+		List<User> listUser = entityManager.createNamedQuery("User.login")
 				.setParameter("login", username)
 				.setParameter("senha", password)
-				.getSingleResult();
+				.getResultList();
+		
+		User user = null;
+		
+		if (listUser.isEmpty()) {
+			log.warn("Login ou senha incorretos.");
+			return false;
+		} else {
+			user = listUser.get(0);
+		}
 		
 		if (user != null) {
 			for (Role role : user.getRoles()) {
