@@ -24,7 +24,7 @@ import br.com.caelum.aeris.entity.User;
 
 @Name("autenticador")
 @Scope(ScopeType.APPLICATION)
-public class Autenticador implements Serializable{
+public class Autenticador implements Serializable {
 
 	private static final long serialVersionUID = -3334272871657291277L;
 
