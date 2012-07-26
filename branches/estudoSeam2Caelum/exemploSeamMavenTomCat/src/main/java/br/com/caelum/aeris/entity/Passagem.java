@@ -17,7 +17,7 @@ import org.hibernate.validator.NotNull;
 
 @Entity
 @Table(name = "passagem")
-@NamedQueries(value = { @NamedQuery(name = "passagens", query = "from Passagem") })
+@NamedQueries(value = { @NamedQuery(name = "passagens", query = "select p from Passagem p") })
 public class Passagem implements Serializable {
 
 	private static final long serialVersionUID = -6718896140264232383L;

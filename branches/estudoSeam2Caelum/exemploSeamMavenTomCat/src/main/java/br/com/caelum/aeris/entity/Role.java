@@ -18,7 +18,7 @@ import org.hibernate.validator.NotNull;
 @Entity
 @Table(name = "role")
 @NamedQueries(value = {
-		@NamedQuery(name = "Role.findAll", query = "FROM Role"),
+		@NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
 		@NamedQuery(
 				name = "User.findByType",
 				query = "SELECT r FROM Role r WHERE r.type = :type") })
