@@ -31,7 +31,7 @@ import br.com.caelum.aeris.validators.Maiusculo;
 @Table(name = "voo")
 @Name("voo")
 @Scope(ScopeType.EVENT)
-@NamedQueries(value = { @NamedQuery(name = "voos", query = "from Voo") })
+@NamedQueries(value = { @NamedQuery(name = "voos", query = "select v from Voo v") })
 @ChegadaMaiorQuePartida(message = "{validator.ChegadaMaiorQuePartida.msg}")
 public class Voo implements Serializable {
 

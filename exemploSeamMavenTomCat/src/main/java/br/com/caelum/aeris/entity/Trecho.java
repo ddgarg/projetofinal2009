@@ -24,7 +24,7 @@ import br.com.caelum.aeris.entity.enumerator.Localidade;
 
 @Entity
 @Table(name = "trecho")
-@NamedQueries(value = { @NamedQuery(name = "trechos", query = "from Trecho") })
+@NamedQueries(value = { @NamedQuery(name = "trechos", query = "SELECT t from Trecho t") })
 public class Trecho implements Serializable {
 
 	private static final long serialVersionUID = -7389468436897921917L;
