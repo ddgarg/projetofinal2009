@@ -161,29 +161,29 @@ public class Voo implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Voo)) {
 			return false;
 		}
 		Voo other = (Voo) obj;
 		if (codigo == null) {
-			if (other.codigo != null) {
+			if (other.getCodigo() != null) {
 				return false;
 			}
-		} else if (!codigo.equals(other.codigo)) {
+		} else if (!codigo.equals(other.getCodigo())) {
 			return false;
 		}
 		if (id == null) {
-			if (other.id != null) {
+			if (other.getId() != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		} else if (!id.equals(other.getId())) {
 			return false;
 		}
 		return true;
@@ -191,9 +191,7 @@ public class Voo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Voo [id=" + id + ", codigo=" + codigo + ", dataPartida="
-				+ dataPartida + ", dataChegada=" + dataChegada + ", trecho="
-				+ trecho + "]";
+		return "Voo [id=" + id + ", codigo=" + codigo + ", dataPartida=" + dataPartida + ", dataChegada=" + dataChegada + ", trecho=" + trecho + "]";
 	}
 
 }

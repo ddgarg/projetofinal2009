@@ -78,29 +78,29 @@ public class Role implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Role)) {
 			return false;
 		}
 		Role other = (Role) obj;
 		if (id == null) {
-			if (other.id != null) {
+			if (other.getId() != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		} else if (!id.equals(other.getId())) {
 			return false;
 		}
 		if (type == null) {
-			if (other.type != null) {
+			if (other.getType() != null) {
 				return false;
 			}
-		} else if (!type.equals(other.type)) {
+		} else if (!type.equals(other.getType())) {
 			return false;
 		}
 		return true;
@@ -108,7 +108,7 @@ public class Role implements Serializable {
 
 	@Override
 	public String toString() {
-		return type;
+		return "Role [id=" + id + ", type=" + type + "]";
 	}
 
 }

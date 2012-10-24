@@ -108,36 +108,36 @@ public class User implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof User)) {
 			return false;
 		}
 		User other = (User) obj;
 		if (id == null) {
-			if (other.id != null) {
+			if (other.getId() != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		} else if (!id.equals(other.getId())) {
 			return false;
 		}
 		if (login == null) {
-			if (other.login != null) {
+			if (other.getLogin() != null) {
 				return false;
 			}
-		} else if (!login.equals(other.login)) {
+		} else if (!login.equals(other.getLogin())) {
 			return false;
 		}
 		if (senha == null) {
-			if (other.senha != null) {
+			if (other.getSenha() != null) {
 				return false;
 			}
-		} else if (!senha.equals(other.senha)) {
+		} else if (!senha.equals(other.getSenha())) {
 			return false;
 		}
 		return true;
@@ -145,8 +145,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", senha=" + senha
-				+ "]";
+		return "User [id=" + id + ", login=" + login + ", senha=" + senha + "]";
 	}
 
 }

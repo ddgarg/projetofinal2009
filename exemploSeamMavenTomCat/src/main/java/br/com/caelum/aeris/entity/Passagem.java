@@ -90,22 +90,22 @@ public class Passagem implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Passagem)) {
 			return false;
 		}
 		Passagem other = (Passagem) obj;
 		if (id == null) {
-			if (other.id != null) {
+			if (other.getId() != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
+		} else if (!id.equals(other.getId())) {
 			return false;
 		}
 		return true;
@@ -113,8 +113,7 @@ public class Passagem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Passagem [id=" + id + ", voo=" + voo + ", cliente=" + cliente
-				+ "]";
+		return "Passagem [id=" + id + ", voo=" + voo + ", cliente=" + cliente + "]";
 	}
 
 }

@@ -98,35 +98,27 @@ public class Trecho implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((destino == null) ? 0 : destino.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((origem == null) ? 0 : origem.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 		if (obj == null) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!(obj instanceof Trecho)) {
 			return false;
 		}
 		Trecho other = (Trecho) obj;
-		if (destino != other.destino) {
-			return false;
-		}
 		if (id == null) {
-			if (other.id != null) {
+			if (other.getId() != null) {
 				return false;
 			}
-		} else if (!id.equals(other.id)) {
-			return false;
-		}
-		if (origem != other.origem) {
+		} else if (!id.equals(other.getId())) {
 			return false;
 		}
 		return true;
@@ -134,8 +126,7 @@ public class Trecho implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Trecho [id=" + id + ", origem=" + origem + ", destino="
-				+ destino + "]";
+		return "Trecho [id=" + id + ", origem=" + origem + ", destino=" + destino + "]";
 	}
 
 }
