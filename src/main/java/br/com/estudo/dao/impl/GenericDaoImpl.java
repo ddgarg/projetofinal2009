@@ -12,18 +12,18 @@ import br.com.estudo.dao.DaoSupport;
 import br.com.estudo.dao.GenericDao;
 
 @Transactional(propagation = Propagation.REQUIRED)
-public abstract class GenericDaoImpl<T, ID extends Serializable> extends DaoSupport implements GenericDao<T, ID> {
+public abstract class GenericDaoImpl<T, Ident extends Serializable> extends DaoSupport implements GenericDao<T, Ident> {
 
     private static final long serialVersionUID = 1L;
 
-    private Class<T> $Class;
+    private Class<T> typeClass;
     
     @SuppressWarnings("unchecked")
     public GenericDaoImpl() {
         if (getClass().getGenericSuperclass() instanceof ParameterizedType) {
-            this.$Class = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+            this.typeClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         } else {
-            $Class = (Class<T>) getClass().getGenericSuperclass();
+            typeClass = (Class<T>) getClass().getGenericSuperclass();
         }
     }
 
@@ -44,14 +44,14 @@ public abstract class GenericDaoImpl<T, ID extends Serializable> extends DaoSupp
 
     @SuppressWarnings("unchecked")
     @Override
-    public T findById(ID id) {
-        return (T) getSession().get($Class, id);
+    public T findById(Ident id) {
+        return (T) getSession().get(typeClass, id);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public List<T> findAll() {
-        Query query = getSession().createQuery("FROM " + $Class.getName() + " ORDER BY id");
+        Query query = getSession().createQuery("FROM " + typeClass.getName() + " ORDER BY id");
         return query.list();
     }
 
