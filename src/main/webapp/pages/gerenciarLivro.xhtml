@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Gerenciador de Livros</title>
+</h:head>
+
+<h:body>
+	<h1>Gerenciador de Livros</h1>
+
+	<h:messages style="color: red;" showDetail="true" showSummary="false" />
+
+	<h:form>
+		Título:
+		<h:inputText id="titleField" label="Título" value="#{livroController.livro.titulo}" />
+		<br />
+		Autor:
+		<h:inputText id="autorField" label="Autor" value="#{livroController.livro.autor}" />
+		<br />
+		Páginas:
+		<h:inputText id="paginasField" label="Páginas" value="#{livroController.livro.paginas}" />
+		<br />
+		Editora:
+		<h:inputText id="editoraField" label="Editora" value="#{livroController.livro.editora}" />
+		<br />
+		ISBN:
+		<h:inputText id="isbnField" label="ISBN" value="#{livroController.livro.isbn}" />
+		<br />
+		Avaliação:
+		<h:selectOneMenu id="avaliacaoField" label="Avaliação" value="#{livroController.livro.avaliacao}">
+			<f:selectItem itemLabel="1" itemValue="1" />
+			<f:selectItem itemLabel="2" itemValue="2" />
+			<f:selectItem itemLabel="3" itemValue="3" />
+			<f:selectItem itemLabel="4" itemValue="4" />
+			<f:selectItem itemLabel="5" itemValue="5" />
+		</h:selectOneMenu>
+
+		<br />
+
+		<c:choose>
+			<c:when test="#{livroController.livro.id == null}">
+				<h:commandButton action="#{livroController.adicionarLivro}" value="Inserir Novo Livro" />
+    		</c:when>
+			<c:otherwise>
+        		<h:commandButton action="#{livroController.alterarLivro}" value="Alterar Livro" />
+    		</c:otherwise>
+		</c:choose>
+		
+		<br />
+
+		<h:commandLink action="home.xhtml" value="Voltar" />
+	</h:form>
+</h:body>
+</html>

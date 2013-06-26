@@ -1,0 +1,12 @@
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (1, 'Alexandre Altair de Melo', 5, 'Alta Books', '9788576083030', 115, 'Certificação Sun Para Programador Java 6 Guia de Estudo');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (2, 'Alexandre Altair de Melo; Décio Heinzelmann Luckow', 3, 'Novatec', '9788575222386', 1, 'Programação Java para a Web');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (3, 'Paul Barry, David Griffiths', 5, 'Alta Books', '9788576084730', 233, 'Use a Cabeça!');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (4, 'Paulo de Barry', 2, 'Alta Books', '9788576083023', 321, 'Dominando Php e Mysql - Do Iniciante ao Profissional');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (5, 'Décio Heinzelmann Luckow', 5, 'Ciência Moderna Edit', '9788573937114', 365, 'Dominando Java Server Faces e Facelets Utilizando Spring 2.5, Hibernate e JPA');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (6, 'Maurício Samy Silva', 2, 'Novatec', '9788575222898', 125, 'Desenvolva Aplicações Web Profissionais com Uso dos Poderosos Recursos de Estilização das CSS3');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (7, 'Maurício Samy Silva', 3, 'Novatec', '9788575222614', 253, 'HTML 5 - A Linguagem de Marcação que Revolucionou a Web');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (8, 'Marcos Bandeira de Oliveira', 1, 'Novatec', '9788575222393', 432, 'Google Sketchup Pro Aplicado ao Projeto Arquitetônico');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (9, 'Brian P. Hogan', 3, 'Ciência Moderna', '9788539902606', 153, 'HTML 5 e CSS3');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (10, 'Paul Barry, David Griffiths', 2, 'Alta Books', '9788576082132', 275, 'Use a Cabeça! JavaScript');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (11, 'Rafael Soares', 4, 'Ciência Moderna', '9788539902392', 1, 'PHP para Iniciantes');
+insert into Livro (id, autor, avaliacao, editora, isbn, paginas, titulo) values (12, 'Gilleanes T. A. Guedes', 4, 'Novatec', '9788575222812', 1, 'UML 2');
