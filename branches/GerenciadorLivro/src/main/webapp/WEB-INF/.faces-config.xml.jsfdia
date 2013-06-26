@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#home.xhtml" PATH="/pages/home.xhtml"
+  SHAPE="96,128,50,25" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#home.xhtml:0" NAME="item"
+   PATH="/pages/home.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="gerenciarLivro::#pages#gerenciarLivro.xhtml"
+    NAME="output" PATH="/pages/gerenciarLivro.xhtml"
+    TARGET="rules:#pages#gerenciarLivro.xhtml" TITLE="gerenciarLivro" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#pages#gerenciarLivro.xhtml"
+  PATH="/pages/gerenciarLivro.xhtml" SHAPE="384,112,50,41" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#gerenciarLivro.xhtml:0" NAME="item"
+   PATH="/pages/gerenciarLivro.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#pages#home.xhtml" NAME="output"
+    PATH="/pages/home.xhtml" TARGET="rules:#pages#home.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>
