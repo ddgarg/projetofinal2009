@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>Projeto Calculadora</name>
+	<groupId>br.com.estudo</groupId>
+	<artifactId>calculadora</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0</version>
+
+
+	<!-- ======================== VERSÕES ======================== -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler>2.5.1</maven.compiler>
+		<java.version>1.6</java.version>
+		<maven.scm.version>1.8</maven.scm.version>
+		<maven.javadoc.version>2.9</maven.javadoc.version>
+
+		<!-- HSQLDB - BANCO PARA TESTES -->
+		<hsqldb.version>2.2.8</hsqldb.version>
+
+		<!-- LOGGING -->
+		<slf4j.version>1.5.10</slf4j.version>
+		<log4j.version>1.2.15</log4j.version>
+
+		<!-- TESTE -->
+		<testng.version>6.8.5</testng.version>
+		
+		<jboss-ejb-api.version>1.0.2.Final</jboss-ejb-api.version>
+	</properties>
+
+
+	<!-- ======================== MODULOS ======================== -->
+	<modules>
+		<module>ear</module>
+		<module>war</module>
+		<module>ejb-jar</module>
+		<module>client</module>
+	</modules>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- DEPENDÊNCIAS DO PROJETO -->
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>calculadoraEJB</artifactId>
+				<type>ejb</type>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>calculadoraClient</artifactId>
+				<type>ejb</type>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>calculadoraWeb</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.jboss.spec.javax.ejb</groupId>
+				<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+				<version>${jboss-ejb-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+
+			<!-- BANCO PARA TESTES (CRIADO EM MEMÓRIA) -->
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
+
+			<!-- LOGGING -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>com.sun.jdmk</groupId>
+						<artifactId>jmxtools</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.sun.jmx</groupId>
+						<artifactId>jmxri</artifactId>
+					</exclusion>
+				</exclusions>
+				<scope>runtime</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${testng.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-plugin</artifactId>
+					<version>${maven.scm.version}</version>
+					<configuration>
+						<connectionType>connection</connectionType>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
