@@ -100,7 +100,7 @@
 						</ejbModule>
 						<webModule>
 							<groupId>${project.groupId}</groupId>
-							<artifactId>estudoEjbMavenWeb</artifactId>
+							<artifactId>estudoEjbMavenWEB</artifactId>
 						</webModule>
 					</modules>
 					<jboss>
