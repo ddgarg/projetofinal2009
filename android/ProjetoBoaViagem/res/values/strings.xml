@@ -1,5 +1,9 @@
 <resources>
 
     <string name="app_name">Boa Viagem</string>
+    <string name="desc_logo">Boa Viagem Logo</string>
+    <string name="labelUsuario">Usuario:</string>
+    <string name="labelSenha">Senha:</string>
+    <string name="buttonEntrar">Entrar</string>
 
 </resources>
