@@ -5,5 +5,10 @@
     <string name="labelUsuario">Usuario:</string>
     <string name="labelSenha">Senha:</string>
     <string name="buttonEntrar">Entrar</string>
+    <string name="erro_autenticao">Usuário ou senha inválidos</string>
+    <string name="nova_viagem">Nova Viagem</string>
+    <string name="novo_gasto">Novo Gasto</string>
+    <string name="minhas_viagens">Minhas Viagens</string>
+    <string name="configuracoes">Configurações</string>
 
 </resources>
