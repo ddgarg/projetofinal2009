@@ -47,4 +47,34 @@ public class MainActivity extends Activity {
 
         startActivity(intent);
     }
+    
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("Start!");
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("Resume!");
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("Pause!");
+    }
+    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("Stop!");
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("Destroy!");
+    }
 }

@@ -30,17 +30,17 @@
         android:id="@+id/buttonSaudacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_below="@+id/nomeEditText"
-        android:text="@string/valor_botao"
-        android:onClick="surpreenderUsuario"/>
+        android:layout_gravity="center"
+        android:onClick="surpreenderUsuario"
+        android:text="@string/valor_botao" />
 
     <TextView
         android:id="@+id/saudacaoText"
+        style="@style/styleName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonSaudacao"
-        android:textSize="20sp" />
+        android:layout_below="@+id/buttonSaudacao" />
 
     <Button
         android:id="@+id/buttonSaudacaoNovaJanela"
