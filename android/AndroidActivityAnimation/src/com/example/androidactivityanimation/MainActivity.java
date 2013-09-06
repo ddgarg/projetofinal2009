@@ -1,5 +1,7 @@
 package com.example.androidactivityanimation;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,8 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.app.Activity;
-import android.content.Intent;
+
 
 public class MainActivity extends Activity {
 	
