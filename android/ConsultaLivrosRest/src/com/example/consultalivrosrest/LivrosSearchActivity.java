@@ -94,7 +94,7 @@ public class LivrosSearchActivity extends Activity {
 						value += autores.get(x);
 					}
 					
-					value += "\nDescrição:\n" + volumeInfo.getString("description");
+//					value += "\nDescrição:\n" + volumeInfo.getString("description");
 					
 					livros[i] = value;
 				}
