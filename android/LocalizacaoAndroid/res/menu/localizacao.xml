@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mapaRoadmap"
+        android:title="@string/action_roadmap"/>
+    <item
+        android:id="@+id/mapaSatellite"
+        android:title="@string/action_satellite"/>
+    <item
+        android:id="@+id/mapaTerrain"
+        android:title="@string/action_terrain"/>
+    <item
+        android:id="@+id/mapaHybrid"
+        android:title="@string/action_hybrid"/>
+
+</menu>

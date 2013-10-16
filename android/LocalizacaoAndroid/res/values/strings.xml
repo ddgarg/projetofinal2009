@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Localizacao Android</string>
+    <string name="title_activity_localizacao">LocalizacaoActivity</string>
+    <string name="action_settings">Tipos de Mapas</string>
+    
+    <string name="action_roadmap">Roadmap</string>
+    <string name="action_satellite">Satellite</string>
+    <string name="action_terrain">Terrain</string>
+    <string name="action_hybrid">Hybrid</string>
+    
+</resources>
