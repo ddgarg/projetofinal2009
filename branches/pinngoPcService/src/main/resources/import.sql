@@ -1,0 +1,1 @@
+insert into Usuario (id, login, nome, senha, token) values (1, "admin@pinngo.com", "Daniel", "admin", "");
