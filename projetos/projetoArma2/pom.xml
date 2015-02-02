@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.arma2</groupId>
+	<artifactId>projetoArma2</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Projeto Arma2</name>
+	<description>Projeto para apresentar alguns scripts para edição de missões.</description>
+
+	<properties>
+		<project.encoding>UTF-8</project.encoding>
+		<java.source>src/main/java</java.source>
+		<java.resources>src/main/resources</java.resources>
+		<test.resources>src/test/resources</test.resources>
+		<java.output>target/classes</java.output>
+		<path.webapp>src/main/webapp</path.webapp>
+		<test.source>src/test/java</test.source>
+		<java.version>1.7</java.version>
+		<version.maven.war.plugin>2.6</version.maven.war.plugin>
+		<version.maven.compile.plugin>3.2</version.maven.compile.plugin>
+		<version.maven.eclipse.plugin>2.9</version.maven.eclipse.plugin>
+		<!-- Testes -->
+		<pular.testes>true</pular.testes>
+		<version.surefire.plugin>2.18.1</version.surefire.plugin>
+	</properties>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>${java.source}</sourceDirectory>
+		<testSourceDirectory>${test.source}</testSourceDirectory>
+		<resources>
+			<!-- http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html -->
+			<resource>
+				<directory>${java.resources}</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${test.resources}</directory>
+			</testResource>
+		</testResources>
+		<plugins>
+			<!-- http://maven.apache.org/plugins/index.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.maven.war.plugin}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.maven.compile.plugin}</version>
+				<configuration>
+					<verbose>true</verbose>
+					<fork>true</fork>
+					<executable><!-- path-to-javac -->
+					</executable>
+					<compilerVersion>${java.version}</compilerVersion>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<meminitial>128m</meminitial>
+					<maxmem>512m</maxmem>
+				</configuration>
+			</plugin>
+			<!-- Utilizar IDE Eclipse -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${version.maven.eclipse.plugin}</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<!-- Testes -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${version.surefire.plugin}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>${version.surefire.plugin}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<skip>${pular.testes}</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

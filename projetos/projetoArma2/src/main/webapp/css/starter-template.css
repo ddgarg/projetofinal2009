@@ -1,0 +1,20 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: left;
+}
+
+a, strong {
+ text-transform: uppercase;
+} 
+
+table, td, th {
+    border: 1px solid black;
+}
+
+th {
+    background-color: black;
+    color: white;
+}
