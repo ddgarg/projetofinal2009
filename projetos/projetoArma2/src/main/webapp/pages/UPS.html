@@ -66,6 +66,8 @@ Cria patrulha específicas ou de forma aleatório, podendo ser unidades aéreas,
 </pre>
 <strong>DETALHES:</strong>
 <pre>
+Todo grupo ou unidade deve ter um nome.
+
 -AREA MARKER
 
     • O marcador deve ser rectangular. O script irá trabalhar com um marcador redondo,
@@ -242,7 +244,7 @@ VARIÁVEIS GLOBAIS
 2. Criar um marcador rectangular sobre a área que deve ser patrulhada (por exemplo, uma cidade).
    Dê este marcador um nome (por exemplo, "Alpha").
 
-3. Crie quantas unidades (ou grupos), como você achar adequado, e colocar a seguinte chamada
+3. Crie quantas unidades (ou grupos), coloque um nome em cada um (funciona melhor), como você achar adequado, e colocar a seguinte chamada
       no campo de inicialização de cada líder de grupo: nul=[this,"Alpha"] execVM "ups.sqf" .
 </pre>
 <strong>SCRIPT:</strong>
