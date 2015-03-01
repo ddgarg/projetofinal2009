@@ -18,3 +18,10 @@ th {
     background-color: black;
     color: white;
 }
+.textBranco {
+	color: white;
+}
+
+.bordaCor {
+	border-color: black;
+}

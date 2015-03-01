@@ -56,20 +56,47 @@
     <div class="container">
 
       <div class="starter-template">
-      <strong>Chat:</strong>
-	    <pre class="text-left">
-			driver vehicle player sideChat "sideChat";
-			driver vehicle player globalChat "globalChat";
-			driver vehicle player groupChat "groupChat";
-			vehicle player vehicleChat "vehicleChat";
-			driver vehicle player commandChat "commandChat";
-			driver vehicle player customChat [1, "customChat"];
-			systemChat "systemChat";
-		</pre>
-	<strong>Mensagens simples:</strong>
-	    <pre class="text-left">
-			hint "mensagem no canto direito da tela !!!";
-		</pre>
+<!-- Título -->      
+<strong></strong></p>
+
+<strong>DESCRIÇÃO:</strong>
+<pre>
+Objeto fica iluminado (Gera Luz)! (Não sei se funciona em multiplayer, em forum diz que não funciona, não testei)
+</pre>
+<strong>DETALHES:</strong>
+<pre>
+light = "#lightpoint" createVehicleLocal(position this);  - Cria a luz (Eu acho?)
+light setLightBrightness 0.02; - brilho da Luz
+light setLightAmbient[0.5,0.5,0.4]; - cor ambiente (RGB)
+light setLightColor[0.5,0.5,0.4];  - cor luz (RGB)
+light lightAttachObject[this,[0,0,0]]; - posição da Luz
+</pre>
+<strong>COMO FUNCIONA:</strong>
+<pre>
+Cole o script no INIT do objeto.
+Pode ser criado por script etc.
+
+Para deletar a Luz:
+Script: deleteVehicle light;
+
+Caso crie vários objetos iluminados, a variável light deve ter outro nome, pois não sendo diferente ele somente deleta um.
+Exemplo:
+light1 = "#lightpoint" create... light2 = "#lightpoint" create... light3 = "#lightpoint" create... (Em cada objeto).
+deleteVehicle light1; deleteVehicle light2; deleteVehicle light3; (sendo acionado num gatilho , script etc).
+
+</pre>
+<strong>SCRIPT:</strong>
+<pre>
+Criar:
+light="#lightpoint"createVehicleLocal(position this);  
+light setLightBrightness 0.02;  
+light setLightAmbient[0.5,0.5,0.4];  
+light setLightColor[0.5,0.5,0.4];  
+light lightAttachObject[this,[0,0,0]];
+
+Deletar:
+deleteVehicle light;
+</pre>
       </div>
 
     </div><!-- /.container -->

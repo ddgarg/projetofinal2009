@@ -56,71 +56,34 @@
     <div class="container">
 
       <div class="starter-template">
-        <strong>SOLDADOS NO INTERIOR DO PRÉDIO:</strong>
-		</p>
-<strong>Descrição:</strong>
+<!-- Título -->      
+<strong></strong></p>
+
+<strong>DESCRIÇÃO:</strong>
 <pre>
-O roteiro coloca os homens no interior das casas em janelas, portas e nos telhados e varandas. Os homens podem ter uma probabilidade de presença. 
-Ele atualmente só funciona para edifícios no Takistan, Shapur, Deserto, Zargabad, e alguns no Proving Grounds.
+Rádio liberado somente após condiçao de uma trigger.
 </pre>
-
-<strong>Detalhes:</strong>
+<strong>DETALHES:</strong>
 <pre>
-garrison_test = ["mkr2",40,.7,.6,.2,.8,0,"squad1",1,1,1,1] execVM "jsp_garrison_radius.sqf";
+crie a trigger com nome "trig1", e coloque a condição e ação que quiser;
+crie segundo trigger e coloque "activation=radio aplha" e "condition=triggeractivated trig1" e ação que quiser(chamar helicóptero por exemplo)
 
-garrison_01 = ["marker_name",radius,#,%_of_positions,min_skill,max_skill,faction#,"marker_name_2",janela#,porta#,telhado#,varanda#] execVM "jsp_garrison_radius.sqf";
-
-- "marker_name" - o marcador em torno do qual você deseja que apareça os soldados.
-- radius - o raio em torno do marcador que você quer edifícios a ser ocupado.
-- _of_buildings% - a percentagem de edifícios que você deseja ser ocupado. 0,1 = 10%: 0,5 = 50%. Qualquer número 0-1 devem trabalhar.
-- _of_positions% - o percentual de posições que pretende ser ocupado. 0,1 = 10%: 0,5 = 50%. Qualquer número 0-1 deve funcionar.
-- min_skill - a quantidade mínimo de habilidade para as unidades.
-- max_skill - a quantidade máxima de habilidade para as unidades.
-- faction# - o número para a facção que você deseja criar (encontrado abaixo).
-- "marker_name_2" - define onde as unidades irá aparecer antes de serem colocados nos edifícios.(tente não colocar este marker para aparecer direto no prédio).
-- janela# - define se as unidades irá aparecer em janelas (0 = Off / Não, 1 = On / Sim)
-- porta# - define se as unidades irá aparecer em portas (0 = Off / Não, 1 = On / Sim)
-- telhado# - define se as unidades irá aparecer no telhado (0 = Off / Não, 1 = On / Sim)
-- varanda# - define se as unidades irá aparecer nas varandas (0 = Off / No, 1 = On / Sim)
-
-<strong>Facções:</strong>
-0 - Takistan Militia
-1 - Takistan Army
-2 - Takistan Militia and Takistan Army
-3 - Takistan Locals
-4 - Takistan Miltia and Takistan Locals (Allied)
-5 - US Army
-6 - UK Army
-7 - CDF
-8 - Chedaki (Insurgents)
-9 - NAPA (Guerillas)	
-10 - Russian Army
-11 - US Marines
-12 - Czech Army
-13 - United Nations (UNO)
-14 - PMC
-15 - UK Army Desert
-16 - UK Army Green
+"triggeractivated trig1" - verifica se uma trigger é verdadeira
 </pre>
-
-<strong>Como Funciona:</strong>
+<strong>COMO FUNCIONA:</strong>
 <pre>
-1.) Criar Gatilho
-2.) Definir OPFOR
-3.) Em On Act. colocar: garrison_test = ["mkr2",40,.7,.6,.2,.8,0,"squad1",1,1,1,1] execVM "jsp_garrison_radius.sqf";
-4.) Fechar Gatilho
-5.) Colocar Marcador
-6.) Nome mkr2
-7.) Coloque segundo Marcador caso queira que a unidade apareça antes de entrar no predio
-8.) Nome squad1
+- Crie a primeira trigger com um nome qualquer
+- E coloque a condição que quiser
+- Crie uma segunda trigger com activation "radio aplha", ou outro rádio qualquer
+- Em condition coloque "triggeractivated nomeDaPrimeiraTrigger"
+- E coloque a condição que quiser
 </pre>
-
 <strong>SCRIPT:</strong>
 <pre>
-garrison_test = ["mkr2",40,.7,.6,.2,.8,0,"squad1",1,1,1,1] execVM "jsp_garrison_radius.sqf";
+triggeractivated trig1
 </pre>
 
-<strong>Arquivo: </strong> <a href="jsp_garrison_radius.sqf"> jsp_garrison_radius.sqf</a>
+<strong>Arquivo: </strong> <a href="Garrison_script.sqf">Garrison_script.sqf</a>
       </div>
 
     </div><!-- /.container -->
